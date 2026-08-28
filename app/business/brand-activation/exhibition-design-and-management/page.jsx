@@ -1,29 +1,50 @@
+import Header from "@/Components/common/Navbar";
 import Footer from "@/Components/common/Footer";
-import Hero from "@/Components/common/Hero";
-import Navbar from "@/Components/common/Navbar";
 
-export default function ExibitionDesignManagementPage() {
+import NationHero from "@/Components/bussinessactivationSubpages/BASubpagesHero";
+import NationAbout from "@/Components/bussinessactivationSubpages/BASubpagesAbout";
+import NationEvents from "@/Components/bussinessactivationSubpages/BASubpagesEvents";
+import NationGallery from "@/Components/bussinessactivationSubpages/BASubpagesGallery";
+
+export default function Page() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#2d2d2d] text-white">
-      {/* Header */}
-      <Navbar />
+    <main className="w-full overflow-x-hidden bg-[#303030]">
+      {/* STICKY HEADER */}
+      <div className="sticky top-0 z-[999] w-full">
+        <Header />
+      </div>
 
-      {/* Hero */}
-      <Hero
-        title="Exhibition Design and Management Services"
-        desc="At Wizcraft, we make your brand come alive on the exhibition floor with world-class Exhibition Design & Booth Management Services. With more than three decades of experience, we specialize in designing inspiring as well as functional spaces that not only get noticed but also spark meaningful interactions. From exhibition stall design to full-fledged trade show booth design, we make your brand shine and carry maximum weight."
+      {/* HERO */}
+      <NationHero
+        title="CORPORATE EVENT LAUNCHES"
+        description="Creating impactful corporate events and launch experiences that bring brands, people, and ideas together."
       />
 
-      <br />
+      {/* ABOUT */}
+      <NationAbout
+        image1="/business/corporate/about1.jpg"
+        image2="/business/corporate/about2.jpg"
+        image3="/business/corporate/about3.jpg"
+        paragraphs={[
+          "At Wizcraft, we create corporate event experiences that transform ideas into powerful moments and meaningful connections.",
+          "From strategic planning and creative concepts to seamless execution, every event is designed to deliver a memorable and engaging experience.",
+          "Our experienced team combines creativity, technology, and precision to create impactful corporate launches and events.",
+        ]}
+      />
 
-      {/* CTA */}
-      <section className="bg-gradient-to-r from-[#197bc1] to-[#69c2aa] px-6 py-20 text-center">
-        <p className="text-[11px] sm:text-[25px] w-[1300px] m-auto">
-          Our track record of delivering excellence in both Exhibition Booth Design India and Exhibition Management Dubai renders us the partner of preference for companies globally.
-        </p>
-      </section>
+      {/* GALLERY */}
+      <NationGallery
+        title="OUR CORPORATE EVENTS"
+        image="/business/corporate/gallery.jpg"
+      />
 
-      {/* Footer */}
+      {/* EVENTS */}
+      <NationEvents
+        title="Creating Experiences That Make An Impact"
+        description="From product launches and corporate celebrations to large-scale business events, we deliver experiences that inspire and engage audiences."
+        image="/business/corporate/event.jpg"
+      />
+      {/* FOOTER */}
       <Footer />
     </main>
   );
