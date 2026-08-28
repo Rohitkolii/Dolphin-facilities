@@ -14,20 +14,25 @@ const links = [
         label: "Brand Avtivation",
         href: "/business/brand-activation",
         children: [
-          ["Corporate Events", "/business/events/corporate"],
-          ["Brand Activations", "/business/events/brand-activations"],
-          ["Award Shows", "/business/events/award-shows"],
+          ["Nation Building Events", "/business/brand-activation/nation-building-events"],
+          ["Data Derived Customer Centric Solutions", "/business/brand-activation/data-drive-customer-centric-solution"],
+          ["Corporate Event Launches", "/business/brand-activation/corporate-event-launches"],
+          ["On-Ground Activations", "/business/brand-activation/on-ground-activation"],
+          ["Exhibition Design & Management", "/business/brand-activation/exhibition-design-and-management"],
+          ["Content Curation – Animations, Graphics & AVs", "/business/brand-activation/content-curation-animations-graphics-and-avs"],
         ],
       },
       {
         label: "Digital Solutions",
         href: "/business/digital-solutions",
         children: [
-          [
-            "Celebrity Management",
-            "/business/entertainment/celebrity-management",
-          ],
-          ["Artist Management", "/business/entertainment/artist-management"],
+          ["Live Streaming", "/business/digital-solutions/live-streaming"],
+          ["Virtual Events in Immersive Environments", "/business/entertainment/artist"],
+          ["Virtual Events with AR Based Content", "/business/entertainment/management"],
+          ["Virtual Events with Integrated VR", "/business/entertainment/artiment"],
+          ["Hybrid Events", "/business/entertainment/arent"],
+          ["Content Design & Management", "/business/entertainment/artiagement"],
+          ["Digital Marketing", "/business/entertainment/anagement"],
         ],
       },
       {
@@ -35,10 +40,18 @@ const links = [
         href: "/business/special-events",
         children: [
           [
-            "Experiential Marketing",
+            "Special Event Management Services",
             "/business/experiences/experiential-marketing",
           ],
-          ["Digital Experiences", "/business/experiences/digital"],
+          ["Opening & Closing Ceremonies", "/business/experiences/d"],
+          ["Concerts & Festivals", "/business/experiences/di"],
+          ["Sporting Events", "/business/experiences/dig"],
+          ["Launch of New Initiatives", "/business/experiences/digi"],
+          ["Trade Shows", "/business/experiences/digit"],
+          ["Cultural & Tourism Events", "/business/experiences/digita"],
+          ["Son Et Lumière Spectaculars", "/business/experiences/digital"],
+          ["Social Celebrations", "/business/experiences/digital1"],
+          ["Weddings", "/business/experiences/digital2"],
         ],
       },
     ],
@@ -151,7 +164,7 @@ export default function Navbar() {
                         font-semibold
                         text-white
                         transition
-                        hover:bg-white/10
+                        hover:bg-[#1684c5]
                         hover:text-white
                       "
                               >
@@ -196,7 +209,7 @@ export default function Navbar() {
                                   font-medium
                                   text-white
                                   transition
-                                  hover:bg-white/10
+                                  hover:bg-[#1684c5]
                                 "
                                         >
                                           {subLabel}

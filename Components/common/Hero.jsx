@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Hero({title, desc}) {
   return (
-    <section className="w-full bg-gradient-to-r from-blue-400 via-blue-400 to-teal-400 py-30 px-4 overflow-hidden">
+    <section className="w-full bg-gradient-to-r from-[#197bc1] to-[#69c2aa] py-25 px-4 overflow-hidden">
 
       <div className="max-w-6xl mx-auto text-center">
 

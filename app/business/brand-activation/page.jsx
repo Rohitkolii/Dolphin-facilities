@@ -2,11 +2,6 @@ import Footer from "@/Components/common/Footer";
 import Hero from "@/Components/common/Hero";
 import Navbar from "@/Components/common/Navbar";
 import {
-  FaInstagram,
-  FaLinkedinIn,
-  FaFacebookF,
-  FaYoutube,
-  FaBars,
   FaBuilding,
   FaHandshake,
   FaCommentDots,
