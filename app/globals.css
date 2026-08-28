@@ -24,3 +24,39 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.container-x {
+  width: min(1300px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 58s linear infinite;
+}
+
+.gradient-panel {
+  background: linear-gradient(
+    115deg,
+    #237cba 0%,
+    #298bc2 35%,
+    #57b3b0 70%,
+    #8bd0ae 100%
+  );
+}
+
+.border-wiz {
+  border: 5px solid transparent;
+  background:
+    linear-gradient(transparent, transparent) padding-box,
+    linear-gradient(90deg, #1d7fc5, #00c6ff, #6a5cff) border-box;
+}
