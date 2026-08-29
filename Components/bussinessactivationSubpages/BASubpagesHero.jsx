@@ -15,7 +15,9 @@ export default function NationHero({
       className="
         relative
         w-full
-        h-[410px]
+        h-[250px]
+        sm:h-[270px]
+        md:h-[285px]
         overflow-hidden
         bg-gradient-to-r
         from-[#247fbd]
@@ -30,15 +32,14 @@ export default function NationHero({
           flex
           flex-col
           items-center
-          pt-[116px]
+          justify-center
           px-5
           sm:px-8
-          md:px-10
+          md:px-12
+          pb-2
         "
       >
-
         {/* HEADING */}
-
         <motion.h1
           initial={{
             opacity: 0,
@@ -56,23 +57,21 @@ export default function NationHero({
             text-white
             text-center
             uppercase
-            font-extrabold
-            tracking-[-0.5px]
-            leading-none
+            font-bold
+            tracking-[-0.3px]
+            leading-[1.15]
 
-            text-[20px]
-            sm:text-[23px]
-            md:text-[28px]
-            lg:text-[33px]
-            xl:text-[35px]
+            text-[17px]
+            sm:text-[20px]
+            md:text-[24px]
+            lg:text-[28px]
+            xl:text-[30px]
           "
         >
           {title}
         </motion.h1>
 
-
         {/* DESCRIPTION */}
-
         <motion.p
           initial={{
             opacity: 0,
@@ -88,40 +87,37 @@ export default function NationHero({
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-            mt-[21px]
-            max-w-[1500px]
+            mt-4
+            max-w-[1250px]
             text-center
-            text-white
+            text-white/95
             font-normal
-            leading-[1.65]
+            leading-[1.55]
 
-            text-[11px]
-            sm:text-[12px]
-            md:text-[13px]
-            lg:text-[15px]
-            xl:text-[16px]
+            text-[10px]
+            sm:text-[11px]
+            md:text-[12px]
+            lg:text-[13px]
+            xl:text-[14px]
           "
         >
           {description}
         </motion.p>
-
       </div>
 
-
       {/* SOCIAL BUTTONS */}
-
       <div
         className="
           absolute
           right-0
-          top-[200px]
+          top-1/2
+          -translate-y-1/2
           hidden
           md:flex
           flex-col
-          gap-[20px]
+          gap-3
         "
       >
-
         <SocialButton>
           <span>f</span>
         </SocialButton>
@@ -133,13 +129,10 @@ export default function NationHero({
         <SocialButton>
           <span>▶</span>
         </SocialButton>
-
       </div>
-
     </section>
   );
 }
-
 
 /* ============================================================
    SOCIAL BUTTON
@@ -155,21 +148,21 @@ function SocialButton({ children }) {
         duration: 0.2,
       }}
       className="
-        w-[45px]
-        h-[55px]
+        w-[38px]
+        h-[43px]
         flex
         items-center
         justify-center
         bg-[#2387c1]
-        border-l-[5px]
-        border-t-[3px]
-        border-b-[3px]
+        border-l-[4px]
+        border-t-[2px]
+        border-b-[2px]
         border-[#69c6aa]
         text-white
         cursor-pointer
       "
     >
-      <span className="text-[15px] font-bold">
+      <span className="text-[13px] font-bold">
         {children}
       </span>
     </motion.div>

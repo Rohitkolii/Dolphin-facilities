@@ -74,7 +74,8 @@ const blogs = [
 ============================================================ */
 
 export default function BlogGrid() {
-  const [visibleBlogs, setVisibleBlogs] = useState(6);
+  // DEFAULT ONLY 3 CARDS
+  const [visibleBlogs, setVisibleBlogs] = useState(3);
 
   const displayedBlogs = blogs.slice(0, visibleBlogs);
 
@@ -86,16 +87,20 @@ export default function BlogGrid() {
         w-full
         bg-[#303030]
         px-4
+        sm:px-6
+        md:px-10
+        lg:px-16
+        xl:px-20
         py-10
-        md:py-12
+        md:py-14
+        lg:py-16
         overflow-hidden
       "
     >
-      <div className="max-w-[710px] mx-auto">
+      {/* DESKTOP WIDER CONTAINER */}
+      <div className="w-full max-w-[1500px] mx-auto">
 
-        {/* =====================================================
-            BLOG GRID
-        ===================================================== */}
+        {/* BLOG GRID */}
 
         <div
           className="
@@ -103,7 +108,9 @@ export default function BlogGrid() {
             grid-cols-1
             sm:grid-cols-2
             lg:grid-cols-3
-            gap-[14px]
+            gap-5
+            md:gap-7
+            lg:gap-9
           "
         >
           {displayedBlogs.map((blog, index) => (
@@ -116,9 +123,7 @@ export default function BlogGrid() {
         </div>
 
 
-        {/* =====================================================
-            LOAD MORE / LOAD LESS
-        ===================================================== */}
+        {/* LOAD MORE / LOAD LESS */}
 
         <motion.div
           initial={{
@@ -137,14 +142,20 @@ export default function BlogGrid() {
             duration: 0.7,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="flex justify-center mt-8"
+          className="
+            flex
+            justify-center
+            mt-10
+            md:mt-14
+          "
         >
-
           {hasMore ? (
             <motion.button
               type="button"
               onClick={() =>
-                setVisibleBlogs((prev) => prev + 3)
+                setVisibleBlogs((prev) =>
+                  Math.min(prev + 3, blogs.length)
+                )
               }
               whileHover={{
                 scale: 1.05,
@@ -154,17 +165,18 @@ export default function BlogGrid() {
                 scale: 0.96,
               }}
               className="
-                px-4
-                py-2
-                min-w-[78px]
+                px-7
+                py-3
+                min-w-[140px]
                 bg-gradient-to-r
                 from-[#79cba8]
                 to-[#329bd0]
                 border
                 border-[#73c9b9]
                 text-white
-                text-[9px]
-                font-bold
+                text-[14px]
+                md:text-[15px]
+                font-medium
                 cursor-pointer
                 transition-all
                 duration-300
@@ -174,10 +186,10 @@ export default function BlogGrid() {
               Load More
             </motion.button>
           ) : (
-            visibleBlogs > 6 && (
+            visibleBlogs > 3 && (
               <motion.button
                 type="button"
-                onClick={() => setVisibleBlogs(6)}
+                onClick={() => setVisibleBlogs(3)}
                 whileHover={{
                   scale: 1.05,
                   y: -2,
@@ -186,17 +198,18 @@ export default function BlogGrid() {
                   scale: 0.96,
                 }}
                 className="
-                  px-4
-                  py-2
-                  min-w-[78px]
+                  px-7
+                  py-3
+                  min-w-[140px]
                   bg-gradient-to-r
                   from-[#79cba8]
                   to-[#329bd0]
                   border
                   border-[#73c9b9]
                   text-white
-                  text-[9px]
-                  font-bold
+                  text-[14px]
+                  md:text-[15px]
+                  font-medium
                   cursor-pointer
                   transition-all
                   duration-300
@@ -207,7 +220,6 @@ export default function BlogGrid() {
               </motion.button>
             )
           )}
-
         </motion.div>
 
       </div>
@@ -253,10 +265,7 @@ function BlogCard({ blog, index }) {
         cursor-pointer
       "
     >
-
-      {/* =====================================================
-          FULL CARD IMAGE
-      ===================================================== */}
+      {/* IMAGE */}
 
       <img
         src={blog.image}
@@ -276,9 +285,7 @@ function BlogCard({ blog, index }) {
       />
 
 
-      {/* =====================================================
-          DARK OVERLAY
-      ===================================================== */}
+      {/* DARK OVERLAY */}
 
       <div
         className="
@@ -292,9 +299,7 @@ function BlogCard({ blog, index }) {
       />
 
 
-      {/* =====================================================
-          BOTTOM GRADIENT
-      ===================================================== */}
+      {/* BOTTOM GRADIENT */}
 
       <div
         className="
@@ -311,9 +316,7 @@ function BlogCard({ blog, index }) {
       />
 
 
-      {/* =====================================================
-          HOVER TOP SHINE
-      ===================================================== */}
+      {/* HOVER SHINE */}
 
       <div
         className="
@@ -331,9 +334,7 @@ function BlogCard({ blog, index }) {
       />
 
 
-      {/* =====================================================
-          CONTENT
-      ===================================================== */}
+      {/* CONTENT */}
 
       <div
         className="
@@ -342,20 +343,21 @@ function BlogCard({ blog, index }) {
           right-0
           bottom-0
           z-10
-          p-3
-          md:p-4
+          p-5
+          md:p-6
+          lg:p-7
         "
       >
-
         {/* DATE */}
 
         <p
           className="
             text-white/90
-            text-[8px]
-            md:text-[9px]
+            text-[12px]
+            md:text-[14px]
+            lg:text-[15px]
             font-medium
-            mb-2
+            mb-3
           "
         >
           {blog.date}
@@ -367,10 +369,11 @@ function BlogCard({ blog, index }) {
         <h2
           className="
             text-white
-            text-[12px]
-            md:text-[13px]
+            text-[19px]
+            md:text-[22px]
+            lg:text-[24px]
             font-semibold
-            leading-[1.35]
+            leading-[1.4]
             line-clamp-3
             transition-colors
             duration-300
@@ -389,11 +392,11 @@ function BlogCard({ blog, index }) {
             inline-flex
             items-center
             gap-2
-            mt-3
+            mt-5
             text-white
-            text-[8px]
-            md:text-[9px]
-            font-semibold
+            text-[14px]
+            md:text-[15px]
+            font-medium
             transition-all
             duration-300
             hover:text-[#65c5d8]
@@ -404,7 +407,8 @@ function BlogCard({ blog, index }) {
 
           <span
             className="
-              text-[12px]
+              text-[24px]
+              leading-none
               transition-transform
               duration-300
             "
@@ -412,7 +416,6 @@ function BlogCard({ blog, index }) {
             →
           </span>
         </a>
-
       </div>
 
     </motion.article>

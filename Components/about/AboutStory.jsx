@@ -4,21 +4,8 @@ import { motion } from "framer-motion";
 
 export default function AboutStory() {
   return (
-    <section
-      className="
-        w-full
-        bg-[#303030]
-        py-10
-        sm:py-12
-        md:py-14
-        px-4
-        sm:px-6
-        md:px-10
-        lg:px-16
-        overflow-hidden
-      "
-    >
-      <div className="max-w-[1140px] mx-auto">
+    <section className="w-full bg-[#303030] py-12 md:py-16 px-5 md:px-8 lg:px-16 overflow-hidden">
+      <div className="max-w-[1280px] mx-auto">
 
         {/* =====================================================
             SECTION 1 — INTRO
@@ -32,45 +19,16 @@ export default function AboutStory() {
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="
-            grid
-            grid-cols-1
-            md:grid-cols-[minmax(300px,430px)_1fr]
-            gap-7
-            md:gap-8
-            items-center
-            mb-8
-          "
+          className="grid md:grid-cols-[500px_1fr] gap-7 md:gap-10 items-center mb-10"
         >
+          {/* IMAGES */}
 
-          {/* =================================================
-              IMAGES
-          ================================================= */}
-
-          <div
-            className="
-              flex
-              gap-3
-              sm:gap-4
-              items-end
-              justify-center
-              w-full
-            "
-          >
+          <div className="flex gap-4 items-end">
 
             <motion.img
-              initial={{
-                opacity: 0,
-                x: -60,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.2,
-              }}
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{
                 duration: 0.9,
                 delay: 0.15,
@@ -80,32 +38,19 @@ export default function AboutStory() {
               alt="Wizcraft Event"
               className="
                 w-1/2
-                h-[230px]
-                sm:h-[270px]
-                md:h-[315px]
-
+                h-[260px]
+                sm:h-[310px]
+                md:h-[380px]
                 object-cover
-
                 border
                 border-[#2b9bc7]
-
-                shrink-0
               "
             />
 
             <motion.img
-              initial={{
-                opacity: 0,
-                x: -60,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.2,
-              }}
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{
                 duration: 0.9,
                 delay: 0.3,
@@ -115,38 +60,32 @@ export default function AboutStory() {
               alt="National Film Awards"
               className="
                 w-1/2
-                h-[190px]
-                sm:h-[220px]
-                md:h-[255px]
-
+                h-[215px]
+                sm:h-[260px]
+                md:h-[310px]
                 object-cover
-
                 border
                 border-[#2b9bc7]
-
-                shrink-0
               "
             />
 
           </div>
 
 
-          {/* =================================================
-              TEXT
-          ================================================= */}
+          {/* TEXT */}
 
           <div
             className="
               text-white
-              text-[10px]
-              sm:text-[11px]
-              leading-[1.6]
+              text-[12px]
+              sm:text-[13px]
+              md:text-[15px]
+              leading-[1.75]
               font-medium
               text-justify
             "
           >
-
-            <p className="mb-4">
+            <p className="mb-5">
               For over three decades, Wizcraft has been at the forefront of
               creativity, innovation, and excellence in live events and brand
               storytelling. Recognized as a leading event management company
@@ -165,15 +104,10 @@ export default function AboutStory() {
               stories, it translates them into experiences that engage
               audiences both emotionally and memorably.
             </p>
-
           </div>
 
         </motion.div>
 
-
-        {/* =====================================================
-            CONNECTOR
-        ===================================================== */}
 
         <Connector />
 
@@ -183,18 +117,9 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            x: 70,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
+          initial={{ opacity: 0, x: 70 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -242,18 +167,9 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            x: -70,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
+          initial={{ opacity: 0, x: -70 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -291,18 +207,9 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            x: 70,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
+          initial={{ opacity: 0, x: 70 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -348,18 +255,9 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            x: -70,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
+          initial={{ opacity: 0, x: -70 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -395,18 +293,9 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            x: 70,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
+          initial={{ opacity: 0, x: 70 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -456,10 +345,10 @@ function StoryCard({
       className={`
         relative
         w-full
-        max-w-[810px]
+        max-w-[1000px]
 
-        min-h-0
-        md:min-h-[270px]
+        min-h-[280px]
+        md:min-h-[330px]
 
         border
         border-[#2999c7]
@@ -474,84 +363,29 @@ function StoryCard({
       `}
     >
 
-      {/* =====================================================
-          MOBILE IMAGE
-      ===================================================== */}
-
-      <div
-        className="
-          block
-          md:hidden
-
-          w-full
-          px-4
-          pt-4
-        "
-      >
-        <motion.img
-          initial={{
-            opacity: 0,
-            y: 30,
-            scale: 0.96,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.1,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          src={image}
-          alt={imageAlt}
-          className="
-            w-full
-            h-[190px]
-            sm:h-[230px]
-
-            object-cover
-
-            border
-            border-[#299bc9]
-          "
-        />
-      </div>
-
-
-      {/* =====================================================
-          CONTENT
-      ===================================================== */}
+      {/* CONTENT */}
 
       <div
         className={`
-          min-h-0
-          md:min-h-[270px]
+          min-h-[280px]
+          md:min-h-[330px]
 
           flex
           items-center
 
-          px-4
-          sm:px-6
-          py-6
-          md:py-8
+          px-5
+          sm:px-7
+          py-7
+          md:py-10
 
           ${
             isRight
-              ? "md:pr-[215px] md:pl-7"
-              : "md:pl-[215px] md:pr-7"
+              ? "md:pr-[300px] md:pl-10"
+              : "md:pl-[300px] md:pr-10"
           }
         `}
       >
-
         <div className="w-full">
-
-          {/* TITLE */}
 
           <h3
             className="
@@ -561,48 +395,42 @@ function StoryCard({
               uppercase
               tracking-wide
 
-              text-[14px]
-              sm:text-[15px]
-              md:text-[16px]
+              text-[17px]
+              sm:text-[19px]
+              md:text-[22px]
 
               leading-tight
-
-              mb-3
+              mb-5
             "
           >
             {title}
           </h3>
 
-
-          {/* TEXT */}
-
           <div
             className="
               text-white
 
-              text-[10px]
-              sm:text-[11px]
+              text-[12px]
+              sm:text-[13px]
+              md:text-[15px]
 
-              leading-[1.6]
+              leading-[1.75]
 
               font-medium
 
               text-justify
 
-              space-y-3
+              space-y-4
             "
           >
             {children}
           </div>
 
         </div>
-
       </div>
 
 
-      {/* =====================================================
-          DESKTOP OVERLAPPING IMAGE
-      ===================================================== */}
+      {/* OVERLAPPING IMAGE */}
 
       <motion.img
         initial={{
@@ -634,11 +462,11 @@ function StoryCard({
           top-1/2
           -translate-y-1/2
 
-          w-[205px]
-          lg:w-[235px]
+          w-[270px]
+          lg:w-[320px]
 
-          h-[210px]
-          lg:h-[238px]
+          h-[275px]
+          lg:h-[315px]
 
           object-cover
 
@@ -649,8 +477,8 @@ function StoryCard({
 
           ${
             isRight
-              ? "right-[-95px] lg:right-[-130px]"
-              : "left-[-95px] lg:left-[-130px]"
+              ? "right-[-125px] lg:right-[-175px]"
+              : "left-[-125px] lg:left-[-175px]"
           }
         `}
       />
@@ -683,15 +511,7 @@ function Connector() {
         duration: 0.5,
         ease: "easeOut",
       }}
-      className="
-        flex
-        justify-center
-
-        h-[25px]
-        sm:h-[30px]
-
-        origin-top
-      "
+      className="flex justify-center h-[40px] origin-top"
     >
       <div className="w-px h-full bg-[#299bc9]" />
     </motion.div>

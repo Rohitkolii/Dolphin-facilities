@@ -76,20 +76,37 @@ export default function Home() {
       <Navbar />
       <SocialRail />
       <main id="home">
-        <section className="container-x pt-12 sm:pt-20">
-          <div className="hero-image border-[6px] border-[#1d7fc5] relative overflow-hidden shadow-soft">
-            <iframe
-              width="100%"
-              height="720px"
-              src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
-              title="YouTube video player"
-              frameBorder={"0"}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </section>
+      <section className="container-x pt-12 sm:pt-20">
+  <div
+    className="
+      hero-image
+      border-[3px]
+      sm:border-[4px]
+      md:border-[6px]
+      border-[#1d7fc5]
+      relative
+      overflow-hidden
+      shadow-soft
+    "
+  >
+    <iframe
+      className="
+        w-full
+        h-[220px]
+        sm:h-[320px]
+        md:h-[450px]
+        lg:h-[600px]
+        xl:h-[720px]
+      "
+      src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    />
+  </div>
+</section>
 
         <section id="business" className="container-x py-20">
           <p className="mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent">

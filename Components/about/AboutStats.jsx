@@ -37,7 +37,7 @@ const stats = [
 
 export default function AboutStats() {
   return (
-    <section className="w-full bg-[#303030] text-white px-4 py-10 md:py-14 overflow-hidden">
+    <section className="w-full bg-[#303030] text-white px-5 sm:px-6 py-12 md:py-16 overflow-hidden">
 
       {/* =====================================================
           WHY CHOOSE
@@ -60,18 +60,18 @@ export default function AboutStats() {
           duration: 0.9,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="max-w-[820px] mx-auto text-center"
+        className="max-w-[950px] mx-auto text-center"
       >
-        <h2 className="text-[24px] md:text-[25px] font-bold text-[#3ba1ca] uppercase">
+        <h2 className="text-[22px] sm:text-[25px] md:text-[30px] font-bold text-[#3ba1ca] uppercase tracking-[0.5px]">
           WHY CHOOSE WIZCRAFT?
         </h2>
 
-        <p className="mt-3 text-[11px] md:text-[12px] leading-5 font-semibold text-white/90">
+        <p className="mt-4 text-[12px] sm:text-[13px] md:text-[15px] leading-6 font-medium text-white/90">
           What makes Wizcraft Event Management Company stand out is its
           philosophy: while events are temporary, experiences last forever.
         </p>
 
-        <p className="text-[11px] md:text-[12px] font-semibold text-white/90">
+        <p className="mt-1 text-[12px] sm:text-[13px] md:text-[15px] font-medium text-white/90">
           Brands choose Wizcraft because:
         </p>
       </motion.div>
@@ -81,7 +81,7 @@ export default function AboutStats() {
           CARDS
       ===================================================== */}
 
-      <div className="max-w-[810px] mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="max-w-[1050px] mx-auto mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
         {stats.map((stat, index) => (
           <motion.div
@@ -106,44 +106,57 @@ export default function AboutStats() {
               ease: [0.22, 1, 0.36, 1],
             }}
             whileHover={{
-              y: -5,
+              y: -7,
+              scale: 1.015,
               transition: {
                 duration: 0.25,
               },
             }}
             className="
-              min-h-[112px]
+              group
+              min-h-[155px]
+              md:min-h-[175px]
               border
               border-[#2995c5]
-              bg-transparent
-              px-3.5
-              py-4
-              transition-colors
+              bg-[#333333]
+              px-5
+              py-6
+              flex
+              flex-col
+              justify-center
+              transition-all
               duration-300
-              hover:bg-[#353535]
+              hover:bg-[#373737]
               hover:border-[#48b7df]
+              hover:shadow-[0_10px_30px_rgba(41,149,197,0.12)]
             "
           >
             <h3
               className="
-                text-[11px]
-                md:text-[12px]
+                text-[13px]
+                sm:text-[14px]
+                md:text-[16px]
                 font-bold
-                tracking-wide
-                text-[#2699ca]
+                tracking-[0.6px]
+                text-[#38a4d0]
+                transition-colors
+                duration-300
+                group-hover:text-[#62c6df]
               "
             >
               {stat.title}
             </h3>
 
+            <div className="w-[42px] h-[2px] bg-[#2995c5] mt-4 mb-4 transition-all duration-300 group-hover:w-[65px]" />
+
             <p
               className="
-                mt-2
-                text-[10px]
-                md:text-[11px]
-                leading-[1.5]
-                font-semibold
-                text-white/90
+                text-[12px]
+                sm:text-[13px]
+                md:text-[14px]
+                leading-[1.65]
+                font-medium
+                text-white/85
               "
             >
               {stat.description}
@@ -177,20 +190,22 @@ export default function AboutStats() {
           ease: [0.22, 1, 0.36, 1],
         }}
         className="
-          max-w-[810px]
+          max-w-[950px]
           mx-auto
           mt-16
-          md:mt-[70px]
+          md:mt-24
           text-center
         "
       >
         <h2
           className="
-            text-[23px]
-            md:text-[25px]
+            text-[22px]
+            sm:text-[25px]
+            md:text-[30px]
             font-bold
             text-[#3ba1ca]
             uppercase
+            tracking-[0.5px]
           "
         >
           THE WIZCRAFT PROMISE
@@ -198,12 +213,13 @@ export default function AboutStats() {
 
         <p
           className="
-            mt-3
-            text-[11px]
-            md:text-[12px]
-            leading-[1.6]
+            mt-5
+            text-[12px]
+            sm:text-[13px]
+            md:text-[15px]
+            leading-[1.75]
             font-medium
-            text-white/95
+            text-white/90
           "
         >
           As one of the most respected experiential marketing companies,
@@ -215,11 +231,12 @@ export default function AboutStats() {
 
         <p
           className="
-            text-[11px]
-            md:text-[12px]
-            leading-[1.6]
+            text-[12px]
+            sm:text-[13px]
+            md:text-[15px]
+            leading-[1.75]
             font-medium
-            text-white/95
+            text-white/90
           "
         >
           vision into reality.
