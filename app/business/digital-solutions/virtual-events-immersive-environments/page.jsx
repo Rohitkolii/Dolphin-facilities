@@ -29,6 +29,8 @@ export default function Page() {
           ]}
         />
 
+        <BASubpagesGallery image="/digital/immersive/gallery.jpg" />
+
         <BASubpagesEvents
           image="/digital/immersive/event.jpg"
           content={[
@@ -39,7 +41,6 @@ export default function Page() {
           buttonLink="/portfolio"
         />
 
-        <BASubpagesGallery image="/digital/immersive/gallery.jpg" />
 
         <BASubpagesWhyChoosUs
           text="With Wizcraft, virtual events become immersive experiences that bring people, technology and creativity together."

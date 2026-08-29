@@ -7,22 +7,28 @@ import { FaRegStar } from "react-icons/fa";
 import IntroSplash from "@/Components/home/IntroSplash";
 import Navbar from "@/Components/common/Navbar";
 import SocialRail from "@/Components/home/SocialRail";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const businesses = [
   {
     title: "Brand Activation",
     text: "In a world where attention spans are shortening and brand loyalty is fleeting, building lasting and meaningful connections with consumers has never been more important.",
     icon: IoMdMegaphone,
+    animate: "fade-right",
   },
   {
     title: "Digital Solutions",
     text: "In a globally interconnected world of digital interactions recasting engagement, Wizcraft Events is out front with innovations in its revolutionary digital solutions.",
     icon: FaCode,
+    animate: "fade-up",
   },
   {
     title: "Special Events",
     text: "In the universe of out-of-the-ordinary experiences, there are few names that evoke the same fervour, imagination, and brilliance as Wizcraft.",
     icon: FaRegStar,
+    animate: "fade-left",
   },
 ];
 const stats = [
@@ -70,15 +76,28 @@ const slides = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    if (window.scrollY > 100) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   return (
     <div className="border-4 border-[#70c7b5]">
       <IntroSplash />
       <Navbar />
       <SocialRail />
       <main id="home">
-      <section className="container-x pt-12 sm:pt-20">
-  <div
-    className="
+        <section className="container-x pt-12 sm:pt-20">
+          <div
+            className="
       hero-image
       border-[3px]
       sm:border-[4px]
@@ -88,9 +107,9 @@ export default function Home() {
       overflow-hidden
       shadow-soft
     "
-  >
-    <iframe
-      className="
+          >
+            <iframe
+              className="
         w-full
         h-[220px]
         sm:h-[320px]
@@ -98,18 +117,21 @@ export default function Home() {
         lg:h-[600px]
         xl:h-[720px]
       "
-      src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerPolicy="strict-origin-when-cross-origin"
-      allowFullScreen
-    />
-  </div>
-</section>
+              src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </section>
 
         <section id="business" className="container-x py-20">
-          <p className="mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent">
+          <p
+            data-aos="zoom-in-left"
+            className="mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
+          >
             Our Businesses
           </p>
 
@@ -124,6 +146,8 @@ export default function Home() {
               return (
                 <article
                   key={b.title}
+                  data-aos={b.animate}
+                  // data-aos="fade-up"
                   className="gradient-panel border-grd min-h-52 p-7 shadow-soft"
                 >
                   {/* Icon */}
@@ -162,9 +186,9 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="container-x py-20">
+        <section data-aos="fade-up" className="container-x py-20">
           <div
-            className="relative border-[4px] border-[#1d7fc5]/70 px-10 py-11 sm:px-12 sm:py-14"
+            className="relative border-[4px] border-[#1d7fc5]/70 px-5 py-6 sm:px-12 sm:py-14"
             style={{
               background:
                 "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
@@ -173,11 +197,14 @@ export default function Home() {
             {/* Header */}
             <div className="flex items-start justify-between gap-8">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight text-white sm:text-[35px]">
+                <h2
+                  data-aos="zoom-in-left"
+                  className="text-3xl font-bold tracking-tight text-white sm:text-[35px]"
+                >
                   ABOUT US
                 </h2>
 
-                <p className="mt-4 text-[15px] text-white">
+                <p className="mt-4 text-[16px] text-white">
                   Think Experiences. Think Wizcraft.
                 </p>
               </div>
@@ -188,7 +215,7 @@ export default function Home() {
                   background:
                     "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
                 }}
-                className="mt-1 flex shrink-0 items-center gap-3 border border-[#8bc9bc] bg-[#70c7a9] px-4 py-2.5 text-[12px] font-semibold text-white transition hover:bg-[#65baa0]"
+                className="max-md:hidden mt-1 flex shrink-0 items-center gap-3 border border-[#8bc9bc] bg-[#70c7a9] px-4 py-2.5 text-[12px] font-semibold text-white transition hover:bg-[#65baa0]"
               >
                 Read More
                 <span className="text-lg leading-none">→</span>
@@ -196,14 +223,14 @@ export default function Home() {
             </div>
 
             {/* Description */}
-            <p className="mt-6 max-w-[850px] text-[12px] leading-[1.65] text-white/95">
+            <p className="mt-6 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
               In a world where attention spans are short and competition is
               fierce, standing out requires more than just being seen, it
               demands being remembered. That’s where Wizcraft, an event
               management agency steps in.
             </p>
 
-            <p className="mt-4 max-w-[850px] text-[14px] leading-[1.65] text-white/95">
+            <p className="mt-4 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
               With over 30 years of unmatched expertise, Wizcraft isn't just an
               event management company, it's a creator of unforgettable brand
               experiences that spark connection, engagement, and impact across
@@ -211,12 +238,18 @@ export default function Home() {
             </p>
 
             {/* Services heading */}
-            <h3 className="mt-7 text-[18px] font-medium text-white">
+            <h3
+              data-aos="fade-left"
+              className="mt-7 text-[18px] font-medium text-white"
+            >
               Event Management Services that turn Ideas into Reality
             </h3>
 
             {/* Stats */}
-            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+            <div
+              data-aos="fade-left"
+              className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
+            >
               {stats.map(([n, l], index) => (
                 <div
                   key={`${n}-${index}`}
@@ -238,7 +271,10 @@ export default function Home() {
         <section id="about" className="container-x py-12">
           {/* Heading */}
           <div className="mb-8 text-center">
-            <h2 className="mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent">
+            <h2
+              data-aos="zoom-in-left"
+              className="mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
+            >
               OUR JOURNEY
             </h2>
             <p className="text-xl text-white">Driving Your Vision Forward</p>
@@ -352,29 +388,36 @@ export default function Home() {
         <section className="mt-16">
           <div className="gradient-panel">
             <div className="container-x grid items-center gap-10 py-14 lg:grid-cols-2">
-              <div>
-                <h2 className="mt-3 text-3xl font-bold">Latest Event</h2>
-                <p className="mt-3 text-2xl">IBM ISL Gala Dinner - Bangalore</p>
-                <p className="text-md">IBM | JUNE 2025</p>
-                <p className="mt-5 max-w-xl text-sm leading-7 text-white/90">
-                  The IBM ISL Gala Dinner at Bier Library, Sarjapur Road, was a
-                  grand celebration for 2500 India Software Lab employees,
-                  featuring great food, vibrant entertainment, and a memorable
-                  evening of connection, appreciation, and festive cheer in a
-                  lively atmosphere.
-                </p>
-                <a
-                  href="#portfolio"
-                  style={{
-                    background:
-                      "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
-                  }}
-                  className="mt-6 inline-block border border-white/60 px-5 py-3 text-xs font-bold"
-                >
-                  View More →
-                </a>
+              <div data-aos="fade-right">
+                <h2 data-aos="zoom-in-left" className="mt-3 text-3xl font-bold">
+                  Latest Event
+                </h2>
+                <div>
+                  <p className="mt-3 text-2xl">
+                    IBM ISL Gala Dinner - Bangalore
+                  </p>
+                  <p className="text-md">IBM | JUNE 2025</p>
+                  <p className="mt-5 text-[16px] max-w-xl leading-7 text-white/90">
+                    The IBM ISL Gala Dinner at Bier Library, Sarjapur Road, was
+                    a grand celebration for 2500 India Software Lab employees,
+                    featuring great food, vibrant entertainment, and a memorable
+                    evening of connection, appreciation, and festive cheer in a
+                    lively atmosphere.
+                  </p>
+                  <a
+                    href="#portfolio"
+                    style={{
+                      background:
+                        "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
+                    }}
+                    className="mt-6 inline-block border border-white/60 px-5 py-3 text-xs font-bold"
+                  >
+                    View More →
+                  </a>
+                </div>
               </div>
               <img
+                data-aos="fade-left"
                 src="/home/clr3.jpg"
                 className="h-[380px] w-full object-cover border-wiz"
                 alt="Wizcraft event reference"
@@ -383,54 +426,58 @@ export default function Home() {
           </div>
         </section>
 
-<section id="portfolio" className="container-x py-20">
-  <p className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent">
-    Highlights
-  </p>
+        <section id="portfolio" className="container-x py-20">
+          <p
+            data-aos="zoom-in-left"
+            className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent"
+          >
+            Highlights
+          </p>
 
-  <p className="text-xl text-white text-center mb-10">
-    Branding Brilliance In Visuals
-  </p>
+          <p className="text-xl text-white text-center mb-10">
+            Branding Brilliance In Visuals
+          </p>
 
-<div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[400px] gap-1">
-  {gallery.map((src, i) => {
-    const classes = [
-      "",
-      "md:row-span-2",
-      "",
-      "",
-      "",
-      "",
-      "md:col-span-2",
-      "",
-      "md:col-start-4 md:row-start-2 md:row-span-2",
-    ];
+          <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[400px] gap-1">
+            {gallery.map((src, i) => {
+              const classes = [
+                "",
+                "md:row-span-2",
+                "",
+                "",
+                "",
+                "",
+                "md:col-span-2",
+                "",
+                "md:col-start-4 md:row-start-2 md:row-span-2",
+              ];
 
-    return (
-      <div
-        key={i}
-        className={`min-h-0 overflow-hidden ${classes[i] || ""}`}
-      >
-        <img
-          src={src}
-          alt="Wizcraft event"
-          className="h-full w-full object-cover"
-        />
-      </div>
-    );
-  })}
-</div>
-</section>
-
+              return (
+                <div
+                  key={i}
+                  className={`min-h-0 overflow-hidden ${classes[i] || ""}`}
+                >
+                  <img
+                    src={src}
+                    alt="Wizcraft event"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
         <section className="container-x py-10">
-          <p className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent">
+          <p
+            data-aos="zoom-in-left"
+            className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent"
+          >
             Brands we work with
           </p>{" "}
           <p className="text-center text-xl text-white">
             Global Corporate Clients
           </p>
-
           {/* <LogoSlider /> */}
           {/* <div className="mt-10 grid grid-cols-3 gap-8 text-center text-lg font-black text-white/80 grayscale sm:grid-cols-6">
             <span>AXA</span>
@@ -443,10 +490,13 @@ export default function Home() {
         </section>
 
         <section id="contact" className="container-x py-20">
-          <div className="gradient-panel px-7 py-14 sm:px-12 sm:py-16">
+          <div className="gradient-panel px-3 py-14 sm:px-12 sm:py-16">
             {/* Heading */}
             <div className="text-center">
-              <h2 className="text-3xl font-black uppercase tracking-tight sm:text-4xl">
+              <h2
+                data-aos="zoom-in-left"
+                className="text-3xl font-black uppercase tracking-tight sm:text-4xl"
+              >
                 Let’s Connect to Create Something Big
               </h2>
 

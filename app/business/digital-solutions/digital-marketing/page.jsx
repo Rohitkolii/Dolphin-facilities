@@ -23,6 +23,8 @@ export default function DigitalMarketingPage() {
           title="Building Strong Digital Connections"
           description="Our digital marketing solutions combine creative ideas, technology and data-driven insights to create meaningful campaigns across digital platforms."
         />
+        
+<BASubpagesGallery />
 
         <BASubpagesEvents
           title="Our Digital Marketing Solutions"
@@ -36,7 +38,6 @@ export default function DigitalMarketingPage() {
           ]}
         />
 
-        <BASubpagesGallery />
 
         <BASubpagesWhyChoosUs
           title="Why Choose Wizcraft?"

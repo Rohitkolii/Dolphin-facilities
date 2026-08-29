@@ -29,6 +29,8 @@ export default function Page() {
           ]}
         />
 
+        <BASubpagesGallery image="/digital/vr/gallery.jpg" />
+
         <BASubpagesEvents
           image="/digital/vr/event.jpg"
           content={[
@@ -39,7 +41,6 @@ export default function Page() {
           buttonLink="/portfolio"
         />
 
-        <BASubpagesGallery image="/digital/vr/gallery.jpg" />
 
         <BASubpagesWhyChoosUs
           text="With Wizcraft, VR technology becomes a powerful platform for immersive storytelling, interaction and engagement."

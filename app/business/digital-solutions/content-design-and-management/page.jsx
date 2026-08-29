@@ -23,6 +23,8 @@ export default function ContentDesignManagementPage() {
           title="Creative Content That Makes an Impact"
           description="From concepts and storytelling to visual communication and execution, our team develops content that strengthens your brand and creates memorable audience experiences."
         />
+        
+<BASubpagesGallery />
 
         <BASubpagesEvents
           title="Our Content Solutions"
@@ -36,7 +38,6 @@ export default function ContentDesignManagementPage() {
           ]}
         />
 
-        <BASubpagesGallery />
 
         <BASubpagesWhyChoosUs
           title="Why Choose Wizcraft?"

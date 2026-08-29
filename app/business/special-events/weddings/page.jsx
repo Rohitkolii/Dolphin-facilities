@@ -26,6 +26,10 @@ export default function WeddingsPage() {
           description="From the first idea to the final celebration, we bring together creativity, detailed planning and seamless execution to create wedding experiences that are personal, beautiful and memorable."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Wedding Expertise"
@@ -38,9 +42,6 @@ export default function WeddingsPage() {
             "End-to-End Wedding Execution",
           ]}
         />
-
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

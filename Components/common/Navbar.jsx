@@ -154,6 +154,7 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
   return (
     <>
@@ -161,7 +162,7 @@ export default function Navbar() {
           NAVBAR
       ===================================================== */}
 
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#2f2f2f]/95 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-gray-500/10 bg-[#2f2f2f]/95 shadow-2xl backdrop-blur-md">
         <div className="container-x flex h-[90px] items-center justify-between md:h-[120px]">
           {/* ================= LOGO ================= */}
 
@@ -509,53 +510,180 @@ export default function Navbar() {
               const isDropdown = !Array.isArray(item);
 
               const label = isDropdown ? item.label : item[0];
-
               const href = isDropdown ? item.href : item[1];
 
               return (
-                <Link
-                  key={label}
-                  href={href}
-                  onClick={() => setOpen(false)}
-                  className="
-                    relative
-                    flex
-                    min-h-[45px]
-                    items-center
-                    justify-between
-                    border-b
-                    border-white/10
-                    text-[13px]
-                    font-medium
-                    text-white
-                    transition-colors
-                    hover:text-[#1684c5]
-                  "
-                >
-                  <span>{label}</span>
-
-                  {isDropdown && (
-                    <span
+                <div key={label} className="border-b border-white/10">
+                  {/* Main Item */}
+                  {isDropdown ? (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === label ? null : label)
+                      }
                       className="
-                        absolute
-                        right-0
-                        top-1/2
-                        flex
-                        h-[38px]
-                        w-[38px]
-                        -translate-y-1/2
-                        items-center
-                        justify-center
-                        bg-[#187fc2]
-                        text-[28px]
-                        font-light
-                        leading-none
-                      "
+              relative
+              flex
+              min-h-[45px]
+              w-full
+              items-center
+              justify-between
+              text-left
+              text-[13px]
+              font-medium
+              text-white
+              transition-colors
+            "
                     >
-                      ›
-                    </span>
+                      <span>{label}</span>
+
+                      <span
+                        className={`
+                flex
+                h-[38px]
+                w-[38px]
+                items-center
+                justify-center
+                bg-[#187fc2]
+                text-[28px]
+                font-light
+                leading-none
+                transition-transform
+                duration-200
+                ${openDropdown === label ? "rotate-90" : ""}
+              `}
+                      >
+                        ›
+                      </span>
+                    </button>
+                  ) : (
+                    <Link
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      className="
+              flex
+              min-h-[45px]
+              items-center
+              text-[13px]
+              font-medium
+              text-white
+              transition-colors
+              hover:text-[#1684c5]
+            "
+                    >
+                      {label}
+                    </Link>
                   )}
-                </Link>
+
+                  {/* OUR BUSINESSES Dropdown */}
+                  {isDropdown && openDropdown === label && (
+                    <div className="pb-2 pl-3">
+                      {item.children?.map((child) => {
+                        const childIsDropdown = !Array.isArray(child);
+
+                        const childLabel = childIsDropdown
+                          ? child.label
+                          : child[0];
+
+                        const childHref = childIsDropdown
+                          ? child.href
+                          : child[1];
+
+                        return (
+                          <div key={childLabel}>
+                            {childIsDropdown ? (
+                              <details className="group">
+                                <summary
+                                  className="
+                          flex
+                          cursor-pointer
+                          items-center
+                          justify-between
+                          py-3
+                          pr-2
+                          text-[12px]
+                          font-medium
+                          text-white/90
+                        "
+                                >
+                                  {/* <span>{childLabel}</span> */}
+
+                                  <Link
+                                    key={childLabel}
+                                    href={childHref}
+                                    onClick={() => setOpen(false)}
+                                    className="
+                              block
+                              py-2.5
+                              text-[13px]
+                              text-white/70
+                              transition-colors
+                              hover:text-[#1684c5]
+                              block
+                              w-full
+                            "
+                                  >
+                                    {childLabel}
+                                  </Link>
+
+                                  <span
+                                    className="
+                            text-[20px]
+                            transition-transform
+                            group-open:rotate-90
+                            bg-[#1684c5]
+                            h-[38px]
+                w-[40px]
+                flex 
+                items-center
+                justify-center
+                          "
+                                  >
+                                    ›
+                                  </span>
+                                </summary>
+
+                                <div className="ml-3 border-l border-white/10 pl-3">
+                                  {child.children?.map((subChild) => (
+                                    <Link
+                                      key={subChild[0]}
+                                      href={subChild[1]}
+                                      onClick={() => setOpen(false)}
+                                      className="
+                              block
+                              py-2.5
+                              text-[11px]
+                              text-white/70
+                              transition-colors
+                              hover:text-[#1684c5]
+                            "
+                                    >
+                                      {subChild[0]}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </details>
+                            ) : (
+                              <Link
+                                href={childHref}
+                                onClick={() => setOpen(false)}
+                                className="
+                        block
+                        py-3
+                        text-[12px]
+                        text-white/90
+                        hover:text-[#1684c5]
+                      "
+                              >
+                                {childLabel}
+                              </Link>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </nav>

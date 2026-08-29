@@ -27,6 +27,10 @@ export default function SpecialEventManagementServicesPage() {
           description="From concept development and creative planning to flawless execution, our team manages every aspect of special events with creativity, precision and attention to detail."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
         {/* SERVICES / EVENTS */}
         <BASubpagesEvents
           title="Our Special Event Solutions"
@@ -43,8 +47,6 @@ export default function SpecialEventManagementServicesPage() {
           ]}
         />
 
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

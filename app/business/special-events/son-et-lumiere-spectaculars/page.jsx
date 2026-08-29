@@ -27,6 +27,9 @@ export default function SonEtLumiereSpectacularsPage() {
           description="By combining immersive storytelling, projection, lighting, sound and technology, we transform iconic locations and historic spaces into unforgettable visual experiences."
         />
 
+                {/* GALLERY */}
+        <BASubpagesGallery />
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Son Et Lumière Expertise"
@@ -40,8 +43,6 @@ export default function SonEtLumiereSpectacularsPage() {
           ]}
         />
 
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

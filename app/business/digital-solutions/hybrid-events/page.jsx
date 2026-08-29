@@ -29,6 +29,8 @@ export default function Page() {
           ]}
         />
 
+        <BASubpagesGallery image="/digital/hybrid/gallery.jpg" />
+
         <BASubpagesEvents
           image="/digital/hybrid/event.jpg"
           content={[
@@ -39,7 +41,6 @@ export default function Page() {
           buttonLink="/portfolio"
         />
 
-        <BASubpagesGallery image="/digital/hybrid/gallery.jpg" />
 
         <BASubpagesWhyChoosUs
           text="With Wizcraft, hybrid events create powerful connections between physical and digital audiences, delivering experiences without boundaries."

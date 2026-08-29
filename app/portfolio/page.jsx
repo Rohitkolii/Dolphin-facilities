@@ -11,7 +11,7 @@ export default function PortfolioPage() {
       <Navbar />
       <PortfolioHero />
       <PortfolioGrid />
-      <Footer />
+      <Footer />  
     </main>
   );
 }

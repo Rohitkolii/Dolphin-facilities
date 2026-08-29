@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 
 export default function ContactHero() {
   return (
-    <section className="w-full bg-gradient-to-r from-blue-400 via-blue-400 to-teal-400 py-30 px-4 overflow-hidden">
+    <section className="w-full from-[#2478bd] bg-gradient-to-r
+        via-[#399bc5]
+        to-[#82cbb0] py-30 px-4 overflow-hidden">
 
       <div className="max-w-4xl mx-auto text-center">
 

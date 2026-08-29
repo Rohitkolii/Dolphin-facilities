@@ -27,6 +27,11 @@ export default function SportingEventsPage() {
           description="From large-scale tournaments and sporting competitions to fan engagement and live experiences, we manage every aspect of sporting events with creativity, precision and seamless execution."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Sporting Event Expertise"
@@ -39,9 +44,6 @@ export default function SportingEventsPage() {
             "On-Ground Event Execution",
           ]}
         />
-
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

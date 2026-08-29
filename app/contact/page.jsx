@@ -147,18 +147,13 @@ export default function ContactPage() {
 
   const office = offices[activeCity];
 
-  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${
-    office.lng - 0.08
-  }%2C${office.lat - 0.06}%2C${office.lng + 0.08}%2C${
-    office.lat + 0.06
-  }&layer=mapnik&marker=${office.lat}%2C${office.lng}`;
 
   return (
     <>
       <Navbar />
       <ContactHero />
       <SocialRail />
-      <main className="min-h-screen bg-[#292929] px-5 py-9 pb-[100px] text-white md:px-10">
+      <main className="min-h-screen bg-[#292929] py-9 pb-[100px] text-white md:px-10">
         <div className="mx-auto container-x">
           {/* ================= TOP CONTACT BOXES ================= */}
 

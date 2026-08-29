@@ -94,11 +94,11 @@ export default function NationHero({
             font-normal
             leading-[1.55]
 
-            text-[10px]
+            text-[13px]
             sm:text-[11px]
             md:text-[12px]
-            lg:text-[13px]
-            xl:text-[14px]
+            lg:text-[15px]
+            xl:text-[18px]
           "
         >
           {description}

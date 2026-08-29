@@ -257,7 +257,7 @@ export default function PortfolioGrid() {
                 border-[#73c9b9]
 
                 text-white
-                text-[10px]
+                text-[15px]
                 font-bold
 
                 cursor-pointer

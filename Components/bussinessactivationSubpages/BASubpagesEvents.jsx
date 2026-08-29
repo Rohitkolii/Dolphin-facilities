@@ -71,7 +71,7 @@ export default function NationEvents({
             <p
               className="
                 text-white
-                text-[13px]
+                text-[15px]
                 sm:text-[14px]
                 md:text-[15px]
                 lg:text-[16px]
@@ -87,7 +87,7 @@ export default function NationEvents({
               className="
                 mt-6
                 text-white
-                text-[13px]
+                text-[15px]
                 sm:text-[14px]
                 md:text-[15px]
                 lg:text-[16px]

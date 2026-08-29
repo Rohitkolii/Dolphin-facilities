@@ -27,6 +27,10 @@ export default function TradeShowsPage() {
           description="From concept development and exhibition planning to booth experiences and on-ground execution, we deliver trade shows that create meaningful connections between brands, businesses and audiences."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Trade Show Expertise"
@@ -40,8 +44,6 @@ export default function TradeShowsPage() {
           ]}
         />
 
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

@@ -12,7 +12,7 @@ export default function BlogHero() {
         via-[#399bc5]
         to-[#82cbb0]
         py-12
-        md:py-14
+        md:py-25
         px-4
         overflow-hidden
       "
@@ -39,7 +39,7 @@ export default function BlogHero() {
           className="
             text-white
             text-[24px]
-            md:text-[26px]
+            md:text-[35px]
             font-extrabold
             tracking-wide
             mb-2

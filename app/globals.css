@@ -14,7 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    /* --background: #0a0a0a; */
+    --background: #2f2f2f;
     --foreground: #ededed;
   }
 }
@@ -28,6 +29,14 @@ body {
 .container-x {
   width: min(1300px, calc(100% - 64px));
   margin-inline: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .container-x {
+    width: min(1300px, calc(100% - 30px));
+    margin-inline: auto;
+    overflow-x: hidden;
+  }
 }
 
 @keyframes marquee {

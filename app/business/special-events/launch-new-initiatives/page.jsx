@@ -27,6 +27,10 @@ export default function LaunchNewInitiativesPage() {
           description="From strategic planning and creative concepts to large-scale execution, we help organisations launch new initiatives with engaging experiences that create awareness and lasting impact."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Launch Expertise"
@@ -40,8 +44,6 @@ export default function LaunchNewInitiativesPage() {
           ]}
         />
 
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

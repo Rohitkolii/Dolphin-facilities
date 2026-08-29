@@ -25,7 +25,7 @@ export default function WizcraftMessage() {
         }}
         className="
           w-full
-          min-h-[145px]
+          min-h-[165px]
           flex
           items-center
           justify-center
@@ -43,7 +43,7 @@ export default function WizcraftMessage() {
             max-w-[850px]
             text-white
             text-[14px]
-            md:text-[15px]
+            md:text-[20px]
             leading-[1.6]
             font-medium
           "

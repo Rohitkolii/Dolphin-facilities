@@ -62,7 +62,7 @@ export default function AboutStats() {
         }}
         className="max-w-[950px] mx-auto text-center"
       >
-        <h2 className="text-[22px] sm:text-[25px] md:text-[30px] font-bold text-[#3ba1ca] uppercase tracking-[0.5px]">
+        <h2 className="text-[22px] sm:text-[25px] md:text-[35px] font-bold bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent uppercase tracking-[0.5px]">
           WHY CHOOSE WIZCRAFT?
         </h2>
 
@@ -81,7 +81,7 @@ export default function AboutStats() {
           CARDS
       ===================================================== */}
 
-      <div className="max-w-[1050px] mx-auto mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="container-x mx-auto mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
         {stats.map((stat, index) => (
           <motion.div
@@ -138,7 +138,7 @@ export default function AboutStats() {
                 md:text-[16px]
                 font-bold
                 tracking-[0.6px]
-                text-[#38a4d0]
+                bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent
                 transition-colors
                 duration-300
                 group-hover:text-[#62c6df]
@@ -201,9 +201,9 @@ export default function AboutStats() {
           className="
             text-[22px]
             sm:text-[25px]
-            md:text-[30px]
+            md:text-[35px]
             font-bold
-            text-[#3ba1ca]
+            bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent
             uppercase
             tracking-[0.5px]
           "

@@ -27,6 +27,11 @@ export default function SocialCelebrationsPage() {
           description="From intimate gatherings to large-scale celebrations, we bring together creativity, thoughtful planning and seamless execution to create experiences that reflect every unique occasion."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Social Celebration Expertise"
@@ -39,9 +44,6 @@ export default function SocialCelebrationsPage() {
             "End-to-End Event Management",
           ]}
         />
-
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

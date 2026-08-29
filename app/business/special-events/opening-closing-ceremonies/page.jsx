@@ -27,6 +27,10 @@ export default function OpeningClosingCeremoniesPage() {
           description="From creative concepts and storytelling to large-scale production and flawless execution, we bring together creativity, technology and performance to deliver ceremonies with lasting impact."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Ceremony Expertise"
@@ -40,8 +44,6 @@ export default function OpeningClosingCeremoniesPage() {
           ]}
         />
 
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

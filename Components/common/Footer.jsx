@@ -128,21 +128,21 @@ export default function Footer() {
 
             <div className="space-y-5 text-[13px] text-white/85">
               <a
-                href="#"
+                href="/about"
                 className="block transition-colors hover:text-[#68c4b2]"
               >
                 About Us
               </a>
 
               <a
-                href="#"
+                href="/contact"
                 className="block transition-colors hover:text-[#68c4b2]"
               >
                 Contact Us
               </a>
 
               <a
-                href="#"
+                href="/portfolio"
                 className="block transition-colors hover:text-[#68c4b2]"
               >
                 Portfolio
@@ -158,21 +158,21 @@ export default function Footer() {
 
             <div className="space-y-5 text-[13px] text-white/85">
               <a
-                href="#"
+                href="/business/brand-activation"
                 className="block transition-colors hover:text-[#68c4b2]"
               >
                 Brand Activation
               </a>
 
               <a
-                href="#"
+                href="/business/digital-solutions"
                 className="block transition-colors hover:text-[#68c4b2]"
               >
                 Digital Solutions
               </a>
 
               <a
-                href="#"
+                href="/business/special-events"
                 className="block transition-colors hover:text-[#68c4b2]"
               >
                 Special Events

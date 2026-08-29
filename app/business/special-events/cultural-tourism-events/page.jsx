@@ -26,6 +26,10 @@ export default function CulturalTourismEventsPage() {
           description="From destination events and cultural festivals to tourism initiatives, we combine creativity, storytelling and seamless execution to create experiences that connect people with places and traditions."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Cultural & Tourism Expertise"
@@ -39,8 +43,6 @@ export default function CulturalTourismEventsPage() {
           ]}
         />
 
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

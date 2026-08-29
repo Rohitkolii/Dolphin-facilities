@@ -29,6 +29,8 @@ export default function Page() {
           ]}
         />
 
+        <BASubpagesGallery image="/digital/ar/gallery.jpg" />
+
         <BASubpagesEvents
           image="/digital/ar/event.jpg"
           content={[
@@ -39,7 +41,6 @@ export default function Page() {
           buttonLink="/portfolio"
         />
 
-        <BASubpagesGallery image="/digital/ar/gallery.jpg" />
 
         <BASubpagesWhyChoosUs
           text="Wizcraft combines creativity and augmented reality technology to create digital experiences that audiences remember."

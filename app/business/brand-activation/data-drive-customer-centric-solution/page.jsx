@@ -57,6 +57,13 @@ export default function Page() {
         "
       />
 
+      
+      {/* =====================================================
+          GALLERY
+      ===================================================== */}
+
+      <NationGallery image="/businessss/datapage/data5.jpg" />
+
       {/* =====================================================
           EVENTS / CONTENT
       ===================================================== */}
@@ -79,12 +86,6 @@ export default function Page() {
           every touchpoint is carefully planned and executed.
         "
       />
-
-      {/* =====================================================
-          GALLERY
-      ===================================================== */}
-
-      <NationGallery image="/businessss/datapage/data5.jpg" />
 
       {/* =====================================================
           FINAL WHY CHOOSE SECTION

@@ -29,6 +29,7 @@ export default function Page() {
           ]}
         />
 
+        <BASubpagesGallery image="/digital/live-streaming/gallery.jpg" />
         <BASubpagesEvents
           image="/digital/live-streaming/event.jpg"
           content={[
@@ -39,13 +40,7 @@ export default function Page() {
           buttonLink="/portfolio"
         />
 
-        <BASubpagesGallery
-          image="/digital/live-streaming/gallery.jpg"
-        />
-
-        <BASubpagesWhyChoosUs
-          text="With Wizcraft, live streaming goes beyond broadcasting. We create engaging digital experiences that connect audiences, amplify conversations and deliver lasting impact."
-        />
+        <BASubpagesWhyChoosUs text="With Wizcraft, live streaming goes beyond broadcasting. We create engaging digital experiences that connect audiences, amplify conversations and deliver lasting impact." />
       </main>
 
       <Footer />

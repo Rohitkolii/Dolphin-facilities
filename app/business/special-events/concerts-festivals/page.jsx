@@ -26,6 +26,10 @@ export default function ConcertsFestivalsPage() {
           description="From creative concepts and artist management to production and on-ground execution, we deliver concerts and festivals designed to engage audiences and create lasting memories."
         />
 
+        
+        {/* GALLERY */}
+        <BASubpagesGallery />
+
         {/* SERVICES */}
         <BASubpagesEvents
           title="Our Concert & Festival Expertise"
@@ -38,9 +42,6 @@ export default function ConcertsFestivalsPage() {
             "On-Ground Event Execution",
           ]}
         />
-
-        {/* GALLERY */}
-        <BASubpagesGallery />
 
         {/* WHY CHOOSE US */}
         <BASubpagesWhyChoosUs

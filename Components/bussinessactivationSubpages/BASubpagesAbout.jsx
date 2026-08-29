@@ -233,7 +233,7 @@ export default function NationAbout({
               <p
                 className="
                   text-white
-                  text-[13px]
+                  text-[15px]
                   sm:text-[14px]
                   md:text-[15px]
                   lg:text-[15px]
@@ -249,7 +249,7 @@ export default function NationAbout({
                 className="
                   mt-5
                   text-white
-                  text-[13px]
+                  text-[15px]
                   sm:text-[14px]
                   md:text-[15px]
                   lg:text-[15px]
@@ -265,7 +265,7 @@ export default function NationAbout({
                 className="
                   mt-5
                   text-white
-                  text-[13px]
+                  text-[15px]
                   sm:text-[14px]
                   md:text-[15px]
                   lg:text-[15px]
