@@ -6,56 +6,147 @@ import { useState } from "react";
 const links = [
   ["HOME", "/"],
   ["ABOUT US", "/about"],
+
   {
     label: "OUR BUSINESSES",
     href: "#",
+
     children: [
+      /* =====================================================
+         BRAND ACTIVATION
+      ===================================================== */
+
       {
-        label: "Brand Avtivation",
+        label: "Brand Activation",
         href: "/business/brand-activation",
+
         children: [
-          ["Nation Building Events", "/business/brand-activation/nation-building-events"],
-          ["Data Derived Customer Centric Solutions", "/business/brand-activation/data-drive-customer-centric-solution"],
-          ["Corporate Event Launches", "/business/brand-activation/corporate-event-launches"],
-          ["On-Ground Activations", "/business/brand-activation/on-ground-activation"],
-          ["Exhibition Design & Management", "/business/brand-activation/exhibition-design-and-management"],
-          ["Content Curation – Animations, Graphics & AVs", "/business/brand-activation/content-curation-animations-graphics-and-avs"],
+          [
+            "Nation Building Events",
+            "/business/brand-activation/nation-building-events",
+          ],
+
+          [
+            "Data Derived Customer Centric Solutions",
+            "/business/brand-activation/data-drive-customer-centric-solution",
+          ],
+
+          [
+            "Corporate Event Launches",
+            "/business/brand-activation/corporate-event-launches",
+          ],
+
+          [
+            "On-Ground Activations",
+            "/business/brand-activation/on-ground-activation",
+          ],
+
+          [
+            "Exhibition Design & Management",
+            "/business/brand-activation/exhibition-design-and-management",
+          ],
+
+          [
+            "Content Curation – Animations, Graphics & AVs",
+            "/business/brand-activation/content-curation-animations-graphics-and-avs",
+          ],
         ],
       },
+
+      /* =====================================================
+         DIGITAL SOLUTIONS
+      ===================================================== */
+
       {
         label: "Digital Solutions",
         href: "/business/digital-solutions",
+
         children: [
           ["Live Streaming", "/business/digital-solutions/live-streaming"],
-          ["Virtual Events in Immersive Environments", "/business/digital-solutions/virtual-events-immersive-environments"],
-          ["Virtual Events with AR Based Content", "/business/digital-solutions/virtual-events-with-ar-based-content"],
-          ["Virtual Events with Integrated VR", "/business/digital-solutions/virtual-events-with-integrated-vr"],
+
+          [
+            "Virtual Events in Immersive Environments",
+            "/business/digital-solutions/virtual-events-immersive-environments",
+          ],
+
+          [
+            "Virtual Events with AR Based Content",
+            "/business/digital-solutions/virtual-events-with-ar-based-content",
+          ],
+
+          [
+            "Virtual Events with Integrated VR",
+            "/business/digital-solutions/virtual-events-with-integrated-vr",
+          ],
+
           ["Hybrid Events", "/business/digital-solutions/hybrid-events"],
-          ["Content Design & Management", "/business/digital-solutions/content-design-and-management"],
-          ["Digital Marketing", "/business/digital-solutions/digital-marketing"],
+
+          [
+            "Content Design & Management",
+            "/business/digital-solutions/content-design-and-management",
+          ],
+
+          [
+            "Digital Marketing",
+            "/business/digital-solutions/digital-marketing",
+          ],
         ],
       },
+
+      /* =====================================================
+         SPECIAL EVENTS
+      ===================================================== */
+
       {
         label: "Special Events",
         href: "/business/special-events",
+
         children: [
           [
             "Special Event Management Services",
-            "/business/experiences/experiential-marketing",
+            "/business/special-events/special-event-management-services",
           ],
-          ["Opening & Closing Ceremonies", "/business/experiences/d"],
-          ["Concerts & Festivals", "/business/experiences/di"],
-          ["Sporting Events", "/business/experiences/dig"],
-          ["Launch of New Initiatives", "/business/experiences/digi"],
-          ["Trade Shows", "/business/experiences/digit"],
-          ["Cultural & Tourism Events", "/business/experiences/digita"],
-          ["Son Et Lumière Spectaculars", "/business/experiences/digital"],
-          ["Social Celebrations", "/business/experiences/digital1"],
-          ["Weddings", "/business/experiences/digital2"],
+
+          [
+            "Opening & Closing Ceremonies",
+            "/business/special-events/opening-closing-ceremonies",
+          ],
+
+          [
+            "Concerts & Festivals",
+            "/business/special-events/concerts-festivals",
+          ],
+
+          ["Sporting Events", "/business/special-events/sporting-events"],
+
+          [
+            "Launch of New Initiatives",
+            "/business/special-events/launch-new-initiatives",
+          ],
+
+          ["Trade Shows", "/business/special-events/trade-shows"],
+
+          [
+            "Cultural & Tourism Events",
+            "/business/special-events/cultural-tourism-events",
+          ],
+
+          [
+            "Son Et Lumière Spectaculars",
+            "/business/special-events/son-et-lumiere-spectaculars",
+          ],
+
+          [
+            "Social Celebrations",
+            "/business/special-events/social-celebrations",
+          ],
+
+          ["Weddings", "/business/special-events/weddings"],
         ],
       },
     ],
   },
+
   ["PORTFOLIO", "/portfolio"],
   ["BLOG", "/blog"],
   ["CONTACT US", "/contact"],
@@ -66,151 +157,180 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
+      {/* =====================================================
+          NAVBAR
+      ===================================================== */}
+
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[#2f2f2f]/95 backdrop-blur-md">
-        <div className="container-x flex h-[90px] md:h-[120px] items-center justify-between">
-          {/* Logo */}
-          {/* <Link href="/" className="flex items-center">
-            <div className="text-center leading-none text-white">
-              <div className="text-2xl md:text-4xl font-black tracking-[-0.08em]">
-                <span className="mr-1 text-lg md:text-2xl">★</span>
-                WIZCRAFT
-              </div>
+        <div className="container-x flex h-[90px] items-center justify-between md:h-[120px]">
+          {/* ================= LOGO ================= */}
 
-              <div className="mt-1 text-[6px] md:text-[8px] font-bold tracking-[0.4em] text-white/80">
-                ENTERTAINMENT AGENCY
-              </div>
-            </div>
-          </Link> */}
-
-          <Link href={"/"}>
+          <Link href="/">
             <img
               src="https://wizcraft.co/assets/images/logo/wizcraft-logo.png"
-              alt="logo"
+              alt="Wizcraft Logo"
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
+          {/* =====================================================
+              DESKTOP NAVIGATION
+          ===================================================== */}
+
+          <nav className="hidden items-center gap-8 lg:flex xl:gap-10">
             {links.map((item, i) => {
               const isDropdown = !Array.isArray(item);
+
               const label = isDropdown ? item.label : item[0];
+
               const href = isDropdown ? item.href : item[1];
 
               return (
-                <div key={label} className="relative group">
+                <div key={label} className="group relative">
+                  {/* ================= MAIN LINK ================= */}
+
                   <Link
                     href={href}
                     className={`
-            flex
-            items-center
-            gap-1
-            text-[15px]
-            xl:text-[17px]
-            font-bold
-            tracking-wide
-            transition-colors
-            duration-300
-            hover:text-[#68c4b2]
-            ${i === 0 ? "text-[#68c4b2]" : "text-white"}
-          `}
+                      flex
+                      items-center
+                      gap-1
+                      text-[15px]
+                      font-bold
+                      tracking-wide
+                      transition-colors
+                      duration-300
+                      hover:text-[#68c4b2]
+                      xl:text-[17px]
+                      ${i === 0 ? "text-[#68c4b2]" : "text-white"}
+                    `}
                   >
                     {label}
 
                     {isDropdown && (
-                      <span className="text-xs transition-transform duration-300 group-hover:rotate-180">
+                      <span
+                        className="
+                          text-xs
+                          transition-transform
+                          duration-300
+                          group-hover:rotate-180
+                        "
+                      >
                         +
                       </span>
                     )}
                   </Link>
 
-                  {/* ================= FIRST LEVEL ================= */}
+                  {/* =====================================================
+                      FIRST LEVEL DROPDOWN
+                  ===================================================== */}
+
                   {isDropdown && (
                     <div
                       className="
-              invisible
-              absolute
-              left-0
-              top-full
-              mt-5
-              w-[240px]
-              translate-y-2
-              opacity-0
-              transition-all
-              duration-300
-              group-hover:visible
-              group-hover:translate-y-0
-              group-hover:opacity-100
-            "
+                        invisible
+                        absolute
+                        left-0
+                        top-full
+                        mt-5
+                        w-[260px]
+                        translate-y-2
+                        opacity-0
+                        transition-all
+                        duration-300
+                        group-hover:visible
+                        group-hover:translate-y-0
+                        group-hover:opacity-100
+                      "
                     >
-                      <div className="overflow-visible bg-[#2f2f2f]/95 py-2 shadow-2xl">
+                      <div
+                        className="
+                          overflow-visible
+                          bg-[#2f2f2f]/95
+                          py-2
+                          shadow-2xl
+                        "
+                      >
                         {item.children.map((child) => {
                           const hasChildren = child.children?.length > 0;
 
                           return (
                             <div
                               key={child.label}
-                              className="relative group/sub"
+                              className="group/sub relative"
                             >
+                              {/* ================= BUSINESS ITEM ================= */}
+
                               <Link
                                 href={child.href}
                                 className="
-                        flex
-                        items-center
-                        justify-between
-                        px-5
-                        py-3
-                        text-[14px]
-                        font-semibold
-                        text-white
-                        transition
-                        hover:bg-[#1684c5]
-                        hover:text-white
-                      "
+                                  flex
+                                  items-center
+                                  justify-between
+                                  px-5
+                                  py-3
+                                  text-[15px]
+                                  font-semibold
+                                  text-white
+                                  transition
+                                  hover:bg-[#3376ad]
+                                "
                               >
                                 <span>{child.label}</span>
-
-                                {/* {hasChildren && (
-                        <span className="text-lg">
-                          ›
-                        </span>
-                      )} */}
                               </Link>
 
-                              {/* ================= SECOND LEVEL ================= */}
+                              {/* =====================================================
+                                  SECOND LEVEL DROPDOWN
+                              ===================================================== */}
+
                               {hasChildren && (
                                 <div
                                   className="
-                          invisible
-                          absolute
-                          left-full
-                          top-0
-                          w-[250px]
-                          translate-x-2
-                          opacity-0
-                          transition-all
-                          duration-300
-                          group-hover/sub:visible
-                          group-hover/sub:translate-x-0
-                          group-hover/sub:opacity-100
-                        "
+                                    invisible
+                                    absolute
+                                    left-full
+                                    top-0
+                                    w-[300px]
+                                    translate-x-2
+                                    opacity-0
+                                    transition-all
+                                    duration-300
+                                    group-hover/sub:visible
+                                    group-hover/sub:translate-x-0
+                                    group-hover/sub:opacity-100
+                                  "
                                 >
-                                  <div className="bg-[#2f2f2f]/95 py-2 shadow-2xl">
+                                  {/* IMPORTANT:
+                                      Special Events mein 10 items hain
+                                      isliye scroll enabled hai
+                                  */}
+
+                                  <div
+                                    className="
+                                      max-h-[400px]
+                                      overflow-y-auto
+                                      bg-[#2f2f2f]/95
+                                      py-2
+                                      shadow-2xl
+                                    "
+                                  >
                                     {child.children.map(
                                       ([subLabel, subHref]) => (
                                         <Link
                                           key={subHref}
                                           href={subHref}
                                           className="
-                                  block
-                                  px-5
-                                  py-3
-                                  text-[14px]
-                                  font-medium
-                                  text-white
-                                  transition
-                                  hover:bg-[#1684c5]
-                                "
+                                            block
+                                            border-b
+                                            border-white/10
+                                            px-5
+                                            py-3
+                                            text-[15px]
+                                            font-medium
+                                            leading-relaxed
+                                            text-white
+                                            transition
+                                            hover:bg-[#3376ad]
+                                          "
                                         >
                                           {subLabel}
                                         </Link>
@@ -230,7 +350,10 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Hamburger */}
+          {/* =====================================================
+              HAMBURGER
+          ===================================================== */}
+
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -256,7 +379,10 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* ================= OVERLAY ================= */}
+      {/* =====================================================
+          OVERLAY
+      ===================================================== */}
+
       <div
         onClick={() => setOpen(false)}
         className={`
@@ -271,83 +397,90 @@ export default function Navbar() {
         `}
       />
 
-      {/* ================= SIDE MENU ================= */}
+      {/* =====================================================
+          SIDE MENU
+      ===================================================== */}
+
       <aside
         className={`
-    fixed
-    left-0
-    top-0
-    z-[70]
-    h-screen
-    w-[375px]
-    max-w-[90vw]
-    overflow-y-auto
-    text-white
-    shadow-2xl
-    transition-transform
-    duration-500
-    ease-[cubic-bezier(0.4,0,0.2,1)]
-    ${open ? "translate-x-0" : "-translate-x-full"}
+          fixed
+          left-0
+          top-0
+          z-[70]
+          h-screen
+          w-[375px]
+          max-w-[90vw]
+          overflow-y-auto
+          text-white
+          shadow-2xl
+          transition-transform
+          duration-500
+          ease-[cubic-bezier(0.4,0,0.2,1)]
 
-    /* Mobile */
-    bg-[#030006]
+          ${open ? "translate-x-0" : "-translate-x-full"}
 
-    /* Desktop */
-    lg:bg-gradient-to-b
-    lg:from-[#1684c5]
-    lg:via-[#2998c4]
-    lg:to-[#5db9bb]
-  `}
+          bg-[#030006]
+
+          lg:bg-gradient-to-b
+          lg:from-[#1684c5]
+          lg:via-[#2998c4]
+          lg:to-[#5db9bb]
+        `}
       >
         <div className="relative min-h-full px-[19px] py-7">
-          {/* ================= CLOSE ================= */}
+          {/* =====================================================
+              CLOSE BUTTON
+          ===================================================== */}
+
           <button
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
             className="
-        absolute
-        right-4
-        top-5
-        z-10
-        flex
-        h-9
-        w-9
-        items-center
-        justify-center
-        text-[32px]
-        font-light
-        leading-none
-        text-white
-        transition
-        hover:text-[#1684c5]
-      "
+              absolute
+              right-4
+              top-5
+              z-10
+              flex
+              h-9
+              w-9
+              items-center
+              justify-center
+              text-[32px]
+              font-light
+              leading-none
+              text-white
+              transition
+              hover:text-[#1684c5]
+            "
           >
             ×
           </button>
 
-          {/* ================= MOBILE LOGO ================= */}
+          {/* =====================================================
+              MOBILE LOGO
+          ===================================================== */}
+
           <Link
             href="/"
             onClick={() => setOpen(false)}
             className="
-        mt-2
-        // mb-0
-        block
-        border-b
-        border-white/10
-        pb-12
-        lg:hidden
-      "
+              mt-2
+              block
+              border-b
+              border-white/10
+              pb-12
+              lg:hidden
+            "
           >
             <div className="text-left leading-none">
               <div
                 className="
-            text-[30px]
-            font-black
-            tracking-[-0.09em]
-            text-[#187cc1]
-          "
+                  text-[30px]
+                  font-black
+                  tracking-[-0.09em]
+                  text-[#187cc1]
+                "
               >
                 <span className="mr-1 text-[22px] text-white">★</span>
                 WIZCRAFT
@@ -355,26 +488,28 @@ export default function Navbar() {
 
               <div
                 className="
-            mt-2
-            text-[8px]
-            font-bold
-            tracking-[0.42em]
-            text-white/60
-          "
+                  mt-2
+                  text-[8px]
+                  font-bold
+                  tracking-[0.42em]
+                  text-white/60
+                "
               >
                 ENTERTAINMENT AGENCY
               </div>
             </div>
           </Link>
 
-          {/* ================================================= */}
-          {/* ================= MOBILE MENU =================== */}
-          {/* ================================================= */}
+          {/* =====================================================
+              MOBILE MENU
+          ===================================================== */}
 
           <nav className="lg:hidden">
             {links.map((item) => {
               const isDropdown = !Array.isArray(item);
+
               const label = isDropdown ? item.label : item[0];
+
               const href = isDropdown ? item.href : item[1];
 
               return (
@@ -383,39 +518,39 @@ export default function Navbar() {
                   href={href}
                   onClick={() => setOpen(false)}
                   className="
-          relative
-          flex
-          min-h-[45px]
-          items-center
-          justify-between
-          border-b
-          border-white/10
-          text-[13px]
-          font-medium
-          text-white
-          transition-colors
-          hover:text-[#1684c5]
-        "
+                    relative
+                    flex
+                    min-h-[45px]
+                    items-center
+                    justify-between
+                    border-b
+                    border-white/10
+                    text-[13px]
+                    font-medium
+                    text-white
+                    transition-colors
+                    hover:text-[#1684c5]
+                  "
                 >
                   <span>{label}</span>
 
                   {isDropdown && (
                     <span
                       className="
-              absolute
-              right-0
-              top-1/2
-              flex
-              h-[38px]
-              w-[38px]
-              -translate-y-1/2
-              items-center
-              justify-center
-              bg-[#187fc2]
-              text-[28px]
-              font-light
-              leading-none
-            "
+                        absolute
+                        right-0
+                        top-1/2
+                        flex
+                        h-[38px]
+                        w-[38px]
+                        -translate-y-1/2
+                        items-center
+                        justify-center
+                        bg-[#187fc2]
+                        text-[28px]
+                        font-light
+                        leading-none
+                      "
                     >
                       ›
                     </span>
@@ -425,27 +560,28 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* ================================================= */}
-          {/* ================= MOBILE CONTACT ================ */}
-          {/* ================================================= */}
+          {/* =====================================================
+              MOBILE CONTACT
+          ===================================================== */}
 
           <div className="mt-6 lg:hidden">
-            {/* Email */}
+            {/* EMAIL */}
+
             <a
               href="mailto:info@wizcraft.co"
               className="mb-3 flex items-center gap-4"
             >
               <span
                 className="
-            flex
-            h-[30px]
-            w-[30px]
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            bg-[#187fc2]
-          "
+                  flex
+                  h-[30px]
+                  w-[30px]
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-[#187fc2]
+                "
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -460,22 +596,23 @@ export default function Navbar() {
               <span className="text-[16px]">info@wizcraft.co</span>
             </a>
 
-            {/* Phone 1 */}
+            {/* PHONE 1 */}
+
             <a
               href="tel:+919819822333"
               className="mb-3 flex items-center gap-4"
             >
               <span
                 className="
-            flex
-            h-[30px]
-            w-[30px]
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            bg-[#187fc2]
-          "
+                  flex
+                  h-[30px]
+                  w-[30px]
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-[#187fc2]
+                "
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -488,19 +625,20 @@ export default function Navbar() {
               <span className="text-[16px]">+91 9819822333</span>
             </a>
 
-            {/* Phone 2 */}
+            {/* PHONE 2 */}
+
             <a href="tel:+912247791300" className="flex items-center gap-4">
               <span
                 className="
-            flex
-            h-[30px]
-            w-[30px]
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            bg-[#187fc2]
-          "
+                  flex
+                  h-[30px]
+                  w-[30px]
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-[#187fc2]
+                "
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -514,21 +652,22 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* ================================================= */}
-          {/* ================= MOBILE SOCIAL ================= */}
-          {/* ================================================= */}
+          {/* =====================================================
+              MOBILE SOCIAL
+          ===================================================== */}
 
           <div
             className="
-        mt-4
-        flex
-        items-center
-        gap-5
-        pb-8
-        lg:hidden
-      "
+              mt-4
+              flex
+              items-center
+              gap-5
+              pb-8
+              lg:hidden
+            "
           >
-            {/* Instagram */}
+            {/* INSTAGRAM */}
+
             <a
               href="#"
               aria-label="Instagram"
@@ -540,7 +679,9 @@ export default function Navbar() {
                 strokeWidth="2"
               >
                 <rect x="3" y="3" width="18" height="18" rx="5" />
+
                 <circle cx="12" cy="12" r="4" />
+
                 <circle
                   cx="17.5"
                   cy="6.5"
@@ -551,7 +692,8 @@ export default function Navbar() {
               </svg>
             </a>
 
-            {/* WhatsApp */}
+            {/* WHATSAPP */}
+
             <a
               href="#"
               aria-label="WhatsApp"
@@ -563,29 +705,43 @@ export default function Navbar() {
                 strokeWidth="2"
               >
                 <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" />
+
                 <path d="M8.5 8.5c.3-.6.6-.6 1-.6h.4c.2 0 .4.1.5.4l.7 1.7c.1.3.1.5-.1.7l-.6.7c.6 1.1 1.5 2 2.6 2.6l.7-.6c.2-.2.4-.2.7-.1l1.7.7c.3.1.4.3.4.5v.4c0 .4 0 .7-.6 1-2.1.9-6.8-2.1-7.4-6.9Z" />
               </svg>
             </a>
 
-            {/* LinkedIn */}
+            {/* LINKEDIN */}
+
             <a
               href="#"
               aria-label="LinkedIn"
-              className="text-[18px] font-bold text-white hover:text-[#187fc2]"
+              className="
+                text-[18px]
+                font-bold
+                text-white
+                hover:text-[#187fc2]
+              "
             >
               in
             </a>
 
-            {/* Facebook */}
+            {/* FACEBOOK */}
+
             <a
               href="#"
               aria-label="Facebook"
-              className="text-[18px] font-bold text-white hover:text-[#187fc2]"
+              className="
+                text-[18px]
+                font-bold
+                text-white
+                hover:text-[#187fc2]
+              "
             >
               f
             </a>
 
-            {/* YouTube */}
+            {/* YOUTUBE */}
+
             <a
               href="#"
               aria-label="YouTube"
@@ -596,26 +752,33 @@ export default function Navbar() {
                 className="h-[18px] w-[18px] fill-current"
               >
                 <path d="M23 12s0-3.5-.5-5.1c-.3-1.1-1.2-2-2.3-2.3C18.6 4 12 4 12 4s-6.6 0-8.2.6c-1.1.3-2 1.2-2.3 2.3C1 8.5 1 12 1 12s0 3.5.5 5.1c.3 1.1 1.2 2 2.3 2.3 1.6.6 8.2.6 8.2.6s6.6 0 8.2-.6c1.1-.3 2-1.2 2.3-3.3C23 15.5 23 12 23 12Z" />
+
                 <path d="m10 8 6 4-6 4V8Z" className="fill-[#030006]" />
               </svg>
             </a>
 
             {/* X */}
+
             <a
               href="#"
               aria-label="X"
-              className="text-[18px] text-white hover:text-[#187fc2]"
+              className="
+                text-[18px]
+                text-white
+                hover:text-[#187fc2]
+              "
             >
               𝕏
             </a>
           </div>
 
-          {/* ================================================= */}
-          {/* ================= DESKTOP CONTENT ================ */}
-          {/* ================================================= */}
+          {/* =====================================================
+              DESKTOP SIDE MENU CONTENT
+          ===================================================== */}
 
           <div className="hidden lg:block">
-            {/* Logo */}
+            {/* LOGO */}
+
             <Link
               href="/"
               onClick={() => setOpen(false)}
@@ -633,8 +796,8 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Existing About + Form */}
-            {/* ================= ABOUT ================= */}
+            {/* ABOUT */}
+
             <section className="mt-10">
               <h2 className="text-[18px] font-medium">ABOUT US</h2>
 
@@ -646,104 +809,99 @@ export default function Navbar() {
               </p>
             </section>
 
-            {/* ================= CONTACT FORM ================= */}
+            {/* CONTACT FORM */}
+
             <section className="mt-8">
               <h2 className="text-[22px] font-medium">GET IN TOUCH</h2>
 
               <form className="mt-2 space-y-5">
-                {/* Full Name */}
                 <input
                   type="text"
                   placeholder="Full Name"
                   className="
-                  h-[54px]
-                  w-full
-                  border-0
-                  bg-white
-                  px-5
-                  text-[16px]
-                  text-gray-700
-                  outline-none
-                  placeholder:text-gray-500
-                "
+                    h-[54px]
+                    w-full
+                    border-0
+                    bg-white
+                    px-5
+                    text-[16px]
+                    text-gray-700
+                    outline-none
+                    placeholder:text-gray-500
+                  "
                 />
 
-                {/* Company */}
                 <input
                   type="text"
                   placeholder="Company Name"
                   className="
-                  h-[54px]
-                  w-full
-                  border-0
-                  bg-white
-                  px-5
-                  text-[16px]
-                  text-gray-700
-                  outline-none
-                  placeholder:text-gray-500
-                "
+                    h-[54px]
+                    w-full
+                    border-0
+                    bg-white
+                    px-5
+                    text-[16px]
+                    text-gray-700
+                    outline-none
+                    placeholder:text-gray-500
+                  "
                 />
 
-                {/* Email */}
                 <input
                   type="email"
                   placeholder="Email"
                   className="
-                  h-[54px]
-                  w-full
-                  border-0
-                  bg-white
-                  px-5
-                  text-[16px]
-                  text-gray-700
-                  outline-none
-                  placeholder:text-gray-500
-                "
+                    h-[54px]
+                    w-full
+                    border-0
+                    bg-white
+                    px-5
+                    text-[16px]
+                    text-gray-700
+                    outline-none
+                    placeholder:text-gray-500
+                  "
                 />
 
-                {/* Phone */}
                 <input
                   type="tel"
                   placeholder="Phone Number"
                   className="
-                  h-[54px]
-                  w-full
-                  border-0
-                  bg-white
-                  px-5
-                  text-[16px]
-                  text-gray-700
-                  outline-none
-                  placeholder:text-gray-500
-                "
+                    h-[54px]
+                    w-full
+                    border-0
+                    bg-white
+                    px-5
+                    text-[16px]
+                    text-gray-700
+                    outline-none
+                    placeholder:text-gray-500
+                  "
                 />
 
-                {/* Message */}
                 <textarea
                   rows={4}
                   placeholder="Message"
                   className="
-                  w-full
-                  resize-none
-                  border-0
-                  bg-white
-                  px-5
-                  py-4
-                  text-[16px]
-                  text-gray-700
-                  outline-none
-                  placeholder:text-gray-500
-                "
+                    w-full
+                    resize-none
+                    border-0
+                    bg-white
+                    px-5
+                    py-4
+                    text-[16px]
+                    text-gray-700
+                    outline-none
+                    placeholder:text-gray-500
+                  "
                 />
 
-                {/* Submit */}
                 <button
                   type="submit"
                   className="
-                  px-8
-                  py-3
-                "
+                    px-8
+                    py-3
+                  "
                   style={{
                     background:
                       "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
@@ -753,10 +911,6 @@ export default function Navbar() {
                 </button>
               </form>
             </section>
-
-            {/* Keep your existing GET IN TOUCH form here */}
-
-            {/* Keep your existing QUICK LINKS here */}
           </div>
         </div>
       </aside>
