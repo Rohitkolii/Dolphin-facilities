@@ -27,12 +27,12 @@ const links = [
         href: "/business/digital-solutions",
         children: [
           ["Live Streaming", "/business/digital-solutions/live-streaming"],
-          ["Virtual Events in Immersive Environments", "/business/entertainment/artist"],
-          ["Virtual Events with AR Based Content", "/business/entertainment/management"],
-          ["Virtual Events with Integrated VR", "/business/entertainment/artiment"],
-          ["Hybrid Events", "/business/entertainment/arent"],
-          ["Content Design & Management", "/business/entertainment/artiagement"],
-          ["Digital Marketing", "/business/entertainment/anagement"],
+          ["Virtual Events in Immersive Environments", "/business/digital-solutions/virtual-events-immersive-environments"],
+          ["Virtual Events with AR Based Content", "/business/digital-solutions/virtual-events-with-ar-based-content"],
+          ["Virtual Events with Integrated VR", "/business/digital-solutions/virtual-events-with-integrated-vr"],
+          ["Hybrid Events", "/business/digital-solutions/hybrid-events"],
+          ["Content Design & Management", "/business/digital-solutions/content-design-and-management"],
+          ["Digital Marketing", "/business/digital-solutions/digital-marketing"],
         ],
       },
       {
