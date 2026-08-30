@@ -1,7 +1,8 @@
 // import { Instagram, Linkedin, MessageCircle } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
-import { AiOutlineLinkedin } from "react-icons/ai";
-import { BiMessageRoundedDetail } from "react-icons/bi";
+// import { AiOutlineLinkedin } from "react-icons/ai";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 
 
 export default function SocialRail() {
@@ -9,17 +10,17 @@ export default function SocialRail() {
     {
       icon: FaInstagram,
       label: "Let’s Turn Ideas Into Experiences",
-      href: "#contact",
+      href: "https://www.instagram.com/",
     },
     {
-      icon: BiMessageRoundedDetail,
+      icon: FaWhatsapp,
       label: "Plan Your Event With Us",
-      href: "#contact",
+      href: "https://web.whatsapp.com/",
     },
     {
-      icon: AiOutlineLinkedin,
+      icon: FaLinkedinIn,
       label: "Build Impactful Experiences",
-      href: "#contact",
+      href: "https://www.linkedin.com/feed/",
     },
   ];
 

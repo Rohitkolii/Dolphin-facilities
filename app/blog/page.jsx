@@ -8,7 +8,7 @@ export default function BlogPage() {
   return (
     <>
     <Navbar />
-    <SocialRail />
+    {/* <SocialRail /> */}
       <BlogHero />
       <BlogGrid />
       <Footer />

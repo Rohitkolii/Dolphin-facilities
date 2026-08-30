@@ -7,7 +7,7 @@ import Footer from "@/Components/common/Footer";
 export default function PortfolioPage() {
   return (
     <main>
-      <SocialRail />
+      {/* <SocialRail /> */}
       <Navbar />
       <PortfolioHero />
       <PortfolioGrid />

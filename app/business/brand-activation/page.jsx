@@ -22,7 +22,8 @@ import {
 
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import SocialRail from "@/Components/home/SocialRail";
 
 const services = [
   {
@@ -130,9 +131,9 @@ const locations = [
   ],
 ];
 
-function IconBox({ icon: Icon }) {
+function IconBox({ icon: Icon, item }) {
   return (
-    <div className="grid h-14 w-14 shrink-0 place-items-center border border-[#2b8bc7]/70 text-[#1599df] sm:h-16 sm:w-16 md:h-20 md:w-20">
+    <div className={`grid h-14 w-14 shrink-0 place-items-center border ${item.featured ? "text-white border-white" : "text-[#1599df] border-[#2b8bc7]/70"} sm:h-16 sm:w-16 md:h-20 md:w-20`}>
       <Icon size={18} />
     </div>
   );
@@ -151,7 +152,7 @@ function ServiceCard({ item }) {
       }`}
     >
       <div className="flex flex-col gap-4 min-[480px]:flex-row sm:gap-5">
-        <IconBox icon={Icon} />
+        <IconBox icon={Icon} item={item} />
 
         <div className="min-w-0 flex-1">
           <h3 className={`text-[16px] font-bold leading-tight ${item.featured ? "text-white" : "bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent"} sm:text-[20px] md:text-[23px]`}>
@@ -223,6 +224,37 @@ function AdvantageCard({ title, text, Icon }) {
 }
 
 export default function BrandActivationPage() {
+
+    const [activeStep, setActiveStep] = useState(0);
+
+    const steps = [
+  {
+    title: "Step 1",
+    content:
+      "First we uncover your brand narrative, identify your audience, and define your goals with precision.",
+  },
+  {
+    title: "Step 2",
+    content:
+      "Next we develop a clear strategy and define the creative direction that best fits your brand.",
+  },
+  {
+    title: "Step 3",
+    content:
+      "Then we create the visual identity and design system that brings your brand story to life.",
+  },
+  {
+    title: "Step 4",
+    content:
+      "After that we refine the experience, ensuring every touchpoint feels consistent and purposeful.",
+  },
+  {
+    title: "Step 5",
+    content:
+      "Finally we deliver the complete brand experience and help you move forward with confidence.",
+  },
+];
+
   useEffect(() => {
     if (window.scrollY > 100) {
       window.scrollTo({
@@ -243,6 +275,7 @@ export default function BrandActivationPage() {
     <main className="min-h-screen overflow-hidden bg-[#2d2d2d] text-white">
       {/* Header */}
       <Navbar />
+      {/* <SocialRail /> */}
 
       {/* Hero */}
       <Hero
@@ -395,30 +428,29 @@ export default function BrandActivationPage() {
           </p>
 
           <div className="relative mt-6">
-            {/* Steps */}
-            <div className="relative z-20 grid grid-cols-5 gap-1 sm:flex sm:flex-wrap sm:justify-center sm:gap-3 md:gap-5">
-              {["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"].map(
-                (step, i) => (
-                  <div
-                    key={step}
-                    className={`flex min-h-[45px] items-center justify-center px-1 py-3 text-[9px] font-semibold sm:min-h-0 sm:min-w-[80px] sm:px-5 sm:py-3 sm:text-[11px] md:min-w-[100px] md:px-8 md:py-4 md:text-[12px] ${
-                      i === 0
-                        ? "bg-gradient-to-r from-[#2184c5] to-[#68bda9]"
-                        : "bg-[#8a8a8a]"
-                    }`}
-                  >
-                    {step}
-                  </div>
-                ),
-              )}
-            </div>
+      {/* Steps */}
+      <div className="relative z-20 grid grid-cols-5 gap-1 sm:flex sm:flex-wrap sm:justify-center sm:gap-3 md:gap-5">
+        {steps.map((step, i) => (
+          <button
+            type="button"
+            key={step.title}
+            onClick={() => setActiveStep(i)}
+            className={`flex min-h-[45px] items-center justify-center cursor-pointer px-1 py-3 text-[9px] font-semibold transition-all duration-300 sm:min-h-0 sm:min-w-[80px] sm:px-5 sm:py-3 sm:text-[11px] md:min-w-[100px] md:px-8 md:py-4 md:text-[12px] ${
+              activeStep === i
+                ? "bg-gradient-to-r from-[#2184c5] to-[#68bda9] text-white"
+                : "bg-[#8a8a8a] text-white hover:bg-[#707070]"
+            }`}
+          >
+            {step.title}
+          </button>
+        ))}
+      </div>
 
-            {/* Description */}
-            <div className="relative z-10 -mt-2 border border-[#2184c5] px-4 pb-6 pt-10 text-[12px] leading-[1.7] sm:-mt-4 sm:px-8 sm:pb-8 sm:pt-14 sm:text-[14px] md:-mt-6 md:px-15 md:pt-20 md:text-[16px]">
-              First we uncover your brand narrative, identify your audience,
-              and define your goals with precision.
-            </div>
-          </div>
+      {/* Description */}
+      <div className="relative z-10 -mt-2 border border-[#2184c5] px-4 pb-6 pt-10 text-[12px] leading-[1.7] sm:-mt-4 sm:px-8 sm:pb-8 sm:pt-14 sm:text-[14px] md:-mt-6 md:px-15 md:pt-20 md:text-[16px]">
+        {steps[activeStep].content}
+      </div>
+    </div>
         </div>
 
         {/* Bottom Content */}

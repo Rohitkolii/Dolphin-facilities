@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const links = [
   ["HOME", "/"],
@@ -155,6 +156,69 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+
+  const [formData, setFormData] = useState({
+    full_name: "",
+    company: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState("");
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsSending(true);
+    setStatus("");
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          ...formData,
+          location: "----",
+          // location: "Navbar Contact Form",
+        },
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+        }
+      );
+
+      setStatus("Message sent successfully!");
+
+      setFormData({
+        full_name: "",
+        company: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setStatus("");
+      }, 4000);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setStatus("Something went wrong. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
 
   return (
     <>
@@ -942,102 +1006,151 @@ export default function Navbar() {
             <section className="mt-8">
               <h2 className="text-[22px] font-medium">GET IN TOUCH</h2>
 
-              <form className="mt-2 space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                className="mt-2 space-y-5"
+              >
+                {/* Full Name */}
                 <input
                   type="text"
+                  name="full_name"
+                  value={formData.full_name}
+                  onChange={handleChange}
                   placeholder="Full Name"
+                  required
                   className="
-                    h-[54px]
-                    w-full
-                    border-0
-                    bg-white
-                    px-5
-                    text-[16px]
-                    text-gray-700
-                    outline-none
-                    placeholder:text-gray-500
-                  "
+      h-[54px]
+      w-full
+      border-0
+      bg-white
+      px-5
+      text-[16px]
+      text-gray-700
+      outline-none
+      placeholder:text-gray-500
+    "
                 />
 
+                {/* Company */}
                 <input
                   type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
                   placeholder="Company Name"
+                  required
                   className="
-                    h-[54px]
-                    w-full
-                    border-0
-                    bg-white
-                    px-5
-                    text-[16px]
-                    text-gray-700
-                    outline-none
-                    placeholder:text-gray-500
-                  "
+      h-[54px]
+      w-full
+      border-0
+      bg-white
+      px-5
+      text-[16px]
+      text-gray-700
+      outline-none
+      placeholder:text-gray-500
+    "
                 />
 
+                {/* Email */}
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Email"
+                  required
                   className="
-                    h-[54px]
-                    w-full
-                    border-0
-                    bg-white
-                    px-5
-                    text-[16px]
-                    text-gray-700
-                    outline-none
-                    placeholder:text-gray-500
-                  "
+      h-[54px]
+      w-full
+      border-0
+      bg-white
+      px-5
+      text-[16px]
+      text-gray-700
+      outline-none
+      placeholder:text-gray-500
+    "
                 />
 
+                {/* Phone */}
                 <input
                   type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="Phone Number"
+                  maxLength={10}
+                  required
                   className="
-                    h-[54px]
-                    w-full
-                    border-0
-                    bg-white
-                    px-5
-                    text-[16px]
-                    text-gray-700
-                    outline-none
-                    placeholder:text-gray-500
-                  "
+      h-[54px]
+      w-full
+      border-0
+      bg-white
+      px-5
+      text-[16px]
+      text-gray-700
+      outline-none
+      placeholder:text-gray-500
+    "
                 />
 
+                {/* Message */}
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   rows={4}
                   placeholder="Message"
+                  required
                   className="
-                    w-full
-                    resize-none
-                    border-0
-                    bg-white
-                    px-5
-                    py-4
-                    text-[16px]
-                    text-gray-700
-                    outline-none
-                    placeholder:text-gray-500
-                  "
+      w-full
+      resize-none
+      border-0
+      bg-white
+      px-5
+      py-4
+      text-[16px]
+      text-gray-700
+      outline-none
+      placeholder:text-gray-500
+    "
                 />
 
+                {/* Submit */}
                 <button
                   type="submit"
+                  disabled={isSending}
                   className="
-                    px-8
-                    py-3
-                  "
+      px-8
+      py-3
+      text-white
+      transition-opacity
+      hover:opacity-90
+      disabled:cursor-not-allowed
+      disabled:opacity-60
+    "
                   style={{
                     background:
                       "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
                   }}
                 >
-                  Submit
+                  {isSending ? "Sending..." : "Submit"}
                 </button>
+
+                {/* Status */}
+                {status && (
+                  <p
+                    className={`text-[14px] font-medium ${status.includes("successfully")
+                        ? "text-white"
+                        : "text-red-100"
+                      }`}
+                  >
+                    {status}
+                  </p>
+                )}
               </form>
+
             </section>
           </div>
         </div>

@@ -4,7 +4,10 @@ import Footer from "@/Components/common/Footer";
 import Navbar from "@/Components/common/Navbar";
 import ContactHero from "@/Components/contact/ContactHero";
 import SocialRail from "@/Components/home/SocialRail";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const cities = [
   "Mumbai",
@@ -144,15 +147,83 @@ const ContactCard = ({ icon, title, children }) => {
 
 export default function ContactPage() {
   const [activeCity, setActiveCity] = useState("Mumbai");
-
   const office = offices[activeCity];
+
+  const [formData, setFormData] = useState({
+    full_name: "",
+    company: "",
+    email: "",
+    phone: "",
+    location: "",
+    message: "",
+  });
+
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsSending(true);
+    setStatus("");
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        formData,
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+        }
+      );
+
+      setStatus("Thank you! Your message has been sent successfully.");
+
+      setFormData({
+        full_name: "",
+        company: "",
+        email: "",
+        phone: "",
+        location: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setStatus("Something went wrong. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+      once: true,
+      offset: 80,
+      easing: "ease-out-cubic",
+    });
+
+    setTimeout(() => {
+      AOS.refresh();
+    }, 300);
+  }, []);
 
 
   return (
     <>
       <Navbar />
       <ContactHero />
-      <SocialRail />
+      {/* <SocialRail /> */}
       <main className="min-h-screen bg-[#292929] py-9 pb-[100px] text-white md:px-10">
         <div className="mx-auto container-x">
           {/* ================= TOP CONTACT BOXES ================= */}
@@ -178,15 +249,15 @@ export default function ContactPage() {
           {/* ================= OFFICE SECTION ================= */}
 
           <section className="mt-[80px]">
-            <p className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent">
+            <p data-aos="zoom-in-left" className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent">
               Our Locations
             </p>
-            <p className="text-center text-xl text-white">
+            <p data-aos="fade-up" className="text-center text-xl text-white">
               Explore Our Offices Across Different Cities
             </p>
 
             {/* CITY TABS */}
-            <div className="relative mt-[39px]">
+            <div data-aos="fade-up" className="relative mt-[39px]">
               <div className="absolute left-0 right-0 top-[18px] h-px bg-[#126ba4]" />
 
               <div className="relative flex flex-col md:flex-row md:flex-wrap justify-center  md:gap-[30px] w-full">
@@ -202,11 +273,10 @@ export default function ContactPage() {
         px-[18px]
         text-[16px]
         md:text-[18px]
-        ${
-          activeCity === city
-            ? "bg-[#158fd0] text-white"
-            : "bg-[#999c9d] text-white"
-        }
+        ${activeCity === city
+                        ? "bg-[#158fd0] text-white"
+                        : "bg-[#999c9d] text-white"
+                      }
       `}
                   >
                     {city}
@@ -216,7 +286,7 @@ export default function ContactPage() {
             </div>
 
             {/* MAP + OFFICE DETAILS */}
-            <div className="mt-[50px] h-[500px] p-[35px] overflow-hidden border-2 border-[#167fc0]">
+            <div data-aos="fade-up" className="mt-[50px] h-[500px] p-[35px] overflow-hidden border-2 border-[#167fc0]">
               <div className="grid h-full grid-cols-1 md:grid-cols-2">
                 {/* LEFT — GOOGLE MAP */}
                 <div className="h-full w-full">
@@ -252,46 +322,73 @@ export default function ContactPage() {
           {/* ================= CONTACT FORM ================= */}
 
           <section className="mt-[45px] bg-gradient-to-br from-[#1877bd] via-[#2688bd] to-[#76c8a4] px-8 py-[72px] md:px-[32px]">
-            <p className="text-center text-[18px] text-white">
+            <p data-aos="zoom-in-left" className="uppercase font-bold text-center text-4xl mb-5">Let's connect to create something big</p>
+            <p data-aos="fade-up" className="text-center text-[18px] text-white">
               Fill out the form below and our team will get back to you shortly.
             </p>
 
             <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mx-auto mt-[27px] "
+              data-aos="fade-up"
+              onSubmit={handleSubmit}
+              className="mx-auto mt-[27px]"
             >
+
               <div className="grid grid-cols-1 gap-x-[16px] gap-y-[15px] md:grid-cols-3">
                 {/* Full Name */}
                 <input
                   type="text"
+                  name="full_name"
+                  value={formData.full_name}
+                  onChange={handleChange}
                   placeholder="Full Name"
+                  required
                   className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white"
                 />
+
 
                 {/* Company */}
                 <input
                   type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
                   placeholder="Company Name"
+                  required
                   className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white"
                 />
+
 
                 {/* Email */}
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Your Email"
+                  required
                   className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white"
                 />
+
 
                 {/* Phone */}
                 <input
                   type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="Phone Number"
+                  maxLength={10}
+                  required
                   className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white"
                 />
 
+
                 {/* Location */}
                 <select
-                  defaultValue=""
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  required
                   className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none focus:border-white"
                 >
                   <option value="" disabled className="bg-[#292929]">
@@ -305,25 +402,41 @@ export default function ContactPage() {
                   ))}
                 </select>
 
+
                 {/* Empty column */}
                 <div className="hidden md:block" />
 
                 {/* Message */}
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Your Message"
                   rows={5}
+                  required
                   className="resize-none border border-[#66b6ca]/70 bg-transparent px-[8px] py-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white md:col-span-3"
                 />
+
 
                 {/* Button */}
                 <div className="flex justify-center md:col-span-3">
                   <button
                     type="submit"
-                    className="mt-[1px] h-[40px] bg-gradient-to-r from-[#74ce9c] to-[#147fc2] px-[25px] text-[17px] text-white transition-opacity hover:opacity-90"
+                    disabled={isSending}
+                    className="mt-[1px] h-[40px] bg-gradient-to-r from-[#74ce9c] to-[#147fc2] px-[25px] text-[17px] text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    Submit Now
+                    {isSending ? "Sending..." : "Submit Now"}
                   </button>
+
                 </div>
+
+                {status && (
+                  <p className="mt-4 text-center text-[15px] text-white md:col-span-3">
+                    {status}
+                  </p>
+                )}
+
+
               </div>
             </form>
           </section>

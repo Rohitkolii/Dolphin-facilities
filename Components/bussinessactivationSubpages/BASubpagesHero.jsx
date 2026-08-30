@@ -118,7 +118,7 @@ export default function NationHero({
           gap-3
         "
       >
-        <SocialButton>
+        {/* <SocialButton>
           <span>f</span>
         </SocialButton>
 
@@ -128,7 +128,7 @@ export default function NationHero({
 
         <SocialButton>
           <span>▶</span>
-        </SocialButton>
+        </SocialButton> */}
       </div>
     </section>
   );

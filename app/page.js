@@ -90,10 +90,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="border-4 border-[#70c7b5]">
+    <div className="">
       <IntroSplash />
       <Navbar />
-      <SocialRail />
+      {/* <SocialRail /> */}
       <main id="home">
         <section className="container-x pt-12 sm:pt-20">
           <div

@@ -16,6 +16,7 @@ import {
   FaChartLine,
   FaAward,
 } from "react-icons/fa";
+import SocialRail from "@/Components/home/SocialRail";
 
 const services = [
   {
@@ -69,23 +70,22 @@ const services = [
   },
 ];
 
-function IconBox({ icon: Icon }) {
+function IconBox({ icon: Icon, item }) {
   return (
     <div
-      className="
+      className={`
         grid
         h-14
         w-14
         shrink-0
         place-items-center
         border
-        border-[#2b8bc7]/70
-        text-[#1599df]
+        ${item.featured ? "text-white border-white" : "text-[#1599df] border-[#2b8bc7]/70"}
         sm:h-16
         sm:w-16
         md:h-20
         md:w-20
-      "
+      `}
     >
       <Icon
         size={18}
@@ -127,23 +127,19 @@ function ServiceCard({ item }) {
           sm:gap-5
         "
       >
-        <IconBox icon={Icon} />
+        <IconBox icon={Icon} item={item} />
 
         <div className="min-w-0 flex-1">
           <h3
-            className="
+            className={`
               text-[16px]
               font-bold
               leading-tight
-              bg-gradient-to-r
-              from-[#1d7fc5]
-              to-[#68c4b2]
-              bg-clip-text
-              text-transparent
+              ${item.featured ? "text-white" : "bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent"}
               sm:text-[20px]
               md:text-[23px]
               lg:text-[25px]
-            "
+            `}
           >
             {item.title}
           </h3>
@@ -189,7 +185,7 @@ export default function SpecialEventsPage() {
     <main className="min-h-screen overflow-hidden bg-[#2d2d2d] text-white">
       {/* ================= HEADER ================= */}
       <Navbar />
-
+      {/* <SocialRail /> */}
       {/* ================= HERO ================= */}
 
         <Hero

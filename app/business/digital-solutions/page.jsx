@@ -15,6 +15,7 @@ import {
   FaChartLine,
   FaAward,
 } from "react-icons/fa";
+import SocialRail from "@/Components/home/SocialRail";
 
 const services = [
   {
@@ -62,9 +63,9 @@ const services = [
   },
 ];
 
-function IconBox({ icon: Icon }) {
+function IconBox({ icon: Icon, item }) {
   return (
-    <div className="grid h-14 w-14 shrink-0 place-items-center border border-[#2b8bc7]/70 text-[#1599df] sm:h-16 sm:w-16 md:h-20 md:w-20">
+    <div className={`grid h-14 w-14 shrink-0 place-items-center border ${item.featured ? "text-white border-white" : "text-[#1599df] border-[#2b8bc7]/70"} sm:h-16 sm:w-16 md:h-20 md:w-20`}>
       <Icon
         size={18}
         className="sm:h-[20px] sm:w-[20px]"
@@ -88,7 +89,7 @@ function ServiceCard({ item }) {
       }`}
     >
       <div className="flex flex-col items-start gap-4 min-[480px]:flex-row sm:gap-5">
-        <IconBox icon={Icon} />
+        <IconBox icon={Icon} item={item} />
 
         <div className="min-w-0 flex-1">
           <h3
@@ -147,7 +148,7 @@ export default function DigitalSolutionsPage() {
     <main className="min-h-screen overflow-hidden bg-[#2d2d2d] text-white">
       {/* ================= HEADER ================= */}
       <Navbar />
-
+      {/* <SocialRail /> */}
       {/* ================= HERO ================= */}
         <Hero
           title="Digital Event Solutions Company in India"

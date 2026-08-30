@@ -8,7 +8,7 @@ import SocialRail from "@/Components/home/SocialRail";
 export default function AboutPage() {
   return (
     <main>
-      <SocialRail />
+      {/* <SocialRail /> */}
       <Navbar />
       <AboutHero />
       <AboutStory />
