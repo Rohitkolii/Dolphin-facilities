@@ -9,7 +9,8 @@ import Navbar from "@/Components/common/Navbar";
 import SocialRail from "@/Components/home/SocialRail";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import FilePreview from "@/Components/common/FilePreview";
 
 const businesses = [
   {
@@ -76,6 +77,7 @@ const slides = [
 ];
 
 export default function Home() {
+  const [files, setFiles] = useState([]);
   useEffect(() => {
     if (window.scrollY > 100) {
       window.scrollTo({
@@ -83,6 +85,26 @@ export default function Home() {
         behavior: "smooth",
       });
     }
+  }, []);
+
+  useEffect(() => {
+    const getFiles = async () => {
+      try {
+        const response = await fetch("/api/media");
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Failed to fetch media files");
+        }
+
+        console.log("Media files:", data.files);
+        setFiles(data.files);
+      } catch (error) {
+        console.error("Unable to load media files:", error);
+      }
+    };
+
+    getFiles();
   }, []);
 
   useEffect(() => {
@@ -126,6 +148,10 @@ export default function Home() {
             />
           </div>
         </section>
+
+        {/* {files?.map((file) => (
+          <FilePreview key={file.id} file={file} />
+        ))} */}
 
         <section id="business" className="container-x py-20">
           <p
