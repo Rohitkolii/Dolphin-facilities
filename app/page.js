@@ -1,6 +1,7 @@
 "use client";
 
 import Footer from "@/Components/common/Footer";
+import { MdEvent } from "react-icons/md";
 import { IoMdMegaphone } from "react-icons/io";
 import { FaCode } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
@@ -14,30 +15,37 @@ import FilePreview from "@/Components/common/FilePreview";
 
 const businesses = [
   {
-    title: "Brand Activation",
-    text: "In a world where attention spans are shortening and brand loyalty is fleeting, building lasting and meaningful connections with consumers has never been more important.",
-    icon: IoMdMegaphone,
+    title: "Event Management",
+    text: "We conceptualize, plan, manage, and execute events of different scales — from corporate meets and conferences to product launches, exhibitions, government events, dealer meets, award functions and celebrations.",
+    icon: MdEvent,
     animate: "fade-right",
   },
   {
-    title: "Digital Solutions",
-    text: "In a globally interconnected world of digital interactions recasting engagement, Wizcraft Events is out front with innovations in its revolutionary digital solutions.",
-    icon: FaCode,
+    title: "Advertising & Outdoor Marketing",
+    text: "We help brands reach audiences where they live, travel, work and shop. Our outdoor solutions — Van Campaigns, Wall Wraps and Hoardings — are designed to create visibility and build strong brand recall.",
+    icon: IoMdMegaphone,
     animate: "fade-up",
   },
   {
-    title: "Special Events",
-    text: "In the universe of out-of-the-ordinary experiences, there are few names that evoke the same fervour, imagination, and brilliance as Wizcraft.",
-    icon: FaRegStar,
+    title: "Digital Solutions",
+    text: "We combine traditional marketing with digital experiences to help brands communicate with today's audiences through Digital Campaigns, Social Media Solutions and Creative Content.",
+    icon: FaCode,
     animate: "fade-left",
   },
+  {
+    title: "Brand Activation",
+    text: "We create on-ground experiences that allow audiences to interact directly with brands — Roadshows, Van Campaigns, Product Demonstrations and Consumer Engagement.",
+    icon: FaRegStar,
+    animate: "fade-up",
+  },
 ];
+
 const stats = [
-  ["03+", "Decades of unmatched Legacy"],
-  ["1500+", "Events Across the world"],
-  ["500+", "Trusted by Fortune Companies"],
-  ["350+", "Technology, Creativity & Strategy delivered by Industry Experts"],
-  ["03+", "Business Focus Areas To provide an Integrated Solution"],
+  ["2019", "The Year Our Journey Began"],
+  ["4", "Core Service Verticals Under One Roof"],
+  ["MP & India", "Our Growing Footprint"],
+  ["Govt. & Corporate", "Clients We Proudly Serve"],
+  ["1", "Complete Solution Partner For Every Requirement"],
 ];
 
 const gallery = [
@@ -53,27 +61,28 @@ const gallery = [
 ];
 
 const slides = [
-  "Nation Building Events",
-  "Live Streaming",
-  "Special Event Management Services",
-  "Corporate Event Launches",
-  "On-Ground Activations",
-  "Concerts & Festivals",
-  "Sporting Events",
-  "Nation Building Events",
-  "Live Streaming",
-  "Special Event Management Services",
-  "Corporate Event Launches",
-  "On-Ground Activations",
-  "Concerts & Festivals",
-  "Sporting Events",
-  "Nation Building Events",
-  "Live Streaming",
-  "Special Event Management Services",
-  "Corporate Event Launches",
-  "On-Ground Activations",
-  "Concerts & Festivals",
-  "Sporting Events",
+  "Event Management",
+  "Advertising & Outdoor Marketing",
+  "Digital Solutions",
+  "Brand Activation",
+  "Van Campaigns",
+  "Wall Wraps",
+  "Hoardings",
+  "Roadshows",
+  "Product Demonstrations",
+  "Government Events",
+  "Corporate Conferences",
+  "Event Management",
+  "Advertising & Outdoor Marketing",
+  "Digital Solutions",
+  "Brand Activation",
+  "Van Campaigns",
+  "Wall Wraps",
+  "Hoardings",
+  "Roadshows",
+  "Product Demonstrations",
+  "Government Events",
+  "Corporate Conferences",
 ];
 
 export default function Home() {
@@ -108,26 +117,83 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    AOS.init({ duration: 2000 });
+    AOS.init({ duration: 700, once: true, mirror: false, offset: 60 });
   }, []);
 
   return (
-    <div className="">
+    <div className="overflow-x-hidden">
       <IntroSplash />
       <Navbar />
       {/* <SocialRail /> */}
       <main id="home">
-        <section className="container-x pt-12 sm:pt-20">
+        <section className="container-x relative pt-12 sm:pt-20">
+          {/* Decorative background — full width, breaks out of container-x */}
+          <div className="pointer-events-none absolute left-1/2 right-1/2 top-0 -z-10 h-full w-screen -translate-x-1/2 overflow-hidden" style={{ willChange: "transform" }}>
+            <div className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#1d7fc5]/30 blur-[110px] sm:h-[560px] sm:w-[560px]" />
+            <div className="absolute left-0 top-10 h-64 w-64 rounded-full bg-[#68c4b2]/20 blur-[90px] sm:h-96 sm:w-96" />
+            <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-[#1d7fc5]/20 blur-[90px] sm:h-96 sm:w-96" />
+            <div
+              className="absolute inset-0 opacity-[0.07]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
+                backgroundSize: "44px 44px",
+                maskImage:
+                  "radial-gradient(ellipse 60% 60% at 50% 20%, black 40%, transparent 100%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 60% 60% at 50% 20%, black 40%, transparent 100%)",
+              }}
+            />
+          </div>
+
+          <div className="mb-10 text-center">
+            <span
+              data-aos="fade-down"
+              className="mb-4 inline-flex items-center gap-2 border border-[#d9b273]/50 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#e3c07f] backdrop-blur-sm"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-[#e3c07f]" />
+              Since 2019 · Madhya Pradesh &amp; India
+            </span>
+
+            <h1
+              data-aos="zoom-in-left"
+              className="bg-gradient-to-r from-[#2b8fd6] via-[#5ab3c9] to-[#8fd0b0] bg-clip-text text-5xl font-black uppercase leading-none tracking-tight text-transparent drop-shadow-[0_0_35px_rgba(29,127,197,0.25)] sm:text-7xl md:text-8xl"
+            >
+              Dolphin
+            </h1>
+
+            <p className="mt-3 text-xl font-bold uppercase tracking-wide text-white sm:text-3xl">
+              The Complete Solution
+            </p>
+
+            <div className="mt-4 flex items-center justify-center gap-3">
+              <span className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#e3c07f] sm:w-16" />
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#e3c07f] sm:text-base">
+                We Create · We Promote · We Execute
+              </p>
+              <span className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#e3c07f] sm:w-16" />
+            </div>
+
+            <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
+              Events. Advertising. Experiences. Digital. Execution. Since
+              2019, Dolphin has been creating, promoting and executing ideas
+              for brands, corporates, institutions and government
+              organisations across Madhya Pradesh and India.
+            </p>
+          </div>
+
           <div
             className="
       hero-image
       border-[3px]
       sm:border-[4px]
-      md:border-[6px]
-      border-[#1d7fc5]
+      md:border-[5px]
+      border-[#2b8fd6]/70
       relative
       overflow-hidden
-      shadow-soft
+      shadow-[0_20px_60px_-15px_rgba(29,127,197,0.45)]
+      ring-1
+      ring-[#e3c07f]/20
     "
           >
             <iframe
@@ -156,16 +222,16 @@ export default function Home() {
         <section id="business" className="container-x py-20">
           <p
             data-aos="zoom-in-left"
-            className="mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
+            className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
           >
-            Our Businesses
+            What We Do
           </p>
 
           <p className="mb-8 text-center text-md font-semibold text-white/70">
-            Fuelling Your Business Success
+            Everything Your Brand Needs. Under One Roof.
           </p>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {businesses.map((b) => {
               const Icon = b.icon;
 
@@ -173,21 +239,22 @@ export default function Home() {
                 <article
                   key={b.title}
                   data-aos={b.animate}
-                  // data-aos="fade-up"
-                  className="gradient-panel border-grd min-h-52 p-7 shadow-soft"
+                  className="gradient-panel border-grd group min-h-52 border border-white/10 p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-[#e3c07f]/40 hover:shadow-[0_20px_45px_-15px_rgba(29,127,197,0.4)]"
                 >
                   {/* Icon */}
-                  <div className="mb-7 flex h-16 w-16 items-center justify-center bg-gradient-to-br from-[#1d7fc5] to-[#68c4b2]">
+                  <div className="mb-7 flex h-16 w-16 items-center justify-center bg-gradient-to-br from-[#1d7fc5] to-[#68c4b2] shadow-[0_10px_25px_-8px_rgba(29,127,197,0.6)] transition-transform duration-300 group-hover:scale-105">
                     <Icon size={32} strokeWidth={2.5} className="text-white" />
                   </div>
 
-                  <h3 className="mb-4 text-xl font-bold">{b.title}</h3>
+                  <h3 className="mb-4 text-xl font-bold text-white">
+                    {b.title}
+                  </h3>
 
-                  <p className="text-md leading-8 text-white/90">{b.text}</p>
+                  <p className="text-md leading-8 text-white/80">{b.text}</p>
 
                   <a
                     href="#contact"
-                    className="mt-7 flex items-end text-lg font-bold underline decoration-white/40 underline-offset-4"
+                    className="mt-7 flex items-end text-lg font-bold text-[#e3c07f] underline decoration-[#e3c07f]/40 underline-offset-4 transition-colors hover:text-white"
                   >
                     Read More →
                   </a>
@@ -203,7 +270,7 @@ export default function Home() {
               {slides?.map((sd, i) => {
                 return (
                   <span key={i} className="text-[80px] max-lg:text-[50px]">
-                    <span className="text-[#70c7b5]"> ★ </span>
+                    <span className="text-[#e3c07f]"> ★ </span>
                     <span>{sd}</span>
                   </span>
                 );
@@ -214,12 +281,13 @@ export default function Home() {
 
         <section data-aos="fade-up" className="container-x py-20">
           <div
-            className="relative border-[4px] border-[#1d7fc5]/70 px-5 py-6 sm:px-12 sm:py-14"
+            className="relative border-[1px] border-white/10 px-5 py-6 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.5)] sm:px-12 sm:py-14"
             style={{
               background:
-                "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
+                "linear-gradient(120deg, #123f66 0%, #1d6a9c 45%, #3f8f9e 78%, #5eae9a 100%)",
             }}
           >
+            <span className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#e3c07f]" />
             {/* Header */}
             <div className="flex items-start justify-between gap-8">
               <div>
@@ -227,21 +295,17 @@ export default function Home() {
                   data-aos="zoom-in-left"
                   className="text-3xl font-bold tracking-tight text-white sm:text-[35px]"
                 >
-                  ABOUT US
+                  ABOUT DOLPHIN
                 </h2>
 
                 <p className="mt-4 text-[16px] text-white">
-                  Think Experiences. Think Wizcraft.
+                  More Than an Agency. Your Complete Solution Partner.
                 </p>
               </div>
 
               <button
                 type="button"
-                style={{
-                  background:
-                    "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
-                }}
-                className="max-md:hidden mt-1 flex shrink-0 items-center gap-3 border border-[#8bc9bc] bg-[#70c7a9] px-4 py-2.5 text-[12px] font-semibold text-white transition hover:bg-[#65baa0]"
+                className="max-md:hidden mt-1 flex shrink-0 items-center gap-3 border border-[#e3c07f]/50 bg-white/10 px-4 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-white backdrop-blur-sm transition hover:bg-[#e3c07f] hover:text-[#123f66]"
               >
                 Read More
                 <span className="text-lg leading-none">→</span>
@@ -250,17 +314,19 @@ export default function Home() {
 
             {/* Description */}
             <p className="mt-6 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
-              In a world where attention spans are short and competition is
-              fierce, standing out requires more than just being seen, it
-              demands being remembered. That’s where Wizcraft, an event
-              management agency steps in.
+              Established in 2019, Dolphin has grown into a multi-service
+              marketing and execution company with a strong presence in
+              Madhya Pradesh and across India.
             </p>
 
             <p className="mt-4 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
-              With over 30 years of unmatched expertise, Wizcraft isn't just an
-              event management company, it's a creator of unforgettable brand
-              experiences that spark connection, engagement, and impact across
-              India and beyond.
+              Our strength lies in bringing different capabilities together.
+              Instead of working with multiple vendors for events,
+              advertising, branding, outdoor promotions, digital requirements,
+              and customized products, our clients can rely on one integrated
+              partner — Dolphin. We work with both government and corporate
+              clients, delivering solutions that combine creativity, quality,
+              execution, and reliability.
             </p>
 
             {/* Services heading */}
@@ -268,7 +334,8 @@ export default function Home() {
               data-aos="fade-left"
               className="mt-7 text-[18px] font-medium text-white"
             >
-              Event Management Services that turn Ideas into Reality
+              Our Philosophy: One Client. One Requirement. One Complete
+              Solution.
             </h3>
 
             {/* Stats */}
@@ -279,13 +346,13 @@ export default function Home() {
               {stats.map(([n, l], index) => (
                 <div
                   key={`${n}-${index}`}
-                  className="min-h-[94px] border border-[#68c4b2] px-4 py-8 text-center"
+                  className="min-h-[94px] border border-white/15 bg-white/5 px-4 py-8 text-center backdrop-blur-sm transition-colors hover:border-[#e3c07f]/50"
                 >
-                  <div className="text-[36px] font-normal leading-none text-white">
+                  <div className="text-[32px] font-bold leading-none text-[#f3d9a3] sm:text-[36px]">
                     {n}
                   </div>
 
-                  <div className="mx-auto mt-2 max-w-[220px] text-[11px] font-medium leading-[1.35] text-white">
+                  <div className="mx-auto mt-2 max-w-[220px] text-[11px] font-medium leading-[1.35] text-white/90">
                     {l}
                   </div>
                 </div>
@@ -299,11 +366,13 @@ export default function Home() {
           <div className="mb-8 text-center">
             <h2
               data-aos="zoom-in-left"
-              className="mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
+              className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
             >
               OUR JOURNEY
             </h2>
-            <p className="text-xl text-white">Driving Your Vision Forward</p>
+            <p className="text-xl text-white">
+              From Creating Experiences to Creating Complete Solutions
+            </p>
           </div>
 
           {/* ROW 1 */}
@@ -312,7 +381,7 @@ export default function Home() {
             <div>
               <img
                 src="/home/clr1.avif"
-                alt="Wizcraft"
+                alt="Dolphin"
                 className="h-[380px] w-full object-cover border-wiz"
               />
             </div>
@@ -320,23 +389,26 @@ export default function Home() {
             {/* Right content */}
             <div>
               <p className="text-md leading-7 text-white">
-                It all began in 1990—three visionaries, one bold mission, and a
-                belief that creativity could shape extraordinary experiences.
+                Every journey begins with an idea. Ours began with a simple
+                one — to create experiences that bring people, brands, and
+                ideas together.
               </p>
 
               <p className="mt-4 text-md leading-7 text-white">
-                From a small office with big ambition, Wizcraft Entertainment
-                Agency was born. Built on imagination, collaboration, and a
-                passion for storytelling, Wizcraft grew from a homegrown idea
-                into one of India's foremost event management companies.
+                On 1 February 2019, Dolphin began its journey with a focus on
+                events and experience management. We started by helping
+                organisations plan, manage, and execute events that people
+                could experience, remember, and talk about.
               </p>
 
               <p className="mt-4 text-md leading-7 text-white">
-                Over the decades, our expertise has expanded across industries
-                and continents. We have partnered with leading global brands,
-                government bodies, Fortune 500 companies, international
-                associations and cultural institutions to bring their most
-                ambitious visions to life.
+                But as we worked alongside our clients, we realised that their
+                needs went far beyond the event itself. An event often needed
+                branding. A campaign needed outdoor visibility. A launch
+                needed advertising. A promotion needed digital support. A
+                project needed customised products. And behind every
+                successful execution was the need for the right materials,
+                resources, and people to make it happen.
               </p>
             </div>
           </div>
@@ -346,37 +418,37 @@ export default function Home() {
             {/* Left content */}
             <div>
               <p className="text-md leading-7 text-white">
-                From large-format ceremonies and high-stakes corporate summits
-                to premium brand launches, musical experiences, destination
-                events, entertainment productions, immersive and large-scale
-                experiences, Wizcraft has delivered it all.
+                So, instead of asking our clients to find different partners
+                for every requirement, we chose to become that partner. Over
+                the years, Dolphin evolved from an event-focused company into
+                a complete solution partner for brands, organisations,
+                corporates, and government institutions.
               </p>
 
               <p className="mt-3 text-md font-semibold text-white">
-                Our work spans a diverse portfolio of:
+                Today, our capabilities extend across:
               </p>
 
               <ul className="mt-1 list-disc pl-4 text-md leading-7 text-white">
-                <li>Corporate conferences & leadership forums</li>
-                <li>Product launches & brand activations</li>
-                <li>Cultural & lifestyle showcases</li>
-                <li>Experiential marketing campaigns</li>
-                <li>Global roadshows & multi-city tours</li>
-                <li>Sports ceremonies & entertainment productions</li>
-                <li>Employee events & internal communication initiatives</li>
-                <li>Destination, hybrid, and virtual events</li>
+                <li>Experiences & Event Management</li>
+                <li>Advertising & Outdoor Campaigns</li>
+                <li>Digital Solutions</li>
+                <li>Brand Activations</li>
+                <li>Customized Products</li>
+                <li>Branding & Material Supply</li>
+                <li>On-Ground Execution</li>
               </ul>
             </div>
 
             {/* Right image */}
             <div>
-              <h3 className="mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-4xl font-semibold text-transparent">
-                Think Experiences. Think Wizcraft.
+              <h3 className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold text-transparent">
+                One Partner. The Entire Journey.
               </h3>
 
               <img
                 src="/home/clr2.avif"
-                alt="Wizcraft event"
+                alt="Dolphin event"
                 className="h-[380px] w-full object-cover border-wiz"
               />
             </div>
@@ -385,28 +457,27 @@ export default function Home() {
           {/* Bottom copy */}
           <div className="mt-10 max-w-4xl text-md leading-5 text-white/80">
             <p>
-              Our journey is a celebration of creativity, talent, and limitless
-              possibilities. As a trusted event management company in India,
-              Wizcraft blends creative vision with operational precision,
-              delivering immersive experiences that engage audiences and drive
-              meaningful impact for brands.
+              What started with managing events has grown into something much
+              bigger: one partner for the entire journey. From the first idea
+              to the final execution, we bring together creativity, strategy,
+              production, marketing, resources, and execution to help our
+              clients bring their vision to life.
             </p>
 
             <p className="mt-3">
-              Today, we stand as a global experiential events and event
-              production company supported by teams across Mumbai, Gurgaon,
-              Hyderabad, Bengaluru, Chennai and Dubai.
+              Our journey is still evolving, but our purpose remains the same
+              — to make things simpler for our clients and better for their
+              brands.
             </p>
 
             <p className="mt-3">
-              From three decades to a digital force of passionate professionals,
-              our mission remains unchanged: to turn imagination into
-              unforgettable experiences.
+              Because at Dolphin, we believe a great solution isn't about
+              doing just one thing well. It's about bringing everything
+              together.
             </p>
 
             <p className="mt-1 text-[#70c7b5]">
-              Because at Wizcraft, we don't just create events. We craft moments
-              that stay with you.
+              Dolphin. The Complete Solution.
             </p>
           </div>
         </section>
@@ -416,29 +487,26 @@ export default function Home() {
             <div className="container-x grid items-center gap-10 py-14 lg:grid-cols-2">
               <div data-aos="fade-right">
                 <h2 data-aos="zoom-in-left" className="mt-3 text-3xl font-bold">
-                  Latest Event
+                  The Dolphin Difference
                 </h2>
                 <div>
                   <p className="mt-3 text-2xl">
-                    IBM ISL Gala Dinner - Bangalore
+                    Why Manage Six Vendors When One Can Do It All?
                   </p>
-                  <p className="text-md">IBM | JUNE 2025</p>
+                  <p className="text-md">
+                    Event • Branding • Outdoor Campaign • Digital Promotion •
+                    Customized Products • Material Supply • On-Ground
+                    Execution
+                  </p>
                   <p className="mt-5 text-[16px] max-w-xl leading-7 text-white/90">
-                    The IBM ISL Gala Dinner at Bier Library, Sarjapur Road, was
-                    a grand celebration for 2500 India Software Lab employees,
-                    featuring great food, vibrant entertainment, and a memorable
-                    evening of connection, appreciation, and festive cheer in a
-                    lively atmosphere.
+                    Dolphin brings it all together. One brief. One team. One
+                    point of coordination. One complete solution.
                   </p>
                   <a
-                    href="#portfolio"
-                    style={{
-                      background:
-                        "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
-                    }}
-                    className="mt-6 inline-block border border-white/60 px-5 py-3 text-xs font-bold"
+                    href="#contact"
+                    className="mt-6 inline-block border border-[#e3c07f]/60 bg-[#e3c07f] px-5 py-3 text-xs font-bold uppercase tracking-wide text-[#123f66] transition-colors hover:bg-white"
                   >
-                    View More →
+                    Get In Touch →
                   </a>
                 </div>
               </div>
@@ -446,7 +514,7 @@ export default function Home() {
                 data-aos="fade-left"
                 src="/home/clr3.jpg"
                 className="h-[380px] w-full object-cover border-wiz"
-                alt="Wizcraft event reference"
+                alt="Dolphin event reference"
               />
             </div>
           </div>
@@ -455,13 +523,13 @@ export default function Home() {
         <section id="portfolio" className="container-x py-20">
           <p
             data-aos="zoom-in-left"
-            className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent"
+            className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-transparent"
           >
             Highlights
           </p>
 
           <p className="text-xl text-white text-center mb-10">
-            Branding Brilliance In Visuals
+            Our Work Across Events, Branding & Activations
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[400px] gap-1">
@@ -485,7 +553,7 @@ export default function Home() {
                 >
                   <img
                     src={src}
-                    alt="Wizcraft event"
+                    alt="Dolphin work"
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -497,22 +565,14 @@ export default function Home() {
         <section className="container-x py-10">
           <p
             data-aos="zoom-in-left"
-            className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent"
+            className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-transparent"
           >
-            Brands we work with
+            Who We Work With
           </p>{" "}
           <p className="text-center text-xl text-white">
-            Global Corporate Clients
+            Corporates, Institutions & Government Organisations
           </p>
           {/* <LogoSlider /> */}
-          {/* <div className="mt-10 grid grid-cols-3 gap-8 text-center text-lg font-black text-white/80 grayscale sm:grid-cols-6">
-            <span>AXA</span>
-            <span>ASUS</span>
-            <span>HDFC</span>
-            <span>Samsung</span>
-            <span>PepsiCo</span>
-            <span>prime video</span>
-          </div> */}
         </section>
 
         <section id="contact" className="container-x py-20">
@@ -523,7 +583,7 @@ export default function Home() {
                 data-aos="zoom-in-left"
                 className="text-3xl font-black uppercase tracking-tight sm:text-4xl"
               >
-                Let’s Connect to Create Something Big
+                Let's Bring Your Idea To Life
               </h2>
 
               <p className="mt-5 text-sm font-semibold sm:text-base">
@@ -541,7 +601,7 @@ export default function Home() {
                 type="text"
                 name="fullName"
                 placeholder="Full Name"
-                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-white focus:ring-1 focus:ring-white/30"
+                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
               {/* Company Name */}
@@ -549,7 +609,7 @@ export default function Home() {
                 type="text"
                 name="companyName"
                 placeholder="Company Name"
-                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-white focus:ring-1 focus:ring-white/30"
+                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
               {/* Email */}
@@ -557,7 +617,7 @@ export default function Home() {
                 type="email"
                 name="email"
                 placeholder="Your Email"
-                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-white focus:ring-1 focus:ring-white/30"
+                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
               {/* Phone */}
@@ -565,7 +625,7 @@ export default function Home() {
                 type="tel"
                 name="phone"
                 placeholder="Phone Number"
-                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-white focus:ring-1 focus:ring-white/30"
+                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
               {/* Location */}
@@ -573,31 +633,28 @@ export default function Home() {
                 <select
                   name="location"
                   defaultValue=""
-                  className="h-[46px] w-full appearance-none border border-white/40 bg-transparent px-3 pr-10 text-sm text-white outline-none transition-all focus:border-white focus:ring-1 focus:ring-white/30"
+                  className="h-[46px] w-full appearance-none border border-white/40 bg-transparent px-3 pr-10 text-sm text-white outline-none transition-all focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
                 >
                   <option value="" disabled className="bg-[#2781bc]">
                     Select Location
                   </option>
-                  <option value="mumbai" className="bg-[#2781bc]">
-                    Mumbai
+                  <option value="bhopal" className="bg-[#2781bc]">
+                    Bhopal
+                  </option>
+                  <option value="indore" className="bg-[#2781bc]">
+                    Indore
+                  </option>
+                  <option value="jabalpur" className="bg-[#2781bc]">
+                    Jabalpur
+                  </option>
+                  <option value="gwalior" className="bg-[#2781bc]">
+                    Gwalior
                   </option>
                   <option value="delhi" className="bg-[#2781bc]">
                     Delhi
                   </option>
-                  <option value="bengaluru" className="bg-[#2781bc]">
-                    Bengaluru
-                  </option>
-                  <option value="chennai" className="bg-[#2781bc]">
-                    Chennai
-                  </option>
-                  <option value="hyderabad" className="bg-[#2781bc]">
-                    Hyderabad
-                  </option>
-                  <option value="gujarat" className="bg-[#2781bc]">
-                    Gujarat
-                  </option>
-                  <option value="dubai" className="bg-[#2781bc]">
-                    Dubai
+                  <option value="other" className="bg-[#2781bc]">
+                    Other
                   </option>
                 </select>
 
@@ -618,13 +675,13 @@ export default function Home() {
                 name="message"
                 placeholder="Your Message"
                 rows={5}
-                className="resize-y border border-white/40 bg-transparent px-3 py-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-white focus:ring-1 focus:ring-white/30 md:col-span-3"
+                className="resize-y border border-white/40 bg-transparent px-3 py-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40 md:col-span-3"
               />
 
               {/* Submit */}
               <button
                 type="submit"
-                className="mx-auto mt-1 bg-gradient-to-r from-[#6ac8b1] to-[#148ad0] px-7 py-3 text-sm font-bold text-white transition-all hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20 md:col-span-3"
+                className="mx-auto mt-1 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#1d7fc5] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#0b2436] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e3c07f]/30 md:col-span-3"
               >
                 Submit Now
               </button>
