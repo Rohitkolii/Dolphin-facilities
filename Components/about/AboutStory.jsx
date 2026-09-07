@@ -43,6 +43,7 @@ export default function AboutStory() {
                 fill
                 sizes="(max-width: 768px) 45vw, 250px"
                 className="object-cover"
+                quality={70}
                 priority
               />
             </div>
@@ -64,6 +65,7 @@ export default function AboutStory() {
                 fill
                 sizes="(max-width: 768px) 45vw, 250px"
                 className="object-cover"
+                quality={70}
               />
             </div>
 
@@ -177,7 +179,7 @@ export default function AboutStory() {
         >
           <StoryCard
             title="Pioneer in Experiential Marketing"
-             image="/about/BVN.jpeg"
+            image="/about/BVN.jpeg"
             imageAlt="Experiential Marketing Event"
             imageSide="left"
           >
@@ -218,7 +220,7 @@ export default function AboutStory() {
         >
           <StoryCard
             title="Corporate Events & Business Solutions"
-            image="/images/DSC_1465"
+            image="/images/DSC_1465.JPG"
             imageAlt="Corporate Event"
             imageSide="right"
           >
@@ -468,6 +470,7 @@ function StoryCard({
           fill
           sizes="320px"
           loading="lazy"
+          quality={70}
           className="object-cover"
         />
       </div>
