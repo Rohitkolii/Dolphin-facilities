@@ -11,7 +11,7 @@ export async function GET() {
           success: false,
           message: "GOOGLE_DRIVE_FOLDER_ID is not configured",
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -50,7 +50,7 @@ export async function GET() {
             ? error.message
             : "Failed to fetch Google Drive files",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

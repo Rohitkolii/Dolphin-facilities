@@ -4,174 +4,110 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 /* ============================================================
-   PROJECT DATA
-   VIDEOS + IMAGES + POSTERS DONO INSIDE:
+   PORTFOLIO GRID — Google Drive se dynamic videos/images,
+   lekin POSTER (thumbnail) tum khud apne "public" folder se
+   de sakte ho — Drive ke auto-thumbnail pe depend nahi karna
+   padega.
 
-   public/
-      portfolio/
-         video-name.mp4
-         video-name-poster.jpg   <-- naya, thumbnail image
+   ============================================================
+   POSTER OVERRIDE — YAHAN APNI LOCAL IMAGES DAALO
+   ============================================================
+   1. Apni poster images "public/posters/" folder mein daal do
+      (jaise public/posters/vanmela-bhopal.jpg)
+   2. Neeche POSTER_OVERRIDES object mein entry add karo:
+      key = project ka slug (filename se number/extension hata
+      ke, jo bhi "vanmela-bhopal-1.mp4" ban jaata hai use
+      "vanmela-bhopal" jaisa likhna hai — case-sensitive nahi)
+      value = "/posters/vanmela-bhopal.jpg" (public folder ke
+      andar se path, "/public" mat likhna, seedha "/" se shuru
+      karo)
+
+   Agar kisi project ka override nahi diya, to wo automatically
+   Drive ke thumbnail ya pehli image se poster banayega (jaisa
+   pehle tha) — kuch bhi tootega nahi.
 ============================================================ */
 
-const projects = [
-  {
-    title: "Van Mela (Bhopal)",
-    category: "Corporate Events",
+const POSTER_OVERRIDES = {
+  // "vanmela-bhopal": "/posters/vanmela-bhopal.jpg",
+  // "eicher": "/posters/eicher.jpg",
+};
 
-    /* CARD VIDEO */
-    video: "/portfolio/venmela1/vanmela(bhopal).mp4",
+function getGroupKey(fileName) {
+  const withoutExt = fileName.replace(/\.[^/.]+$/, "");
+  const key = withoutExt.replace(/[-_\s]*\d+$/, "").trim();
+  return key || withoutExt;
+}
 
-    /* CARD POSTER (thumbnail — video ka pehla frame ya koi bhi photo) */
-    poster: "/portfolio/venmela1/poster.jpg",
+function getSortIndex(fileName) {
+  const withoutExt = fileName.replace(/\.[^/.]+$/, "");
+  const match = withoutExt.match(/(\d+)$/);
+  return match ? parseInt(match[1], 10) : 0;
+}
 
-    /* POPUP MEDIA — video ya image, jo bhi order mein chahiye */
-    media: [
-      { type: "video", src: "/portfolio/venmela1/vanmela(bhopal).mp4" },
-      { type: "video", src: "/portfolio/venmela1/INT-VM-REEL-2.mp4" },
-      { type: "image", src: "/portfolio/venmela1/photo-1.jpg" },
-      { type: "image", src: "/portfolio/venmela1/photo-2.jpg" },
-      { type: "video", src: "/portfolio/venmela1/review-reel-1.mp4" },
-    ],
+function humanize(slug) {
+  return slug
+    .replace(/[-_]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
 
-    date: "17th–23rd December 20",
+function findPosterOverride(key) {
+  const normalizedKey = key.toLowerCase().trim();
+  const match = Object.keys(POSTER_OVERRIDES).find(
+    (k) => k.toLowerCase().trim() === normalizedKey
+  );
+  return match ? POSTER_OVERRIDES[match] : null;
+}
 
-    description:
-      "A thoughtfully designed corporate event experience focused on collaboration, innovation and meaningful audience engagement.",
-  },
+function groupFilesIntoProjects(files) {
+  const groups = new Map();
 
-  {
-    title: "Van Mela (ujjain)",
-    category: "Live Events",
+  files.forEach((file) => {
+    const key = getGroupKey(file.name);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(file);
+  });
 
-    video: "/portfolio/venmela2/VH-UJJAIN_MIAN.mp4",
-    poster: "/portfolio/venmela2/poster.jpg",
+  return Array.from(groups.entries()).map(([key, groupFiles]) => {
+    const sorted = [...groupFiles].sort(
+      (a, b) => getSortIndex(a.name) - getSortIndex(b.name)
+    );
 
-    media: [
-      { type: "video", src: "/portfolio/venmela2/VH-UJJAIN_MIAN.mp4" },
-      { type: "video", src: "/portfolio/venmela2/VH-Ujjain-2.mp4" },
-      { type: "video", src: "/portfolio/venmela2/VH-Ujjain-3.mp4" },
-    ],
+    const media = sorted.map((file) => ({
+      type: file.mimeType?.startsWith("video/") ? "video" : "image",
+      url: file.url,
+      name: file.name,
+    }));
 
-    date: "Standard Chartered Bank | 21 June 2025",
+    const firstVideo = media.find((m) => m.type === "video");
+    const firstImage = media.find((m) => m.type === "image");
+    const firstFile = sorted[0];
 
-    description:
-      "As Sholay celebrated 50 iconic years, the milestone was marked with India's first-ever Cinematic Symphony. A specially edited cinematic experience came alive with a powerful live orchestra and unforgettable performances.\n\nCurated for a premium audience, the event brought together storytelling, music and immersive live entertainment to create a truly memorable cinematic experience.",
-  },
+    const descriptionSource = sorted.find(
+      (f) => f.description && f.description.trim().length > 0
+    );
 
-  {
-    title: "Eicher ",
-    category: "Brand Activation",
+    // Poster priority: manual override > Drive thumbnail > pehli image
+    const manualPoster = findPosterOverride(key);
 
-    video: "/portfolio/eicher/Khandwa-Dolphin-facilities.mp4",
-    poster: "/portfolio/eicher/poster.jpg",
-
-    media: [
-      { type: "video", src: "/portfolio/eicher/Khandwa-Dolphin-facilities.mp4" },
-      { type: "video", src: "/portfolio/eicher/Ratlam-Dolphin- Facilities.mp4" },
-    ],
-
-    date: "Brand Experience",
-
-    description:
-      "A high-energy brand activation designed to create excitement, engagement and memorable audience interactions.",
-  },
-
-  {
-    title: "VIT CONVENTION  EVENT",
-    category: "Corporate Events",
-
-    video: "/portfolio/VIT-CONVENTION/vit-convocation-iccer-van-campaign.mp4",
-    poster: "/portfolio/VIT-CONVENTION/poster.jpg",
-
-    media: [{ type: "video", src: "/portfolio/VIT-CONVENTION/vit-convocation-iccer-van-campaign.mp4" }],
-
-    date: "Corporate Event",
-
-    description:
-      "A large-scale corporate gathering designed to encourage meaningful conversations, collaboration and stronger connections.",
-  },
-
-  {
-    title: "Amazon Music",
-    category: "Brand Experience",
-
-    video: "/portfolio/amazon-music.mp4",
-    poster: "/portfolio/amazon-music-poster.jpg",
-
-    media: [{ type: "video", src: "/portfolio/amazon-music.mp4" }],
-
-    date: "Brand Experience",
-
-    description:
-      "A vibrant entertainment and brand experience bringing together music, culture and audience engagement.",
-  },
-
-  {
-    title: "Islands 2",
-    category: "Experiential",
-
-    video: "/portfolio/islands-2.mp4",
-    poster: "/portfolio/islands-2-poster.jpg",
-
-    media: [{ type: "video", src: "/portfolio/islands-2.mp4" }],
-
-    date: "Experiential Event",
-
-    description:
-      "An immersive experiential project focused on creative storytelling and memorable audience participation.",
-  },
-
-  {
-    title: "Brand Experience",
-    category: "Brand Activation",
-
-    video: "/portfolio/brand-experience.mp4",
-    poster: "/portfolio/brand-experience-poster.jpg",
-
-    media: [{ type: "video", src: "/portfolio/brand-experience.mp4" }],
-
-    date: "Brand Activation",
-
-    description:
-      "A strategic brand activation developed to build stronger connections between the brand and its audience.",
-  },
-
-  {
-    title: "Luxury Experience",
-    category: "Experiential",
-
-    video: "/portfolio/luxury-experience.mp4",
-    poster: "/portfolio/luxury-experience-poster.jpg",
-
-    media: [{ type: "video", src: "/portfolio/luxury-experience.mp4" }],
-
-    date: "Experiential Event",
-
-    description:
-      "A premium experience designed with detailed execution, elegant visuals and meaningful audience engagement.",
-  },
-
-  {
-    title: "Live Entertainment",
-    category: "Live Events",
-
-    video: "/portfolio/live-entertainment.mp4",
-    poster: "/portfolio/live-entertainment-poster.jpg",
-
-    media: [{ type: "video", src: "/portfolio/live-entertainment.mp4" }],
-
-    date: "Live Event",
-
-    description:
-      "A high-energy live entertainment experience combining production, creativity and seamless execution.",
-  },
-];
-
-/* ============================================================
-   PORTFOLIO GRID
-============================================================ */
+    return {
+      title: humanize(key),
+      category: "",
+      date: "",
+      description: descriptionSource?.description || "",
+      poster: manualPoster || firstFile?.thumbnail || firstImage?.url || null,
+      video: firstVideo?.url || null,
+      media,
+    };
+  });
+}
 
 export default function PortfolioGrid() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [showMore, setShowMore] = useState(false);
 
   /* POPUP */
@@ -179,6 +115,28 @@ export default function PortfolioGrid() {
 
   /* CURRENT MEDIA INDEX */
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
+
+  useEffect(() => {
+    const getProjects = async () => {
+      try {
+        const response = await fetch("/api/media");
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Failed to fetch portfolio media");
+        }
+
+        setProjects(groupFilesIntoProjects(data.files || []));
+      } catch (err) {
+        console.error("Unable to load portfolio media:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProjects();
+  }, []);
 
   const firstRow = projects.slice(0, 3);
   const secondRow = projects.slice(3, 6);
@@ -192,7 +150,7 @@ export default function PortfolioGrid() {
   const getMediaList = (project) =>
     project?.media && project.media.length > 0
       ? project.media
-      : [{ type: "video", src: project?.video }];
+      : [{ type: "video", url: project?.video }];
 
   const handleNextMedia = () => {
     const media = getMediaList(selectedProject);
@@ -216,6 +174,30 @@ export default function PortfolioGrid() {
     setSelectedProject(null);
     setSelectedMediaIndex(0);
   };
+
+  if (loading) {
+    return (
+      <section className="w-full bg-[#303030] py-16 text-center text-white/70">
+        Loading portfolio…
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="w-full bg-[#303030] py-16 text-center text-red-400">
+        Couldn't load portfolio: {error}
+      </section>
+    );
+  }
+
+  if (projects.length === 0) {
+    return (
+      <section className="w-full bg-[#303030] py-16 text-center text-white/70">
+        No portfolio items found yet.
+      </section>
+    );
+  }
 
   return (
     <>
@@ -242,20 +224,22 @@ export default function PortfolioGrid() {
             onProjectClick={handleProjectClick}
           />
 
-          <div
-            className="
-              mt-[4px]
-              sm:mt-[10px]
-              md:mt-[18px]
-              lg:mt-[30px]
-            "
-          >
-            <PortfolioRow
-              projects={secondRow}
-              rowIndex={1}
-              onProjectClick={handleProjectClick}
-            />
-          </div>
+          {secondRow.length > 0 && (
+            <div
+              className="
+                mt-[4px]
+                sm:mt-[10px]
+                md:mt-[18px]
+                lg:mt-[30px]
+              "
+            >
+              <PortfolioRow
+                projects={secondRow}
+                rowIndex={1}
+                onProjectClick={handleProjectClick}
+              />
+            </div>
+          )}
 
           {showMore && extraProjects.length > 0 && (
             <motion.div
@@ -277,54 +261,56 @@ export default function PortfolioGrid() {
             </motion.div>
           )}
 
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="
-              flex
-              justify-center
-
-              mt-5
-              md:mt-6
-              lg:mt-7
-            "
-          >
-            <motion.button
-              type="button"
-              onClick={() => setShowMore(!showMore)}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ duration: 0.2 }}
+          {extraProjects.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="
-                px-5
-                py-2.5
+                flex
+                justify-center
 
-                min-w-[90px]
-
-                bg-gradient-to-r
-                from-[#79cba8]
-                to-[#329bd0]
-
-                border
-                border-[#73c9b9]
-
-                text-white
-                text-[15px]
-                font-bold
-
-                cursor-pointer
-
-                transition-all
-                duration-300
-
-                hover:brightness-110
+                mt-5
+                md:mt-6
+                lg:mt-7
               "
             >
-              {showMore ? "Show Less" : "Show More"}
-            </motion.button>
-          </motion.div>
+              <motion.button
+                type="button"
+                onClick={() => setShowMore(!showMore)}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ duration: 0.2 }}
+                className="
+                  px-5
+                  py-2.5
+
+                  min-w-[90px]
+
+                  bg-gradient-to-r
+                  from-[#79cba8]
+                  to-[#329bd0]
+
+                  border
+                  border-[#73c9b9]
+
+                  text-white
+                  text-[15px]
+                  font-bold
+
+                  cursor-pointer
+
+                  transition-all
+                  duration-300
+
+                  hover:brightness-110
+                "
+              >
+                {showMore ? "Show Less" : "Show More"}
+              </motion.button>
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -391,9 +377,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 /* ============================================================
    PORTFOLIO CARD
-   - Poster image hamesha visible (halka, fast load)
-   - Video sirf tab mount hoti hai jab card viewport mein aaye
-     (IntersectionObserver) — desktop pe hover se play/pause hoti hai
 ============================================================ */
 
 function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
@@ -402,11 +385,6 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 
   const [isInView, setIsInView] = useState(false);
   const [canPlay, setCanPlay] = useState(false);
-
-  /* ============================================================
-     LAZY LOAD — video tabhi mount hogi jab card scroll mein
-     visible ho. Isse ek baar mein saari videos load nahi hoti.
-  ============================================================ */
 
   useEffect(() => {
     const node = cardRef.current;
@@ -426,11 +404,6 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
     return () => observer.disconnect();
   }, []);
 
-  /* ============================================================
-     DESKTOP HOVER — sirf jis card pe hover hai wahi video
-     actually play hoti hai, baaki pause rehte hain
-  ============================================================ */
-
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
@@ -443,7 +416,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
     } else {
       vid.pause();
     }
-  }, [isHovered, canPlay]);
+  }, [isHovered, canPlay, isInView]);
 
   return (
     <motion.div
@@ -477,33 +450,35 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
     >
       {/* POSTER — hamesha dikhta hai, halka, laggy nahi */}
 
-      <img
-        src={project.poster}
-        alt={project.title}
-        loading="lazy"
-        className="
-          absolute
-          inset-0
+      {project.poster && (
+        <img
+          src={project.poster}
+          alt={project.title}
+          loading="lazy"
+          className="
+            absolute
+            inset-0
 
-          w-full
-          h-full
+            w-full
+            h-full
 
-          object-cover
+            object-cover
 
-          pointer-events-none
-        "
-      />
+            pointer-events-none
+          "
+        />
+      )}
 
       {/* VIDEO — sirf tab DOM mein aati hai jab card viewport ke paas ho */}
 
-      {isInView && (
+      {isInView && project.video && (
         <video
           ref={videoRef}
           src={project.video}
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           onCanPlay={() => setCanPlay(true)}
           className={`
             absolute
@@ -595,25 +570,27 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           group-hover:translate-y-[-2px]
         "
       >
-        <p
-          className="
-            text-[#4db4d5]
+        {project.category && (
+          <p
+            className="
+              text-[#4db4d5]
 
-            text-[8px]
-            sm:text-[9px]
-            md:text-[10px]
-            lg:text-[11px]
+              text-[8px]
+              sm:text-[9px]
+              md:text-[10px]
+              lg:text-[11px]
 
-            uppercase
-            tracking-wide
+              uppercase
+              tracking-wide
 
-            font-bold
+              font-bold
 
-            mb-1
-          "
-        >
-          {project.category}
-        </p>
+              mb-1
+            "
+          >
+            {project.category}
+          </p>
+        )}
 
         <h3
           className="
@@ -636,18 +613,17 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 }
 
 /* ============================================================
-   MEDIA POPUP (video + image dono)
+   MEDIA POPUP
 ============================================================ */
 
 function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
   const mediaList =
     project.media && project.media.length > 0
       ? project.media
-      : [{ type: "video", src: project.video }];
+      : [{ type: "video", url: project.video }];
 
   const currentMedia = mediaList[mediaIndex] || mediaList[0];
-
-  const hasMultipleMedia = mediaList.length > 1;
+  const mediaSrc = currentMedia.url;
 
   return (
     <motion.div
@@ -775,7 +751,7 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
               {currentMedia.type === "image" ? (
                 <motion.img
                   key={`${project.title}-${mediaIndex}`}
-                  src={currentMedia.src}
+                  src={mediaSrc}
                   initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
@@ -798,7 +774,7 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
               ) : (
                 <motion.video
                   key={`${project.title}-${mediaIndex}`}
-                  src={currentMedia.src}
+                  src={mediaSrc}
                   autoPlay
                   muted={false}
                   controls
@@ -825,111 +801,109 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
               )}
             </AnimatePresence>
 
-            {hasMultipleMedia && (
-              <button
-                type="button"
-                onClick={onPrevious}
-                className="
-                  absolute
+            {/* Prev/Next arrows — hamesha visible */}
 
-                  left-3
-                  sm:left-4
+            <button
+              type="button"
+              onClick={onPrevious}
+              className="
+                absolute
 
-                  top-1/2
-                  -translate-y-1/2
+                left-3
+                sm:left-4
 
-                  z-30
+                top-1/2
+                -translate-y-1/2
 
-                  w-10
-                  h-10
+                z-30
 
-                  rounded-full
+                w-10
+                h-10
 
-                  bg-black/60
+                rounded-full
 
-                  border
-                  border-white/20
+                bg-black/60
 
-                  text-white
+                border
+                border-white/20
 
-                  text-[34px]
+                text-white
 
-                  leading-none
+                text-[34px]
 
-                  flex
-                  items-center
-                  justify-center
+                leading-none
 
-                  cursor-pointer
+                flex
+                items-center
+                justify-center
 
-                  transition-all
-                  duration-300
+                cursor-pointer
 
-                  hover:bg-[#2999c7]
+                transition-all
+                duration-300
 
-                  hover:border-[#2999c7]
+                hover:bg-[#2999c7]
 
-                  hover:scale-110
-                "
-                aria-label="Previous media"
-              >
-                ‹
-              </button>
-            )}
+                hover:border-[#2999c7]
 
-            {hasMultipleMedia && (
-              <button
-                type="button"
-                onClick={onNext}
-                className="
-                  absolute
+                hover:scale-110
+              "
+              aria-label="Previous media"
+            >
+              ‹
+            </button>
 
-                  right-3
-                  sm:right-4
+            <button
+              type="button"
+              onClick={onNext}
+              className="
+                absolute
 
-                  top-1/2
-                  -translate-y-1/2
+                right-3
+                sm:right-4
 
-                  z-30
+                top-1/2
+                -translate-y-1/2
 
-                  w-10
-                  h-10
+                z-30
 
-                  rounded-full
+                w-10
+                h-10
 
-                  bg-black/60
+                rounded-full
 
-                  border
-                  border-white/20
+                bg-black/60
 
-                  text-white
+                border
+                border-white/20
 
-                  text-[34px]
+                text-white
 
-                  leading-none
+                text-[34px]
 
-                  flex
-                  items-center
-                  justify-center
+                leading-none
 
-                  cursor-pointer
+                flex
+                items-center
+                justify-center
 
-                  transition-all
-                  duration-300
+                cursor-pointer
 
-                  hover:bg-[#2999c7]
+                transition-all
+                duration-300
 
-                  hover:border-[#2999c7]
+                hover:bg-[#2999c7]
 
-                  hover:scale-110
-                "
-                aria-label="Next media"
-              >
-                ›
-              </button>
-            )}
+                hover:border-[#2999c7]
 
-            {hasMultipleMedia && (
+                hover:scale-110
+              "
+              aria-label="Next media"
+            >
+              ›
+            </button>
+
+            {mediaList.length > 1 && (
               <div
                 className="
                   absolute
@@ -995,33 +969,37 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                 {project.title}
               </h2>
 
-              <p
-                className="
-                  mt-2
+              {project.date && (
+                <p
+                  className="
+                    mt-2
 
-                  text-white/80
+                    text-white/80
 
-                  text-[13px]
-                  md:text-[15px]
-                "
-              >
-                {project.date}
-              </p>
+                    text-[13px]
+                    md:text-[15px]
+                  "
+                >
+                  {project.date}
+                </p>
+              )}
 
-              <p
-                className="
-                  mt-4
+              {project.category && (
+                <p
+                  className="
+                    mt-4
 
-                  text-[#4db4d5]
+                    text-[#4db4d5]
 
-                  text-[12px]
-                  md:text-[14px]
+                    text-[12px]
+                    md:text-[14px]
 
-                  font-semibold
-                "
-              >
-                {project.category}
-              </p>
+                    font-semibold
+                  "
+                >
+                  {project.category}
+                </p>
+              )}
 
               <div
                 className="
@@ -1037,7 +1015,8 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                   whitespace-pre-line
                 "
               >
-                {project.description}
+                {project.description ||
+                  "Description coming soon — Drive file ke 'Details' panel mein description likh do, ye yahan apne aap aa jaayegi."}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -1045,4 +1024,4 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
       </motion.div>
     </motion.div>
   );
-} 
+}

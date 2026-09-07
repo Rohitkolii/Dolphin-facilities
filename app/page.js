@@ -126,74 +126,17 @@ export default function Home() {
       <Navbar />
       {/* <SocialRail /> */}
       <main id="home">
-        <section className="container-x relative pt-12 sm:pt-20">
-          {/* Decorative background — full width, breaks out of container-x */}
-          <div className="pointer-events-none absolute left-1/2 right-1/2 top-0 -z-10 h-full w-screen -translate-x-1/2 overflow-hidden" style={{ willChange: "transform" }}>
-            <div className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#1d7fc5]/30 blur-[110px] sm:h-[560px] sm:w-[560px]" />
-            <div className="absolute left-0 top-10 h-64 w-64 rounded-full bg-[#68c4b2]/20 blur-[90px] sm:h-96 sm:w-96" />
-            <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-[#1d7fc5]/20 blur-[90px] sm:h-96 sm:w-96" />
-            <div
-              className="absolute inset-0 opacity-[0.07]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-                backgroundSize: "44px 44px",
-                maskImage:
-                  "radial-gradient(ellipse 60% 60% at 50% 20%, black 40%, transparent 100%)",
-                WebkitMaskImage:
-                  "radial-gradient(ellipse 60% 60% at 50% 20%, black 40%, transparent 100%)",
-              }}
-            />
-          </div>
-
-          <div className="mb-10 text-center">
-            <span
-              data-aos="fade-down"
-              className="mb-4 inline-flex items-center gap-2 border border-[#d9b273]/50 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#e3c07f] backdrop-blur-sm"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#e3c07f]" />
-              Since 2019 · Madhya Pradesh &amp; India
-            </span>
-
-            <h1
-              data-aos="zoom-in-left"
-              className="bg-gradient-to-r from-[#2b8fd6] via-[#5ab3c9] to-[#8fd0b0] bg-clip-text text-5xl font-black uppercase leading-none tracking-tight text-transparent drop-shadow-[0_0_35px_rgba(29,127,197,0.25)] sm:text-7xl md:text-8xl"
-            >
-              Dolphin
-            </h1>
-
-            <p className="mt-3 text-xl font-bold uppercase tracking-wide text-white sm:text-3xl">
-              The Complete Solution
-            </p>
-
-            <div className="mt-4 flex items-center justify-center gap-3">
-              <span className="h-[1px] w-8 bg-gradient-to-r from-transparent to-[#e3c07f] sm:w-16" />
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#e3c07f] sm:text-base">
-                We Create · We Promote · We Execute
-              </p>
-              <span className="h-[1px] w-8 bg-gradient-to-l from-transparent to-[#e3c07f] sm:w-16" />
-            </div>
-
-            <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">
-              Events. Advertising. Experiences. Digital. Execution. Since
-              2019, Dolphin has been creating, promoting and executing ideas
-              for brands, corporates, institutions and government
-              organisations across Madhya Pradesh and India.
-            </p>
-          </div>
-
+        <section className="container-x pt-12 sm:pt-20">
           <div
             className="
       hero-image
       border-[3px]
       sm:border-[4px]
-      md:border-[5px]
-      border-[#2b8fd6]/70
+      md:border-[6px]
+      border-[#1d7fc5]
       relative
       overflow-hidden
-      shadow-[0_20px_60px_-15px_rgba(29,127,197,0.45)]
-      ring-1
-      ring-[#e3c07f]/20
+      shadow-soft
     "
           >
             <iframe
@@ -215,11 +158,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* {files?.map((file) => (
-          <FilePreview key={file.id} file={file} />
-        ))} */}
-
-        <section id="business" className="container-x py-20">
+        <section id="business" className="container-x pb-20 pt-12 sm:pt-20">
           <p
             data-aos="zoom-in-left"
             className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"

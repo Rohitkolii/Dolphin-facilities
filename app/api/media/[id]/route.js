@@ -38,7 +38,7 @@ export async function GET(request, { params }) {
       {
         responseType: "stream",
         headers: range ? { Range: range } : undefined,
-      }
+      },
     );
 
     const headers = new Headers();
@@ -65,7 +65,7 @@ export async function GET(request, { params }) {
 
     return NextResponse.json(
       { message: "Unable to stream this media file" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
