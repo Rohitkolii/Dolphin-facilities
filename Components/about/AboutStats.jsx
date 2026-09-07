@@ -63,16 +63,17 @@ export default function AboutStats() {
         className="max-w-[950px] mx-auto text-center"
       >
         <h2 className="text-[22px] sm:text-[25px] md:text-[35px] font-bold bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent uppercase tracking-[0.5px]">
-          WHY CHOOSE WIZCRAFT?
+          WHY CHOOSE DOLPHIN FACILITIES?
         </h2>
 
         <p className="mt-4 text-[12px] sm:text-[13px] md:text-[15px] leading-6 font-medium text-white/90">
-          What makes Wizcraft Event Management Company stand out is its
-          philosophy: while events are temporary, experiences last forever.
+          What makes Dolphin Facilities Event Management Company stand out is
+          its philosophy: while events are temporary, experiences last
+          forever.
         </p>
 
         <p className="mt-1 text-[12px] sm:text-[13px] md:text-[15px] font-medium text-white/90">
-          Brands choose Wizcraft because:
+          Brands choose Dolphin Facilities because:
         </p>
       </motion.div>
 
@@ -208,7 +209,7 @@ export default function AboutStats() {
             tracking-[0.5px]
           "
         >
-          THE WIZCRAFT PROMISE
+          THE DOLPHIN FACILITIES PROMISE
         </h2>
 
         <p
@@ -223,10 +224,11 @@ export default function AboutStats() {
           "
         >
           As one of the most respected experiential marketing companies,
-          Wizcraft is committed to delivering creativity, innovation, and
-          excellence. Whether you need a corporate event organizer, a brand
-          activation agency in India, or a partner for exhibitions, launches,
-          or virtual experiences, Wizcraft turns
+          Dolphin Facilities is committed to delivering creativity,
+          innovation, and excellence. Whether you need a corporate event
+          organizer, a brand activation agency in India, or a partner for
+          exhibitions, launches, or virtual experiences, Dolphin Facilities
+          turns
         </p>
 
         <p

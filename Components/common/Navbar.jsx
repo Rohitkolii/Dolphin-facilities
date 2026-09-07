@@ -412,19 +412,13 @@ export default function Navbar() {
 
           {/* ================= LOGO ================= */}
 
-
-          <Link href="/">
-
-            <img
-
-              src="https://wizcraft.co/assets/images/logo/wizcraft-logo.png"
-
-              alt="Dolphin Facilities Logo"
-
-            />
-
-          </Link>
-
+<Link href="/" className="shrink-0">
+<img
+  src="/home/Dolphin-Logo.png"
+  alt="Dolphin Facilities Logo"
+  className="h-[110px] w-[180px] object-contain md:h-[170px] md:w-[280px]"
+/>
+</Link>
 
           {/* =====================================================
 

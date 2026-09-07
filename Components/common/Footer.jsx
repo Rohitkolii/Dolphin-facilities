@@ -23,14 +23,18 @@ export default function Footer() {
 
         {/* Top Logo + Social Icons */}
         <div className="flex items-center justify-between border-b border-[#68c4b2] py-[40px]">
-          {/* Logo */}
+        <img
+  src="/home/Dolphin-Logo-transparent.png"
+  alt="Dolphin Facilities Logo"
+  style={{ height: "90px", width: "auto", objectFit: "contain" }}
+/>
           <div>
             <div className="text-[32px] font-black leading-none tracking-[-0.08em]">
-              ★WIZCRAFT
+            Dolphin Facilities
             </div>
 
             <div className="mt-1 text-[7px] font-bold tracking-[0.42em] text-white/80">
-              ENTERTAINMENT AGENCY
+              EVENT MANAGEMENT AGENCY
             </div>
           </div>
 
@@ -81,7 +85,7 @@ export default function Footer() {
               </span>
 
               <span className="text-[13px] text-white/85">
-                info@wizcraft.co
+                info@DolphinFacilities.co
               </span>
             </div>
 
@@ -115,7 +119,7 @@ export default function Footer() {
               </span>
 
               <span className="text-[13px] text-white/85">
-                careers@wizcraft.co
+                careers@Dolphin-Facilities.co
               </span>
             </div>
           </div>
@@ -201,7 +205,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-[#68c4b2] py-9 text-center">
           <p className="text-[13px] text-white">
-            Copyright 2026 Wizcraft Entertainment Agency Pvt. Ltd. All Rights
+            Copyright 2026 Dolphin Facilities Pvt. Ltd. All Rights
             Reserved
           </p>
         </div>

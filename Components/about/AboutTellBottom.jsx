@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function WizcraftMessage() {
+export default function DolphinMessage() {
   return (
     <section className="w-full bg-[#303030]">
 
@@ -48,9 +48,9 @@ export default function WizcraftMessage() {
             font-medium
           "
         >
-          At Wizcraft, we don’t just organize events. We craft experiences
-          that touch, move, and inspire, creating impact that lasts long
-          after the event.
+          At Dolphin Facilities, we don’t just organize events. We craft
+          experiences that touch, move, and inspire, creating impact that
+          lasts long after the event.
         </p>
       </motion.div>
 

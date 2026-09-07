@@ -1,6 +1,7 @@
 "use client";
 
 import Footer from "@/Components/common/Footer";
+import Link from "next/link";
 import { MdEvent } from "react-icons/md";
 import { IoMdMegaphone } from "react-icons/io";
 import { FaCode } from "react-icons/fa6";
@@ -19,24 +20,28 @@ const businesses = [
     text: "We conceptualize, plan, manage, and execute events of different scales — from corporate meets and conferences to product launches, exhibitions, government events, dealer meets, award functions and celebrations.",
     icon: MdEvent,
     animate: "fade-right",
+    href: "/business/special-events",
   },
   {
     title: "Advertising & Outdoor Marketing",
     text: "We help brands reach audiences where they live, travel, work and shop. Our outdoor solutions — Van Campaigns, Wall Wraps and Hoardings — are designed to create visibility and build strong brand recall.",
     icon: IoMdMegaphone,
     animate: "fade-up",
+    href: "/business/advertising-outdoor-marketing",
   },
   {
     title: "Digital Solutions",
     text: "We combine traditional marketing with digital experiences to help brands communicate with today's audiences through Digital Campaigns, Social Media Solutions and Creative Content.",
     icon: FaCode,
     animate: "fade-left",
+    href: "/business/digital-solutions",
   },
   {
     title: "Brand Activation",
     text: "We create on-ground experiences that allow audiences to interact directly with brands — Roadshows, Van Campaigns, Product Demonstrations and Consumer Engagement.",
     icon: FaRegStar,
     animate: "fade-up",
+    href: "/business/brand-activation",
   },
 ];
 
@@ -191,12 +196,12 @@ export default function Home() {
 
                   <p className="text-md leading-8 text-white/80">{b.text}</p>
 
-                  <a
-                    href="#contact"
+                  <Link
+                    href={b.href}
                     className="mt-7 flex items-end text-lg font-bold text-[#e3c07f] underline decoration-[#e3c07f]/40 underline-offset-4 transition-colors hover:text-white"
                   >
                     Read More →
-                  </a>
+                  </Link>
                 </article>
               );
             })}
@@ -394,7 +399,7 @@ export default function Home() {
           </div>
 
           {/* Bottom copy */}
-          <div className="mt-10 max-w-4xl text-md leading-5 text-white/80">
+          <div className="mt-10 max-w-4xl text-md leading-7 text-white/80">
             <p>
               What started with managing events has grown into something much
               bigger: one partner for the entire journey. From the first idea
@@ -415,13 +420,13 @@ export default function Home() {
               together.
             </p>
 
-            <p className="mt-1 text-[#70c7b5]">
+            <p className="mt-3 font-semibold text-[#70c7b5]">
               Dolphin. The Complete Solution.
             </p>
           </div>
         </section>
 
-        <section className="mt-16">
+        <section className="py-20">
           <div className="gradient-panel">
             <div className="container-x grid items-center gap-10 py-14 lg:grid-cols-2">
               <div data-aos="fade-right">
@@ -432,12 +437,12 @@ export default function Home() {
                   <p className="mt-3 text-2xl">
                     Why Manage Six Vendors When One Can Do It All?
                   </p>
-                  <p className="text-md">
+                  <p className="mt-2 text-md text-white/80">
                     Event • Branding • Outdoor Campaign • Digital Promotion •
                     Customized Products • Material Supply • On-Ground
                     Execution
                   </p>
-                  <p className="mt-5 text-[16px] max-w-xl leading-7 text-white/90">
+                  <p className="mt-5 max-w-xl text-[16px] leading-7 text-white/90">
                     Dolphin brings it all together. One brief. One team. One
                     point of coordination. One complete solution.
                   </p>
@@ -462,16 +467,16 @@ export default function Home() {
         <section id="portfolio" className="container-x py-20">
           <p
             data-aos="zoom-in-left"
-            className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-transparent"
+            className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
           >
             Highlights
           </p>
 
-          <p className="text-xl text-white text-center mb-10">
+          <p className="mb-10 text-center text-xl text-white">
             Our Work Across Events, Branding & Activations
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[400px] gap-1">
+          <div className="grid grid-cols-1 gap-1 md:auto-rows-[400px] md:grid-cols-4">
             {gallery.map((src, i) => {
               const classes = [
                 "",
@@ -501,16 +506,20 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container-x py-10">
+        <section className="container-x py-20">
           <p
             data-aos="zoom-in-left"
-            className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-transparent"
+            className="mb-3 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
           >
             Who We Work With
-          </p>{" "}
-          <p className="text-center text-xl text-white">
+          </p>
+
+          <p className="mb-8 text-center text-xl text-white/80">
             Corporates, Institutions & Government Organisations
           </p>
+
+          {/* Placeholder divider — replace with logo grid/marquee once client logos are available */}
+          <div className="mx-auto h-[1px] w-24 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#e3c07f]" />
           {/* <LogoSlider /> */}
         </section>
 

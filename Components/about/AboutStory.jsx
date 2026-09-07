@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function AboutStory() {
@@ -12,12 +13,12 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.6,
+            ease: "easeOut",
           }}
           className="grid md:grid-cols-[500px_1fr] gap-7 md:gap-10 items-center mb-10"
         >
@@ -25,49 +26,46 @@ export default function AboutStory() {
 
           <div className="flex gap-4 items-end">
 
-            <motion.img
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.9,
-                delay: 0.15,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              src="/about/image.png"
-              alt="Wizcraft Event"
+            <div
               className="
+                relative
                 w-1/2
                 h-[260px]
                 sm:h-[310px]
                 md:h-[380px]
-                object-cover
                 border
                 border-[#2b9bc7]
               "
-            />
+            >
+              <Image
+                src="/images/EICHER.jpeg"
+                alt="Dolphin Facilities Event"
+                fill
+                sizes="(max-width: 768px) 45vw, 250px"
+                className="object-cover"
+                priority
+              />
+            </div>
 
-            <motion.img
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.9,
-                delay: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              src="/about/image.png"
-              alt="National Film Awards"
+            <div
               className="
+                relative
                 w-1/2
                 h-[215px]
                 sm:h-[260px]
                 md:h-[310px]
-                object-cover
                 border
                 border-[#2b9bc7]
               "
-            />
+            >
+              <Image
+                src="/images/UVN.jpeg"
+                alt="National Film Awards"
+                fill
+                sizes="(max-width: 768px) 45vw, 250px"
+                className="object-cover"
+              />
+            </div>
 
           </div>
 
@@ -86,23 +84,24 @@ export default function AboutStory() {
             "
           >
             <p className="mb-5">
-              For over three decades, Wizcraft has been at the forefront of
-              creativity, innovation, and excellence in live events and brand
-              storytelling. Recognized as a leading event management company
-              in India, Wizcraft Event Management Company has consistently
-              set benchmarks by converting bold ideas into unforgettable
-              experiences. From its very beginning, the goal was to transform
-              communication into emotions and memories. Today, Wizcraft
-              Entertainment Agency Pvt. Ltd. is celebrated as one of the most
-              admired names in the industry.
+              For over three decades, Dolphin Facilities has been at the
+              forefront of creativity, innovation, and excellence in live
+              events and brand storytelling. Recognized as a leading event
+              management company in India, Dolphin Facilities Event
+              Management Company has consistently set benchmarks by
+              converting bold ideas into unforgettable experiences. From its
+              very beginning, the goal was to transform communication into
+              emotions and memories. Today, Dolphin Facilities Entertainment
+              Agency Pvt. Ltd. is celebrated as one of the most admired names
+              in the industry.
             </p>
 
             <p>
-              As a true experiential marketing agency, Wizcraft seamlessly
-              integrates strategy, creativity, and cutting-edge technology to
-              deliver impactful solutions. By capturing the essence of brand
-              stories, it translates them into experiences that engage
-              audiences both emotionally and memorably.
+              As a true experiential marketing agency, Dolphin Facilities
+              seamlessly integrates strategy, creativity, and cutting-edge
+              technology to deliver impactful solutions. By capturing the
+              essence of brand stories, it translates them into experiences
+              that engage audiences both emotionally and memorably.
             </p>
           </div>
 
@@ -117,25 +116,25 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{ opacity: 0, x: 70 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.6,
+            ease: "easeOut",
           }}
         >
           <StoryCard
             title="Presence & Reach"
-            image="/about/image.png"
-            imageAlt="Wizcraft Office"
+            image="/images/DSC_1465.JPG"
+            imageAlt="Dolphin Facilities Office"
             imageSide="right"
           >
             <p>
-              Headquartered in Mumbai, Wizcraft operates across India and the
-              UAE, with offices in Delhi, Bangalore, Hyderabad, and Chennai.
-              Our global partner network ensures seamless delivery anywhere in
-              the world.
+              Headquartered in Mumbai, Dolphin Facilities operates across
+              India and the UAE, with offices in Delhi, Bangalore, Hyderabad,
+              and Chennai. Our global partner network ensures seamless
+              delivery anywhere in the world.
             </p>
 
             <p>
@@ -151,9 +150,10 @@ export default function AboutStory() {
               <span className="text-[#39a6d0]">
                 Event Management Company in India & UAE
               </span>
-              , Wizcraft consistently offers unmatched scale, creativity, and
-              precision. With the trust of 600+ global brands, the name
-              Wizcraft has become synonymous with innovation and dependability.
+              , Dolphin Facilities consistently offers unmatched scale,
+              creativity, and precision. With the trust of 600+ global
+              brands, the name Dolphin Facilities has become synonymous with
+              innovation and dependability.
             </p>
           </StoryCard>
         </motion.div>
@@ -167,25 +167,26 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{ opacity: 0, x: -70 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.6,
+            ease: "easeOut",
           }}
         >
           <StoryCard
             title="Pioneer in Experiential Marketing"
-            image="/about/image.png"
+             image="/about/BVN.jpeg"
             imageAlt="Experiential Marketing Event"
             imageSide="left"
           >
             <p>
               As one of the most respected experiential marketing companies,
-              Wizcraft has redefined how brands engage with audiences. From
-              grand live events and exhibitions to digital-first launches,
-              Wizcraft fuses creativity with flawless delivery.
+              Dolphin Facilities has redefined how brands engage with
+              audiences. From grand live events and exhibitions to
+              digital-first launches, Dolphin Facilities fuses creativity
+              with flawless delivery.
             </p>
 
             <p>
@@ -207,22 +208,22 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{ opacity: 0, x: 70 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.6,
+            ease: "easeOut",
           }}
         >
           <StoryCard
             title="Corporate Events & Business Solutions"
-            image="/about/image.png"
+            image="/images/DSC_1465"
             imageAlt="Corporate Event"
             imageSide="right"
           >
             <p>
-              At its foundation, Wizcraft has always been a trusted{" "}
+              At its foundation, Dolphin Facilities has always been a trusted{" "}
               <span className="text-[#39a6d0]">
                 corporate event management company
               </span>
@@ -231,17 +232,18 @@ export default function AboutStory() {
             </p>
 
             <p>
-              With deep expertise in corporate event management, Wizcraft
-              knows that events go beyond just logistics. They are about
-              marketing brands, shaping cultures, and celebrating growth. As
-              an experienced corporate event organizer, the company curates
-              everything from leadership summits to business gatherings with
-              clarity and precision.
+              With deep expertise in corporate event management, Dolphin
+              Facilities knows that events go beyond just logistics. They are
+              about marketing brands, shaping cultures, and celebrating
+              growth. As an experienced corporate event organizer, the
+              company curates everything from leadership summits to business
+              gatherings with clarity and precision.
             </p>
 
             <p>
-              For many clients, Wizcraft is not only an event organizing
-              company but also a long-term strategic growth partner.
+              For many clients, Dolphin Facilities is not only an event
+              organizing company but also a long-term strategic growth
+              partner.
             </p>
           </StoryCard>
         </motion.div>
@@ -255,12 +257,12 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{ opacity: 0, x: -70 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.6,
+            ease: "easeOut",
           }}
         >
           <StoryCard
@@ -270,8 +272,8 @@ export default function AboutStory() {
             imageSide="left"
           >
             <p>
-              Wizcraft creates immersive brand activations that connect
-              businesses with their audiences through powerful live
+              Dolphin Facilities creates immersive brand activations that
+              connect businesses with their audiences through powerful live
               experiences. Every activation is designed to create engagement,
               visibility and lasting brand recall.
             </p>
@@ -293,12 +295,12 @@ export default function AboutStory() {
         ===================================================== */}
 
         <motion.div
-          initial={{ opacity: 0, x: 70 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 0.6,
+            ease: "easeOut",
           }}
         >
           <StoryCard
@@ -308,10 +310,11 @@ export default function AboutStory() {
             imageSide="right"
           >
             <p>
-              Wizcraft delivers complete exhibition and experiential
-              solutions, from concept and design to production and execution.
-              Its approach combines creative storytelling with functional
-              spaces that help brands communicate effectively.
+              Dolphin Facilities delivers complete exhibition and
+              experiential solutions, from concept and design to production
+              and execution. Its approach combines creative storytelling
+              with functional spaces that help brands communicate
+              effectively.
             </p>
 
             <p>
@@ -432,28 +435,7 @@ function StoryCard({
 
       {/* OVERLAPPING IMAGE */}
 
-      <motion.img
-        initial={{
-          opacity: 0,
-          x: isRight ? 70 : -70,
-          scale: 0.94,
-        }}
-        whileInView={{
-          opacity: 1,
-          x: 0,
-          scale: 1,
-        }}
-        viewport={{
-          once: true,
-          amount: 0.15,
-        }}
-        transition={{
-          duration: 1,
-          delay: 0.15,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        src={image}
-        alt={imageAlt}
+      <div
         className={`
           hidden
           md:block
@@ -468,8 +450,6 @@ function StoryCard({
           h-[275px]
           lg:h-[315px]
 
-          object-cover
-
           border
           border-[#299bc9]
 
@@ -481,7 +461,16 @@ function StoryCard({
               : "left-[-125px] lg:left-[-175px]"
           }
         `}
-      />
+      >
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          sizes="320px"
+          loading="lazy"
+          className="object-cover"
+        />
+      </div>
 
     </div>
   );
@@ -494,26 +483,8 @@ function StoryCard({
 
 function Connector() {
   return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        scaleY: 0,
-      }}
-      whileInView={{
-        opacity: 1,
-        scaleY: 1,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.2,
-      }}
-      transition={{
-        duration: 0.5,
-        ease: "easeOut",
-      }}
-      className="flex justify-center h-[40px] origin-top"
-    >
+    <div className="flex justify-center h-[40px]">
       <div className="w-px h-full bg-[#299bc9]" />
-    </motion.div>
+    </div>
   );
 }

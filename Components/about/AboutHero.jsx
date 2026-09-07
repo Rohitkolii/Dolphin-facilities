@@ -68,11 +68,11 @@ export default function AboutHero() {
             mx-auto
           "
         >
-          For over 30 years, Wizcraft Entertainment Agency has led India&apos;s
-          live events and experiential storytelling landscape with creativity,
-          innovation, and excellence. We transform innovative ideas into
-          unforgettable experiences and turn brand stories into emotional
-          journeys.
+          For over 30 years, Dolphin Facilities Entertainment Agency has led
+          India&apos;s live events and experiential storytelling landscape
+          with creativity, innovation, and excellence. We transform
+          innovative ideas into unforgettable experiences and turn brand
+          stories into emotional journeys.
         </motion.p>
 
       </div>
