@@ -231,16 +231,15 @@ export default function ContactPage() {
           <section className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-[17px]">
             <ContactCard icon={<LocationIcon />} title="Location">
               Mumbai, Delhi, Bengaluru, Chennai,
-              <br />
-              Hyderabad, Gujarat, Dubai.
+             
             </ContactCard>
 
             <ContactCard icon={<MailIcon />} title="Email">
-              info@wizcraft.co
+            write@dolphinfacilities.in
             </ContactCard>
 
             <ContactCard icon={<PhoneIcon />} title="Contact">
-              +91 9819822333
+              +91 9098486957
               <br />
               +91 02247791300
             </ContactCard>

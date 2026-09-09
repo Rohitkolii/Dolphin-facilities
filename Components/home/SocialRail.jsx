@@ -10,7 +10,7 @@ export default function SocialRail() {
     {
       icon: FaInstagram,
       label: "Let’s Turn Ideas Into Experiences",
-      href: "https://www.instagram.com/",
+      href: "https://www.instagram.com/dolphin.facilities?stkn=MnhzOHhjY2U0Zm4x",
     },
     {
       icon: FaWhatsapp,
@@ -20,7 +20,7 @@ export default function SocialRail() {
     {
       icon: FaLinkedinIn,
       label: "Build Impactful Experiences",
-      href: "https://www.linkedin.com/feed/",
+      href: "https://linkedin.com/in/dolphin-facilities-51b78123b",
     },
   ];
 

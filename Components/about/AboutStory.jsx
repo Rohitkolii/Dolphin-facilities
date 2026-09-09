@@ -86,24 +86,18 @@ export default function AboutStory() {
             "
           >
             <p className="mb-5">
-              For over three decades, Dolphin Facilities has been at the
-              forefront of creativity, innovation, and excellence in live
-              events and brand storytelling. Recognized as a leading event
-              management company in India, Dolphin Facilities Event
-              Management Company has consistently set benchmarks by
-              converting bold ideas into unforgettable experiences. From its
-              very beginning, the goal was to transform communication into
-              emotions and memories. Today, Dolphin Facilities Entertainment
-              Agency Pvt. Ltd. is celebrated as one of the most admired names
-              in the industry.
+              Established in 2019, Dolphin Facilities has evolved into a
+              dynamic, multi-service organization delivering innovative
+              marketing, branding, promotional, event, digital and execution
+              solutions across Madhya Pradesh and throughout India.
             </p>
 
             <p>
-              As a true experiential marketing agency, Dolphin Facilities
-              seamlessly integrates strategy, creativity, and cutting-edge
-              technology to deliver impactful solutions. By capturing the
-              essence of brand stories, it translates them into experiences
-              that engage audiences both emotionally and memorably.
+              What sets us apart is our ability to bring diverse capabilities
+              together under one roof. From events, advertising and outdoor
+              promotions to digital solutions, customized products and
+              end-to-end project execution, we eliminate the need for clients
+              to coordinate with multiple vendors.
             </p>
           </div>
 
@@ -127,35 +121,24 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Presence & Reach"
+            title="Trusted by Government & Corporate Clients"
             image="/images/DSC_1465.JPG"
-            imageAlt="Dolphin Facilities Office"
+            imageAlt="Dolphin Facilities Client Assignment"
             imageSide="right"
           >
             <p>
-              Headquartered in Mumbai, Dolphin Facilities operates across
-              India and the UAE, with offices in Delhi, Bangalore, Hyderabad,
-              and Chennai. Our global partner network ensures seamless
-              delivery anywhere in the world.
+              Trusted by{" "}
+              <span className="text-[#39a6d0]">
+                government organizations and corporate clients
+              </span>{" "}
+              alike, Dolphin Facilities combines strategic thinking,
+              creativity and quality with dependable on-ground execution.
             </p>
 
             <p>
-              As a leading{" "}
-              <span className="text-[#39a6d0]">
-                Event Management Company in Mumbai
-              </span>
-              , it extends its operations through offices in Delhi, Bangalore,
-              Hyderabad, and Chennai, while also leveraging international
-              liaison offices and a strong global partner network. Whether
-              brands are looking for an Event Agency in Gurgaon, Hyderabad,
-              Bangalore, and Chennai, or a trusted{" "}
-              <span className="text-[#39a6d0]">
-                Event Management Company in India & UAE
-              </span>
-              , Dolphin Facilities consistently offers unmatched scale,
-              creativity, and precision. With the trust of 600+ global
-              brands, the name Dolphin Facilities has become synonymous with
-              innovation and dependability.
+              We understand every requirement carefully, develop the right
+              solution and manage each assignment with professionalism,
+              transparency and attention to detail.
             </p>
           </StoryCard>
         </motion.div>
@@ -178,25 +161,20 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Pioneer in Experiential Marketing"
+            title="Complete Ownership, Complete Solutions"
             image="/about/BVN.jpeg"
-            imageAlt="Experiential Marketing Event"
+            imageAlt="Dolphin Facilities Execution"
             imageSide="left"
           >
             <p>
-              As one of the most respected experiential marketing companies,
-              Dolphin Facilities has redefined how brands engage with
-              audiences. From grand live events and exhibitions to
-              digital-first launches, Dolphin Facilities fuses creativity
-              with flawless delivery.
+              At Dolphin Facilities, we do more than provide services—we take
+              complete ownership of our clients&apos; requirements and
+              transform ideas into impactful results.
             </p>
 
-            <p>
-              Iconic milestones include the Michael Jackson India tour in
-              1996, the BMW Experience Tour, and large automotive expos for
-              Tata Motors and Toyota. Our leading events include
-              influencer-driven campaigns for Hyundai, the Amazon Great Indian
-              Festival and the Renault Kiger Global Reveal.
+            <p className="text-[#39a6d0] font-semibold">
+              One Client. One Requirement. One Trusted Partner. One Complete
+              Solution.
             </p>
           </StoryCard>
         </motion.div>
@@ -219,33 +197,17 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Corporate Events & Business Solutions"
+            title="Events & Experiences"
             image="/images/DSC_1465.JPG"
-            imageAlt="Corporate Event"
+            imageAlt="Dolphin Facilities Corporate Event"
             imageSide="right"
           >
             <p>
-              At its foundation, Dolphin Facilities has always been a trusted{" "}
-              <span className="text-[#39a6d0]">
-                corporate event management company
-              </span>
-              , working with Microsoft, Google, Cipla, Lenovo, Swiggy, and
-              other global brands to create meaningful experiences.
-            </p>
-
-            <p>
-              With deep expertise in corporate event management, Dolphin
-              Facilities knows that events go beyond just logistics. They are
-              about marketing brands, shaping cultures, and celebrating
-              growth. As an experienced corporate event organizer, the
-              company curates everything from leadership summits to business
-              gatherings with clarity and precision.
-            </p>
-
-            <p>
-              For many clients, Dolphin Facilities is not only an event
-              organizing company but also a long-term strategic growth
-              partner.
+              Creating experiences. Delivering impact. From product launches
+              and corporate celebrations to government events and VIP
+              functions, we manage every detail—from concept and production
+              to flawless{" "}
+              <span className="text-[#39a6d0]">on-ground execution</span>.
             </p>
           </StoryCard>
         </motion.div>
@@ -268,22 +230,16 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Brand Activations & Live Experiences"
+            title="Exhibitions & Brand Pavilions"
             image="/about/image.png"
-            imageAlt="Brand Activation"
+            imageAlt="Exhibition Stall"
             imageSide="left"
           >
             <p>
-              Dolphin Facilities creates immersive brand activations that
-              connect businesses with their audiences through powerful live
-              experiences. Every activation is designed to create engagement,
-              visibility and lasting brand recall.
-            </p>
-
-            <p>
-              From large-scale public experiences to intimate premium
-              activations, the team combines strategy, creativity and
-              technology to deliver memorable campaigns.
+              Spaces that bring brands to life. Creative exhibition stalls,
+              product display zones and branded environments—designed,
+              fabricated and executed to attract attention and create
+              meaningful engagement.
             </p>
           </StoryCard>
         </motion.div>
@@ -306,22 +262,20 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Exhibitions & Experiential Spaces"
+            title="Government & Institutional Events"
             image="/about/image.png"
-            imageAlt="Exhibition"
+            imageAlt="Government Event Execution"
             imageSide="right"
           >
             <p>
-              Dolphin Facilities delivers complete exhibition and
-              experiential solutions, from concept and design to production
-              and execution. Its approach combines creative storytelling
-              with functional spaces that help brands communicate
-              effectively.
-            </p>
-
-            <p>
-              Every exhibition is crafted to attract audiences, communicate
-              the brand story and create meaningful interactions.
+              Professional execution for high-responsibility events.
+              End-to-end event infrastructure, venue branding, stage
+              production, logistics, protocol support and on-ground
+              coordination for{" "}
+              <span className="text-[#39a6d0]">
+                government and institutional assignments
+              </span>
+              .
             </p>
           </StoryCard>
         </motion.div>

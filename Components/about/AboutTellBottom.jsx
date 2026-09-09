@@ -48,9 +48,10 @@ export default function DolphinMessage() {
             font-medium
           "
         >
-          At Dolphin Facilities, we don’t just organize events. We craft
-          experiences that touch, move, and inspire, creating impact that
-          lasts long after the event.
+          We Create Experiences That Make Brands Unforgettable. From landmark
+          events and exhibitions to nationwide activations and powerful
+          brand visibility, Dolphin Facilities transforms ideas into
+          memorable experiences.
         </p>
       </motion.div>
 

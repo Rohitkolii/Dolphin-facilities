@@ -85,7 +85,7 @@ export default function Footer() {
               </span>
 
               <span className="text-[13px] text-white/85">
-                info@DolphinFacilities.co
+              write@dolphinfacilities.in
               </span>
             </div>
 
@@ -95,7 +95,7 @@ export default function Footer() {
               </span>
 
               <span className="text-[13px] text-white/85">
-                +(91) 9819822333
+                +(91) -9098486957
               </span>
             </div>
 
@@ -119,7 +119,7 @@ export default function Footer() {
               </span>
 
               <span className="text-[13px] text-white/85">
-                careers@Dolphin-Facilities.co
+              write@dolphinfacilities.in
               </span>
             </div>
           </div>
@@ -191,13 +191,9 @@ export default function Footer() {
             </h4>
 
             <div className="space-y-5 text-[13px] text-white/85">
-              <p>Mumbai</p>
-              <p>Delhi</p>
-              <p>Bengaluru</p>
-              <p>Chennai</p>
-              <p>Hyderabad</p>
-              <p>Gujarat</p>
-              <p>Dubai</p>
+              <p>17-18 Block A, Second Floor, 
+Gammon India, TT Nagar,Bhopal,462003</p>
+            
             </div>
           </div>
         </div>

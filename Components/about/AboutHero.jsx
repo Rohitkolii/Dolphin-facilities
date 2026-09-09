@@ -40,6 +40,37 @@ export default function AboutHero() {
           ABOUT US
         </motion.h1>
 
+        {/* TAGLINE */}
+        <motion.p
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
+          transition={{
+            duration: 0.9,
+            delay: 0.1,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="
+            text-white
+            text-base
+            md:text-lg
+            font-semibold
+            tracking-wide
+            mb-4
+          "
+        >
+          More Than an Agency. Your Complete Solutions Partner.
+        </motion.p>
+
         {/* DESCRIPTION */}
         <motion.p
           initial={{
@@ -68,11 +99,13 @@ export default function AboutHero() {
             mx-auto
           "
         >
-          For over 30 years, Dolphin Facilities Entertainment Agency has led
-          India&apos;s live events and experiential storytelling landscape
-          with creativity, innovation, and excellence. We transform
-          innovative ideas into unforgettable experiences and turn brand
-          stories into emotional journeys.
+          Established in 2019, Dolphin Facilities has evolved into a dynamic,
+          multi-service organization delivering innovative marketing,
+          branding, promotional, event, digital and execution solutions
+          across Madhya Pradesh and throughout India. What sets us apart is
+          our ability to bring diverse capabilities together under one
+          roof—eliminating the need for clients to coordinate with multiple
+          vendors.
         </motion.p>
 
       </div>
