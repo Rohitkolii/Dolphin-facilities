@@ -45,7 +45,7 @@ export default function BlogHero() {
             mb-2
           "
         >
-          BLOG | INSIGHTS, IDEAS &amp; STORIES
+          IDEAS BEHIND BETTER EXPERIENCES
         </motion.h1>
 
         <motion.p
@@ -75,9 +75,9 @@ export default function BlogHero() {
             mx-auto
           "
         >
-          Explore our latest blogs featuring insights, ideas, and stories
-          across events, design, and innovation. Stay updated with trends,
-          expert perspectives, and creative inspiration.
+          Explore practical insights from Dolphin Facilities on planning
+          events, managing audiences, activating brands and delivering
+          campaigns with clarity, control and measurable purpose.
         </motion.p>
 
       </div>

@@ -37,39 +37,8 @@ export default function AboutHero() {
             mb-4
           "
         >
-          ABOUT US
+          ABOUT DOLPHIN
         </motion.h1>
-
-        {/* TAGLINE */}
-        <motion.p
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.3,
-          }}
-          transition={{
-            duration: 0.9,
-            delay: 0.1,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            text-white
-            text-base
-            md:text-lg
-            font-semibold
-            tracking-wide
-            mb-4
-          "
-        >
-          More Than an Agency. Your Complete Solutions Partner.
-        </motion.p>
 
         {/* DESCRIPTION */}
         <motion.p
@@ -99,13 +68,13 @@ export default function AboutHero() {
             mx-auto
           "
         >
-          Established in 2019, Dolphin Facilities has evolved into a dynamic,
-          multi-service organization delivering innovative marketing,
-          branding, promotional, event, digital and execution solutions
-          across Madhya Pradesh and throughout India. What sets us apart is
-          our ability to bring diverse capabilities together under one
-          roof—eliminating the need for clients to coordinate with multiple
-          vendors.
+          Ideas become experiences when every detail comes together. Dolphin
+          Facilities is an integrated event management, advertising and
+          brand execution company helping organisations transform
+          requirements into well-planned, professionally delivered
+          experiences. From the first discussion to final on-ground
+          execution, we bring strategy, creativity, production and
+          coordination together under one accountable team.
         </motion.p>
 
       </div>

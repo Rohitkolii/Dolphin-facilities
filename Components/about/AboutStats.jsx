@@ -4,39 +4,34 @@ import { motion } from "framer-motion";
 
 const stats = [
   {
-    title: "EVENTS & EXPERIENCES",
+    title: "INTEGRATED CAPABILITIES",
     description:
-      "From product launches and corporate celebrations to government events and VIP functions, we manage every detail—from concept and production to flawless on-ground execution.",
+      "Events, activations, advertising, digital support, customized products and on-ground execution can operate within one plan.",
   },
   {
-    title: "EXHIBITIONS & BRAND PAVILIONS",
+    title: "SINGLE POINT OF COORDINATION",
     description:
-      "Creative exhibition stalls, product display zones and branded environments—designed, fabricated and executed to attract attention and create meaningful engagement.",
+      "One responsible team reduces communication gaps across departments and partners.",
   },
   {
-    title: "RURAL MARKETING & ACTIVATIONS",
+    title: "EXECUTION FOCUS",
     description:
-      "Advertisement vans, roadshows, farmer meetings, village activations and live product demonstrations that connect brands with audiences across rural India.",
+      "Ideas are tested against budget, venue, timeline, logistics and ground feasibility.",
   },
   {
-    title: "PRODUCT LAUNCHES",
+    title: "FLEXIBLE SCALE",
     description:
-      "From grand stages and immersive branding to product displays, cultural performances and guest experiences, we create launches that leave a lasting impression.",
+      "The delivery model can be adapted for a focused local requirement or a coordinated multi-location assignment.",
   },
   {
-    title: "OUTDOOR ADVERTISING",
+    title: "CLIENT-ALIGNED PLANNING",
     description:
-      "Mobile van branding, wall paintings, hoardings, bus branding, pole kiosks, dealer branding and high-impact outdoor campaigns executed across multiple locations.",
+      "Scope, approvals and priorities are structured around the client's actual objective.",
   },
   {
-    title: "GOVERNMENT & INSTITUTIONAL EVENTS",
+    title: "DOCUMENTED DELIVERY",
     description:
-      "End-to-end event infrastructure, venue branding, stage production, logistics, protocol support and on-ground coordination for government and institutional assignments.",
-  },
-  {
-    title: "DIGITAL & TECHNOLOGY SOLUTIONS",
-    description:
-      "Websites, mobile applications, business portals and customized digital platforms designed to improve visibility, engagement and operational efficiency.",
+      "Checklists, schedules, field evidence and closure reporting create better visibility and accountability.",
   },
 ];
 
@@ -68,17 +63,12 @@ export default function AboutStats() {
         className="max-w-[950px] mx-auto text-center"
       >
         <h2 className="text-[22px] sm:text-[25px] md:text-[35px] font-bold bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent uppercase tracking-[0.5px]">
-          WHAT WE OFFER
+          THE DOLPHIN DIFFERENCE
         </h2>
 
         <p className="mt-4 text-[12px] sm:text-[13px] md:text-[15px] leading-6 font-medium text-white/90">
-          A dynamic, multi-service organization delivering innovative
-          marketing, branding, promotional, event, digital and execution
-          solutions across Madhya Pradesh and throughout India.
-        </p>
-
-        <p className="mt-1 text-[12px] sm:text-[13px] md:text-[15px] font-medium text-white/90">
-          One trusted partner for every requirement:
+          Why coordinate multiple vendors when one team can connect the
+          complete requirement?
         </p>
       </motion.div>
 
@@ -89,11 +79,7 @@ export default function AboutStats() {
 
       <div className="container-x mx-auto mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        {stats.map((stat, index) => {
-          const isLastOrphan =
-            index === stats.length - 1 && stats.length % 3 === 1;
-
-          return (
+        {stats.map((stat, index) => (
           <motion.div
             key={index}
             initial={{
@@ -122,7 +108,7 @@ export default function AboutStats() {
                 duration: 0.25,
               },
             }}
-            className={`
+            className="
               group
               min-h-[155px]
               md:min-h-[175px]
@@ -137,10 +123,9 @@ export default function AboutStats() {
               transition-all
               duration-300
               hover:bg-[#373737]
-              ${isLastOrphan ? "sm:col-start-1 lg:col-start-2" : ""}
               hover:border-[#48b7df]
               hover:shadow-[0_10px_30px_rgba(41,149,197,0.12)]
-            `}
+            "
           >
             <h3
               className="
@@ -173,8 +158,7 @@ export default function AboutStats() {
               {stat.description}
             </p>
           </motion.div>
-          );
-        })}
+        ))}
 
       </div>
 
@@ -220,7 +204,7 @@ export default function AboutStats() {
             tracking-[0.5px]
           "
         >
-          THE DOLPHIN FACILITIES PROMISE
+          THE DOLPHIN PROMISE
         </h2>
 
         <p
@@ -234,13 +218,16 @@ export default function AboutStats() {
             text-white/90
           "
         >
-          At Dolphin Facilities, we do more than provide services—we take
-          complete ownership of our clients&apos; requirements and transform
-          ideas into impactful results. Because for us, it&apos;s always
+          Every project is different, but our commitment remains consistent:
+          understand the requirement honestly, plan the details carefully,
+          communicate clearly and execute responsibly. We aim to create work
+          that serves the client&apos;s purpose, respects the audience and
+          stands up to the realities of the ground.
         </p>
 
         <p
           className="
+            mt-4
             text-[12px]
             sm:text-[13px]
             md:text-[15px]
@@ -249,8 +236,8 @@ export default function AboutStats() {
             text-white/90
           "
         >
-          One Client. One Requirement. One Trusted Partner. One Complete
-          Solution.
+          For Dolphin, a successful assignment is not defined only by how it
+          looks. It is defined by how well every part works together.
         </p>
       </motion.div>
 

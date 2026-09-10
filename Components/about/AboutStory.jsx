@@ -86,18 +86,22 @@ export default function AboutStory() {
             "
           >
             <p className="mb-5">
-              Established in 2019, Dolphin Facilities has evolved into a
-              dynamic, multi-service organization delivering innovative
-              marketing, branding, promotional, event, digital and execution
-              solutions across Madhya Pradesh and throughout India.
+              Established in 2019, Dolphin began with a focused purpose: to
+              create events that bring people, organisations and ideas
+              together. As client requirements expanded, so did our
+              capabilities. What began with event planning evolved into a
+              broader execution platform covering brand activations,
+              advertising, outdoor campaigns, exhibitions, digital
+              communication, customized products, material supply and field
+              operations.
             </p>
 
             <p>
-              What sets us apart is our ability to bring diverse capabilities
-              together under one roof. From events, advertising and outdoor
-              promotions to digital solutions, customized products and
-              end-to-end project execution, we eliminate the need for clients
-              to coordinate with multiple vendors.
+              Today, Dolphin Facilities works as a complete solution partner
+              for corporate, institutional and government requirements.
+              Instead of coordinating several disconnected vendors, clients
+              can work with one team that understands the brief, aligns the
+              resources and takes responsibility for execution.
             </p>
           </div>
 
@@ -108,7 +112,7 @@ export default function AboutStory() {
 
 
         {/* =====================================================
-            SECTION 2 — PRESENCE & REACH
+            SECTION 2 — OUR JOURNEY
         ===================================================== */}
 
         <motion.div
@@ -121,60 +125,27 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Trusted by Government & Corporate Clients"
-            image="/images/DSC_1465.JPG"
-            imageAlt="Dolphin Facilities Client Assignment"
-            imageSide="right"
-          >
-            <p>
-              Trusted by{" "}
-              <span className="text-[#39a6d0]">
-                government organizations and corporate clients
-              </span>{" "}
-              alike, Dolphin Facilities combines strategic thinking,
-              creativity and quality with dependable on-ground execution.
-            </p>
-
-            <p>
-              We understand every requirement carefully, develop the right
-              solution and manage each assignment with professionalism,
-              transparency and attention to detail.
-            </p>
-          </StoryCard>
-        </motion.div>
-
-
-        <Connector />
-
-
-        {/* =====================================================
-            SECTION 3 — PIONEER
-        ===================================================== */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-          }}
-        >
-          <StoryCard
-            title="Complete Ownership, Complete Solutions"
+            title="From Creating Events to Delivering Complete Solutions"
             image="/about/BVN.jpeg"
-            imageAlt="Dolphin Facilities Execution"
+            imageAlt="Dolphin Facilities Project"
             imageSide="left"
           >
             <p>
-              At Dolphin Facilities, we do more than provide services—we take
-              complete ownership of our clients&apos; requirements and
-              transform ideas into impactful results.
+              Every assignment taught us that an event rarely stands alone. A
+              conference needs branding and delegate management. A product
+              launch needs content, advertising and consumer engagement. A
+              public campaign needs mobile units, local coordination and
+              measurable reporting. A trade fair needs concept, fabrication,
+              logistics and lead-focused execution.
             </p>
 
-            <p className="text-[#39a6d0] font-semibold">
-              One Client. One Requirement. One Trusted Partner. One Complete
-              Solution.
+            <p>
+              Dolphin responded by building connected capabilities around the
+              complete requirement. This evolution allows us to support a
+              project from concept and planning through production,
+              deployment and closure. Our purpose remains simple: make
+              execution easier for the client and more meaningful for the
+              audience.
             </p>
           </StoryCard>
         </motion.div>
@@ -184,7 +155,7 @@ export default function AboutStory() {
 
 
         {/* =====================================================
-            SECTION 4 — CORPORATE EVENTS
+            SECTION 3 — PRESENCE & REACH
         ===================================================== */}
 
         <motion.div
@@ -197,17 +168,25 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Events & Experiences"
+            title="Rooted in Madhya Pradesh, Ready Across India"
             image="/images/DSC_1465.JPG"
-            imageAlt="Dolphin Facilities Corporate Event"
+            imageAlt="Dolphin Facilities Office"
             imageSide="right"
           >
             <p>
-              Creating experiences. Delivering impact. From product launches
-              and corporate celebrations to government events and VIP
-              functions, we manage every detail—from concept and production
-              to flawless{" "}
-              <span className="text-[#39a6d0]">on-ground execution</span>.
+              Dolphin has a strong operational base in Madhya Pradesh and the
+              ability to coordinate assignments across India through project
+              teams, specialist partners and location-specific resources. Our
+              approach combines central planning with local execution,
+              helping maintain brand consistency while adapting to venue
+              rules, audiences, languages and ground realities.
+            </p>
+
+            <p>
+              Whether the requirement is a single event, a multi-location
+              activation or a travelling campaign, every project is planned
+              with defined responsibilities, timelines, approvals and
+              reporting.
             </p>
           </StoryCard>
         </motion.div>
@@ -217,7 +196,7 @@ export default function AboutStory() {
 
 
         {/* =====================================================
-            SECTION 5 — BRAND ACTIVATIONS
+            SECTION 4 — EVENT MANAGEMENT
         ===================================================== */}
 
         <motion.div
@@ -230,16 +209,26 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Exhibitions & Brand Pavilions"
+            title="Experiences Planned With Purpose"
             image="/about/image.png"
-            imageAlt="Exhibition Stall"
+            imageAlt="Event Management"
             imageSide="left"
           >
             <p>
-              Spaces that bring brands to life. Creative exhibition stalls,
-              product display zones and branded environments—designed,
-              fabricated and executed to attract attention and create
-              meaningful engagement.
+              Dolphin plans and coordinates corporate events, conferences,
+              product launches, dealer meets, award functions, institutional
+              programmes, college convocations, cultural programmes and
+              government events. We begin by understanding the objective,
+              audience, budget and desired outcome.
+            </p>
+
+            <p>
+              The team can coordinate venue assessment, concept, stage and
+              production, audio-visual requirements, branding, guest
+              management, hospitality, artists, permissions, technical
+              rehearsals and event-day operations. A detailed run of show and
+              a clear control structure help every department work as one
+              team.
             </p>
           </StoryCard>
         </motion.div>
@@ -249,7 +238,7 @@ export default function AboutStory() {
 
 
         {/* =====================================================
-            SECTION 6 — EXHIBITIONS
+            SECTION 5 — ADVERTISING & OUTDOOR CAMPAIGNS
         ===================================================== */}
 
         <motion.div
@@ -262,20 +251,281 @@ export default function AboutStory() {
           }}
         >
           <StoryCard
-            title="Government & Institutional Events"
-            image="/about/image.png"
-            imageAlt="Government Event Execution"
+            title="Visibility Where Audiences Live, Work and Travel"
+            image="/images/DSC_1465.JPG"
+            imageAlt="Advertising and Outdoor Campaign"
             imageSide="right"
           >
             <p>
-              Professional execution for high-responsibility events.
-              End-to-end event infrastructure, venue branding, stage
-              production, logistics, protocol support and on-ground
-              coordination for{" "}
-              <span className="text-[#39a6d0]">
-                government and institutional assignments
-              </span>
-              .
+              Our advertising and outdoor support can bring together campaign
+              planning, creative coordination, production and deployment
+              across relevant formats. These may include hoardings, wall
+              wraps, mobile van campaigns, roadshows, local market visibility
+              and other on-ground media. Television and video advertising
+              assignments can be coordinated through the required creative,
+              production and media specialists under an agreed scope.
+            </p>
+
+            <p>
+              Dolphin pays attention to location relevance, artwork
+              consistency, permissions, production quality, display
+              condition, route planning and field evidence. This gives the
+              client better control over both visibility and execution.
+            </p>
+          </StoryCard>
+        </motion.div>
+
+
+        <Connector />
+
+
+        {/* =====================================================
+            SECTION 6 — BRAND ACTIVATION & CONSUMER ENGAGEMENT
+        ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <StoryCard
+            title="Brands Are Remembered Through Participation"
+            image="/about/image.png"
+            imageAlt="Brand Activation"
+            imageSide="left"
+          >
+            <p>
+              Dolphin designs on-ground activations that help audiences
+              experience a brand directly. Depending on the campaign, this
+              can include Van Campaigns, Brand Endorsements, sampling, retail
+              engagement, institutional outreach, promoter deployment and
+              consumer response capture.
+            </p>
+
+            <p>
+              The campaign is developed around the target audience, location,
+              core message and desired action. Promoter training,
+              permissions, stock control, field supervision and daily
+              reporting help maintain quality across locations.
+            </p>
+          </StoryCard>
+        </motion.div>
+
+
+        <Connector />
+
+
+        {/* =====================================================
+            SECTION 7 — DIGITAL & CREATIVE SOLUTIONS
+        ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <StoryCard
+            title="Connecting Physical Experiences With Digital Reach"
+            image="/images/EICHER.jpeg"
+            imageAlt="Digital and Creative Solutions"
+            imageSide="right"
+          >
+            <p>
+              Dolphin supports brands with digital campaigns, social media
+              solutions, creative content and communication assets that
+              complement physical events and promotions. Digital support can
+              extend an event before it begins, engage audiences while it is
+              live and carry the story forward after it ends.
+            </p>
+
+            <p>
+              The scope may include campaign concepts, content planning,
+              graphics, short videos, event communication, digital promotion
+              and coordinated online engagement. Each deliverable is aligned
+              with the brand guidelines, intended audience and campaign
+              objective.
+            </p>
+          </StoryCard>
+        </motion.div>
+
+
+        <Connector />
+
+
+        {/* =====================================================
+            SECTION 8 — GOVERNMENT & INSTITUTIONAL ASSIGNMENTS
+        ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <StoryCard
+            title="Execution With Structure, Responsibility and Respect"
+            image="/images/UVN.jpeg"
+            imageAlt="Government and Institutional Assignments"
+            imageSide="left"
+          >
+            <p>
+              Government and institutional programmes require careful
+              documentation, protocol, public communication, safety and
+              coordination among several authorities. Dolphin approaches such
+              assignments with defined workflows, approval checkpoints and
+              on-ground responsibility.
+            </p>
+
+            <p>
+              The team can support public events, conferences, convocations,
+              awareness campaigns, exhibitions, outreach programmes and
+              related branding or material requirements. Dignitary movement,
+              venue protocols, audience flow, accessibility, contingency
+              planning and closure documentation are incorporated according
+              to the assignment.
+            </p>
+          </StoryCard>
+        </motion.div>
+
+
+        <Connector />
+
+
+        {/* =====================================================
+            SECTION 9 — CUSTOMIZED PRODUCTS & MATERIAL SUPPORT
+        ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <StoryCard
+            title="The Details That Complete the Experience"
+            image="/about/BVN.jpeg"
+            imageAlt="Customized Products and Material Support"
+            imageSide="right"
+          >
+            <p>
+              Many projects require more than event production. Dolphin can
+              coordinate customized merchandise, branded materials, event
+              collateral, display elements, participant kits and other
+              project-specific supplies as part of an integrated assignment.
+            </p>
+
+            <p>
+              Requirements are translated into clear specifications covering
+              material, dimensions, branding, quantity, sample approval,
+              packaging and delivery. This helps keep the physical output
+              consistent with the event or campaign identity.
+            </p>
+          </StoryCard>
+        </motion.div>
+
+
+        <Connector />
+
+
+        {/* =====================================================
+            SECTION 10 — EXHIBITIONS & TRADE FAIRS
+        ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <StoryCard
+            title="Spaces That Turn Attention Into Opportunity"
+            image="/about/image.png"
+            imageAlt="Exhibitions and Trade Fairs"
+            imageSide="left"
+          >
+            <p>
+              For exhibitions and trade fairs, Dolphin approaches the stall or
+              pavilion as a live brand environment. The process may include
+              requirement analysis, concept and design coordination,
+              fabrication supervision, product display, electrical and
+              audio-visual planning, venue liaison, logistics, staffing,
+              hospitality and dismantling.
+            </p>
+
+            <p>
+              Visitor movement, message visibility, demonstration
+              requirements and lead capture are considered at the planning
+              stage so the space supports real conversations and business
+              outcomes, not appearance alone.
+            </p>
+          </StoryCard>
+        </motion.div>
+
+
+        <Connector />
+
+
+        {/* =====================================================
+            SECTION 11 — HOW WE WORK
+        ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <StoryCard
+            title="One Connected Process, From Brief to Closure"
+            image="/images/DSC_1465.JPG"
+            imageAlt="How We Work"
+            imageSide="right"
+          >
+            <p>
+              <span className="text-[#39a6d0]">Understand:</span> We begin
+              with the purpose, audience, location, scale, budget and
+              expected result.{" "}
+              <span className="text-[#39a6d0]">Plan:</span> The requirement
+              is converted into a scope, schedule, responsibility matrix and
+              approval process.
+            </p>
+
+            <p>
+              <span className="text-[#39a6d0]">Create:</span> Concepts,
+              content, layouts, campaign assets and production elements are
+              developed and reviewed.{" "}
+              <span className="text-[#39a6d0]">Coordinate:</span> Venues,
+              vendors, specialists, teams, permissions, logistics and
+              materials are aligned.
+            </p>
+
+            <p>
+              <span className="text-[#39a6d0]">Execute:</span> A designated
+              project lead controls deployment, quality, timing, safety and
+              issue resolution.{" "}
+              <span className="text-[#39a6d0]">Report:</span> Deliverables,
+              field evidence, outcomes and closure items are documented
+              according to the agreed scope.
             </p>
           </StoryCard>
         </motion.div>

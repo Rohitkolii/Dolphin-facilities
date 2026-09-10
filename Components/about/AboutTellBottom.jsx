@@ -48,10 +48,10 @@ export default function DolphinMessage() {
             font-medium
           "
         >
-          We Create Experiences That Make Brands Unforgettable. From landmark
-          events and exhibitions to nationwide activations and powerful
-          brand visibility, Dolphin Facilities transforms ideas into
-          memorable experiences.
+          One client, one requirement, one complete solution — that&apos;s
+          how we think. Tell us what you want to achieve, and we&apos;ll
+          help connect the planning, people and execution to bring it to
+          life.
         </p>
       </motion.div>
 

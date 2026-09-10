@@ -2,72 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-const blogs = [
-  {
-    id: 1,
-    date: "July 17, 2026",
-    title:
-      "Corporate Event Budget Planning Guide for Maximum ROI in 2026",
-    image: "/blog/image.png",
-  },
-  {
-    id: 2,
-    date: "July 10, 2026",
-    title:
-      "Common Event Planning Mistakes and How to Avoid Them",
-    image: "/blog/image.png",
-  },
-  {
-    id: 3,
-    date: "July 03, 2026",
-    title:
-      "Event Marketing Trends 2026: What Brands Need to Know",
-    image: "/blog/image.png",
-  },
-  {
-    id: 4,
-    date: "June 26, 2026",
-    title:
-      "The Ultimate Event Technology Checklist for Modern Event Planners",
-    image: "/blog/image.png",
-  },
-  {
-    id: 5,
-    date: "June 19, 2026",
-    title:
-      "Why Brands Are Choosing Virtual AR Event Planners in 2026",
-    image: "/blog/image.png",
-  },
-  {
-    id: 6,
-    date: "June 12, 2026",
-    title:
-      "Why Corporate Event Launches Are Critical for Brand Growth",
-    image: "/blog/image.png",
-  },
-  {
-    id: 7,
-    date: "June 05, 2026",
-    title:
-      "How Experiential Marketing Creates Stronger Brand Connections",
-    image: "/blog/image.png",
-  },
-  {
-    id: 8,
-    date: "May 29, 2026",
-    title:
-      "Creating Memorable Experiences Through Strategic Event Design",
-    image: "/blog/image.png",
-  },
-  {
-    id: 9,
-    date: "May 22, 2026",
-    title:
-      "The Future of Corporate Events and Brand Experiences",
-    image: "/blog/image.png",
-  },
-];
+import { blogs } from "./blogData";
 
 /* ============================================================
    BLOG GRID

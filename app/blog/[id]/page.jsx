@@ -2,87 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-
-const blogs = [
-  {
-    id: 1,
-    date: "July 17, 2026",
-    title: "Corporate Event Budget Planning Guide for Maximum ROI in 2026",
-    image: "/blog/image1.png",
-    description:
-      "Planning a successful corporate event requires a clear understanding of budgets, objectives, audiences, and expected outcomes. A well-planned budget helps brands create impactful experiences while maintaining control over costs.",
-  },
-  {
-    id: 2,
-    date: "July 10, 2026",
-    title: "Common Event Planning Mistakes and How to Avoid Them",
-    image: "/blog/image2.png",
-    description:
-      "Event planning involves multiple moving parts. From timelines and vendors to guest experience and execution, avoiding common mistakes can make the entire event smoother and more successful.",
-  },
-  {
-    id: 3,
-    date: "July 03, 2026",
-    title: "Event Marketing Trends 2026: What Brands Need to Know",
-    image: "/blog/image3.png",
-    description:
-      "Event marketing continues to evolve with new technologies, creative formats, and audience expectations. Brands are increasingly focusing on experiences that create meaningful engagement.",
-  },
-  {
-    id: 4,
-    date: "June 26, 2026",
-    title:
-      "The Ultimate Event Technology Checklist for Modern Event Planners",
-    image: "/blog/image4.png",
-    description:
-      "Technology plays an important role in modern events. From registration and audience engagement to production and analytics, the right tools can improve the overall event experience.",
-  },
-  {
-    id: 5,
-    date: "June 19, 2026",
-    title:
-      "Why Brands Are Choosing Virtual AR Event Planners in 2026",
-    image: "/blog/image5.png",
-    description:
-      "Virtual and augmented experiences are helping brands reach audiences in new ways. These technologies can combine storytelling, interaction, and innovation to create memorable experiences.",
-  },
-  {
-    id: 6,
-    date: "June 12, 2026",
-    title:
-      "Why Corporate Event Launches Are Critical for Brand Growth",
-    image: "/blog/image6.png",
-    description:
-      "A strong corporate launch can create awareness, build relationships, and communicate a brand's vision effectively. Strategic planning and creative execution are key to making these launches successful.",
-  },
-  {
-    id: 7,
-    date: "June 05, 2026",
-    title:
-      "How Experiential Marketing Creates Stronger Brand Connections",
-    image: "/blog/image7.png",
-    description:
-      "Experiential marketing allows audiences to interact directly with brands. These meaningful experiences can create stronger emotional connections and improve brand recall.",
-  },
-  {
-    id: 8,
-    date: "May 29, 2026",
-    title:
-      "Creating Memorable Experiences Through Strategic Event Design",
-    image: "/blog/image8.png",
-    description:
-      "Great event design combines creativity, strategy, production, and audience understanding. Every element should work together to create a seamless and memorable experience.",
-  },
-  {
-    id: 9,
-    date: "May 22, 2026",
-    title:
-      "The Future of Corporate Events and Brand Experiences",
-    image: "/blog/image9.png",
-    description:
-      "The future of events is moving toward more personalized, interactive, and technology-driven experiences. Brands are looking for innovative ways to connect with their audiences.",
-  },
-];
+import { blogs } from "@/Components/blog/blogData";
 
 export default function BlogDetailPage() {
   const params = useParams();
@@ -178,11 +98,29 @@ export default function BlogDetailPage() {
           </div>
 
 
-          {/* DATE */}
+          {/* DATE / CATEGORY / READING TIME */}
 
-          <p className="mt-6 text-[#5eb8d4] text-[10px] font-semibold">
-            {blog.date}
-          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <p className="text-[#5eb8d4] text-[10px] font-semibold">
+              {blog.date}
+            </p>
+            {blog.category && (
+              <span className="text-white/40 text-[10px]">•</span>
+            )}
+            {blog.category && (
+              <p className="text-[#5eb8d4] text-[10px] font-semibold uppercase tracking-wide">
+                {blog.category}
+              </p>
+            )}
+            {blog.readingTime && (
+              <span className="text-white/40 text-[10px]">•</span>
+            )}
+            {blog.readingTime && (
+              <p className="text-white/60 text-[10px] font-medium">
+                {blog.readingTime} read
+              </p>
+            )}
+          </div>
 
 
           {/* TITLE */}
@@ -217,24 +155,99 @@ export default function BlogDetailPage() {
               space-y-5
             "
           >
-            <p>
-              {blog.description}
-            </p>
+            {/* INTRO */}
+            <p>{blog.intro}</p>
 
-            <p>
-              At Wizcraft, every experience is designed with creativity,
-              precision, and a strong understanding of the audience. From
-              corporate events and brand activations to experiential
-              campaigns, the focus remains on creating experiences that
-              people remember.
-            </p>
+            {/* SECTIONS */}
+            {blog.sections?.map((section, i) => (
+              <div key={i}>
+                <h2
+                  className="
+                    text-white
+                    text-[16px]
+                    md:text-[19px]
+                    font-semibold
+                    mt-8
+                    mb-3
+                  "
+                >
+                  {section.heading}
+                </h2>
+                <p>{section.body}</p>
+              </div>
+            ))}
 
-            <p>
-              Successful events go beyond logistics. They bring together
-              strategy, storytelling, technology, production, and creative
-              execution to deliver meaningful experiences for brands and
-              their audiences.
-            </p>
+            {/* CHECKLIST */}
+            {blog.checklist?.length > 0 && (
+              <div>
+                <h2
+                  className="
+                    text-white
+                    text-[16px]
+                    md:text-[19px]
+                    font-semibold
+                    mt-8
+                    mb-3
+                  "
+                >
+                  Dolphin Planning Checklist
+                </h2>
+                <ul className="list-disc pl-5 space-y-2">
+                  {blog.checklist.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* FAQS */}
+            {blog.faqs?.length > 0 && (
+              <div>
+                <h2
+                  className="
+                    text-white
+                    text-[16px]
+                    md:text-[19px]
+                    font-semibold
+                    mt-8
+                    mb-3
+                  "
+                >
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-4">
+                  {blog.faqs.map((faq, i) => (
+                    <div key={i}>
+                      <p className="text-white font-semibold text-[13px] md:text-[15px] mb-1">
+                        {faq.q}
+                      </p>
+                      <p>{faq.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* CTA */}
+            {blog.ctaBody && (
+              <div
+                className="
+                  mt-10
+                  border
+                  border-[#2999c7]
+                  bg-white/5
+                  px-5
+                  py-6
+                  md:px-7
+                  md:py-8
+                "
+              >
+                <h2 className="text-white text-[16px] md:text-[19px] font-semibold mb-3">
+                  {blog.ctaTitle}
+                </h2>
+                <p>{blog.ctaBody}</p>
+              </div>
+            )}
           </div>
 
         </motion.article>
