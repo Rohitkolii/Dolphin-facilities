@@ -41,13 +41,84 @@ import { useEffect, useRef, useState } from "react";
 ============================================================ */
 
 const POSTER_OVERRIDES = {
-  "project-1": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
-  "project-2": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
-  "project-3": "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&q=80",
-  "project-4": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80",
-  "project-5": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80",
-  "project-6": "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+  "project-1": "/images/BVN.jpeg",
+  "project-2": "/images/BVN.jpeg",
+  "project-3": "/images/BVN.jpeg",
+  "project-4": "/images/PBVN.jpeg",
+  "project-5": "/images/BVN.jpeg",
+  "project-6": "/images/BVN.jpeg",
 };
+
+/* ============================================================
+   IMAGE OVERRIDE (MANUAL GALLERY IMAGES) — YAHAN APNI IMAGES DAALO
+   ============================================================
+   Video hamesha Google Drive se hi aayegi — usse kuch nahi hoga.
+   Lekin agar tum chahte ho ki popup mein video ke saath apni
+   khud ki images bhi ‹ › se cycle ho, to yahan un images ki
+   list de do.
+
+   1. Key wahi hogi jo POSTER_OVERRIDES mein use hoti hai —
+      project ka slug (Drive filename se number/extension hataa
+      ke), jaise "vanmela-bhopal-1.mp4" → key: "vanmela-bhopal"
+   2. Value ek ARRAY hai — usme jitni chaho utni image URLs/paths
+      daal sakte ho (online URL ya "/posters/xyz.jpg" jaisa local
+      path, dono chalega).
+
+   Example:
+   "vanmela-bhopal": [
+     "/posters/vanmela-bhopal-1.jpg",
+     "/posters/vanmela-bhopal-2.jpg",
+   ],
+
+   Agar kisi project ke liye yahan kuch nahi diya, to sirf Drive
+   se aayi video hi dikhegi (jaisa pehle tha) — kuch tootega nahi.
+============================================================ */
+
+const IMAGE_OVERRIDES = {
+  "all-evets-highlights": [
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80",
+    "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80",
+    "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1200&q=80",
+  ],
+  "project-1": [
+    "https://picsum.photos/seed/project-1-a/1200/800",
+    "https://picsum.photos/seed/project-1-b/1200/800",
+    "https://picsum.photos/seed/project-1-c/1200/800",
+  ],
+  "project-2": [
+    "https://picsum.photos/seed/project-2-a/1200/800",
+    "https://picsum.photos/seed/project-2-b/1200/800",
+    "https://picsum.photos/seed/project-2-c/1200/800",
+  ],
+  "project-3": [
+    "https://picsum.photos/seed/project-3-a/1200/800",
+    "https://picsum.photos/seed/project-3-b/1200/800",
+    "https://picsum.photos/seed/project-3-c/1200/800",
+  ],
+  "project-4": [
+    "https://picsum.photos/seed/project-4-a/1200/800",
+    "https://picsum.photos/seed/project-4-b/1200/800",
+    "https://picsum.photos/seed/project-4-c/1200/800",
+  ],
+  "project-5": [
+    "https://picsum.photos/seed/project-5-a/1200/800",
+    "https://picsum.photos/seed/project-5-b/1200/800",
+    "https://picsum.photos/seed/project-5-c/1200/800",
+  ],
+  "project-6": [
+    "https://picsum.photos/seed/project-6-a/1200/800",
+    "https://picsum.photos/seed/project-6-b/1200/800",
+    "https://picsum.photos/seed/project-6-c/1200/800",
+  ],
+};
+
+function findImageOverrides(key) {
+  const normalizedKey = key.toLowerCase().trim();
+  const match = Object.keys(IMAGE_OVERRIDES).find(
+    (k) => k.toLowerCase().trim() === normalizedKey
+  );
+  return match ? IMAGE_OVERRIDES[match] : [];
+}
 
 /* ============================================================
    TEMPORARY POSTER FALLBACK
@@ -113,8 +184,37 @@ function groupFilesIntoProjects(files) {
       name: file.name,
     }));
 
-    const firstVideo = media.find((m) => m.type === "video");
-    const firstImage = media.find((m) => m.type === "image");
+    // Manual images (tumhari apni images) — Drive ki video ke saath
+    // add ho jaati hain taaki popup mein ‹ › se cycle ho sake
+    const manualImages = findImageOverrides(key).map((url) => ({
+      type: "image",
+      url,
+      name: humanize(key),
+    }));
+
+    const combinedMedia = [...media, ...manualImages];
+
+    const firstVideoCheck = combinedMedia.find((m) => m.type === "video");
+    const hasAnyImage = combinedMedia.some((m) => m.type === "image");
+
+    // ABHI KE LIYE: agar project mein sirf video hai, koi image nahi
+    // (na Drive se, na manual), to turant test ke liye 3 temporary
+    // placeholder images apne aap add ho jaati hain — taaki popup
+    // mein ‹ › turant kaam kare. Baad mein IMAGE_OVERRIDES mein apni
+    // asli images daal doge to ye temporary images khud replace ho
+    // jaayengi.
+    if (firstVideoCheck && !hasAnyImage) {
+      for (let i = 1; i <= 3; i++) {
+        combinedMedia.push({
+          type: "image",
+          url: getTempPlaceholderImage(`${key}-${i}`),
+          name: humanize(key),
+        });
+      }
+    }
+
+    const firstVideo = combinedMedia.find((m) => m.type === "video");
+    const firstImage = combinedMedia.find((m) => m.type === "image");
     const firstFile = sorted[0];
 
     const descriptionSource = sorted.find(
@@ -137,7 +237,7 @@ function groupFilesIntoProjects(files) {
         firstImage?.url ||
         getTempPlaceholderImage(key),
       video: firstVideo?.url || null,
-      media,
+      media: combinedMedia,
     };
   });
 }
@@ -146,8 +246,6 @@ export default function PortfolioGrid() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const [showMore, setShowMore] = useState(false);
 
   /* POPUP */
   const [selectedProject, setSelectedProject] = useState(null);
@@ -165,7 +263,7 @@ export default function PortfolioGrid() {
           throw new Error(data.message || "Failed to fetch portfolio media");
         }
 
-        setProjects(groupFilesIntoProjects(data.files || []));
+        setProjects(groupFilesIntoProjects(data.files || []).slice(0, 9));
       } catch (err) {
         console.error("Unable to load portfolio media:", err);
         setError(err.message);
@@ -179,7 +277,7 @@ export default function PortfolioGrid() {
 
   const firstRow = projects.slice(0, 3);
   const secondRow = projects.slice(3, 6);
-  const extraProjects = projects.slice(6);
+  const thirdRow = projects.slice(6, 9);
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -280,11 +378,8 @@ export default function PortfolioGrid() {
             </div>
           )}
 
-          {showMore && extraProjects.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          {thirdRow.length > 0 && (
+            <div
               className="
                 mt-[4px]
                 sm:mt-[10px]
@@ -293,62 +388,11 @@ export default function PortfolioGrid() {
               "
             >
               <PortfolioRow
-                projects={extraProjects}
+                projects={thirdRow}
                 rowIndex={2}
                 onProjectClick={handleProjectClick}
               />
-            </motion.div>
-          )}
-
-          {extraProjects.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="
-                flex
-                justify-center
-
-                mt-5
-                md:mt-6
-                lg:mt-7
-              "
-            >
-              <motion.button
-                type="button"
-                onClick={() => setShowMore(!showMore)}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ duration: 0.2 }}
-                className="
-                  px-5
-                  py-2.5
-
-                  min-w-[90px]
-
-                  bg-gradient-to-r
-                  from-[#79cba8]
-                  to-[#329bd0]
-
-                  border
-                  border-[#73c9b9]
-
-                  text-white
-                  text-[15px]
-                  font-bold
-
-                  cursor-pointer
-
-                  transition-all
-                  duration-300
-
-                  hover:brightness-110
-                "
-              >
-                {showMore ? "Show Less" : "Show More"}
-              </motion.button>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
