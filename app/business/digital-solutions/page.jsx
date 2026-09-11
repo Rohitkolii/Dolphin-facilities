@@ -21,14 +21,14 @@ const services = [
   {
     icon: FaAward,
     title: "Live Streaming",
-    text: "Wizcraft brings over 30 years of expertise to the digital stage through cutting-edge Live Streaming Services. As a leading live streaming company in India and Dubai, we deliver seamless, high-impact broadcasts that connect global audiences with unforgettable, interactive experiences. Virtual Events In Immersive",
+    text: "Dolphin Facilities brings over 30 years of expertise to the digital stage through cutting-edge Live Streaming Services. As a leading live streaming company in India and Dubai, we deliver seamless, high-impact broadcasts that connect global audiences with unforgettable, interactive experiences. Virtual Events In Immersive",
     featured: true,
     animate: "fade-right",
   },
   {
     icon: FaBuilding,
     title: "Virtual Events With AR Based Content",
-    text: "Wizcraft Entertainment Agency redefines engagement through cutting-edge Virtual Event Services and immersive Augmented & Virtual Reality experiences. Merging creativity, technology, and storytelling, we craft interactive, high-impact digital environments that connect brands and audiences globally, transforming every event into an unforgettable, technology-driven experience.",
+    text: "Dolphin Facilities Entertainment Agency redefines engagement through cutting-edge Virtual Event Services and immersive Augmented & Virtual Reality experiences. Merging creativity, technology, and storytelling, we craft interactive, high-impact digital environments that connect brands and audiences globally, transforming every event into an unforgettable, technology-driven experience.",
     animate: "fade-left",
   },
   {
@@ -40,13 +40,13 @@ const services = [
   {
     icon: FaHandshake,
     title: "Virtual Events With Integrated VR",
-    text: "At Wizcraft, we bring over 30 years of expertise to create immersive Virtual Reality Event Services that redefine engagement. As a leading VR Event Management Company, we merge creativity and technology to craft interactive, high-impact virtual experiences that inspire, connect, and captivate globally.",
+    text: "At Dolphin Facilities, we bring over 30 years of expertise to create immersive Virtual Reality Event Services that redefine engagement. As a leading VR Event Management Company, we merge creativity and technology to craft interactive, high-impact virtual experiences that inspire, connect, and captivate globally.",
     animate: "fade-left",
   },
   {
     icon: FaChartLine,
     title: "Content Design & Management",
-    text: "At Wizcraft Entertainment Agency, we turn ideas into powerful stories through expert event content creation services. Combining creativity, strategy, and technology, we craft impactful narratives and immersive designs that elevate every brand experience, engaging audiences and leaving lasting impressions across live and digital platforms worldwide.",
+    text: "At Dolphin Facilities Entertainment Agency, we turn ideas into powerful stories through expert event content creation services. Combining creativity, strategy, and technology, we craft impactful narratives and immersive designs that elevate every brand experience, engaging audiences and leaving lasting impressions across live and digital platforms worldwide.",
     animate: "fade-right",
   },
   {
@@ -58,7 +58,7 @@ const services = [
   {
     icon: FaChartLine,
     title: "Digital Marketing",
-    text: "Wizcraft Digital is an ideas-driven digital experience agency that offers digital marketing, digital content creation, digital performance marketing, digital influencer outreach, digital web and app development solutions, AI integration, and digital automation services. It is the place where creativity, technology, and data come together to deliver complete digital campaigns and outcomes for future-ready brands.",
+    text: "Dolphin Facilities Digital is an ideas-driven digital experience agency that offers digital marketing, digital content creation, digital performance marketing, digital influencer outreach, digital web and app development solutions, AI integration, and digital automation services. It is the place where creativity, technology, and data come together to deliver complete digital campaigns and outcomes for future-ready brands.",
     animate: "fade-left",
   },
 ];
@@ -152,7 +152,7 @@ export default function DigitalSolutionsPage() {
       {/* ================= HERO ================= */}
         <Hero
           title="Digital Event Solutions Company in India"
-          desc="At Wizcraft, we redefine the future of experiences through Digital Event Solutions that blend creativity and technology."
+          desc="At Dolphin Facilities, we redefine the future of experiences through Digital Event Solutions that blend creativity and technology."
         />
 
       {/* ================= SERVICES ================= */}
@@ -239,7 +239,7 @@ export default function DigitalSolutionsPage() {
               md:text-[30px]
             "
           >
-            The Wizcraft Promise
+            The Dolphin Facilities Promise
           </p>
 
           <p

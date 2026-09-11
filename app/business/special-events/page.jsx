@@ -22,50 +22,50 @@ const services = [
   {
     icon: FaAward,
     title: "Opening and Closing Ceremonies",
-    text: "Wizcraft creates opening and closing ceremonies that define and celebrate history through emotion, spectacle, and meaning. From concept to live broadcast, our expert planners craft powerful, poetic experiences that capture the spirit of the occasion and leave audiences spellbound.",
+    text: "Dolphin Facilities creates opening and closing ceremonies that define and celebrate history through emotion, spectacle, and meaning. From concept to live broadcast, our expert planners craft powerful, poetic experiences that capture the spirit of the occasion and leave audiences spellbound.",
     featured: true,
     animate: "fade-right",
   },
   {
     icon: FaBuilding,
     title: "Trade Shows",
-    text: "At Wizcraft, we craft trade shows that ignite conversation, connection, and commerce. With expert planning, custom design, and immersive brand experiences, we transform empty halls into vibrant marketplaces where every handshake, interaction, and impression drives meaningful business impact.",
+    text: "At Dolphin Facilities, we craft trade shows that ignite conversation, connection, and commerce. With expert planning, custom design, and immersive brand experiences, we transform empty halls into vibrant marketplaces where every handshake, interaction, and impression drives meaningful business impact.",
     animate: "fade-left",
   },
   {
     icon: FaCommentDots,
     title: "Concerts & Festivals",
-    text: "At Wizcraft, concerts and festivals are movements of music, energy, and magic. Through iconic performances, world artists, and passionate fans, we craft seamless events where stage, sound, and emotion unite-transforming every performance into a connection, a memory, a legend.",
+    text: "At Dolphin Facilities, concerts and festivals are movements of music, energy, and magic. Through iconic performances, world artists, and passionate fans, we craft seamless events where stage, sound, and emotion unite-transforming every performance into a connection, a memory, a legend.",
     animate: "fade-right",
   },
   {
     icon: FaHandshake,
     title: "Sporting Events",
-    text: "At Wizcraft, we turn sport into celebration. As leading sports event organisers, we blend emotion, unity, and precision to create electrifying experiences, from league launches to award ceremonies, where every cheer, heartbeat, and victory becomes part of something truly unforgettable.",
+    text: "At Dolphin Facilities, we turn sport into celebration. As leading sports event organisers, we blend emotion, unity, and precision to create electrifying experiences, from league launches to award ceremonies, where every cheer, heartbeat, and victory becomes part of something truly unforgettable.",
     animate: "fade-left",
   },
   {
     icon: FaChartLine,
     title: "Cultural & Tourism Events",
-    text: "Wizcraft’s cultural and tourism events blend heritage with creativity, transforming traditions into immersive experiences. From folk performances to global showcases, we celebrate diversity and belonging, connecting people, places, and cultures through storytelling that unites emotion, pride, and modern artistic expression.",
+    text: "Dolphin Facilities’s cultural and tourism events blend heritage with creativity, transforming traditions into immersive experiences. From folk performances to global showcases, we celebrate diversity and belonging, connecting people, places, and cultures through storytelling that unites emotion, pride, and modern artistic expression.",
     animate: "fade-right",
   },
   {
     icon: FaChartLine,
     title: "Launch of New Initiatives",
-    text: "Every idea deserves a grand reveal. At Wizcraft, we transform corporate, government, and social launches into cinematic moments, crafted with creativity, precision, and emotion, ensuring every initiative inspires audiences, sparks conversation, and leaves an unforgettable mark long after the spotlight fades.",
+    text: "Every idea deserves a grand reveal. At Dolphin Facilities, we transform corporate, government, and social launches into cinematic moments, crafted with creativity, precision, and emotion, ensuring every initiative inspires audiences, sparks conversation, and leaves an unforgettable mark long after the spotlight fades.",
     animate: "fade-left",
   },
   {
     icon: FaChartLine,
     title: "Social Celebrations & Weddings",
-    text: "From milestone birthdays to destination weddings, Wizcraft brings heart, style, and soul to every celebration. Our expert wedding and event planners craft elegant, effortless experiences where every detail reflects love, luxury, and personality, transforming special occasions into timeless stories of joy and legacy.",
+    text: "From milestone birthdays to destination weddings, Dolphin Facilities brings heart, style, and soul to every celebration. Our expert wedding and event planners craft elegant, effortless experiences where every detail reflects love, luxury, and personality, transforming special occasions into timeless stories of joy and legacy.",
     animate: "fade-right",
   },
   {
     icon: FaChartLine,
     title: "Son et Lumière Spectaculars",
-    text: "Wizcraft’s Son et Lumière shows transform ancient forts into living storytellers, blending technology, history, and art through projection mapping, lighting, and sound. Each spectacle bridges past and present, turning heritage into an immersive experience that educates, entertains, and enchants audiences.",
+    text: "Dolphin Facilities’s Son et Lumière shows transform ancient forts into living storytellers, blending technology, history, and art through projection mapping, lighting, and sound. Each spectacle bridges past and present, turning heritage into an immersive experience that educates, entertains, and enchants audiences.",
     animate: "fade-left",
   },
 ];
@@ -190,7 +190,7 @@ export default function SpecialEventsPage() {
 
         <Hero
           title="Special Event Management Company"
-          desc="At Wizcraft Entertainment Agency, we transform ideas into extraordinary experiences that inspire and unite."
+          desc="At Dolphin Facilities Entertainment Agency, we transform ideas into extraordinary experiences that inspire and unite."
         />
 
       {/* ================= SERVICES ================= */}

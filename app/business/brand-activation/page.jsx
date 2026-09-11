@@ -280,7 +280,7 @@ export default function BrandActivationPage() {
       {/* Hero */}
       <Hero
         title="Brand Activation Agency in India"
-        desc="At Wizcraft, we go beyond designing events, we craft experiential brand activations that bring your brand to life. As a leading brand activation agency in India and Dubai, we help businesses connect with audiences through experiences that inspire loyalty, spark conversations, and deliver measurable outcomes."
+        desc="At Dolphin Facilities, we go beyond designing events, we craft experiential brand activations that bring your brand to life. As a leading brand activation agency in India and Dubai, we help businesses connect with audiences through experiences that inspire loyalty, spark conversations, and deliver measurable outcomes."
       />
 
       {/* ================= SERVICES ================= */}
@@ -456,7 +456,7 @@ export default function BrandActivationPage() {
         {/* Bottom Content */}
         <div className="mx-auto mt-10 max-w-[900px] text-center text-[12px] font-medium leading-[1.8] sm:mt-14 sm:text-[15px] md:text-[18px]">
           <p>
-            Join forces with Wizcraft, the preferred brand activation agency in
+            Join forces with Dolphin Facilities, the preferred brand activation agency in
             Dubai and trusted brand activation company in Mumbai, Gurgaon,
             Hyderabad, Bangalore and Chennai.
           </p>

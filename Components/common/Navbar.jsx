@@ -22,30 +22,37 @@ const links = [
         href: "/business/brand-activation",
 
         children: [
-          [
-            "Nation Building Events",
-            "/business/brand-activation/nation-building-events",
-          ],
-          [
-            "Data Derived Customer Centric Solutions",
-            "/business/brand-activation/data-drive-customer-centric-solution",
-          ],
-          [
-            "Corporate Event Launches",
-            "/business/brand-activation/corporate-event-launches",
-          ],
-          [
-            "On-Ground Activations",
-            "/business/brand-activation/on-ground-activation",
-          ],
-          [
-            "Exhibition Design & Management",
-            "/business/brand-activation/exhibition-design-and-management",
-          ],
-          [
-            "Content Curation – Animations, Graphics & AVs",
-            "/business/brand-activation/content-curation-animations-graphics-and-avs",
-          ],
+          // [
+          //   "Nation Building Events",
+          //   "/business/brand-activation/nation-building-events",
+          // ],
+          // [
+          //   "Data Derived Customer Centric Solutions",
+          //   "/business/brand-activation/data-drive-customer-centric-solution",
+          // ],
+          // [
+          //   "Corporate Event Launches",
+          //   "/business/brand-activation/corporate-event-launches",
+          // ],
+          // [
+          //   "On-Ground Activations",
+          //   "/business/brand-activation/on-ground-activation",
+          // ],
+          // [
+          //   "Exhibition Design & Management",
+          //   "/business/brand-activation/exhibition-design-and-management",
+          // ],
+          // [
+          //   "Content Curation – Animations, Graphics & AVs",
+          //   "/business/brand-activation/content-curation-animations-graphics-and-avs",
+          // ],
+          [ "Explore Activations",
+            "/business/brand-activation/explore-activations"],
+            [
+              "Explore Launches",
+              "/business/brand-activation/explore-launches"
+            ]
+         
         ],
       },
 
@@ -57,27 +64,35 @@ const links = [
         href: "/business/digital-solutions",
 
         children: [
-          ["Live Streaming", "/business/digital-solutions/live-streaming"],
+          // ["Live Streaming", "/business/digital-solutions/live-streaming"],
+          // [
+          //   "Virtual Events in Immersive Environments",
+          //   "/business/digital-solutions/virtual-events-immersive-environments",
+          // ],
+          // [
+          //   "Virtual Events with AR Based Content",
+          //   "/business/digital-solutions/virtual-events-with-ar-based-content",
+          // ],
+          // [
+          //   "Virtual Events with Integrated VR",
+          //   "/business/digital-solutions/virtual-events-with-integrated-vr",
+          // ],
+          // ["Hybrid Events", "/business/digital-solutions/hybrid-events"],
+          // [
+          //   "Content Design & Management",
+          //   "/business/digital-solutions/content-design-and-management",
+          // ],
+          // [
+          //   "Digital Marketing",
+          //   "/business/digital-solutions/digital-marketing",
+          // ],
           [
-            "Virtual Events in Immersive Environments",
-            "/business/digital-solutions/virtual-events-immersive-environments",
+            "Explore our work",
+            "/business/digital-solutions/explore-our-work"
           ],
           [
-            "Virtual Events with AR Based Content",
-            "/business/digital-solutions/virtual-events-with-ar-based-content",
-          ],
-          [
-            "Virtual Events with Integrated VR",
-            "/business/digital-solutions/virtual-events-with-integrated-vr",
-          ],
-          ["Hybrid Events", "/business/digital-solutions/hybrid-events"],
-          [
-            "Content Design & Management",
-            "/business/digital-solutions/content-design-and-management",
-          ],
-          [
-            "Digital Marketing",
-            "/business/digital-solutions/digital-marketing",
+            "Explore  Outdoor Media",
+            "/business/digital-solutions/explore-outdoor-media"
           ],
         ],
       },
@@ -90,37 +105,45 @@ const links = [
         href: "/business/special-events",
 
         children: [
-          [
-            "Special Event Management Services",
-            "/business/special-events/special-event-management-services",
-          ],
-          [
-            "Opening & Closing Ceremonies",
-            "/business/special-events/opening-closing-ceremonies",
-          ],
-          [
-            "Concerts & Festivals",
-            "/business/special-events/concerts-festivals",
-          ],
-          ["Sporting Events", "/business/special-events/sporting-events"],
-          [
-            "Launch of New Initiatives",
-            "/business/special-events/launch-new-initiatives",
-          ],
-          ["Trade Shows", "/business/special-events/trade-shows"],
-          [
-            "Cultural & Tourism Events",
-            "/business/special-events/cultural-tourism-events",
-          ],
-          [
-            "Son Et Lumière Spectaculars",
-            "/business/special-events/son-et-lumiere-spectaculars",
-          ],
-          [
-            "Social Celebrations",
-            "/business/special-events/social-celebrations",
-          ],
-          ["Weddings", "/business/special-events/weddings"],
+          // [
+          //   "Special Event Management Services",
+          //   "/business/special-events/special-event-management-services",
+          // ],
+          // [
+          //   "Opening & Closing Ceremonies",
+          //   "/business/special-events/opening-closing-ceremonies",
+          // ],
+          // [
+          //   "Concerts & Festivals",
+          //   "/business/special-events/concerts-festivals",
+          // ],
+          // ["Sporting Events", "/business/special-events/sporting-events"],
+          // [
+          //   "Launch of New Initiatives",
+          //   "/business/special-events/launch-new-initiatives",
+          // ],
+          // ["Trade Shows", "/business/special-events/trade-shows"],
+          // [
+          //   "Cultural & Tourism Events",
+          //   "/business/special-events/cultural-tourism-events",
+          // ],
+          // [
+          //   "Son Et Lumière Spectaculars",
+          //   "/business/special-events/son-et-lumiere-spectaculars",
+          // ],
+          // [
+          //   "Social Celebrations",
+          //   "/business/special-events/social-celebrations",
+          // ],
+          // ["Weddings", "/business/special-events/weddings"],
+        [
+          "Explore Events",
+          "/business/special-events/explore-events"
+        ],
+        [
+          "Explore Goverment Projects",
+          "/business/special-events/explore-government-projects"
+        ]
         ],
       },
     ],
