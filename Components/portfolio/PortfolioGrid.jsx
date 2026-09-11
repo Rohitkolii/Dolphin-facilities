@@ -17,7 +17,9 @@ import { useEffect, useRef, useState } from "react";
    2. Neeche POSTER_OVERRIDES object mein entry add karo:
       key = project ka slug (filename se number/extension hata
       ke, jo bhi "vanmela-bhopal-1.mp4" ban jaata hai use
-      "vanmela-bhopal" jaisa likhna hai — case-sensitive nahi)
+      "vanmela-bhopal" jaisa likhna hai — case-sensitive nahi,
+      spaces/dashes/underscores bhi ab automatically match ho
+      jaate hain)
       value = "/images/vanmela-bhopal.jpg" (public folder ke
       andar se path, "/public" mat likhna, seedha "/" se shuru
       karo)
@@ -25,6 +27,12 @@ import { useEffect, useRef, useState } from "react";
    Agar kisi project ka override nahi diya, to wo automatically
    Drive ke thumbnail ya pehli image se poster banayega (jaisa
    pehle tha) — kuch bhi tootega nahi.
+
+   NOTE: Random/temporary placeholder image (picsum.photos) ab
+   hata di gayi hai. Ab agar kisi project ka koi bhi image nahi
+   milta (na override, na Drive thumbnail, na koi image file),
+   to bas poster/image blank rahega — koi random image nahi
+   dikhegi.
 ============================================================ */
 
 const POSTER_OVERRIDES = {
@@ -79,28 +87,37 @@ const IMAGE_OVERRIDES = {
   ],
 };
 
+/* ============================================================
+   KEY NORMALIZE — spaces / underscores / multiple dashes sabko
+   ek jaisa "single-dash" format mein convert karta hai, taaki
+   Drive filename se bani key aur tumhari override key (chahe
+   thoda alag format mein likhi ho) match ho jaaye.
+   Jaise: "Bhopal Herbal Fair" aur "bhopal-herbal-fair" dono
+   normalize hoke "bhopal-herbal-fair" ban jaayenge.
+============================================================ */
+
+function normalizeKey(key) {
+  return key
+    .toLowerCase()
+    .trim()
+    .replace(/[\s_]+/g, "-")
+    .replace(/-+/g, "-");
+}
+
 function findImageOverrides(key) {
-  const normalizedKey = key.toLowerCase().trim();
+  const normalizedKey = normalizeKey(key);
   const match = Object.keys(IMAGE_OVERRIDES).find(
-    (k) => k.toLowerCase().trim() === normalizedKey
+    (k) => normalizeKey(k) === normalizedKey
   );
   return match ? IMAGE_OVERRIDES[match] : [];
 }
 
-/* ============================================================
-   TEMPORARY POSTER FALLBACK
-   ============================================================
-   Video Drive API se already sahi aa rahi hai — usko haath nahi
-   lagaya. Sirf jab kisi project ka koi bhi poster/image nahi
-   milta (na override, na Drive thumbnail, na koi image file),
-   tab tak ke liye ek random placeholder image laga di jaati hai
-   — sirf temporary hai. Jaise hi tum apni "public/images/"
-   folder se real image daal ke POSTER_OVERRIDES mein entry
-   add karoge, wahi asli image dikhne lagegi.
-============================================================ */
-
-function getTempPlaceholderImage(key) {
-  return `https://picsum.photos/seed/${encodeURIComponent(key)}/800/600`;
+function findPosterOverride(key) {
+  const normalizedKey = normalizeKey(key);
+  const match = Object.keys(POSTER_OVERRIDES).find(
+    (k) => normalizeKey(k) === normalizedKey
+  );
+  return match ? POSTER_OVERRIDES[match] : null;
 }
 
 function getGroupKey(fileName) {
@@ -123,14 +140,6 @@ function humanize(slug) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function findPosterOverride(key) {
-  const normalizedKey = key.toLowerCase().trim();
-  const match = Object.keys(POSTER_OVERRIDES).find(
-    (k) => k.toLowerCase().trim() === normalizedKey
-  );
-  return match ? POSTER_OVERRIDES[match] : null;
-}
-
 function groupFilesIntoProjects(files) {
   const groups = new Map();
 
@@ -138,6 +147,12 @@ function groupFilesIntoProjects(files) {
     const key = getGroupKey(file.name);
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(file);
+
+    // DEBUG: agar override wali image phir bhi na dikhe, is line
+    // ko uncomment karke console mein dekho actual key kya ban
+    // rahi hai, aur wahi (ya uska normalize hua version)
+    // POSTER_OVERRIDES / IMAGE_OVERRIDES mein use karo.
+    // console.log("Drive file:", file.name, "→ generated key:", key);
   });
 
   return Array.from(groups.entries()).map(([key, groupFiles]) => {
@@ -161,25 +176,6 @@ function groupFilesIntoProjects(files) {
 
     const combinedMedia = [...media, ...manualImages];
 
-    const firstVideoCheck = combinedMedia.find((m) => m.type === "video");
-    const hasAnyImage = combinedMedia.some((m) => m.type === "image");
-
-    // ABHI KE LIYE: agar project mein sirf video hai, koi image nahi
-    // (na Drive se, na manual), to turant test ke liye 3 temporary
-    // placeholder images apne aap add ho jaati hain — taaki popup
-    // mein ‹ › turant kaam kare. Baad mein IMAGE_OVERRIDES mein apni
-    // asli images daal doge to ye temporary images khud replace ho
-    // jaayengi.
-    if (firstVideoCheck && !hasAnyImage) {
-      for (let i = 1; i <= 3; i++) {
-        combinedMedia.push({
-          type: "image",
-          url: getTempPlaceholderImage(`${key}-${i}`),
-          name: humanize(key),
-        });
-      }
-    }
-
     const firstVideo = combinedMedia.find((m) => m.type === "video");
     const firstImage = combinedMedia.find((m) => m.type === "image");
     const firstFile = sorted[0];
@@ -189,6 +185,8 @@ function groupFilesIntoProjects(files) {
     );
 
     // Poster priority: manual override > Drive thumbnail > pehli image
+    // Random/temp placeholder ab hata diya gaya hai — agar kuch na
+    // mile to poster null rahega (koi random image nahi dikhegi).
     const manualPoster = findPosterOverride(key);
 
     return {
@@ -196,13 +194,7 @@ function groupFilesIntoProjects(files) {
       category: "",
       date: "",
       description: descriptionSource?.description || "",
-      // Poster order: manual override > Drive thumbnail > pehli image >
-      // (agar kuch bhi nahi mila) temporary placeholder image
-      poster:
-        manualPoster ||
-        firstFile?.thumbnail ||
-        firstImage?.url ||
-        getTempPlaceholderImage(key),
+      poster: manualPoster || firstFile?.thumbnail || firstImage?.url || null,
       video: firstVideo?.url || null,
       media: combinedMedia,
     };
@@ -558,7 +550,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
       "
       style={{ flexBasis: 0 }}
     >
-      {/* POSTER — hamesha dikhta hai, halka, laggy nahi */}
+      {/* POSTER — hamesha dikhta hai (agar mile), halka, laggy nahi */}
 
       {project.poster && (
         <img
