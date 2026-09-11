@@ -41,6 +41,9 @@ import { useEffect, useRef, useState } from "react";
 ============================================================ */
 
 const POSTER_OVERRIDES = {
+  "eicher": "/images/eicher-poster.jpeg",
+  "bhopal-herbal-fair": "/images/bhopal-herbal-fair-poster.jpeg",
+  "ujjain-herbal-fair": "/images/ujjain-herbal-fair-poster.jpeg",
   "project-1": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
   "project-2": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
   "project-3": "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&q=80",
@@ -75,15 +78,37 @@ const POSTER_OVERRIDES = {
 ============================================================ */
 
 const IMAGE_OVERRIDES = {
+  "eicher": [
+    "/images/eicher-1.jpg",
+    "/images/eicher-2.jpg",
+    "/images/eicher-3.jpg",
+    "/images/eicher-4.jpg",
+    "/images/eicher-5.jpg",
+    "/images/eicher-6.jpg",
+    "/images/eicher-7.jpg",
+    "/images/eicher-8.jpg",
+    "/images/eicher-9.jpg",
+    "/images/eicher-10.jpg",
+    "/images/eicher-11.jpg",
+    "/images/eicher-gaurav-utsav.png",
+  ],
+  "bhopal-herbal-fair": [
+    "/images/bhopal-herbal-fair-1.jpg",
+    "/images/bhopal-herbal-fair-2.jpg",
+  ],
+  "ujjain-herbal-fair": [
+    "/images/ujjain-herbal-fair-1.jpg",
+    "/images/ujjain-herbal-fair-2.png",
+  ],
   "all-evets-highlights": [
     "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80",
     "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80",
     "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1200&q=80",
   ],
   "project-1": [
-    "/images/DSC_1465.jpg",
-    "/images/SC_1502.jpg",
-    "/images/SC_1595.jpg",
+    "/images/project-1-a.jpg",
+    "/images/project-1-b.jpg",
+    "/images/project-1-c.jpg",
   ],
   "project-2": [
     "/images/project-2-a.jpg",
