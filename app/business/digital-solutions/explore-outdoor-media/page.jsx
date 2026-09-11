@@ -25,7 +25,7 @@ export default function Page() {
 
 
       <NationGallery
-        image="/images/DSC_1664.jpg"
+        image="/images/DSC_1703.jpg"
       />
 
    
