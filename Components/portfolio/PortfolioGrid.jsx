@@ -10,12 +10,14 @@ import { useEffect, useRef, useState } from "react";
 
    PORTFOLIO GRID — Video Google Drive se,
 
-   CARD/POSTER IMAGE sirf public/portfolio-images/ se aayegi.
+   lekin CARD/POSTER + GALLERY IMAGES sirf
+
+   public/portfolio-images/ se aayengi.
 
 
    ============================================================
 
-   POSTER OVERRIDE — YAHAN APNI LOCAL IMAGES DAALO
+   LOCAL PORTFOLIO IMAGES — public/portfolio-images/
 
    ============================================================
 
@@ -42,9 +44,11 @@ import { useEffect, useRef, useState } from "react";
       karo)
 
 
-   Agar kisi project ka local image override nahi diya, to poster blank
+   Agar kisi project ke liye local image override nahi hai,
 
-   rahega. Drive thumbnail ya Drive image fallback ke roop mein use nahi hogi.
+   to card poster blank rahega. Drive thumbnail/image fallback
+
+   ke roop mein kabhi use nahi hogi.
 
 
    NOTE: Random/temporary placeholder image (picsum.photos) ab
@@ -60,15 +64,11 @@ import { useEffect, useRef, useState } from "react";
 ============================================================ */
 
 
-const POSTER_OVERRIDES = {
+// POSTER_OVERRIDES intentionally not used.
 
-  "eicher": "/images/eicher-poster.jpeg",
+// Card poster is always the first image from IMAGE_OVERRIDES
 
-  "bhopal-herbal-fair": "/portfolio-images/bhopal-herbal-fair-poster.jpeg",
-
-  "ujjain-herbal-fair": "/portfolio-images/ujjain-herbal-fair-poster.jpeg",
-
-};
+// (public/portfolio-images/).
 
 
 /* ============================================================
@@ -294,20 +294,26 @@ function groupFilesIntoProjects(files) {
     );
 
 
-    const media = sorted.map((file) => ({
+    // Google Drive se SIRF VIDEO lo.
 
-      type: file.mimeType?.startsWith("video/") ? "video" : "image",
+    // Drive ki koi image/thumbnail card ya popup mein use nahi hogi.
 
-      url: file.url,
+    const driveVideos = sorted
 
-      name: file.name,
+      .filter((file) => file.mimeType?.startsWith("video/"))
 
-    }));
+      .map((file) => ({
+
+        type: "video",
+
+        url: file.url,
+
+        name: file.name,
+
+      }));
 
 
-    // Manual images (tumhari apni images) — Drive ki video ke saath
-
-    // add ho jaati hain taaki popup mein ‹ › se cycle ho sake
+    // Images SIRF public/portfolio-images/ se.
 
     const manualImages = findImageOverrides(key).map((url) => ({
 
@@ -320,14 +326,14 @@ function groupFilesIntoProjects(files) {
     }));
 
 
-    const combinedMedia = [...media, ...manualImages];
+    // Popup mein bhi sirf Drive videos + local portfolio-images.
+
+    const combinedMedia = [...driveVideos, ...manualImages];
 
 
-    const firstVideo = combinedMedia.find((m) => m.type === "video");
+    const firstVideo = driveVideos[0];
 
-    const firstImage = combinedMedia.find((m) => m.type === "image");
-
-    const firstFile = sorted[0];
+    const firstImage = manualImages[0];
 
 
     const descriptionSource = sorted.find(
@@ -337,13 +343,11 @@ function groupFilesIntoProjects(files) {
     );
 
 
-    // Poster: sirf public/portfolio-images/ se image.
+    // CARD POSTER SIRF public/portfolio-images/ se aayega.
 
-    // Priority: manual poster override > IMAGE_OVERRIDES ki first local image.
+    // Drive thumbnail, Drive image aur random/Picsum kabhi use nahi honge.
 
-    // Drive thumbnail/image aur random placeholder kabhi use nahi honge.
-
-    const manualPoster = findPosterOverride(key);
+    const localPoster = firstImage?.url || null;
 
 
     return {
@@ -356,7 +360,7 @@ function groupFilesIntoProjects(files) {
 
       description: descriptionSource?.description || "",
 
-      poster: manualPoster || manualImages[0]?.url || null,
+      poster: localPoster,
 
       video: firstVideo?.url || null,
 
