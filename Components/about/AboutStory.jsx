@@ -169,7 +169,7 @@ export default function AboutStory() {
         >
           <StoryCard
             title="Rooted in Madhya Pradesh, Ready Across India"
-            image="/images/DSC_1502.JPG"
+            image="/images/DSC_1502.jpg"
             imageAlt="Dolphin Facilities Office"
             imageSide="right"
           >
@@ -252,7 +252,7 @@ export default function AboutStory() {
         >
           <StoryCard
             title="Visibility Where Audiences Live, Work and Travel"
-            image="/images/DSC_1465.JPG"
+            image="/images/DSC_1465.jpg"
             imageAlt="Advertising and Outdoor Campaign"
             imageSide="right"
           >

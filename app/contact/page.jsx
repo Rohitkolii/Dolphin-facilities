@@ -9,66 +9,16 @@ import emailjs from "@emailjs/browser";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const cities = [
-  "Mumbai",
-  "Delhi",
-  "Bengaluru",
-  "Chennai",
-  "Hyderabad",
-  "Gujarat",
-  "Dubai",
-];
+const cities = ["Bhopal"];
 
 const offices = {
-  Mumbai: {
-    title: "Mumbai Office",
+  Bhopal: {
+    title: "Bhopal Office",
     address:
-      "Second floor, B-6, Valecha Chambers, New Link Road, Andheri West, Mumbai, Mumbai Suburban, Maharashtra - 400053",
+      "17-18 Block A, Second Floor, Gammon India, TT Nagar, Bhopal - 462003",
     phone: "(+91) 02247791300",
-    lat: 19.136,
-    lng: 72.827,
-  },
-  Delhi: {
-    title: "Delhi Office",
-    address: "New Delhi, Delhi, India",
-    phone: "+91 2247791300",
-    lat: 28.6139,
-    lng: 77.209,
-  },
-  Bengaluru: {
-    title: "Bengaluru Office",
-    address: "Bengaluru, Karnataka, India",
-    phone: "+91 2247791300",
-    lat: 12.9716,
-    lng: 77.5946,
-  },
-  Chennai: {
-    title: "Chennai Office",
-    address: "Chennai, Tamil Nadu, India",
-    phone: "+91 2247791300",
-    lat: 13.0827,
-    lng: 80.2707,
-  },
-  Hyderabad: {
-    title: "Hyderabad Office",
-    address: "Hyderabad, Telangana, India",
-    phone: "+91 2247791300",
-    lat: 17.385,
-    lng: 78.4867,
-  },
-  Gujarat: {
-    title: "Gujarat Office",
-    address: "Ahmedabad, Gujarat, India",
-    phone: "+91 2247791300",
-    lat: 23.0225,
-    lng: 72.5714,
-  },
-  Dubai: {
-    title: "Dubai Office",
-    address: "Dubai, United Arab Emirates",
-    phone: "+971 2247791300",
-    lat: 25.2048,
-    lng: 55.2708,
+    lat: 23.2325,
+    lng: 77.4055,
   },
 };
 
@@ -146,7 +96,7 @@ const ContactCard = ({ icon, title, children }) => {
 /* ---------------- PAGE ---------------- */
 
 export default function ContactPage() {
-  const [activeCity, setActiveCity] = useState("Mumbai");
+  const [activeCity, setActiveCity] = useState("Bhopal");
   const office = offices[activeCity];
 
   const [formData, setFormData] = useState({
@@ -230,8 +180,8 @@ export default function ContactPage() {
 
           <section className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-[17px]">
             <ContactCard icon={<LocationIcon />} title="Location">
-              Mumbai, Delhi, Bengaluru, Chennai,
-             
+            17-18 Block A, Second Floor, 
+Gammon India, TT Nagar,Bhopal,462003
             </ContactCard>
 
             <ContactCard icon={<MailIcon />} title="Email">
@@ -249,10 +199,10 @@ export default function ContactPage() {
 
           <section className="mt-[80px]">
             <p data-aos="zoom-in-left" className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent">
-              Our Locations
+              Our Location
             </p>
             <p data-aos="fade-up" className="text-center text-xl text-white">
-              Explore Our Offices Across Different Cities
+              Visit Us At Our Bhopal Office
             </p>
 
             {/* CITY TABS */}

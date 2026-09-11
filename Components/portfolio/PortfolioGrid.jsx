@@ -32,6 +32,22 @@ const POSTER_OVERRIDES = {
   // "eicher": "/posters/eicher.jpg",
 };
 
+/* ============================================================
+   TEMPORARY POSTER FALLBACK
+   ============================================================
+   Video Drive API se already sahi aa rahi hai — usko haath nahi
+   lagaya. Sirf jab kisi project ka koi bhi poster/image nahi
+   milta (na override, na Drive thumbnail, na koi image file),
+   tab tak ke liye ek random placeholder image laga di jaati hai
+   — sirf temporary hai. Jaise hi tum apni "public/posters/"
+   folder se real image daal ke POSTER_OVERRIDES mein entry
+   add karoge, wahi asli image dikhne lagegi.
+============================================================ */
+
+function getTempPlaceholderImage(key) {
+  return `https://picsum.photos/seed/${encodeURIComponent(key)}/800/600`;
+}
+
 function getGroupKey(fileName) {
   const withoutExt = fileName.replace(/\.[^/.]+$/, "");
   const key = withoutExt.replace(/[-_\s]*\d+$/, "").trim();
@@ -96,7 +112,13 @@ function groupFilesIntoProjects(files) {
       category: "",
       date: "",
       description: descriptionSource?.description || "",
-      poster: manualPoster || firstFile?.thumbnail || firstImage?.url || null,
+      // Poster order: manual override > Drive thumbnail > pehli image >
+      // (agar kuch bhi nahi mila) temporary placeholder image
+      poster:
+        manualPoster ||
+        firstFile?.thumbnail ||
+        firstImage?.url ||
+        getTempPlaceholderImage(key),
       video: firstVideo?.url || null,
       media,
     };
