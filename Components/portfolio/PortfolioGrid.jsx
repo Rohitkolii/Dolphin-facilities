@@ -211,75 +211,305 @@ function humanize(slug) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+// function groupFilesIntoProjects(files) {
+//   const groups = new Map();
+//   console.log(files);
+
+//   files.forEach((file) => {
+//     const key = getGroupKey(file.name);
+
+//     if (!groups.has(key)) groups.set(key, []);
+
+//     groups.get(key).push(file);
+
+//     // DEBUG: agar override wali image phir bhi na dikhe, is line
+
+//     // ko uncomment karke console mein dekho actual key kya ban
+
+//     // rahi hai, aur wahi (ya uska normalize hua version)
+
+//     // POSTER_OVERRIDES / IMAGE_OVERRIDES mein use karo.
+    
+//     console.log("Drive file:", file.name, "→ generated key:", key);
+//   });
+
+//   return Array.from(groups.entries()).map(([key, groupFiles]) => {
+//     const sorted = [...groupFiles].sort(
+//       (a, b) => getSortIndex(a.name) - getSortIndex(b.name),
+//     );
+
+//     // Google Drive se SIRF VIDEO lo.
+
+//     // Drive ki koi image/thumbnail card ya popup mein use nahi hogi.
+
+//     const driveVideos = sorted
+
+//       .filter((file) => file.mimeType?.startsWith("video/"))
+
+//       .map((file) => ({
+//         type: "video",
+
+//         url: file.url,
+
+//         name: file.name,
+//       }));
+
+//     // Images SIRF public/portfolio-images/ se.
+
+//     const manualImages = findImageOverrides(key).map((url) => ({
+//       type: "image",
+
+//       url,
+
+//       name: humanize(key),
+//     }));
+
+//     // Popup mein bhi sirf Drive videos + local portfolio-images.
+
+//     const combinedMedia = [...driveVideos, ...manualImages];
+
+//     const firstVideo = driveVideos[0];
+
+//     const firstImage = manualImages[0];
+
+//     const descriptionSource = sorted.find(
+//       (f) => f.description && f.description.trim().length > 0,
+//     );
+
+//     // CARD POSTER SIRF public/portfolio-images/ se aayega.
+
+//     // Drive thumbnail, Drive image aur random/Picsum kabhi use nahi honge.
+
+//     const localPoster = firstImage?.url || null;
+
+//     return {
+//       title: humanize(key),
+
+//       category: "",
+
+//       date: "",
+
+//       description: descriptionSource?.description || "",
+
+//       poster: localPoster,
+
+//       video: firstVideo?.url || null,
+
+//       media: combinedMedia,
+//     };
+//   });
+// }
+
+
+// function groupFilesIntoProjects(files) {
+//   const groups = new Map();
+
+//   files.forEach((file) => {
+//     const key = getGroupKey(file.name);
+
+//     if (!groups.has(key)) {
+//       groups.set(key, []);
+//     }
+
+//     groups.get(key).push(file);
+
+//     console.log(
+//       "Drive file:",
+//       file.name,
+//       "→ generated key:",
+//       key,
+//     );
+//   });
+
+//   return Array.from(groups.entries()).map(([key, groupFiles]) => {
+//     const sorted = [...groupFiles].sort(
+//       (a, b) => getSortIndex(a.name) - getSortIndex(b.name),
+//     );
+
+//     // =====================================================
+//     // DRIVE VIDEOS
+//     // =====================================================
+
+//     const driveVideos = sorted
+//       .filter((file) => file.mimeType?.startsWith("video/"))
+//       .map((file) => ({
+//         type: "video",
+//         url: file.url,
+//         name: file.name,
+//       }));
+
+//     // =====================================================
+//     // LOCAL IMAGES
+//     // IMAGE_OVERRIDES se aayengi
+//     // =====================================================
+
+//     const manualImages = findImageOverrides(key).map((url) => ({
+//       type: "image",
+//       url,
+//       name: humanize(key),
+//     }));
+
+//     // =====================================================
+//     // DRIVE THUMBNAIL
+//     //
+//     // Card ke default poster ke liye.
+//     // Agar thumbnail available hai to first video ki
+//     // thumbnail use hogi.
+//     // =====================================================
+
+//     const firstVideoFile = sorted.find((file) =>
+//       file.mimeType?.startsWith("video/"),
+//     );
+
+//     const driveThumbnail = firstVideoFile?.thumbnail || null;
+
+//     // =====================================================
+//     // POSTER PRIORITY
+//     //
+//     // 1. Local IMAGE_OVERRIDE
+//     // 2. Drive thumbnail
+//     // 3. null
+//     // =====================================================
+
+//     const localPoster = manualImages[0]?.url || driveThumbnail;
+
+//     // =====================================================
+//     // DESCRIPTION
+//     // =====================================================
+
+//     const descriptionSource = sorted.find(
+//       (file) =>
+//         file.description &&
+//         file.description.trim().length > 0,
+//     );
+
+//     // =====================================================
+//     // COMBINED MEDIA
+//     //
+//     // Popup ke liye:
+//     // Drive videos + local images
+//     //
+//     // NOTE:
+//     // Thumbnail ko media list mein nahi daal rahe.
+//     // Thumbnail sirf card poster hai.
+//     // =====================================================
+
+//     const combinedMedia = [
+//       ...driveVideos,
+//       ...manualImages,
+//     ];
+
+//     return {
+//       title: humanize(key),
+
+//       category: "",
+
+//       date: "",
+
+//       description:
+//         descriptionSource?.description || "",
+
+//       poster: localPoster,
+
+//       video: driveVideos[0]?.url || null,
+
+//       media: combinedMedia,
+
+//       // Useful for debugging / future use
+//       videoCount: driveVideos.length,
+//     };
+//   });
+// }
+
 function groupFilesIntoProjects(files) {
   const groups = new Map();
 
   files.forEach((file) => {
     const key = getGroupKey(file.name);
 
-    if (!groups.has(key)) groups.set(key, []);
+    if (!groups.has(key)) {
+      groups.set(key, []);
+    }
 
     groups.get(key).push(file);
 
-    // DEBUG: agar override wali image phir bhi na dikhe, is line
-
-    // ko uncomment karke console mein dekho actual key kya ban
-
-    // rahi hai, aur wahi (ya uska normalize hua version)
-
-    // POSTER_OVERRIDES / IMAGE_OVERRIDES mein use karo.
-
-    console.log("Drive file:", file.name, "→ generated key:", key);
+    console.log(
+      "Drive file:",
+      file.name,
+      "→ generated key:",
+      key
+    );
   });
 
   return Array.from(groups.entries()).map(([key, groupFiles]) => {
     const sorted = [...groupFiles].sort(
-      (a, b) => getSortIndex(a.name) - getSortIndex(b.name),
+      (a, b) => getSortIndex(a.name) - getSortIndex(b.name)
     );
 
-    // Google Drive se SIRF VIDEO lo.
-
-    // Drive ki koi image/thumbnail card ya popup mein use nahi hogi.
+    // =====================================================
+    // DRIVE VIDEOS
+    // =====================================================
 
     const driveVideos = sorted
-
       .filter((file) => file.mimeType?.startsWith("video/"))
-
       .map((file) => ({
         type: "video",
-
         url: file.url,
-
         name: file.name,
       }));
 
-    // Images SIRF public/portfolio-images/ se.
+    // =====================================================
+    // LOCAL IMAGES
+    // =====================================================
 
     const manualImages = findImageOverrides(key).map((url) => ({
       type: "image",
-
       url,
-
       name: humanize(key),
     }));
 
-    // Popup mein bhi sirf Drive videos + local portfolio-images.
+    // =====================================================
+    // POSTER
+    //
+    // Google Drive thumbnail ko use NAHI kar rahe because
+    // lh3.googleusercontent.com/drive-storage URL fail ho raha hai.
+    //
+    // Priority:
+    // 1. Local IMAGE_OVERRIDE
+    // 2. null
+    //
+    // Agar local image nahi hai to video khud card ke
+    // background/poster ke roop mein handle hoga.
+    // =====================================================
 
-    const combinedMedia = [...driveVideos, ...manualImages];
+    const firstVideoFile = sorted.find((file) =>
+  file.mimeType?.startsWith("video/")
+);
 
-    const firstVideo = driveVideos[0];
+const driveThumbnail = firstVideoFile?.thumbnail || null;
 
-    const firstImage = manualImages[0];
+const localPoster = manualImages[0]?.url || driveThumbnail;
+
+    // const localPoster = manualImages[0]?.url || null;
+
+    // =====================================================
+    // DESCRIPTION
+    // =====================================================
 
     const descriptionSource = sorted.find(
-      (f) => f.description && f.description.trim().length > 0,
+      (file) =>
+        file.description &&
+        file.description.trim().length > 0
     );
 
-    // CARD POSTER SIRF public/portfolio-images/ se aayega.
+    // =====================================================
+    // COMBINED MEDIA
+    // =====================================================
 
-    // Drive thumbnail, Drive image aur random/Picsum kabhi use nahi honge.
-
-    const localPoster = firstImage?.url || null;
+    const combinedMedia = [
+      ...driveVideos,
+      ...manualImages,
+    ];
 
     return {
       title: humanize(key),
@@ -288,20 +518,24 @@ function groupFilesIntoProjects(files) {
 
       date: "",
 
-      description: descriptionSource?.description || "",
+      description:
+        descriptionSource?.description || "",
 
       poster: localPoster,
 
-      video: firstVideo?.url || null,
+      video: driveVideos[0]?.url || null,
 
       media: combinedMedia,
+
+      videoCount: driveVideos.length,
     };
   });
 }
 
+
 export default function PortfolioGrid() {
   const [projects, setProjects] = useState([]);
-
+  
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState(null);
@@ -328,7 +562,8 @@ export default function PortfolioGrid() {
         if (!response.ok || !data.success) {
           throw new Error(data.message || "Failed to fetch portfolio media");
         }
-
+        // console.log(groupFilesIntoProjects(data.files || []).slice(0, 9));
+        
         setProjects(groupFilesIntoProjects(data.files || []).slice(0, 9));
       } catch (err) {
         console.error("Unable to load portfolio media:", err);
@@ -343,6 +578,8 @@ export default function PortfolioGrid() {
   }, []);
 
   const firstRow = projects.slice(0, Math.min(3, visibleCount));
+  console.log(firstRow);
+  
 
   const secondRow = projects.slice(3, Math.min(6, visibleCount));
 
@@ -370,20 +607,48 @@ export default function PortfolioGrid() {
         : [];
   };
 
+  // const handleNextMedia = () => {
+  //   const media = getMediaList(selectedProject);
+
+  //   if (!media.length) return;
+
+  //   setSelectedMediaIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
+  // };
+
+  // const handlePreviousMedia = () => {
+  //   const media = getMediaList(selectedProject);
+
+  //   if (!media.length) return;
+
+  //   setSelectedMediaIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
+  // };
+
   const handleNextMedia = () => {
-    const media = getMediaList(selectedProject);
+    const videos =
+      selectedProject?.media?.filter(
+        (item) => item?.url && item?.type === "video",
+      ) || [];
 
-    if (!media.length) return;
+    // 1 ya 0 video hai to kuch mat karo
+    if (videos.length <= 1) return;
 
-    setSelectedMediaIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
+    setSelectedMediaIndex((prev) =>
+      prev === videos.length - 1 ? 0 : prev + 1,
+    );
   };
 
   const handlePreviousMedia = () => {
-    const media = getMediaList(selectedProject);
+    const videos =
+      selectedProject?.media?.filter(
+        (item) => item?.url && item?.type === "video",
+      ) || [];
 
-    if (!media.length) return;
+    // 1 ya 0 video hai to kuch mat karo
+    if (videos.length <= 1) return;
 
-    setSelectedMediaIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
+    setSelectedMediaIndex((prev) =>
+      prev === 0 ? videos.length - 1 : prev - 1,
+    );
   };
 
   const handleClosePopup = () => {
@@ -652,13 +917,652 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 ============================================================ */
 
+// function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
+//   const cardRef = useRef(null);
+  
+
+//   const videoRef = useRef(null);
+
+//   const [isInView, setIsInView] = useState(false);
+
+//   const [canPlay, setCanPlay] = useState(false);
+
+//   useEffect(() => {
+//     const node = cardRef.current;
+
+//     if (!node) return;
+
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsInView(true);
+//         }
+//       },
+
+//       { rootMargin: "200px", threshold: 0.1 },
+//     );
+
+//     observer.observe(node);
+
+//     return () => observer.disconnect();
+//   }, []);
+
+//   useEffect(() => {
+//     const vid = videoRef.current;
+
+//     if (!vid) return;
+
+//     if (isHovered) {
+//       const playPromise = vid.play();
+
+//       if (playPromise !== undefined) {
+//         playPromise.catch(() => {});
+//       }
+//     } else {
+//       vid.pause();
+//     }
+//   }, [isHovered, canPlay, isInView]);
+
+//   return (
+//     <motion.div
+//       ref={cardRef}
+//       onMouseEnter={onMouseEnter}
+//       onClick={onClick}
+//       animate={{ flexGrow: isHovered ? 3.3 : 1 }}
+//       transition={{
+//         flexGrow: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+//       }}
+//       initial={{ opacity: 0, y: 50, scale: 0.97 }}
+//       whileInView={{ opacity: 1, y: 0, scale: 1 }}
+//       viewport={{ once: true, amount: 0.15 }}
+//       className="
+
+//         group
+
+
+//         relative
+
+//         min-w-0
+
+
+//         overflow-hidden
+
+
+//         border
+
+//         border-[#2999c7]
+
+
+//         bg-[#222]
+
+
+//         cursor-pointer
+
+//         select-none
+
+//       "
+//       style={{ flexBasis: 0 }}
+//     >
+//       {/* POSTER — hamesha dikhta hai (agar mile), halka, laggy nahi */}
+//       {project.poster && (
+//         <img
+//           src={project.poster}
+//           alt={project.title}
+//           loading="lazy"
+//           className="
+
+//             absolute
+
+//             inset-0
+
+
+//             w-full
+
+//             h-full
+
+
+//             object-cover
+
+
+//             pointer-events-none
+
+//           "
+//         />
+//       )}
+
+//       {/* VIDEO — sirf tab DOM mein aati hai jab card viewport ke paas ho */}
+
+//       {isInView && project.video && (
+//         <video
+//           ref={videoRef}
+//           src={project.video}
+//           muted
+//           loop
+//           playsInline
+//           preload="metadata"
+//           onCanPlay={() => setCanPlay(true)}
+//           className={`
+
+//             absolute
+
+//             inset-0
+
+
+//             w-full
+
+//             h-full
+
+
+//             object-cover
+
+
+//             pointer-events-none
+
+
+//             transition-opacity
+
+//             duration-500
+
+
+//             ease-[cubic-bezier(0.22,1,0.36,1)]
+
+
+//             ${isHovered && canPlay ? "opacity-100" : "opacity-0"}
+
+
+//             group-hover:scale-[1.035]
+
+
+//             transition-transform
+
+//           `}
+//         />
+//       )}
+
+//       {/* DARK OVERLAY */}
+
+//       <div
+//         className="
+
+//           absolute
+
+//           inset-0
+
+
+//           bg-black/0
+
+//           group-hover:bg-black/15
+
+
+//           transition-all
+
+//           duration-500
+
+
+//           pointer-events-none
+
+//         "
+//       />
+
+//       {/* BOTTOM GRADIENT — ALWAYS VISIBLE */}
+
+//       <div
+//         className="
+
+//           absolute
+
+
+//           left-0
+
+//           right-0
+
+//           bottom-0
+
+
+//           h-[110px]
+
+
+//           bg-gradient-to-t
+
+//           from-black/90
+
+//           via-black/50
+
+//           to-transparent
+
+
+//           pointer-events-none
+
+//         "
+//       />
+
+//       {/* TITLE CONTENT — ALWAYS VISIBLE */}
+
+//       <div
+//         className="
+
+//           absolute
+
+
+//           left-0
+
+//           bottom-0
+
+
+//           z-10
+
+
+//           w-full
+
+
+//           px-3
+
+//           py-3
+
+
+//           sm:px-4
+
+//           sm:py-4
+
+
+//           pointer-events-none
+
+
+//           transition-all
+
+//           duration-500
+
+
+//           group-hover:translate-y-[-2px]
+
+//         "
+//       >
+//         {project.category && (
+//           <p
+//             className="
+
+//               text-[#4db4d5]
+
+
+//               text-[8px]
+
+//               sm:text-[9px]
+
+//               md:text-[10px]
+
+//               lg:text-[11px]
+
+
+//               uppercase
+
+//               tracking-wide
+
+
+//               font-bold
+
+
+//               mb-1
+
+//             "
+//           >
+//             {project.category}
+//           </p>
+//         )}
+
+//         <h3
+//           className="
+
+//             text-white
+
+
+//             text-[11px]
+
+//             sm:text-[13px]
+
+//             md:text-[17px]
+
+//             lg:text-[20px]
+
+
+//             font-bold
+
+//             leading-tight
+
+//           "
+//         >
+//           {project.title}
+//         </h3>
+//       </div>
+//     </motion.div>
+//   );
+// }
+
+// function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
+//   const cardRef = useRef(null);
+  
+
+//   const videoRef = useRef(null);
+
+//   const [isInView, setIsInView] = useState(false);
+
+//   const [canPlay, setCanPlay] = useState(false);
+
+//   useEffect(() => {
+//     const node = cardRef.current;
+
+//     if (!node) return;
+
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsInView(true);
+//         }
+//       },
+
+//       { rootMargin: "200px", threshold: 0.1 },
+//     );
+
+//     observer.observe(node);
+
+//     return () => observer.disconnect();
+//   }, []);
+
+//   useEffect(() => {
+//     const vid = videoRef.current;
+
+//     if (!vid) return;
+
+//     if (isHovered) {
+//       const playPromise = vid.play();
+
+//       if (playPromise !== undefined) {
+//         playPromise.catch(() => {});
+//       }
+//     } else {
+//       vid.pause();
+//     }
+//   }, [isHovered, canPlay, isInView]);
+
+//   return (
+//     <motion.div
+//       ref={cardRef}
+//       onMouseEnter={onMouseEnter}
+//       onClick={onClick}
+//       animate={{ flexGrow: isHovered ? 3.3 : 1 }}
+//       transition={{
+//         flexGrow: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+//       }}
+//       initial={{ opacity: 0, y: 50, scale: 0.97 }}
+//       whileInView={{ opacity: 1, y: 0, scale: 1 }}
+//       viewport={{ once: true, amount: 0.15 }}
+//       className="
+
+//         group
+
+
+//         relative
+
+//         min-w-0
+
+
+//         overflow-hidden
+
+
+//         border
+
+//         border-[#2999c7]
+
+
+//         bg-[#222]
+
+
+//         cursor-pointer
+
+//         select-none
+
+//       "
+//       style={{ flexBasis: 0 }}
+//     >
+//       {/* POSTER — hamesha dikhta hai (agar mile), halka, laggy nahi */}
+//       {project.poster && (
+//         <img
+//           src={project.poster}
+//           alt={project.title}
+//           loading="lazy"
+//           className="
+
+//             absolute
+
+//             inset-0
+
+
+//             w-full
+
+//             h-full
+
+
+//             object-cover
+
+
+//             pointer-events-none
+
+//           "
+//         />
+//       )}
+
+//       {/* VIDEO — sirf tab DOM mein aati hai jab card viewport ke paas ho */}
+
+//       {isInView && project.video && (
+//         <video
+//           ref={videoRef}
+//           src={project.video}
+//           muted
+//           loop
+//           playsInline
+//           preload="metadata"
+//           onCanPlay={() => setCanPlay(true)}
+//           className={`
+
+//             absolute
+
+//             inset-0
+
+
+//             w-full
+
+//             h-full
+
+
+//             object-cover
+
+
+//             pointer-events-none
+
+
+//             transition-opacity
+
+//             duration-500
+
+
+//             ease-[cubic-bezier(0.22,1,0.36,1)]
+
+
+//             ${canPlay ? "opacity-100" : "opacity-0"}
+
+
+//             group-hover:scale-[1.035]
+
+
+//             transition-transform
+
+//           `}
+//         />
+//       )}
+
+//       {/* DARK OVERLAY */}
+
+//       <div
+//         className="
+
+//           absolute
+
+//           inset-0
+
+
+//           bg-black/0
+
+//           group-hover:bg-black/15
+
+
+//           transition-all
+
+//           duration-500
+
+
+//           pointer-events-none
+
+//         "
+//       />
+
+//       {/* BOTTOM GRADIENT — ALWAYS VISIBLE */}
+
+//       <div
+//         className="
+
+//           absolute
+
+
+//           left-0
+
+//           right-0
+
+//           bottom-0
+
+
+//           h-[110px]
+
+
+//           bg-gradient-to-t
+
+//           from-black/90
+
+//           via-black/50
+
+//           to-transparent
+
+
+//           pointer-events-none
+
+//         "
+//       />
+
+//       {/* TITLE CONTENT — ALWAYS VISIBLE */}
+
+//       <div
+//         className="
+
+//           absolute
+
+
+//           left-0
+
+//           bottom-0
+
+
+//           z-10
+
+
+//           w-full
+
+
+//           px-3
+
+//           py-3
+
+
+//           sm:px-4
+
+//           sm:py-4
+
+
+//           pointer-events-none
+
+
+//           transition-all
+
+//           duration-500
+
+
+//           group-hover:translate-y-[-2px]
+
+//         "
+//       >
+//         {project.category && (
+//           <p
+//             className="
+
+//               text-[#4db4d5]
+
+
+//               text-[8px]
+
+//               sm:text-[9px]
+
+//               md:text-[10px]
+
+//               lg:text-[11px]
+
+
+//               uppercase
+
+//               tracking-wide
+
+
+//               font-bold
+
+
+//               mb-1
+
+//             "
+//           >
+//             {project.category}
+//           </p>
+//         )}
+
+//         <h3
+//           className="
+
+//             text-white
+
+
+//             text-[11px]
+
+//             sm:text-[13px]
+
+//             md:text-[17px]
+
+//             lg:text-[20px]
+
+
+//             font-bold
+
+//             leading-tight
+
+//           "
+//         >
+//           {project.title}
+//         </h3>
+//       </div>
+//     </motion.div>
+//   );
+// }
+
+
 function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
   const cardRef = useRef(null);
-
   const videoRef = useRef(null);
 
   const [isInView, setIsInView] = useState(false);
-
   const [canPlay, setCanPlay] = useState(false);
 
   useEffect(() => {
@@ -672,8 +1576,10 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           setIsInView(true);
         }
       },
-
-      { rootMargin: "200px", threshold: 0.1 },
+      {
+        rootMargin: "200px",
+        threshold: 0.1,
+      }
     );
 
     observer.observe(node);
@@ -682,91 +1588,98 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
   }, []);
 
   useEffect(() => {
-    const vid = videoRef.current;
+    const video = videoRef.current;
 
-    if (!vid) return;
+    if (!video) return;
 
     if (isHovered) {
-      const playPromise = vid.play();
+      video.currentTime = 0;
 
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {});
+      const promise = video.play();
+
+      if (promise !== undefined) {
+        promise.catch(() => {});
       }
     } else {
-      vid.pause();
+      video.pause();
+      video.currentTime = 0;
     }
-  }, [isHovered, canPlay, isInView]);
+  }, [isHovered]);
 
   return (
     <motion.div
       ref={cardRef}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
-      animate={{ flexGrow: isHovered ? 3.3 : 1 }}
-      transition={{
-        flexGrow: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+      animate={{
+        flexGrow: isHovered ? 3.3 : 1,
       }}
-      initial={{ opacity: 0, y: 50, scale: 0.97 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        flexGrow: {
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      }}
+      initial={{
+        opacity: 0,
+        y: 50,
+        scale: 0.97,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
       className="
-
         group
-
-
         relative
-
         min-w-0
-
-
         overflow-hidden
-
-
         border
-
         border-[#2999c7]
-
-
         bg-[#222]
-
-
         cursor-pointer
-
         select-none
-
       "
-      style={{ flexBasis: 0 }}
+      style={{
+        flexBasis: 0,
+      }}
     >
-      {/* POSTER — hamesha dikhta hai (agar mile), halka, laggy nahi */}
-
+      {/* POSTER IMAGE */}
       {project.poster && (
         <img
           src={project.poster}
           alt={project.title}
           loading="lazy"
-          className="
-
+          decoding="async"
+          className={`
             absolute
-
             inset-0
-
-
+            z-0
             w-full
-
             h-full
-
-
             object-cover
-
-
             pointer-events-none
-
-          "
+            transition-opacity
+            duration-500
+            ${
+              isHovered && canPlay
+                ? "opacity-0"
+                : "opacity-100"
+            }
+          `}
+          onError={(e) => {
+            console.error("Poster failed:", project.poster);
+            e.currentTarget.style.display = "none";
+          }}
         />
       )}
 
-      {/* VIDEO — sirf tab DOM mein aati hai jab card viewport ke paas ho */}
-
+      {/* VIDEO */}
       {isInView && project.video && (
         <video
           ref={videoRef}
@@ -774,170 +1687,90 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           onCanPlay={() => setCanPlay(true)}
           className={`
-
             absolute
-
             inset-0
-
-
+            z-[1]
             w-full
-
             h-full
-
-
             object-cover
-
-
             pointer-events-none
-
-
             transition-opacity
-
             duration-500
-
-
             ease-[cubic-bezier(0.22,1,0.36,1)]
-
-
-            ${isHovered && canPlay ? "opacity-100" : "opacity-0"}
-
-
+            ${
+              isHovered && canPlay
+                ? "opacity-100"
+                : "opacity-0"
+            }
             group-hover:scale-[1.035]
-
-
-            transition-transform
-
           `}
         />
       )}
 
       {/* DARK OVERLAY */}
-
       <div
         className="
-
           absolute
-
           inset-0
-
-
+          z-[2]
           bg-black/0
-
           group-hover:bg-black/15
-
-
           transition-all
-
           duration-500
-
-
           pointer-events-none
-
         "
       />
 
-      {/* BOTTOM GRADIENT — ALWAYS VISIBLE */}
-
+      {/* GRADIENT */}
       <div
         className="
-
           absolute
-
-
           left-0
-
           right-0
-
           bottom-0
-
-
+          z-[3]
           h-[110px]
-
-
           bg-gradient-to-t
-
           from-black/90
-
           via-black/50
-
           to-transparent
-
-
           pointer-events-none
-
         "
       />
 
-      {/* TITLE CONTENT — ALWAYS VISIBLE */}
-
+      {/* TITLE */}
       <div
         className="
-
           absolute
-
-
           left-0
-
           bottom-0
-
-
-          z-10
-
-
+          z-[4]
           w-full
-
-
           px-3
-
           py-3
-
-
           sm:px-4
-
           sm:py-4
-
-
           pointer-events-none
-
-
           transition-all
-
           duration-500
-
-
           group-hover:translate-y-[-2px]
-
         "
       >
         {project.category && (
           <p
             className="
-
               text-[#4db4d5]
-
-
               text-[8px]
-
               sm:text-[9px]
-
               md:text-[10px]
-
               lg:text-[11px]
-
-
               uppercase
-
               tracking-wide
-
-
               font-bold
-
-
               mb-1
-
             "
           >
             {project.category}
@@ -946,23 +1779,13 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 
         <h3
           className="
-
             text-white
-
-
             text-[11px]
-
             sm:text-[13px]
-
             md:text-[17px]
-
             lg:text-[20px]
-
-
             font-bold
-
             leading-tight
-
           "
         >
           {project.title}
@@ -978,14 +1801,521 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 
 ============================================================ */
 
+// function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
+//   const mediaList = project.media?.filter((item) => item?.url) || [];
+
+//   if (mediaList.length === 0) return null;
+
+//   const currentMedia = mediaList[mediaIndex] || mediaList[0];
+
+//   const mediaSrc = currentMedia.url;
+
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0 }}
+//       animate={{ opacity: 1 }}
+//       exit={{ opacity: 0 }}
+//       transition={{ duration: 0.25 }}
+//       onClick={onClose}
+//       className="
+
+//         fixed
+
+//         inset-0
+
+//         z-[9999]
+
+//         flex
+
+//         items-center
+
+//         justify-center
+
+//         bg-black/80
+
+//         backdrop-blur-[3px]
+
+//         p-3
+
+//         sm:p-5
+
+//         md:p-8
+
+//       "
+//     >
+//       <motion.div
+//         initial={{ opacity: 0, scale: 0.94, y: 30 }}
+//         animate={{ opacity: 1, scale: 1, y: 0 }}
+//         exit={{ opacity: 0, scale: 0.96, y: 20 }}
+//         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+//         onClick={(e) => e.stopPropagation()}
+//         className="
+
+//           relative
+
+//           w-full
+
+//           max-w-[1250px]
+
+//           max-h-[90vh]
+
+//           overflow-y-auto
+
+//           bg-[#353535]
+
+//           p-4
+
+//           sm:p-6
+
+//           md:p-8
+
+//         "
+//       >
+//         <button
+//           type="button"
+//           onClick={onClose}
+//           className="
+
+//             absolute
+
+//             top-3
+
+//             right-3
+
+//             z-50
+
+//             w-9
+
+//             h-9
+
+//             rounded-full
+
+//             bg-[#243746]
+
+//             border
+
+//             border-[#4d9ac2]
+
+//             text-[#75bfe5]
+
+//             text-[25px]
+
+//             flex
+
+//             items-center
+
+//             justify-center
+
+//             cursor-pointer
+
+//             transition-all
+
+//             duration-300
+
+//             hover:bg-[#2999c7]
+
+//             hover:text-white
+
+//             hover:scale-105
+
+//           "
+//           aria-label="Close popup"
+//         >
+//           ×
+//         </button>
+
+//         <div
+//           className="
+
+//             grid
+
+//             grid-cols-1
+
+//             md:grid-cols-2
+
+//             gap-6
+
+//             md:gap-8
+
+//             items-center
+
+//           "
+//         >
+//           {/* LEFT SIDE — VIDEO OR IMAGE */}
+
+//           <div
+//             className="
+
+//               relative
+
+//               overflow-hidden
+
+//               border-[3px]
+
+//               border-[#2999c7]
+
+//               bg-black
+
+//               w-full
+
+//             "
+//           >
+//             <AnimatePresence mode="wait">
+//               {currentMedia.type === "image" ? (
+//                 <motion.img
+//                   key={`${project.title}-${mediaIndex}`}
+//                   src={mediaSrc}
+//                   initial={{ opacity: 0, scale: 1.03 }}
+//                   animate={{ opacity: 1, scale: 1 }}
+//                   exit={{ opacity: 0, scale: 0.98 }}
+//                   transition={{ duration: 0.35 }}
+//                   className="
+
+//                     block
+
+//                     w-full
+
+//                     h-[250px]
+
+//                     sm:h-[350px]
+
+//                     md:h-[400px]
+
+//                     object-contain
+
+//                     bg-black
+
+//                   "
+//                   alt={project.title}
+//                 />
+//               ) : (
+//                 <motion.video
+//                   key={`${project.title}-${mediaIndex}`}
+//                   src={mediaSrc}
+//                   autoPlay
+//                   muted={false}
+//                   controls
+//                   playsInline
+//                   preload="auto"
+//                   initial={{ opacity: 0, scale: 1.03 }}
+//                   animate={{ opacity: 1, scale: 1 }}
+//                   exit={{ opacity: 0, scale: 0.98 }}
+//                   transition={{ duration: 0.35 }}
+//                   className="
+
+//                     block
+
+//                     w-full
+
+//                     h-[250px]
+
+//                     sm:h-[350px]
+
+//                     md:h-[400px]
+
+//                     object-contain
+
+//                     bg-black
+
+//                   "
+//                 />
+//               )}
+//             </AnimatePresence>
+
+//             {/* Prev/Next arrows — hamesha visible */}
+
+//             <button
+//               type="button"
+//               onClick={(event) => {
+//                 event.stopPropagation();
+
+//                 onPrevious();
+//               }}
+//               className="
+
+//                 absolute
+
+//                 left-3
+
+//                 sm:left-4
+
+//                 top-1/2
+
+//                 -translate-y-1/2
+
+//                 z-30
+
+//                 w-10
+
+//                 h-10
+
+//                 rounded-full
+
+//                 bg-black/60
+
+//                 border
+
+//                 border-white/20
+
+//                 text-white
+
+//                 text-[34px]
+
+//                 leading-none
+
+//                 flex
+
+//                 items-center
+
+//                 justify-center
+
+//                 cursor-pointer
+
+//                 transition-all
+
+//                 duration-300
+
+//                 hover:bg-[#2999c7]
+
+//                 hover:border-[#2999c7]
+
+//                 hover:scale-110
+
+//               "
+//               aria-label="Previous media"
+//             >
+//               ‹
+//             </button>
+
+//             <button
+//               type="button"
+//               onClick={(event) => {
+//                 event.stopPropagation();
+
+//                 onNext();
+//               }}
+//               className="
+
+//                 absolute
+
+//                 right-3
+
+//                 sm:right-4
+
+//                 top-1/2
+
+//                 -translate-y-1/2
+
+//                 z-30
+
+//                 w-10
+
+//                 h-10
+
+//                 rounded-full
+
+//                 bg-black/60
+
+//                 border
+
+//                 border-white/20
+
+//                 text-white
+
+//                 text-[34px]
+
+//                 leading-none
+
+//                 flex
+
+//                 items-center
+
+//                 justify-center
+
+//                 cursor-pointer
+
+//                 transition-all
+
+//                 duration-300
+
+//                 hover:bg-[#2999c7]
+
+//                 hover:border-[#2999c7]
+
+//                 hover:scale-110
+
+//               "
+//               aria-label="Next media"
+//             >
+//               ›
+//             </button>
+
+//             {mediaList.length > 1 && (
+//               <div
+//                 className="
+
+//                   absolute
+
+//                   bottom-3
+
+//                   left-1/2
+
+//                   -translate-x-1/2
+
+//                   z-30
+
+//                   flex
+
+//                   gap-1.5
+
+//                 "
+//               >
+//                 {mediaList.map((m, i) => (
+//                   <span
+//                     key={i}
+//                     className={`
+
+//                       w-1.5
+
+//                       h-1.5
+
+//                       rounded-full
+
+//                       transition-all
+
+//                       duration-300
+
+//                       ${i === mediaIndex ? "bg-[#2999c7] w-4" : "bg-white/40"}
+
+//                     `}
+//                   />
+//                 ))}
+//               </div>
+//             )}
+//           </div>
+
+//           {/* RIGHT SIDE — PROJECT INFO */}
+
+//           <AnimatePresence mode="wait">
+//             <motion.div
+//               key={`${project.title}-${mediaIndex}-info`}
+//               initial={{ opacity: 0, x: 20 }}
+//               animate={{ opacity: 1, x: 0 }}
+//               exit={{ opacity: 0, x: -10 }}
+//               transition={{ duration: 0.35 }}
+//               className="
+
+//                 text-white
+
+//                 md:pr-4
+
+//               "
+//             >
+//               <h2
+//                 className="
+
+//                   text-[20px]
+
+//                   sm:text-[24px]
+
+//                   md:text-[28px]
+
+//                   font-bold
+
+//                   leading-tight
+
+//                 "
+//               >
+//                 {project.title}
+//               </h2>
+
+//               {project.date && (
+//                 <p
+//                   className="
+
+//                     mt-2
+
+//                     text-white/80
+
+//                     text-[13px]
+
+//                     md:text-[15px]
+
+//                   "
+//                 >
+//                   {project.date}
+//                 </p>
+//               )}
+
+//               {project.category && (
+//                 <p
+//                   className="
+
+//                     mt-4
+
+//                     text-[#4db4d5]
+
+//                     text-[12px]
+
+//                     md:text-[14px]
+
+//                     font-semibold
+
+//                   "
+//                 >
+//                   {project.category}
+//                 </p>
+//               )}
+
+//               <div
+//                 className="
+
+//                   mt-5
+
+//                   text-white/90
+
+//                   text-[14px]
+
+//                   md:text-[16px]
+
+//                   leading-[1.7]
+
+//                   whitespace-pre-line
+
+//                 "
+//               >
+//                 {project.description ||
+//                   "Description coming soon — Drive file ke 'Details' panel mein description likh do, ye yahan apne aap aa jaayegi."}
+//               </div>
+//             </motion.div>
+//           </AnimatePresence>
+//         </div>
+//       </motion.div>
+//     </motion.div>
+//   );
+// }
+
 function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
-  const mediaList = project.media?.filter((item) => item?.url) || [];
+  // Sirf videos ko navigation ke liye use karo.
+  const videoList =
+    project?.media?.filter((item) => item?.url && item?.type === "video") || [];
+
+  // Agar videos nahi hain, to local images use hongi.
+  const imageList =
+    project?.media?.filter((item) => item?.url && item?.type === "image") || [];
+
+  // Video available hai to video list priority hogi.
+  // Warna images show hongi.
+  const mediaList = videoList.length > 0 ? videoList : imageList;
 
   if (mediaList.length === 0) return null;
 
   const currentMedia = mediaList[mediaIndex] || mediaList[0];
 
   const mediaSrc = currentMedia.url;
+
+  // Arrow TABHI show honge jab 1 se zyada VIDEO ho.
+  const showVideoArrows = videoList.length > 1;
 
   return (
     <motion.div
@@ -995,129 +2325,66 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
       transition={{ duration: 0.25 }}
       onClick={onClose}
       className="
-
         fixed
-
         inset-0
-
-
         z-[9999]
-
-
         flex
-
         items-center
-
         justify-center
-
-
         bg-black/80
-
-
         backdrop-blur-[3px]
-
-
         p-3
-
         sm:p-5
-
         md:p-8
-
       "
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.94, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 20 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{
+          duration: 0.4,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         onClick={(e) => e.stopPropagation()}
         className="
-
           relative
-
-
           w-full
-
           max-w-[1250px]
-
-
           max-h-[90vh]
-
-
           overflow-y-auto
-
-
           bg-[#353535]
-
-
           p-4
-
           sm:p-6
-
           md:p-8
-
         "
       >
+        {/* CLOSE */}
         <button
           type="button"
           onClick={onClose}
           className="
-
             absolute
-
-
             top-3
-
             right-3
-
-
             z-50
-
-
             w-9
-
             h-9
-
-
             rounded-full
-
-
             bg-[#243746]
-
-
             border
-
             border-[#4d9ac2]
-
-
             text-[#75bfe5]
-
-
             text-[25px]
-
-
             flex
-
             items-center
-
             justify-center
-
-
             cursor-pointer
-
-
             transition-all
-
             duration-300
-
-
             hover:bg-[#2999c7]
-
             hover:text-white
-
-
             hover:scale-105
-
           "
           aria-label="Close popup"
         >
@@ -1126,45 +2393,23 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
 
         <div
           className="
-
             grid
-
-
             grid-cols-1
-
             md:grid-cols-2
-
-
             gap-6
-
             md:gap-8
-
-
             items-center
-
           "
         >
-          {/* LEFT SIDE — VIDEO OR IMAGE */}
-
+          {/* LEFT SIDE — VIDEO / IMAGE */}
           <div
             className="
-
               relative
-
-
               overflow-hidden
-
-
               border-[3px]
-
               border-[#2999c7]
-
-
               bg-black
-
-
               w-full
-
             "
           >
             <AnimatePresence mode="wait">
@@ -1172,30 +2417,29 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                 <motion.img
                   key={`${project.title}-${mediaIndex}`}
                   src={mediaSrc}
-                  initial={{ opacity: 0, scale: 1.03 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.35 }}
+                  initial={{
+                    opacity: 0,
+                    scale: 1.03,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.98,
+                  }}
+                  transition={{
+                    duration: 0.35,
+                  }}
                   className="
-
                     block
-
-
                     w-full
-
-
                     h-[250px]
-
                     sm:h-[350px]
-
                     md:h-[400px]
-
-
                     object-contain
-
-
                     bg-black
-
                   "
                   alt={project.title}
                 />
@@ -1208,240 +2452,137 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                   controls
                   playsInline
                   preload="auto"
-                  initial={{ opacity: 0, scale: 1.03 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.35 }}
+                  initial={{
+                    opacity: 0,
+                    scale: 1.03,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.98,
+                  }}
+                  transition={{
+                    duration: 0.35,
+                  }}
                   className="
-
                     block
-
-
                     w-full
-
-
                     h-[250px]
-
                     sm:h-[350px]
-
                     md:h-[400px]
-
-
                     object-contain
-
-
                     bg-black
-
                   "
                 />
               )}
             </AnimatePresence>
 
-            {/* Prev/Next arrows — hamesha visible */}
-
-            <button
-              type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-
-                onPrevious();
-              }}
-              className="
-
-                absolute
-
-
-                left-3
-
-                sm:left-4
-
-
-                top-1/2
-
-                -translate-y-1/2
-
-
-                z-30
-
-
-                w-10
-
-                h-10
-
-
-                rounded-full
-
-
-                bg-black/60
-
-
-                border
-
-                border-white/20
-
-
-                text-white
-
-
-                text-[34px]
-
-
-                leading-none
-
-
-                flex
-
-                items-center
-
-                justify-center
-
-
-                cursor-pointer
-
-
-                transition-all
-
-                duration-300
-
-
-                hover:bg-[#2999c7]
-
-
-                hover:border-[#2999c7]
-
-
-                hover:scale-110
-
-              "
-              aria-label="Previous media"
-            >
-              ‹
-            </button>
-
-            <button
-              type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-
-                onNext();
-              }}
-              className="
-
-                absolute
-
-
-                right-3
-
-                sm:right-4
-
-
-                top-1/2
-
-                -translate-y-1/2
-
-
-                z-30
-
-
-                w-10
-
-                h-10
-
-
-                rounded-full
-
-
-                bg-black/60
-
-
-                border
-
-                border-white/20
-
-
-                text-white
-
-
-                text-[34px]
-
-
-                leading-none
-
-
-                flex
-
-                items-center
-
-                justify-center
-
-
-                cursor-pointer
-
-
-                transition-all
-
-                duration-300
-
-
-                hover:bg-[#2999c7]
-
-
-                hover:border-[#2999c7]
-
-
-                hover:scale-110
-
-              "
-              aria-label="Next media"
-            >
-              ›
-            </button>
-
-            {mediaList.length > 1 && (
+            {/* PREVIOUS — ONLY WHEN 2+ VIDEOS */}
+            {showVideoArrows && (
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onPrevious();
+                }}
+                className="
+                  absolute
+                  left-3
+                  sm:left-4
+                  top-1/2
+                  -translate-y-1/2
+                  z-30
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-black/60
+                  border
+                  border-white/20
+                  text-white
+                  text-[34px]
+                  leading-none
+                  flex
+                  items-center
+                  justify-center
+                  cursor-pointer
+                  transition-all
+                  duration-300
+                  hover:bg-[#2999c7]
+                  hover:border-[#2999c7]
+                  hover:scale-110
+                "
+                aria-label="Previous video"
+              >
+                ‹
+              </button>
+            )}
+
+            {/* NEXT — ONLY WHEN 2+ VIDEOS */}
+            {showVideoArrows && (
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onNext();
+                }}
+                className="
+                  absolute
+                  right-3
+                  sm:right-4
+                  top-1/2
+                  -translate-y-1/2
+                  z-30
+                  w-10
+                  h-10
+                  rounded-full
+                  bg-black/60
+                  border
+                  border-white/20
+                  text-white
+                  text-[34px]
+                  leading-none
+                  flex
+                  items-center
+                  justify-center
+                  cursor-pointer
+                  transition-all
+                  duration-300
+                  hover:bg-[#2999c7]
+                  hover:border-[#2999c7]
+                  hover:scale-110
+                "
+                aria-label="Next video"
+              >
+                ›
+              </button>
+            )}
+
+            {/* DOTS — ONLY WHEN 2+ VIDEOS */}
+            {showVideoArrows && (
               <div
                 className="
-
                   absolute
-
-
                   bottom-3
-
-
                   left-1/2
-
-
                   -translate-x-1/2
-
-
                   z-30
-
-
                   flex
-
                   gap-1.5
-
                 "
               >
-                {mediaList.map((m, i) => (
+                {videoList.map((_, i) => (
                   <span
                     key={i}
                     className={`
-
                       w-1.5
-
                       h-1.5
-
-
                       rounded-full
-
-
                       transition-all
-
                       duration-300
-
-
                       ${i === mediaIndex ? "bg-[#2999c7] w-4" : "bg-white/40"}
-
                     `}
                   />
                 ))}
@@ -1450,38 +2591,36 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
           </div>
 
           {/* RIGHT SIDE — PROJECT INFO */}
-
           <AnimatePresence mode="wait">
             <motion.div
               key={`${project.title}-${mediaIndex}-info`}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.35 }}
+              initial={{
+                opacity: 0,
+                x: 20,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              exit={{
+                opacity: 0,
+                x: -10,
+              }}
+              transition={{
+                duration: 0.35,
+              }}
               className="
-
                 text-white
-
-
                 md:pr-4
-
               "
             >
               <h2
                 className="
-
                   text-[20px]
-
                   sm:text-[24px]
-
                   md:text-[28px]
-
-
                   font-bold
-
-
                   leading-tight
-
                 "
               >
                 {project.title}
@@ -1490,17 +2629,10 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
               {project.date && (
                 <p
                   className="
-
                     mt-2
-
-
                     text-white/80
-
-
                     text-[13px]
-
                     md:text-[15px]
-
                   "
                 >
                   {project.date}
@@ -1510,20 +2642,11 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
               {project.category && (
                 <p
                   className="
-
                     mt-4
-
-
                     text-[#4db4d5]
-
-
                     text-[12px]
-
                     md:text-[14px]
-
-
                     font-semibold
-
                   "
                 >
                   {project.category}
@@ -1532,23 +2655,12 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
 
               <div
                 className="
-
                   mt-5
-
-
                   text-white/90
-
-
                   text-[14px]
-
                   md:text-[16px]
-
-
                   leading-[1.7]
-
-
                   whitespace-pre-line
-
                 "
               >
                 {project.description ||

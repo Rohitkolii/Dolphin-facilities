@@ -15,7 +15,7 @@ export default function SocialRail() {
     {
       icon: FaWhatsapp,
       label: "Plan Your Event With Us",
-      href: "https://web.whatsapp.com/",
+      href: "https://web.whatsapp.com/send?phone=919898585874&utm_source=chatgpt.com",
     },
     {
       icon: FaLinkedinIn,
@@ -42,6 +42,7 @@ export default function SocialRail() {
               transition-all duration-300 ease-in-out
               group-hover:w-[180px]
             "
+            target="_blank"
           >
             {/* ICON */}
             <div className="grid h-10 w-10 shrink-0 place-items-center text-white">
