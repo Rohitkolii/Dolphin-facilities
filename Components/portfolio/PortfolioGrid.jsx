@@ -12,13 +12,13 @@ import { useEffect, useRef, useState } from "react";
    ============================================================
    POSTER OVERRIDE — YAHAN APNI LOCAL IMAGES DAALO
    ============================================================
-   1. Apni poster images "public/posters/" folder mein daal do
-      (jaise public/posters/vanmela-bhopal.jpg)
+   1. Apni poster images "public/images/" folder mein daal do
+      (jaise public/images/vanmela-bhopal.jpg)
    2. Neeche POSTER_OVERRIDES object mein entry add karo:
       key = project ka slug (filename se number/extension hata
       ke, jo bhi "vanmela-bhopal-1.mp4" ban jaata hai use
       "vanmela-bhopal" jaisa likhna hai — case-sensitive nahi)
-      value = "/posters/vanmela-bhopal.jpg" (public folder ke
+      value = "/images/vanmela-bhopal.jpg" (public folder ke
       andar se path, "/public" mat likhna, seedha "/" se shuru
       karo)
 
@@ -41,12 +41,12 @@ import { useEffect, useRef, useState } from "react";
 ============================================================ */
 
 const POSTER_OVERRIDES = {
-  "project-1": "/images/BVN.jpeg",
-  "project-2": "/images/BVN.jpeg",
-  "project-3": "/images/BVN.jpeg",
-  "project-4": "/images/PBVN.jpeg",
-  "project-5": "/images/BVN.jpeg",
-  "project-6": "/images/BVN.jpeg",
+  "project-1": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
+  "project-2": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
+  "project-3": "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&q=80",
+  "project-4": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80",
+  "project-5": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80",
+  "project-6": "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
 };
 
 /* ============================================================
@@ -61,13 +61,13 @@ const POSTER_OVERRIDES = {
       project ka slug (Drive filename se number/extension hataa
       ke), jaise "vanmela-bhopal-1.mp4" → key: "vanmela-bhopal"
    2. Value ek ARRAY hai — usme jitni chaho utni image URLs/paths
-      daal sakte ho (online URL ya "/posters/xyz.jpg" jaisa local
+      daal sakte ho (online URL ya "/images/xyz.jpg" jaisa local
       path, dono chalega).
 
    Example:
    "vanmela-bhopal": [
-     "/posters/vanmela-bhopal-1.jpg",
-     "/posters/vanmela-bhopal-2.jpg",
+     "/images/vanmela-bhopal-1.jpg",
+     "/images/vanmela-bhopal-2.jpg",
    ],
 
    Agar kisi project ke liye yahan kuch nahi diya, to sirf Drive
@@ -127,7 +127,7 @@ function findImageOverrides(key) {
    lagaya. Sirf jab kisi project ka koi bhi poster/image nahi
    milta (na override, na Drive thumbnail, na koi image file),
    tab tak ke liye ek random placeholder image laga di jaati hai
-   — sirf temporary hai. Jaise hi tum apni "public/posters/"
+   — sirf temporary hai. Jaise hi tum apni "public/images/"
    folder se real image daal ke POSTER_OVERRIDES mein entry
    add karoge, wahi asli image dikhne lagegi.
 ============================================================ */
@@ -247,6 +247,9 @@ export default function PortfolioGrid() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  /* SHOW MORE — 3 → 6 → 9 (step by step) */
+  const [visibleCount, setVisibleCount] = useState(3);
+
   /* POPUP */
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -275,9 +278,15 @@ export default function PortfolioGrid() {
     getProjects();
   }, []);
 
-  const firstRow = projects.slice(0, 3);
-  const secondRow = projects.slice(3, 6);
-  const thirdRow = projects.slice(6, 9);
+  const firstRow = projects.slice(0, Math.min(3, visibleCount));
+  const secondRow = projects.slice(3, Math.min(6, visibleCount));
+  const thirdRow = projects.slice(6, Math.min(9, visibleCount));
+
+  const hasMore = visibleCount < projects.length;
+
+  const handleShowMore = () => {
+    setVisibleCount((prev) => Math.min(prev + 3, 9));
+  };
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -393,6 +402,57 @@ export default function PortfolioGrid() {
                 onProjectClick={handleProjectClick}
               />
             </div>
+          )}
+
+          {hasMore && (
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="
+                flex
+                justify-center
+
+                mt-5
+                md:mt-6
+                lg:mt-7
+              "
+            >
+              <motion.button
+                type="button"
+                onClick={handleShowMore}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ duration: 0.2 }}
+                className="
+                  px-5
+                  py-2.5
+
+                  min-w-[90px]
+
+                  bg-gradient-to-r
+                  from-[#79cba8]
+                  to-[#329bd0]
+
+                  border
+                  border-[#73c9b9]
+
+                  text-white
+                  text-[15px]
+                  font-bold
+
+                  cursor-pointer
+
+                  transition-all
+                  duration-300
+
+                  hover:brightness-110
+                "
+              >
+                Show More
+              </motion.button>
+            </motion.div>
           )}
         </div>
       </section>
