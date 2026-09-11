@@ -1,10 +1,8 @@
 "use client";
 
-
 import { AnimatePresence, motion } from "framer-motion";
 
 import { useEffect, useRef, useState } from "react";
-
 
 /* ============================================================
 
@@ -63,13 +61,11 @@ import { useEffect, useRef, useState } from "react";
 
 ============================================================ */
 
-
 // POSTER_OVERRIDES intentionally not used.
 
 // Card poster is always the first image from IMAGE_OVERRIDES
 
 // (public/portfolio-images/).
-
 
 /* ============================================================
 
@@ -105,11 +101,8 @@ import { useEffect, useRef, useState } from "react";
 
 ============================================================ */
 
-
 const IMAGE_OVERRIDES = {
-
-  "eicher": [
-
+  eicher: [
     "/portfolio-images/eicher-1.jpg",
 
     "/portfolio-images/eicher-2.jpg",
@@ -133,31 +126,24 @@ const IMAGE_OVERRIDES = {
     "/portfolio-images/eicher-11.jpg",
 
     "/portfolio-images/eicher-gaurav-utsav.png",
-
   ],
 
   "bhopal-herbal-fair": [
-
     "/portfolio-images/bhopal-herbal-fair-1.jpg",
 
     "/portfolio-images/bhopal-herbal-fair-2.jpg",
 
     "/portfolio-images/bhopal-herbal-fair-3.jpg",
-
   ],
 
   "ujjain-herbal-fair": [
-
     "/portfolio-images/ujjain-herbal-fair-1.jpg",
 
     "/portfolio-images/ujjain-herbal-fair-2.jpg",
 
     "/portfolio-images/ujjain-herbal-fair-3.jpg",
-
   ],
-
 };
-
 
 /* ============================================================
 
@@ -175,9 +161,7 @@ const IMAGE_OVERRIDES = {
 
 ============================================================ */
 
-
 function normalizeKey(key) {
-
   return key
 
     .toLowerCase()
@@ -187,64 +171,35 @@ function normalizeKey(key) {
     .replace(/[\s_]+/g, "-")
 
     .replace(/-+/g, "-");
-
 }
 
-
 function findImageOverrides(key) {
-
   const normalizedKey = normalizeKey(key);
 
   const match = Object.keys(IMAGE_OVERRIDES).find(
-
-    (k) => normalizeKey(k) === normalizedKey
-
+    (k) => normalizeKey(k) === normalizedKey,
   );
 
   return match ? IMAGE_OVERRIDES[match] : [];
-
 }
-
-
-function findPosterOverride(key) {
-
-  const normalizedKey = normalizeKey(key);
-
-  const match = Object.keys(POSTER_OVERRIDES).find(
-
-    (k) => normalizeKey(k) === normalizedKey
-
-  );
-
-  return match ? POSTER_OVERRIDES[match] : null;
-
-}
-
 
 function getGroupKey(fileName) {
-
   const withoutExt = fileName.replace(/\.[^/.]+$/, "");
 
   const key = withoutExt.replace(/[-_\s]*\d+$/, "").trim();
 
   return key || withoutExt;
-
 }
 
-
 function getSortIndex(fileName) {
-
   const withoutExt = fileName.replace(/\.[^/.]+$/, "");
 
   const match = withoutExt.match(/(\d+)$/);
 
   return match ? parseInt(match[1], 10) : 0;
-
 }
 
-
 function humanize(slug) {
-
   return slug
 
     .replace(/[-_]/g, " ")
@@ -254,23 +209,17 @@ function humanize(slug) {
     .trim()
 
     .replace(/\b\w/g, (c) => c.toUpperCase());
-
 }
 
-
 function groupFilesIntoProjects(files) {
-
   const groups = new Map();
 
-
   files.forEach((file) => {
-
     const key = getGroupKey(file.name);
 
     if (!groups.has(key)) groups.set(key, []);
 
     groups.get(key).push(file);
-
 
     // DEBUG: agar override wali image phir bhi na dikhe, is line
 
@@ -281,18 +230,12 @@ function groupFilesIntoProjects(files) {
     // POSTER_OVERRIDES / IMAGE_OVERRIDES mein use karo.
 
     console.log("Drive file:", file.name, "→ generated key:", key);
-
   });
 
-
   return Array.from(groups.entries()).map(([key, groupFiles]) => {
-
     const sorted = [...groupFiles].sort(
-
-      (a, b) => getSortIndex(a.name) - getSortIndex(b.name)
-
+      (a, b) => getSortIndex(a.name) - getSortIndex(b.name),
     );
-
 
     // Google Drive se SIRF VIDEO lo.
 
@@ -303,45 +246,34 @@ function groupFilesIntoProjects(files) {
       .filter((file) => file.mimeType?.startsWith("video/"))
 
       .map((file) => ({
-
         type: "video",
 
         url: file.url,
 
         name: file.name,
-
       }));
-
 
     // Images SIRF public/portfolio-images/ se.
 
     const manualImages = findImageOverrides(key).map((url) => ({
-
       type: "image",
 
       url,
 
       name: humanize(key),
-
     }));
-
 
     // Popup mein bhi sirf Drive videos + local portfolio-images.
 
     const combinedMedia = [...driveVideos, ...manualImages];
 
-
     const firstVideo = driveVideos[0];
 
     const firstImage = manualImages[0];
 
-
     const descriptionSource = sorted.find(
-
-      (f) => f.description && f.description.trim().length > 0
-
+      (f) => f.description && f.description.trim().length > 0,
     );
-
 
     // CARD POSTER SIRF public/portfolio-images/ se aayega.
 
@@ -349,9 +281,7 @@ function groupFilesIntoProjects(files) {
 
     const localPoster = firstImage?.url || null;
 
-
     return {
-
       title: humanize(key),
 
       category: "",
@@ -365,77 +295,52 @@ function groupFilesIntoProjects(files) {
       video: firstVideo?.url || null,
 
       media: combinedMedia,
-
     };
-
   });
-
 }
 
-
 export default function PortfolioGrid() {
-
   const [projects, setProjects] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState(null);
 
-
   /* SHOW MORE — 3 → 6 → 9 (step by step) */
 
   const [visibleCount, setVisibleCount] = useState(3);
-
 
   /* POPUP */
 
   const [selectedProject, setSelectedProject] = useState(null);
 
-
   /* CURRENT MEDIA INDEX */
 
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
 
-
   useEffect(() => {
-
     const getProjects = async () => {
-
       try {
-
         const response = await fetch("/api/media");
 
         const data = await response.json();
 
-
         if (!response.ok || !data.success) {
-
           throw new Error(data.message || "Failed to fetch portfolio media");
-
         }
 
-
         setProjects(groupFilesIntoProjects(data.files || []).slice(0, 9));
-
       } catch (err) {
-
         console.error("Unable to load portfolio media:", err);
 
         setError(err.message);
-
       } finally {
-
         setLoading(false);
-
       }
-
     };
 
-
     getProjects();
-
   }, []);
-
 
   const firstRow = projects.slice(0, Math.min(3, visibleCount));
 
@@ -443,127 +348,77 @@ export default function PortfolioGrid() {
 
   const thirdRow = projects.slice(6, Math.min(9, visibleCount));
 
-
   const hasMore = visibleCount < projects.length;
 
-
   const handleShowMore = () => {
-
     setVisibleCount((prev) => Math.min(prev + 3, 9));
-
   };
 
-
   const handleProjectClick = (project) => {
-
     setSelectedProject(project);
 
     setSelectedMediaIndex(0);
-
   };
 
+  const getMediaList = (project) => {
+    const media = project?.media?.filter((item) => item?.url) || [];
 
-  const getMediaList = (project) =>
-
-    project?.media && project.media.length > 0
-
-      ? project.media
-
-      : [{ type: "video", url: project?.video }];
-
+    return media.length > 0
+      ? media
+      : project?.video
+        ? [{ type: "video", url: project.video }]
+        : [];
+  };
 
   const handleNextMedia = () => {
-
     const media = getMediaList(selectedProject);
 
     if (!media.length) return;
 
-
-    setSelectedMediaIndex((prev) =>
-
-      prev === media.length - 1 ? 0 : prev + 1
-
-    );
-
+    setSelectedMediaIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
   };
-
 
   const handlePreviousMedia = () => {
-
     const media = getMediaList(selectedProject);
 
     if (!media.length) return;
 
-
-    setSelectedMediaIndex((prev) =>
-
-      prev === 0 ? media.length - 1 : prev - 1
-
-    );
-
+    setSelectedMediaIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
   };
 
-
   const handleClosePopup = () => {
-
     setSelectedProject(null);
 
     setSelectedMediaIndex(0);
-
   };
 
-
   if (loading) {
-
     return (
-
       <section className="w-full bg-[#303030] py-16 text-center text-white/70">
-
         Loading portfolio…
-
       </section>
-
     );
-
   }
-
 
   if (error) {
-
     return (
-
       <section className="w-full bg-[#303030] py-16 text-center text-red-400">
-
         Couldn't load portfolio: {error}
-
       </section>
-
     );
-
   }
-
 
   if (projects.length === 0) {
-
     return (
-
       <section className="w-full bg-[#303030] py-16 text-center text-white/70">
-
         No portfolio items found yet.
-
       </section>
-
     );
-
   }
 
-
   return (
-
     <>
-
       <section
-
         className="
 
           w-full
@@ -588,26 +443,16 @@ export default function PortfolioGrid() {
           overflow-hidden
 
         "
-
       >
-
         <div className="w-full mx-auto">
-
           <PortfolioRow
-
             projects={firstRow}
-
             rowIndex={0}
-
             onProjectClick={handleProjectClick}
-
           />
 
-
           {secondRow.length > 0 && (
-
             <div
-
               className="
 
                 mt-[4px]
@@ -619,28 +464,17 @@ export default function PortfolioGrid() {
                 lg:mt-[30px]
 
               "
-
             >
-
               <PortfolioRow
-
                 projects={secondRow}
-
                 rowIndex={1}
-
                 onProjectClick={handleProjectClick}
-
               />
-
             </div>
-
           )}
-
 
           {thirdRow.length > 0 && (
-
             <div
-
               className="
 
                 mt-[4px]
@@ -652,36 +486,21 @@ export default function PortfolioGrid() {
                 lg:mt-[30px]
 
               "
-
             >
-
               <PortfolioRow
-
                 projects={thirdRow}
-
                 rowIndex={2}
-
                 onProjectClick={handleProjectClick}
-
               />
-
             </div>
-
           )}
 
-
           {hasMore && (
-
             <motion.div
-
               initial={{ opacity: 0, y: 25 }}
-
               whileInView={{ opacity: 1, y: 0 }}
-
               viewport={{ once: true, amount: 0.3 }}
-
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-
               className="
 
                 flex
@@ -696,21 +515,13 @@ export default function PortfolioGrid() {
                 lg:mt-7
 
               "
-
             >
-
               <motion.button
-
                 type="button"
-
                 onClick={handleShowMore}
-
                 whileHover={{ scale: 1.05, y: -2 }}
-
                 whileTap={{ scale: 0.96 }}
-
                 transition={{ duration: 0.2 }}
-
                 className="
 
                   px-5
@@ -751,50 +562,28 @@ export default function PortfolioGrid() {
                   hover:brightness-110
 
                 "
-
               >
-
                 Show More
-
               </motion.button>
-
             </motion.div>
-
           )}
-
         </div>
-
       </section>
 
-
       <AnimatePresence>
-
         {selectedProject && (
-
           <MediaPopup
-
             project={selectedProject}
-
             mediaIndex={selectedMediaIndex}
-
             onClose={handleClosePopup}
-
             onNext={handleNextMedia}
-
             onPrevious={handlePreviousMedia}
-
           />
-
         )}
-
       </AnimatePresence>
-
     </>
-
   );
-
 }
-
 
 /* ============================================================
 
@@ -802,32 +591,21 @@ export default function PortfolioGrid() {
 
 ============================================================ */
 
-
 function PortfolioRow({ projects, rowIndex, onProjectClick }) {
-
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-
   return (
-
     <motion.div
-
       initial={{ opacity: 0, y: 60 }}
-
       whileInView={{ opacity: 1, y: 0 }}
-
       viewport={{ once: true, amount: 0.15 }}
-
       transition={{
-
         duration: 0.8,
 
         delay: rowIndex * 0.1,
 
         ease: [0.22, 1, 0.36, 1],
-
       }}
-
       className="
 
         flex
@@ -853,35 +631,20 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
         lg:gap-[30px]
 
       "
-
       onMouseLeave={() => setHoveredIndex(null)}
-
     >
-
       {projects.map((project, index) => (
-
         <PortfolioCard
-
           key={project.title}
-
           project={project}
-
           isHovered={hoveredIndex === index}
-
           onMouseEnter={() => setHoveredIndex(index)}
-
           onClick={() => onProjectClick(project)}
-
         />
-
       ))}
-
     </motion.div>
-
   );
-
 }
-
 
 /* ============================================================
 
@@ -889,101 +652,63 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 ============================================================ */
 
-
 function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
-
   const cardRef = useRef(null);
 
   const videoRef = useRef(null);
-
 
   const [isInView, setIsInView] = useState(false);
 
   const [canPlay, setCanPlay] = useState(false);
 
-
   useEffect(() => {
-
     const node = cardRef.current;
 
     if (!node) return;
 
-
     const observer = new IntersectionObserver(
-
       ([entry]) => {
-
         if (entry.isIntersecting) {
-
           setIsInView(true);
-
         }
-
       },
 
-      { rootMargin: "200px", threshold: 0.1 }
-
+      { rootMargin: "200px", threshold: 0.1 },
     );
-
 
     observer.observe(node);
 
-
     return () => observer.disconnect();
-
   }, []);
 
-
   useEffect(() => {
-
     const vid = videoRef.current;
 
     if (!vid) return;
 
-
     if (isHovered) {
-
       const playPromise = vid.play();
 
       if (playPromise !== undefined) {
-
         playPromise.catch(() => {});
-
       }
-
     } else {
-
       vid.pause();
-
     }
-
   }, [isHovered, canPlay, isInView]);
 
-
   return (
-
     <motion.div
-
       ref={cardRef}
-
       onMouseEnter={onMouseEnter}
-
       onClick={onClick}
-
       animate={{ flexGrow: isHovered ? 3.3 : 1 }}
-
       transition={{
-
         flexGrow: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-
       }}
-
       initial={{ opacity: 0, y: 50, scale: 0.97 }}
-
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-
       viewport={{ once: true, amount: 0.15 }}
-
       className="
 
         group
@@ -1010,24 +735,15 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
         select-none
 
       "
-
       style={{ flexBasis: 0 }}
-
     >
-
       {/* POSTER — hamesha dikhta hai (agar mile), halka, laggy nahi */}
 
-
       {project.poster && (
-
         <img
-
           src={project.poster}
-
           alt={project.title}
-
           loading="lazy"
-
           className="
 
             absolute
@@ -1046,33 +762,20 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
             pointer-events-none
 
           "
-
         />
-
       )}
-
 
       {/* VIDEO — sirf tab DOM mein aati hai jab card viewport ke paas ho */}
 
-
       {isInView && project.video && (
-
         <video
-
           ref={videoRef}
-
           src={project.video}
-
           muted
-
           loop
-
           playsInline
-
           preload="metadata"
-
           onCanPlay={() => setCanPlay(true)}
-
           className={`
 
             absolute
@@ -1108,17 +811,12 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
             transition-transform
 
           `}
-
         />
-
       )}
-
 
       {/* DARK OVERLAY */}
 
-
       <div
-
         className="
 
           absolute
@@ -1139,15 +837,11 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           pointer-events-none
 
         "
-
       />
-
 
       {/* BOTTOM GRADIENT — ALWAYS VISIBLE */}
 
-
       <div
-
         className="
 
           absolute
@@ -1175,15 +869,11 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           pointer-events-none
 
         "
-
       />
-
 
       {/* TITLE CONTENT — ALWAYS VISIBLE */}
 
-
       <div
-
         className="
 
           absolute
@@ -1221,13 +911,9 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           group-hover:translate-y-[-2px]
 
         "
-
       >
-
         {project.category && (
-
           <p
-
             className="
 
               text-[#4db4d5]
@@ -1253,18 +939,12 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
               mb-1
 
             "
-
           >
-
             {project.category}
-
           </p>
-
         )}
 
-
         <h3
-
           className="
 
             text-white
@@ -1284,21 +964,13 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
             leading-tight
 
           "
-
         >
-
           {project.title}
-
         </h3>
-
       </div>
-
     </motion.div>
-
   );
-
 }
-
 
 /* ============================================================
 
@@ -1306,37 +978,22 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 
 ============================================================ */
 
-
 function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
+  const mediaList = project.media?.filter((item) => item?.url) || [];
 
-  const mediaList =
-
-    project.media && project.media.length > 0
-
-      ? project.media
-
-      : [{ type: "video", url: project.video }];
-
+  if (mediaList.length === 0) return null;
 
   const currentMedia = mediaList[mediaIndex] || mediaList[0];
 
   const mediaSrc = currentMedia.url;
 
-
   return (
-
     <motion.div
-
       initial={{ opacity: 0 }}
-
       animate={{ opacity: 1 }}
-
       exit={{ opacity: 0 }}
-
       transition={{ duration: 0.25 }}
-
       onClick={onClose}
-
       className="
 
         fixed
@@ -1367,21 +1024,13 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
         md:p-8
 
       "
-
     >
-
       <motion.div
-
         initial={{ opacity: 0, scale: 0.94, y: 30 }}
-
         animate={{ opacity: 1, scale: 1, y: 0 }}
-
         exit={{ opacity: 0, scale: 0.96, y: 20 }}
-
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-
         onClick={(e) => e.stopPropagation()}
-
         className="
 
           relative
@@ -1408,15 +1057,10 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
           md:p-8
 
         "
-
       >
-
         <button
-
           type="button"
-
           onClick={onClose}
-
           className="
 
             absolute
@@ -1475,18 +1119,12 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
             hover:scale-105
 
           "
-
           aria-label="Close popup"
-
         >
-
           ×
-
         </button>
 
-
         <div
-
           className="
 
             grid
@@ -1505,14 +1143,10 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
             items-center
 
           "
-
         >
-
           {/* LEFT SIDE — VIDEO OR IMAGE */}
 
-
           <div
-
             className="
 
               relative
@@ -1532,27 +1166,16 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
               w-full
 
             "
-
           >
-
             <AnimatePresence mode="wait">
-
               {currentMedia.type === "image" ? (
-
                 <motion.img
-
                   key={`${project.title}-${mediaIndex}`}
-
                   src={mediaSrc}
-
                   initial={{ opacity: 0, scale: 1.03 }}
-
                   animate={{ opacity: 1, scale: 1 }}
-
                   exit={{ opacity: 0, scale: 0.98 }}
-
                   transition={{ duration: 0.35 }}
-
                   className="
 
                     block
@@ -1574,37 +1197,21 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                     bg-black
 
                   "
-
                   alt={project.title}
-
                 />
-
               ) : (
-
                 <motion.video
-
                   key={`${project.title}-${mediaIndex}`}
-
                   src={mediaSrc}
-
                   autoPlay
-
                   muted={false}
-
                   controls
-
                   playsInline
-
                   preload="auto"
-
                   initial={{ opacity: 0, scale: 1.03 }}
-
                   animate={{ opacity: 1, scale: 1 }}
-
                   exit={{ opacity: 0, scale: 0.98 }}
-
                   transition={{ duration: 0.35 }}
-
                   className="
 
                     block
@@ -1626,23 +1233,19 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                     bg-black
 
                   "
-
                 />
-
               )}
-
             </AnimatePresence>
-
 
             {/* Prev/Next arrows — hamesha visible */}
 
-
             <button
-
               type="button"
+              onClick={(event) => {
+                event.stopPropagation();
 
-              onClick={onPrevious}
-
+                onPrevious();
+              }}
               className="
 
                 absolute
@@ -1710,22 +1313,18 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                 hover:scale-110
 
               "
-
               aria-label="Previous media"
-
             >
-
               ‹
-
             </button>
 
-
             <button
-
               type="button"
+              onClick={(event) => {
+                event.stopPropagation();
 
-              onClick={onNext}
-
+                onNext();
+              }}
               className="
 
                 absolute
@@ -1793,20 +1392,13 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                 hover:scale-110
 
               "
-
               aria-label="Next media"
-
             >
-
               ›
-
             </button>
 
-
             {mediaList.length > 1 && (
-
               <div
-
                 className="
 
                   absolute
@@ -1829,15 +1421,10 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                   gap-1.5
 
                 "
-
               >
-
                 {mediaList.map((m, i) => (
-
                   <span
-
                     key={i}
-
                     className={`
 
                       w-1.5
@@ -1856,35 +1443,21 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                       ${i === mediaIndex ? "bg-[#2999c7] w-4" : "bg-white/40"}
 
                     `}
-
                   />
-
                 ))}
-
               </div>
-
             )}
-
           </div>
-
 
           {/* RIGHT SIDE — PROJECT INFO */}
 
-
           <AnimatePresence mode="wait">
-
             <motion.div
-
               key={`${project.title}-${mediaIndex}-info`}
-
               initial={{ opacity: 0, x: 20 }}
-
               animate={{ opacity: 1, x: 0 }}
-
               exit={{ opacity: 0, x: -10 }}
-
               transition={{ duration: 0.35 }}
-
               className="
 
                 text-white
@@ -1893,11 +1466,8 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                 md:pr-4
 
               "
-
             >
-
               <h2
-
                 className="
 
                   text-[20px]
@@ -1913,18 +1483,12 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                   leading-tight
 
                 "
-
               >
-
                 {project.title}
-
               </h2>
 
-
               {project.date && (
-
                 <p
-
                   className="
 
                     mt-2
@@ -1938,20 +1502,13 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                     md:text-[15px]
 
                   "
-
                 >
-
                   {project.date}
-
                 </p>
-
               )}
 
-
               {project.category && (
-
                 <p
-
                   className="
 
                     mt-4
@@ -1968,18 +1525,12 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                     font-semibold
 
                   "
-
                 >
-
                   {project.category}
-
                 </p>
-
               )}
 
-
               <div
-
                 className="
 
                   mt-5
@@ -1999,25 +1550,14 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                   whitespace-pre-line
 
                 "
-
               >
-
                 {project.description ||
-
                   "Description coming soon — Drive file ke 'Details' panel mein description likh do, ye yahan apne aap aa jaayegi."}
-
               </div>
-
             </motion.div>
-
           </AnimatePresence>
-
         </div>
-
       </motion.div>
-
     </motion.div>
-
   );
-
 }
