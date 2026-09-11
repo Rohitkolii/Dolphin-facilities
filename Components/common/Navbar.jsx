@@ -147,10 +147,10 @@ const links = [
         label: "Advertising & Outdoor Marketing",
         href: "/business/advertising-outdoor-marketing",
         children: [
-        [
-          "Explore outdoor media",
-          "/business/digital-solutions/explore-outdoor-media"
-        ],
+          [
+            "Explore outdoor media",
+            "/business/advertising-outdoor-marketing/explore-outdoor-media"
+          ]
         ]
       }
     ],
