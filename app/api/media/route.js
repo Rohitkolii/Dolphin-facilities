@@ -17,13 +17,24 @@ export async function GET() {
 
     const response = await drive.files.list({
       q: `'${folderId}' in parents and trashed = false`,
-      fields: "files(id,name,mimeType,size,webViewLink,thumbnailLink)",
+      // fields: "files(id,name,mimeType,size,webViewLink,thumbnailLink)",
+      fields: "files(id,name,mimeType,size,webViewLink,thumbnailLink,description)",
       orderBy: "createdTime desc",
       supportsAllDrives: true,
       includeItemsFromAllDrives: true,
     });
 
     const files = response.data.files || [];
+
+    // const result = files.map((file) => ({
+    //   id: file.id,
+    //   name: file.name,
+    //   mimeType: file.mimeType,
+    //   size: file.size,
+    //   url: `/api/media/${file.id}`,
+    //   viewUrl: `https://drive.google.com/file/d/${file.id}/view`,
+    //   thumbnail: file.thumbnailLink || null,
+    // }));
 
     const result = files.map((file) => ({
       id: file.id,
@@ -32,7 +43,13 @@ export async function GET() {
       size: file.size,
       url: `/api/media/${file.id}`,
       viewUrl: `https://drive.google.com/file/d/${file.id}/view`,
-      thumbnail: file.thumbnailLink || null,
+      description: file.description || "",
+
+      // OLD
+      // thumbnail: file.thumbnailLink || null,
+
+      // NEW
+      thumbnail: file.thumbnailLink ? `/api/media/thumbnail/${file.id}` : null,
     }));
 
     return NextResponse.json({

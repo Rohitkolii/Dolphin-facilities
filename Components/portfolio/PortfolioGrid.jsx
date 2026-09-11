@@ -191,12 +191,21 @@ function getGroupKey(fileName) {
   return key || withoutExt;
 }
 
+// function getSortIndex(fileName) {
+//   const withoutExt = fileName.replace(/\.[^/.]+$/, "");
+
+//   const match = withoutExt.match(/(\d+)$/);
+
+//   return match ? parseInt(match[1], 10) : 0;
+// }
+
 function getSortIndex(fileName) {
   const withoutExt = fileName.replace(/\.[^/.]+$/, "");
 
-  const match = withoutExt.match(/(\d+)$/);
+  // Last number: project-1, project-2, project-3
+  const match = withoutExt.match(/(\d+)\s*$/);
 
-  return match ? parseInt(match[1], 10) : 0;
+  return match ? parseInt(match[1], 10) : 999999;
 }
 
 function humanize(slug) {
@@ -423,7 +432,7 @@ function humanize(slug) {
 
 function groupFilesIntoProjects(files) {
   const groups = new Map();
-
+  
   files.forEach((file) => {
     const key = getGroupKey(file.name);
 
@@ -433,12 +442,12 @@ function groupFilesIntoProjects(files) {
 
     groups.get(key).push(file);
 
-    console.log(
-      "Drive file:",
-      file.name,
-      "→ generated key:",
-      key
-    );
+    // console.log(
+    //   "Drive file:",
+    //   file.name,
+    //   "→ generated key:",
+    //   key
+    // );
   });
 
   return Array.from(groups.entries()).map(([key, groupFiles]) => {
@@ -562,9 +571,8 @@ export default function PortfolioGrid() {
         if (!response.ok || !data.success) {
           throw new Error(data.message || "Failed to fetch portfolio media");
         }
-        // console.log(groupFilesIntoProjects(data.files || []).slice(0, 9));
         
-        setProjects(groupFilesIntoProjects(data.files || []).slice(0, 9));
+        setProjects(groupFilesIntoProjects(data.files || [])?.reverse().slice(0, 9));
       } catch (err) {
         console.error("Unable to load portfolio media:", err);
 
@@ -577,9 +585,7 @@ export default function PortfolioGrid() {
     getProjects();
   }, []);
 
-  const firstRow = projects.slice(0, Math.min(3, visibleCount));
-  console.log(firstRow);
-  
+  const firstRow = projects.slice(0, Math.min(3, visibleCount));  
 
   const secondRow = projects.slice(3, Math.min(6, visibleCount));
 

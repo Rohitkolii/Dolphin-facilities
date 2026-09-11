@@ -13,6 +13,7 @@ import SocialRail from "@/Components/home/SocialRail";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const businesses = [
   {
@@ -114,7 +115,7 @@ export default function Home() {
           throw new Error(data.message || "Failed to fetch media files");
         }
 
-        console.log("Media files:", data.files);
+        // console.log("Media files:", data.files);
         setFiles(data.files);
       } catch (error) {
         console.error("Unable to load media files:", error);
@@ -127,6 +128,61 @@ export default function Home() {
   useEffect(() => {
     AOS.init({ duration: 700, once: true, mirror: false, offset: 60 });
   }, []);
+
+  const [formData, setFormData] = useState({
+    full_name: "",
+    company: "",
+    email: "",
+    phone: "",
+    location: "",
+    message: "",
+  });
+
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsSending(true);
+    setStatus("");
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        formData,
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+        },
+      );
+
+      setStatus("Thank you! Your message has been sent successfully.");
+
+      setFormData({
+        full_name: "",
+        company: "",
+        email: "",
+        phone: "",
+        location: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setStatus("Something went wrong. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   return (
     <div className="overflow-x-hidden">
@@ -257,18 +313,18 @@ export default function Home() {
 
             <p className="mt-6 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
               Established in 2019, Dolphin has grown into a multi-service
-              marketing and execution company with a strong presence in
-              Madhya Pradesh and across India.
+              marketing and execution company with a strong presence in Madhya
+              Pradesh and across India.
             </p>
 
             <p className="mt-4 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
               Our strength lies in bringing different capabilities together.
-              Instead of working with multiple vendors for events,
-              advertising, branding, outdoor promotions, digital requirements,
-              and customized products, our clients can rely on one integrated
-              partner — Dolphin. We work with both government and corporate
-              clients, delivering solutions that combine creativity, quality,
-              execution, and reliability.
+              Instead of working with multiple vendors for events, advertising,
+              branding, outdoor promotions, digital requirements, and customized
+              products, our clients can rely on one integrated partner —
+              Dolphin. We work with both government and corporate clients,
+              delivering solutions that combine creativity, quality, execution,
+              and reliability.
             </p>
 
             <h3
@@ -327,26 +383,26 @@ export default function Home() {
 
             <div>
               <p className="text-md leading-7 text-white">
-                Every journey begins with an idea. Ours began with a simple
-                one — to create experiences that bring people, brands, and
-                ideas together.
+                Every journey begins with an idea. Ours began with a simple one
+                — to create experiences that bring people, brands, and ideas
+                together.
               </p>
 
               <p className="mt-4 text-md leading-7 text-white">
                 On 1 February 2019, Dolphin began its journey with a focus on
                 events and experience management. We started by helping
-                organisations plan, manage, and execute events that people
-                could experience, remember, and talk about.
+                organisations plan, manage, and execute events that people could
+                experience, remember, and talk about.
               </p>
 
               <p className="mt-4 text-md leading-7 text-white">
                 But as we worked alongside our clients, we realised that their
                 needs went far beyond the event itself. An event often needed
-                branding. A campaign needed outdoor visibility. A launch
-                needed advertising. A promotion needed digital support. A
-                project needed customised products. And behind every
-                successful execution was the need for the right materials,
-                resources, and people to make it happen.
+                branding. A campaign needed outdoor visibility. A launch needed
+                advertising. A promotion needed digital support. A project
+                needed customised products. And behind every successful
+                execution was the need for the right materials, resources, and
+                people to make it happen.
               </p>
             </div>
           </div>
@@ -354,11 +410,11 @@ export default function Home() {
           <div className="mt-10 grid items-start gap-10 lg:grid-cols-2">
             <div>
               <p className="text-md leading-7 text-white">
-                So, instead of asking our clients to find different partners
-                for every requirement, we chose to become that partner. Over
-                the years, Dolphin evolved from an event-focused company into
-                a complete solution partner for brands, organisations,
-                corporates, and government institutions.
+                So, instead of asking our clients to find different partners for
+                every requirement, we chose to become that partner. Over the
+                years, Dolphin evolved from an event-focused company into a
+                complete solution partner for brands, organisations, corporates,
+                and government institutions.
               </p>
 
               <p className="mt-3 text-md font-semibold text-white">
@@ -396,22 +452,21 @@ export default function Home() {
           <div className="mt-10 max-w-4xl text-md leading-7 text-white/80">
             <p>
               What started with managing events has grown into something much
-              bigger: one partner for the entire journey. From the first idea
-              to the final execution, we bring together creativity, strategy,
+              bigger: one partner for the entire journey. From the first idea to
+              the final execution, we bring together creativity, strategy,
               production, marketing, resources, and execution to help our
               clients bring their vision to life.
             </p>
 
             <p className="mt-3">
-              Our journey is still evolving, but our purpose remains the same
-              — to make things simpler for our clients and better for their
+              Our journey is still evolving, but our purpose remains the same —
+              to make things simpler for our clients and better for their
               brands.
             </p>
 
             <p className="mt-3">
-              Because at Dolphin, we believe a great solution isn't about
-              doing just one thing well. It's about bringing everything
-              together.
+              Because at Dolphin, we believe a great solution isn't about doing
+              just one thing well. It's about bringing everything together.
             </p>
 
             <p className="mt-3 font-semibold text-[#70c7b5]">
@@ -433,18 +488,19 @@ export default function Home() {
                   </p>
                   <p className="mt-2 text-md text-white/80">
                     Event • Branding • Outdoor Campaign • Digital Promotion •
-                    Customized Products • Material Supply • On-Ground
-                    Execution
+                    Customized Products • Material Supply • On-Ground Execution
                   </p>
                   <p className="mt-5 max-w-xl text-[16px] leading-7 text-white/90">
                     Dolphin brings it all together. One brief. One team. One
                     point of coordination. One complete solution.
                   </p>
-                  
-                   <a href="#contact"
-                    className="mt-6 inline-block border border-[#e3c07f]/60 bg-[#e3c07f] px-5 py-3 text-xs font-bold uppercase tracking-wide text-[#123f66] transition-colors hover:bg-white"></a>
-                  
+
+                  <a
+                    href="#contact"
+                    className="mt-5 block w-fit bg-gradient-to-r from-[#e3c07f] via-yellow-200 to-yellow-200 px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#0b2436] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e3c07f]/30"
+                  >
                     Get In Touch →
+                  </a>
                 </div>
               </div>
               <div data-aos="fade-left" className="relative h-[380px] w-full">
@@ -539,61 +595,82 @@ export default function Home() {
 
             <form
               className="mx-auto mt-12 grid max-w-[1010px] grid-cols-1 gap-6 md:grid-cols-3"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <input
                 type="text"
-                name="fullName"
+                name="full_name"
+                value={formData.full_name}
+                onChange={handleChange}
                 placeholder="Full Name"
+                required
                 className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
               <input
                 type="text"
-                name="companyName"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
                 placeholder="Company Name"
+                required
                 className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
               <input
                 type="email"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Your Email"
+                required
                 className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
               <input
                 type="tel"
                 name="phone"
+                value={formData.phone}
+                onChange={handleChange}
                 placeholder="Phone Number"
+                maxLength={10}
+                required
                 className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
               <div className="relative">
                 <select
                   name="location"
-                  defaultValue=""
+                  value={formData.location}
+                  onChange={handleChange}
+                  required
                   className="h-[46px] w-full appearance-none border border-white/40 bg-transparent px-3 pr-10 text-sm text-white outline-none transition-all focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
                 >
                   <option value="" disabled className="bg-[#2781bc]">
                     Select Location
                   </option>
-                  <option value="bhopal" className="bg-[#2781bc]">
+
+                  <option value="Bhopal" className="bg-[#2781bc]">
                     Bhopal
                   </option>
-                  <option value="indore" className="bg-[#2781bc]">
+
+                  <option value="Indore" className="bg-[#2781bc]">
                     Indore
                   </option>
-                  <option value="jabalpur" className="bg-[#2781bc]">
+
+                  <option value="Jabalpur" className="bg-[#2781bc]">
                     Jabalpur
                   </option>
-                  <option value="gwalior" className="bg-[#2781bc]">
+
+                  <option value="Gwalior" className="bg-[#2781bc]">
                     Gwalior
                   </option>
-                  <option value="delhi" className="bg-[#2781bc]">
+
+                  <option value="Delhi" className="bg-[#2781bc]">
                     Delhi
                   </option>
-                  <option value="other" className="bg-[#2781bc]">
+
+                  <option value="Other" className="bg-[#2781bc]">
                     Other
                   </option>
                 </select>
@@ -611,17 +688,27 @@ export default function Home() {
 
               <textarea
                 name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Your Message"
                 rows={5}
+                required
                 className="resize-y border border-white/40 bg-transparent px-3 py-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40 md:col-span-3"
               />
 
               <button
                 type="submit"
-                className="mx-auto mt-1 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#1d7fc5] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#0b2436] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e3c07f]/30 md:col-span-3"
+                disabled={isSending}
+                className="mx-auto mt-1 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#1d7fc5] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#0b2436] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e3c07f]/30 disabled:cursor-not-allowed disabled:opacity-60 md:col-span-3"
               >
-                Submit Now
+                {isSending ? "Sending..." : "Submit Now"}
               </button>
+
+              {status && (
+                <p className="text-center text-sm text-white md:col-span-3">
+                  {status}
+                </p>
+              )}
             </form>
           </div>
         </section>
