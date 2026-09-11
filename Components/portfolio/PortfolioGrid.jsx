@@ -280,7 +280,7 @@ function groupFilesIntoProjects(files) {
 
     // POSTER_OVERRIDES / IMAGE_OVERRIDES mein use karo.
 
-    // console.log("Drive file:", file.name, "→ generated key:", key);
+    console.log("Drive file:", file.name, "→ generated key:", key);
 
   });
 
