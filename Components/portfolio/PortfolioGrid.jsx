@@ -25,11 +25,28 @@ import { useEffect, useRef, useState } from "react";
    Agar kisi project ka override nahi diya, to wo automatically
    Drive ke thumbnail ya pehli image se poster banayega (jaisa
    pehle tha) — kuch bhi tootega nahi.
+
+   ============================================================
+   ABHI KE LIYE — ONLINE IMAGES (TEMPORARY)
+   ============================================================
+   Neeche kuch online (internet) image URLs example ke taur par
+   daal diye hain, keys generic hain ("project-1", "project-2"
+   waghera). Ye tabhi dikhengi jab tumhare Drive file ka naam
+   (number/extension hataane ke baad) in keys se match kare.
+
+   TUMHE BAS KEY KA NAAM APNE ASLI PROJECT SE MATCH KARNA HAI —
+   jaise agar Drive pe file "vanmela-bhopal-1.mp4" hai, to neeche
+   "project-1" ki jagah "vanmela-bhopal" likh do. Image URL wahi
+   rehne do ya baad mein apni daal dena.
 ============================================================ */
 
 const POSTER_OVERRIDES = {
-  // "vanmela-bhopal": "/posters/vanmela-bhopal.jpg",
-  // "eicher": "/posters/eicher.jpg",
+  "project-1": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
+  "project-2": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
+  "project-3": "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=800&q=80",
+  "project-4": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80",
+  "project-5": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80",
+  "project-6": "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
 };
 
 /* ============================================================
