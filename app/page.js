@@ -2,6 +2,7 @@
 
 import Footer from "@/Components/common/Footer";
 import Link from "next/link";
+import Image from "next/image";
 import { MdEvent } from "react-icons/md";
 import { IoMdMegaphone } from "react-icons/io";
 import { FaCode } from "react-icons/fa6";
@@ -12,7 +13,6 @@ import SocialRail from "@/Components/home/SocialRail";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
-import FilePreview from "@/Components/common/FilePreview";
 
 const businesses = [
   {
@@ -54,15 +54,15 @@ const stats = [
 ];
 
 const gallery = [
-  "/home/clr3.jpg",
-  "/home/clr4.jpg",
-  "/home/clr5.jpg",
-  "/home/clr6.jpg",
-  "/home/clr7.jpg",
-  "/home/clr1.avif",
-  "/home/clr2.avif",
-  "/home/clr3.jpg",
-  "/home/clr4.jpg",
+  "/images/DSC_1465.jpg",
+  "/images/DSC_1735.jpg",
+  "/images/DSC_1595.jpg",
+  "/images/DSC_1601.jpg",
+  "/images/DSC_1653.jpg",
+  "/images/DSC_1663.jpg",
+  "/images/faclitate.jpg",
+  "/images/DSC_1465.jpg",
+  "/images/DSC_1699.jpg",
 ];
 
 const slides = [
@@ -92,6 +92,9 @@ const slides = [
 
 export default function Home() {
   const [files, setFiles] = useState([]);
+
+  const heroVideo = files.find((f) => f.mimeType?.startsWith("video/")) || null;
+
   useEffect(() => {
     if (window.scrollY > 100) {
       window.scrollTo({
@@ -132,34 +135,32 @@ export default function Home() {
       {/* <SocialRail /> */}
       <main id="home">
         <section className="container-x pt-12 sm:pt-20">
-          <div
-            className="
-      hero-image
-      border-[3px]
-      sm:border-[4px]
-      md:border-[6px]
-      border-[#1d7fc5]
-      relative
-      overflow-hidden
-      shadow-soft
-    "
-          >
-            <iframe
-              className="
-        w-full
-        h-[220px]
-        sm:h-[320px]
-        md:h-[450px]
-        lg:h-[600px]
-        xl:h-[720px]
-      "
-              src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
+          <div className="hero-image border-[3px] sm:border-[4px] md:border-[6px] border-[#1d7fc5] relative overflow-hidden shadow-soft">
+            {heroVideo ? (
+              <video
+                key={heroVideo.id}
+                className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[600px] xl:h-[720px] object-cover"
+                src={heroVideo.url}
+                poster={heroVideo.thumbnail || undefined}
+                controls
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            ) : (
+              <iframe
+                className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[600px] xl:h-[720px]"
+                src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
+                title="YouTube video player"
+                frameBorder="0"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            )}
           </div>
         </section>
 
@@ -185,7 +186,6 @@ export default function Home() {
                   data-aos={b.animate}
                   className="gradient-panel border-grd group min-h-52 border border-white/10 p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-[#e3c07f]/40 hover:shadow-[0_20px_45px_-15px_rgba(29,127,197,0.4)]"
                 >
-                  {/* Icon */}
                   <div className="mb-7 flex h-16 w-16 items-center justify-center bg-gradient-to-br from-[#1d7fc5] to-[#68c4b2] shadow-[0_10px_25px_-8px_rgba(29,127,197,0.6)] transition-transform duration-300 group-hover:scale-105">
                     <Icon size={32} strokeWidth={2.5} className="text-white" />
                   </div>
@@ -232,7 +232,6 @@ export default function Home() {
             }}
           >
             <span className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#e3c07f]" />
-            {/* Header */}
             <div className="flex items-start justify-between gap-8">
               <div>
                 <h2
@@ -256,7 +255,6 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Description */}
             <p className="mt-6 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
               Established in 2019, Dolphin has grown into a multi-service
               marketing and execution company with a strong presence in
@@ -273,7 +271,6 @@ export default function Home() {
               execution, and reliability.
             </p>
 
-            {/* Services heading */}
             <h3
               data-aos="fade-left"
               className="mt-7 text-[18px] font-medium text-white"
@@ -282,7 +279,6 @@ export default function Home() {
               Solution.
             </h3>
 
-            {/* Stats */}
             <div
               data-aos="fade-left"
               className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
@@ -306,7 +302,6 @@ export default function Home() {
         </section>
 
         <section id="about" className="container-x py-12">
-          {/* Heading */}
           <div className="mb-8 text-center">
             <h2
               data-aos="zoom-in-left"
@@ -319,18 +314,17 @@ export default function Home() {
             </p>
           </div>
 
-          {/* ROW 1 */}
           <div className="grid items-start gap-10 lg:grid-cols-2">
-            {/* Left image */}
-            <div>
-              <img
-                src="/home/clr1.avif"
+            <div className="relative h-[380px] w-full">
+              <Image
+                src="/images/EICHER.jpeg"
                 alt="Dolphin"
-                className="h-[380px] w-full object-cover border-wiz"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover border-wiz"
               />
             </div>
 
-            {/* Right content */}
             <div>
               <p className="text-md leading-7 text-white">
                 Every journey begins with an idea. Ours began with a simple
@@ -357,9 +351,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ROW 2 */}
           <div className="mt-10 grid items-start gap-10 lg:grid-cols-2">
-            {/* Left content */}
             <div>
               <p className="text-md leading-7 text-white">
                 So, instead of asking our clients to find different partners
@@ -384,21 +376,23 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* Right image */}
             <div>
               <h3 className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold text-transparent">
                 One Partner. The Entire Journey.
               </h3>
 
-              <img
-                src="/home/clr2.avif"
-                alt="Dolphin event"
-                className="h-[380px] w-full object-cover border-wiz"
-              />
+              <div className="relative h-[380px] w-full">
+                <Image
+                  src="/images/IMG_3440.jpg"
+                  alt="Dolphin event"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover border-wiz"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Bottom copy */}
           <div className="mt-10 max-w-4xl text-md leading-7 text-white/80">
             <p>
               What started with managing events has grown into something much
@@ -446,20 +440,22 @@ export default function Home() {
                     Dolphin brings it all together. One brief. One team. One
                     point of coordination. One complete solution.
                   </p>
-                  <a
-                    href="#contact"
-                    className="mt-6 inline-block border border-[#e3c07f]/60 bg-[#e3c07f] px-5 py-3 text-xs font-bold uppercase tracking-wide text-[#123f66] transition-colors hover:bg-white"
-                  >
+                  
+                   <a href="#contact"
+                    className="mt-6 inline-block border border-[#e3c07f]/60 bg-[#e3c07f] px-5 py-3 text-xs font-bold uppercase tracking-wide text-[#123f66] transition-colors hover:bg-white"></a>
+                  
                     Get In Touch →
-                  </a>
                 </div>
               </div>
-              <img
-                data-aos="fade-left"
-                src="/home/clr3.jpg"
-                className="h-[380px] w-full object-cover border-wiz"
-                alt="Dolphin event reference"
-              />
+              <div data-aos="fade-left" className="relative h-[380px] w-full">
+                <Image
+                  src="/images/IMG_3420.jpg"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover border-wiz"
+                  alt="Dolphin event reference"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -493,12 +489,15 @@ export default function Home() {
               return (
                 <div
                   key={i}
-                  className={`min-h-0 overflow-hidden ${classes[i] || ""}`}
+                  className={`relative min-h-0 overflow-hidden ${classes[i] || ""}`}
                 >
-                  <img
+                  <Image
                     src={src}
                     alt="Dolphin work"
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                    loading={i < 2 ? "eager" : "lazy"}
                   />
                 </div>
               );
@@ -518,14 +517,12 @@ export default function Home() {
             Corporates, Institutions & Government Organisations
           </p>
 
-          {/* Placeholder divider — replace with logo grid/marquee once client logos are available */}
           <div className="mx-auto h-[1px] w-24 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#e3c07f]" />
           {/* <LogoSlider /> */}
         </section>
 
         <section id="contact" className="container-x py-20">
           <div className="gradient-panel px-3 py-14 sm:px-12 sm:py-16">
-            {/* Heading */}
             <div className="text-center">
               <h2
                 data-aos="zoom-in-left"
@@ -544,7 +541,6 @@ export default function Home() {
               className="mx-auto mt-12 grid max-w-[1010px] grid-cols-1 gap-6 md:grid-cols-3"
               onSubmit={(e) => e.preventDefault()}
             >
-              {/* Full Name */}
               <input
                 type="text"
                 name="fullName"
@@ -552,7 +548,6 @@ export default function Home() {
                 className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
-              {/* Company Name */}
               <input
                 type="text"
                 name="companyName"
@@ -560,7 +555,6 @@ export default function Home() {
                 className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
-              {/* Email */}
               <input
                 type="email"
                 name="email"
@@ -568,7 +562,6 @@ export default function Home() {
                 className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
-              {/* Phone */}
               <input
                 type="tel"
                 name="phone"
@@ -576,7 +569,6 @@ export default function Home() {
                 className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
               />
 
-              {/* Location */}
               <div className="relative">
                 <select
                   name="location"
@@ -606,7 +598,6 @@ export default function Home() {
                   </option>
                 </select>
 
-                {/* Dropdown arrow */}
                 <svg
                   className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white"
                   viewBox="0 0 20 20"
@@ -618,7 +609,6 @@ export default function Home() {
                 </svg>
               </div>
 
-              {/* Message */}
               <textarea
                 name="message"
                 placeholder="Your Message"
@@ -626,7 +616,6 @@ export default function Home() {
                 className="resize-y border border-white/40 bg-transparent px-3 py-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40 md:col-span-3"
               />
 
-              {/* Submit */}
               <button
                 type="submit"
                 className="mx-auto mt-1 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#1d7fc5] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#0b2436] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e3c07f]/30 md:col-span-3"

@@ -169,7 +169,7 @@ export default function AboutStory() {
         >
           <StoryCard
             title="Rooted in Madhya Pradesh, Ready Across India"
-            image="/images/DSC_1465.JPG"
+            image="/images/DSC_1502.JPG"
             imageAlt="Dolphin Facilities Office"
             imageSide="right"
           >
@@ -210,10 +210,10 @@ export default function AboutStory() {
         >
           <StoryCard
             title="Experiences Planned With Purpose"
-            image="/about/image.png"
+            image="/images/DSC_1703.jpg"
             imageAlt="Event Management"
             imageSide="left"
-          >
+                 >
             <p>
               Dolphin plans and coordinates corporate events, conferences,
               product launches, dealer meets, award functions, institutional
@@ -294,7 +294,7 @@ export default function AboutStory() {
         >
           <StoryCard
             title="Brands Are Remembered Through Participation"
-            image="/about/image.png"
+            image="/about/cm-mp.png"
             imageAlt="Brand Activation"
             imageSide="left"
           >
@@ -456,7 +456,7 @@ export default function AboutStory() {
         >
           <StoryCard
             title="Spaces That Turn Attention Into Opportunity"
-            image="/about/image.png"
+            image="/about/event-front-img.png"
             imageAlt="Exhibitions and Trade Fairs"
             imageSide="left"
           >
@@ -479,56 +479,8 @@ export default function AboutStory() {
         </motion.div>
 
 
-        <Connector />
+  
 
-
-        {/* =====================================================
-            SECTION 11 — HOW WE WORK
-        ===================================================== */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-          }}
-        >
-          <StoryCard
-            title="One Connected Process, From Brief to Closure"
-            image="/images/DSC_1465.JPG"
-            imageAlt="How We Work"
-            imageSide="right"
-          >
-            <p>
-              <span className="text-[#39a6d0]">Understand:</span> We begin
-              with the purpose, audience, location, scale, budget and
-              expected result.{" "}
-              <span className="text-[#39a6d0]">Plan:</span> The requirement
-              is converted into a scope, schedule, responsibility matrix and
-              approval process.
-            </p>
-
-            <p>
-              <span className="text-[#39a6d0]">Create:</span> Concepts,
-              content, layouts, campaign assets and production elements are
-              developed and reviewed.{" "}
-              <span className="text-[#39a6d0]">Coordinate:</span> Venues,
-              vendors, specialists, teams, permissions, logistics and
-              materials are aligned.
-            </p>
-
-            <p>
-              <span className="text-[#39a6d0]">Execute:</span> A designated
-              project lead controls deployment, quality, timing, safety and
-              issue resolution.{" "}
-              <span className="text-[#39a6d0]">Report:</span> Deliverables,
-              field evidence, outcomes and closure items are documented
-              according to the agreed scope.
-            </p>
-          </StoryCard>
-        </motion.div>
 
       </div>
     </section>
