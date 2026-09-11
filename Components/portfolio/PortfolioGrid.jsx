@@ -10,14 +10,12 @@ import { useEffect, useRef, useState } from "react";
 
    PORTFOLIO GRID — Video Google Drive se,
 
-   lekin CARD/POSTER IMAGE sirf tumhare public/portfolio-images/
-
-   folder se aayegi. Drive thumbnail/image poster ke liye use nahi hogi.
+   CARD/POSTER IMAGE sirf public/portfolio-images/ se aayegi.
 
 
    ============================================================
 
-   POSTER — SIRF public/portfolio-images/ SE LOCAL IMAGES
+   POSTER OVERRIDE — YAHAN APNI LOCAL IMAGES DAALO
 
    ============================================================
 
@@ -44,9 +42,9 @@ import { useEffect, useRef, useState } from "react";
       karo)
 
 
-   Agar kisi project ka local poster override nahi diya, to poster blank
+   Agar kisi project ka local image override nahi diya, to poster blank
 
-   rahega. Drive thumbnail ya Drive ki image fallback ke roop mein use nahi hogi.
+   rahega. Drive thumbnail ya Drive image fallback ke roop mein use nahi hogi.
 
 
    NOTE: Random/temporary placeholder image (picsum.photos) ab
@@ -339,11 +337,11 @@ function groupFilesIntoProjects(files) {
     );
 
 
-    // Poster: sirf public/portfolio-images/ se manually defined image.
+    // Poster: sirf public/portfolio-images/ se image.
 
-    // Drive thumbnail ya Drive image ko poster ke liye use nahi karna.
+    // Priority: manual poster override > IMAGE_OVERRIDES ki first local image.
 
-    // Agar local poster nahi hai to poster blank rahega.
+    // Drive thumbnail/image aur random placeholder kabhi use nahi honge.
 
     const manualPoster = findPosterOverride(key);
 
@@ -358,7 +356,7 @@ function groupFilesIntoProjects(files) {
 
       description: descriptionSource?.description || "",
 
-      poster: manualPoster || null,
+      poster: manualPoster || manualImages[0]?.url || null,
 
       video: firstVideo?.url || null,
 
