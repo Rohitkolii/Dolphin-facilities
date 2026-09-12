@@ -20,6 +20,7 @@ export default function AboutPage() {
       <AboutStats />
       <AboutPhilosophy />
       <AboutTellBottom />
+      
       <AboutClosingCTA />
       <Footer />
     </main>

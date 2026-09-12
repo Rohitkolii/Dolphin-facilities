@@ -1,6 +1,18 @@
 // Blog content sourced from Dolphin_Facilities_Website_Blog_Master.docx
 // Shared by BlogGrid.jsx and [id]/page.jsx so both stay in sync.
 
+// Recommended Website Menu -> Blog Filter list (docx: "Recommended Website Menu")
+export const blogFilters = [
+  { label: "All Insights", value: "All Insights" },
+  { label: "Event Planning", value: "Event Planning" },
+  { label: "Trade Fairs", value: "Trade Fairs" },
+  { label: "College Programs", value: "College Programs" },
+  { label: "Conferences", value: "Conferences" },
+  { label: "Brand Promotions", value: "Brand Promotions" },
+  { label: "Advertising", value: "Advertising" },
+  { label: "Van Campaigns", value: "Van Campaigns" },
+];
+
 export const blogs = [
   {
     id: 1,
@@ -10,6 +22,7 @@ export const blogs = [
     title: "From Brief to Applause How Dolphin Plans Events That Feel Effortless",
     image: "/blog/cm-mp.png",
     readingTime: "5 to 6 minutes",
+    excerpt: "A successful event may look spontaneous, but nothing important is left to chance. Every guest movement, stage cue, vendor arrival and backup decision has to be designed before the doors open.",
     metaDescription: "See how Dolphin Facilities turns an event brief into a coordinated guest experience through disciplined planning, production, hospitality and on-site control.",
     heroImageNote: "A sophisticated event control room or wide-angle view of a finished corporate event; warm lighting, clean stage design, no stock-photo handshake.",
     intro: "A successful event may look spontaneous, but nothing important is left to chance. Every guest movement, stage cue, vendor arrival and backup decision has to be designed before the doors open. Dolphin Facilities approaches event planning as one connected operation: understand the purpose, shape the experience, control the details and remain ready for the unexpected.",
@@ -72,10 +85,11 @@ export const blogs = [
     id: 2,
     slug: "trade-fair-exhibition-planning-guide",
     date: "August 28, 2026",
-    category: "Trade Fairs And Exhibitions",
+    category: "Trade Fairs",
     title: "Beyond the Stall How Dolphin Turns Trade Fair Participation Into Business Opportunity",
     image: "/blog/event-front-img.png",
     readingTime: "5 to 6 minutes",
+    excerpt: "A trade fair stall is not merely a temporary structure. It is a live sales environment where design, people, product and data must work together.",
     metaDescription: "A practical guide to exhibition strategy, stall design, visitor engagement, logistics and lead capture from Dolphin Facilities.",
     heroImageNote: "Premium exhibition pavilion with clear branding, open visitor flow and a live product demonstration.",
     intro: "A trade fair stall is not merely a temporary structure. It is a live sales environment where design, people, product and data must work together. Dolphin Facilities plans exhibitions around a simple question: what should the right visitor understand, experience and do after entering the space?",
@@ -128,7 +142,7 @@ export const blogs = [
       },
       {
         q: "How should success be measured?",
-        a: "Use qualified leads, decision-maker meetings, demonstrations, follow-up commitments and cost per useful interaction-not footfall alone.",
+        a: "Use qualified leads, decision-maker meetings, demonstrations, follow-up commitments and cost per useful interaction—not footfall alone.",
       },
     ],
     ctaTitle: "Plan your next assignment with Dolphin",
@@ -138,13 +152,14 @@ export const blogs = [
     id: 3,
     slug: "college-convocation-management-guide",
     date: "August 21, 2026",
-    category: "College Convocations",
+    category: "College Programs",
     title: "A Ceremony Worth Remembering Dolphin's Approach to College Convocation Management",
     image: "/images/DSC_1663.jpg",
     readingTime: "5 to 6 minutes",
+    excerpt: "A convocation is both a formal academic ceremony and a deeply personal milestone. It has to protect institutional protocol while allowing graduates and families to enjoy the moment.",
     metaDescription: "Learn how Dolphin Facilities manages dignitaries, graduates, stage protocol, certificates, live production and family experience at convocations.",
     heroImageNote: "Elegant convocation stage with academic procession, graduates and restrained institutional branding.",
-    intro: "A convocation is both a formal academic ceremony and a deeply personal milestone. It has to protect institutional protocol while allowing graduates and families to enjoy the moment. Dolphin Facilities builds the event around accuracy, dignity and smooth movement-especially where hundreds of names, certificates and stage cues must align.",
+    intro: "A convocation is both a formal academic ceremony and a deeply personal milestone. It has to protect institutional protocol while allowing graduates and families to enjoy the moment. Dolphin Facilities builds the event around accuracy, dignity and smooth movement—especially where hundreds of names, certificates and stage cues must align.",
     sections: [
       {
         heading: "Translate protocol into an executable sequence",
@@ -204,10 +219,11 @@ export const blogs = [
     id: 4,
     slug: "hotel-conference-planning-management",
     date: "August 14, 2026",
-    category: "Hotel Conferences",
+    category: "Conferences",
     title: "Meetings That Move Business Forward How Dolphin Manages Hotel Conferences",
     image: "/images/DSC_1708.jpg",
     readingTime: "5 to 6 minutes",
+    excerpt: "A hotel conference succeeds when delegates can focus on the agenda rather than logistics. That requires detailed coordination between the client, hotel, speakers, production crew and hospitality teams.",
     metaDescription: "Discover the planning controls behind seamless hotel conferences, from room blocks and delegate flow to AV, agendas and hospitality.",
     heroImageNote: "Refined hotel ballroom conference with clear stage sightlines, professional lighting and a focused audience.",
     intro: "A hotel conference succeeds when delegates can focus on the agenda rather than logistics. That requires detailed coordination between the client, hotel, speakers, production crew and hospitality teams. Dolphin Facilities acts as the operational bridge, turning contracts, room layouts and session plans into one coherent delegate experience.",
@@ -274,6 +290,7 @@ export const blogs = [
     title: "From Attention to Action How Dolphin Builds Brand Promotions That Work on the Ground",
     image: "/images/faclitate.jpg",
     readingTime: "5 to 6 minutes",
+    excerpt: "Brand promotion is effective only when visibility becomes a meaningful consumer interaction. A large crowd can look impressive and still produce little value.",
     metaDescription: "Explore how Dolphin Facilities plans brand activations with the right audience, location, trained promoters, compliance and measurable reporting.",
     heroImageNote: "Contemporary consumer activation in a mall or high-street location with active participation and disciplined branding.",
     intro: "Brand promotion is effective only when visibility becomes a meaningful consumer interaction. A large crowd can look impressive and still produce little value. Dolphin Facilities designs on-ground promotions around the right audience, a simple message, a credible experience and measurable next action.",
@@ -336,13 +353,14 @@ export const blogs = [
     id: 6,
     slug: "tv-advertising-planning-production-guide",
     date: "July 31, 2026",
-    category: "Tv Advertising",
+    category: "Advertising",
     title: "Thirty Seconds With a Job to Do Dolphin's Practical Guide to TV Advertising",
     image: "/images/IMG_3420.jpg",
     readingTime: "5 to 6 minutes",
+    excerpt: "A television commercial combines strategy, storytelling, production discipline and media investment. The film must make the brand recognisable, communicate one useful idea and fit the viewing context.",
     metaDescription: "Understand how Dolphin Facilities can coordinate TV ad strategy, production, media planning, clearances and campaign measurement.",
     heroImageNote: "Cinematic commercial shoot with camera, monitor and art-directed brand scene; polished but authentic.",
-    intro: "A television commercial combines strategy, storytelling, production discipline and media investment. The film must make the brand recognisable, communicate one useful idea and fit the viewing context-all within a tightly controlled duration. Dolphin Facilities coordinates the moving parts so the creative ambition remains aligned with the business objective and approved budget.",
+    intro: "A television commercial combines strategy, storytelling, production discipline and media investment. The film must make the brand recognisable, communicate one useful idea and fit the viewing context—all within a tightly controlled duration. Dolphin Facilities coordinates the moving parts so the creative ambition remains aligned with the business objective and approved budget.",
     sections: [
       {
         heading: "Begin with one communication task",
@@ -402,13 +420,14 @@ export const blogs = [
     id: 7,
     slug: "mobile-van-campaign-planning-guide",
     date: "July 24, 2026",
-    category: "Van Campaigning",
+    category: "Van Campaigns",
     title: "A Brand That Travels How Dolphin Plans Accountable Van Campaigns",
     image: "/images/UVN.jpeg",
     readingTime: "5 to 6 minutes",
+    excerpt: "Van campaigning takes a message to people instead of waiting for people to visit a fixed venue. It is useful for product awareness, public information, rural outreach, dealership support and market activation.",
     metaDescription: "A field-ready guide to route planning, van branding, permissions, public engagement, monitoring and reporting for mobile campaigns.",
     heroImageNote: "Cleanly branded campaign van engaging a small public gathering in an Indian town, with organised staff and clear messaging.",
-    intro: "Van campaigning takes a message to people instead of waiting for people to visit a fixed venue. It is useful for product awareness, public information, rural outreach, dealership support and market activation-but only when routes, permissions, messaging, equipment and reporting are tightly managed. Dolphin Facilities treats each van as a mobile brand unit with a daily operating plan.",
+    intro: "Van campaigning takes a message to people instead of waiting for people to visit a fixed venue. It is useful for product awareness, public information, rural outreach, dealership support and market activation—but only when routes, permissions, messaging, equipment and reporting are tightly managed. Dolphin Facilities treats each van as a mobile brand unit with a daily operating plan.",
     sections: [
       {
         heading: "Design the campaign around geography",
