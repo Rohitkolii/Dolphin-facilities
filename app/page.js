@@ -9,7 +9,6 @@ import { FaCode } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
 import IntroSplash from "@/Components/home/IntroSplash";
 import Navbar from "@/Components/common/Navbar";
-import SocialRail from "@/Components/home/SocialRail";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
@@ -94,9 +93,8 @@ const slides = [
 export default function Home() {
   const [files, setFiles] = useState([]);
 
-  // const heroVideo = files.find((f) => f.mimeType?.startsWith("video/")) || null;
   const heroVideo =
-    files.find((f) => f.id == "14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff") || null;
+    files.find((f) => f.id === "14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff") || null;
 
   useEffect(() => {
     if (window.scrollY > 100) {
@@ -117,7 +115,6 @@ export default function Home() {
           throw new Error(data.message || "Failed to fetch media files");
         }
 
-        // console.log("Media files:", data.files);
         setFiles(data.files);
       } catch (error) {
         console.error("Unable to load media files:", error);
@@ -190,7 +187,6 @@ export default function Home() {
     <div className="overflow-x-hidden">
       <IntroSplash />
       <Navbar />
-      {/* <SocialRail /> */}
       <main id="home">
         <section className="container-x pt-12 sm:pt-20">
           <div className="hero-image border-[3px] sm:border-[4px] md:border-[6px] border-[#1d7fc5] relative overflow-hidden shadow-soft">
@@ -208,22 +204,12 @@ export default function Home() {
                 preload="metadata"
               />
             ) : (
-              // <iframe
-              //   className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[600px] xl:h-[720px]"
-              //   src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
-              //   title="YouTube video player"
-              //   frameBorder="0"
-              //   loading="lazy"
-              //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              //   referrerPolicy="strict-origin-when-cross-origin"
-              //   allowFullScreen
-              // />
               <div className="relative">
-                <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-900 font-bold text-3xl">
+                <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-red-900 font-bold text-3xl">
                   LOADING VIDEO...
                 </p>
                 <img
-                  src={"/about/event-front-img.png"}
+                  src="/about/event-front-img.png"
                   alt="Hero Video Thumbnail"
                   className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[500px] xl:h-[720px] object-cover"
                 />
@@ -507,8 +493,8 @@ export default function Home() {
                     point of coordination. One complete solution.
                   </p>
 
-                  <a
-                    href="#contact"
+                  
+                  <a  href="#contact"
                     className="mt-5 block w-fit bg-gradient-to-r from-[#e3c07f] via-yellow-200 to-yellow-200 px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#0b2436] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e3c07f]/30"
                   >
                     Get In Touch →
@@ -539,38 +525,6 @@ export default function Home() {
           <p className="mb-10 text-center text-xl text-white">
             Our Work Across Events, Branding & Activations
           </p>
-
-          {/* <div className="grid grid-cols-1 gap-1 md:auto-rows-[400px] md:grid-cols-4">
-            {gallery.map((src, i) => {
-              const classes = [
-                "",
-                "md:row-span-2",
-                "",
-                "",
-                "",
-                "",
-                "md:col-span-2",
-                "",
-                "md:col-start-4 md:row-start-2 md:row-span-2",
-              ];
-
-              return (
-                <div
-                  key={i}
-                  className={`relative min-h-0 overflow-hidden ${classes[i] || ""}`}
-                >
-                  <Image
-                    src={src}
-                    alt="Dolphin work"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover"
-                    loading={i < 2 ? "eager" : "lazy"}
-                  />
-                </div>
-              );
-            })}
-          </div> */}
 
           <div className="grid grid-cols-1 auto-rows-[300px] gap-1 md:auto-rows-[400px] md:grid-cols-4">
             {gallery.map((src, i) => {
@@ -620,7 +574,6 @@ export default function Home() {
           </p>
 
           <div className="mx-auto h-[1px] w-24 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#e3c07f]" />
-          {/* <LogoSlider /> */}
         </section>
 
         <section id="contact" className="container-x py-20">
