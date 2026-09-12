@@ -94,7 +94,8 @@ const slides = [
 export default function Home() {
   const [files, setFiles] = useState([]);
 
-  const heroVideo = files.find((f) => f.mimeType?.startsWith("video/")) || null;
+  // const heroVideo = files.find((f) => f.mimeType?.startsWith("video/")) || null;
+  const heroVideo = files.find((f) => f.id == '14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff') || null;
 
   useEffect(() => {
     if (window.scrollY > 100) {
@@ -206,16 +207,25 @@ export default function Home() {
                 preload="metadata"
               />
             ) : (
-              <iframe
-                className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[600px] xl:h-[720px]"
-                src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
-                title="YouTube video player"
-                frameBorder="0"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
+              // <iframe
+              //   className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[600px] xl:h-[720px]"
+              //   src="https://www.youtube.com/embed/CCtEkjdmN8Y?si=FKqkWD0zN4V2i-q5"
+              //   title="YouTube video player"
+              //   frameBorder="0"
+              //   loading="lazy"
+              //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              //   referrerPolicy="strict-origin-when-cross-origin"
+              //   allowFullScreen
+              // />
+              <div className="relative">
+                <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-900 font-bold text-3xl">LOADING VIDEO...</p>
+                <img
+                src={'/about/event-front-img.png'}
+                alt="Hero Video Thumbnail"
+                className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[500px] xl:h-[720px] object-cover"
               />
+                </div>
+
             )}
           </div>
         </section>
