@@ -95,7 +95,8 @@ export default function Home() {
   const [files, setFiles] = useState([]);
 
   // const heroVideo = files.find((f) => f.mimeType?.startsWith("video/")) || null;
-  const heroVideo = files.find((f) => f.id == '14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff') || null;
+  const heroVideo =
+    files.find((f) => f.id == "14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff") || null;
 
   useEffect(() => {
     if (window.scrollY > 100) {
@@ -218,14 +219,15 @@ export default function Home() {
               //   allowFullScreen
               // />
               <div className="relative">
-                <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-900 font-bold text-3xl">LOADING VIDEO...</p>
+                <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-900 font-bold text-3xl">
+                  LOADING VIDEO...
+                </p>
                 <img
-                src={'/about/event-front-img.png'}
-                alt="Hero Video Thumbnail"
-                className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[500px] xl:h-[720px] object-cover"
-              />
-                </div>
-
+                  src={"/about/event-front-img.png"}
+                  alt="Hero Video Thumbnail"
+                  className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[500px] xl:h-[720px] object-cover"
+                />
+              </div>
             )}
           </div>
         </section>
@@ -538,7 +540,7 @@ export default function Home() {
             Our Work Across Events, Branding & Activations
           </p>
 
-          <div className="grid grid-cols-1 gap-1 md:auto-rows-[400px] md:grid-cols-4">
+          {/* <div className="grid grid-cols-1 gap-1 md:auto-rows-[400px] md:grid-cols-4">
             {gallery.map((src, i) => {
               const classes = [
                 "",
@@ -556,6 +558,40 @@ export default function Home() {
                 <div
                   key={i}
                   className={`relative min-h-0 overflow-hidden ${classes[i] || ""}`}
+                >
+                  <Image
+                    src={src}
+                    alt="Dolphin work"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                    loading={i < 2 ? "eager" : "lazy"}
+                  />
+                </div>
+              );
+            })}
+          </div> */}
+
+          <div className="grid grid-cols-1 auto-rows-[300px] gap-1 md:auto-rows-[400px] md:grid-cols-4">
+            {gallery.map((src, i) => {
+              const classes = [
+                "",
+                "md:row-span-2",
+                "",
+                "",
+                "",
+                "",
+                "md:col-span-2",
+                "",
+                "md:col-start-4 md:row-start-2 md:row-span-2",
+              ];
+
+              return (
+                <div
+                  key={i}
+                  className={`relative min-h-[300px] overflow-hidden ${
+                    classes[i] || ""
+                  }`}
                 >
                   <Image
                     src={src}
