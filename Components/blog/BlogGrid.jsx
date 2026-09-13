@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useRef, useState, useEffect } from "react";
 import { blogs, blogFilters } from "./blogData";
+import Link from "next/link";
 
 /* ============================================================
    BLOG GRID
@@ -411,7 +412,8 @@ function BlogCard({ blog, index }) {
 
         {/* TITLE */}
 
-        <h2
+        <Link
+          href={`/blog/${blog.slug}`}
           className="
             text-white
             text-[19px]
@@ -426,12 +428,12 @@ function BlogCard({ blog, index }) {
           "
         >
           {blog.title}
-        </h2>
+        </Link>
 
 
         {/* READ MORE */}
 
-        <a
+        <Link
           href={`/blog/${blog.slug}`}
           className="
             inline-flex
@@ -460,7 +462,7 @@ function BlogCard({ blog, index }) {
           >
             →
           </span>
-        </a>
+        </Link>
       </div>
 
     </motion.article>

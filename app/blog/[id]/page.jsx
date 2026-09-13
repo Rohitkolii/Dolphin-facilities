@@ -11,8 +11,9 @@ export default function BlogDetailPage() {
   const router = useRouter();
 
   const blog = blogs.find(
-    (item) => item.id === Number(params.id)
+    (item) => item.slug == params.id
   );
+
 
   /* Invalid ID */
   if (!blog) {
@@ -63,7 +64,7 @@ export default function BlogDetailPage() {
             className="
               mb-8
               text-[#5eb8d4]
-              text-[11px]
+              text-[15px]
               font-semibold
               hover:text-white
               transition-colors
@@ -99,7 +100,7 @@ export default function BlogDetailPage() {
                 className="
                   w-full
                   h-[220px]
-                  md:h-[400px]
+                  md:h-[500px]
                   object-cover
                 "
               />
@@ -109,7 +110,7 @@ export default function BlogDetailPage() {
             {/* DATE / CATEGORY / READING TIME */}
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <p className="text-[#5eb8d4] text-[10px] font-semibold">
+              <p className="text-[#5eb8d4] text-[16px] font-semibold">
                 {blog.date}
               </p>
               {blog.category && (
@@ -157,8 +158,8 @@ export default function BlogDetailPage() {
             <div
               className="
                 text-white/85
-                text-[12px]
-                md:text-[14px]
+                text-[14px]
+                md:text-[16px]
                 leading-[1.8]
                 space-y-5
               "

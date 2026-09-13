@@ -184,7 +184,7 @@ export default function Home() {
   };
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden min-h-screen overflow-x-hidden bg-[#303030]">
       <IntroSplash />
       <Navbar />
       <main id="home">
@@ -193,23 +193,20 @@ export default function Home() {
             {heroVideo ? (
               <video
                 key={heroVideo.id}
-                className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[600px] xl:h-[720px] object-cover"
+                className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[700px] xl:h-[720px] object-cover"
                 src={heroVideo.url}
-                poster={heroVideo.thumbnail || undefined}
+                poster={'/images/thumbnail.png' || heroVideo.thumbnail}
                 controls
-                autoPlay
+                // autoPlay
                 muted
                 loop
                 playsInline
                 preload="metadata"
               />
             ) : (
-              <div className="relative">
-                <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-red-900 font-bold text-3xl">
-                  LOADING VIDEO...
-                </p>
+              <div className="">
                 <img
-                  src="/about/event-front-img.png"
+                  src="/images/thumbnail.png"
                   alt="Hero Video Thumbnail"
                   className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[500px] xl:h-[720px] object-cover"
                 />

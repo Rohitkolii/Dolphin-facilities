@@ -236,6 +236,85 @@ export default function AboutStory() {
 
         <Connector />
 
+                {/* =====================================================
+            SECTION 4 — EXHIBITIONS & TRADE FAIRS
+        ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <StoryCard
+            title="Spaces That Turn Attention Into Opportunity"
+            image="/about/event-front-img.png"
+            imageAlt="Exhibitions and Trade Fairs"
+            imageSide="right"
+          >
+            <p>
+              For exhibitions and trade fairs, Dolphin approaches the stall or
+              pavilion as a live brand environment. The process may include
+              requirement analysis, concept and design coordination,
+              fabrication supervision, product display, electrical and
+              audio-visual planning, venue liaison, logistics, staffing,
+              hospitality and dismantling.
+            </p>
+
+            <p>
+              Visitor movement, message visibility, demonstration
+              requirements and lead capture are considered at the planning
+              stage so the space supports real conversations and business
+              outcomes, not appearance alone.
+            </p>
+          </StoryCard>
+        </motion.div>
+
+        <Connector />
+
+        
+        {/* =====================================================
+            SECTION 6 — BRAND ACTIVATION & CONSUMER ENGAGEMENT
+        ===================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+          }}
+        >
+          <StoryCard
+            title="Brands Are Remembered Through Participation"
+            image="/about/cm-mp.png"
+            imageAlt="Brand Activation"
+            imageSide="left"
+          >
+            <p>
+              Dolphin designs on-ground activations that help audiences
+              experience a brand directly. Depending on the campaign, this
+              can include Van Campaigns, Brand Endorsements, sampling, retail
+              engagement, institutional outreach, promoter deployment and
+              consumer response capture.
+            </p>
+
+            <p>
+              The campaign is developed around the target audience, location,
+              core message and desired action. Promoter training,
+              permissions, stock control, field supervision and daily
+              reporting help maintain quality across locations.
+            </p>
+          </StoryCard>
+        </motion.div>
+
+
+        <Connector />
+
 
         {/* =====================================================
             SECTION 5 — ADVERTISING & OUTDOOR CAMPAIGNS
@@ -279,45 +358,6 @@ export default function AboutStory() {
         <Connector />
 
 
-        {/* =====================================================
-            SECTION 6 — BRAND ACTIVATION & CONSUMER ENGAGEMENT
-        ===================================================== */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-          }}
-        >
-          <StoryCard
-            title="Brands Are Remembered Through Participation"
-            image="/about/cm-mp.png"
-            imageAlt="Brand Activation"
-            imageSide="left"
-          >
-            <p>
-              Dolphin designs on-ground activations that help audiences
-              experience a brand directly. Depending on the campaign, this
-              can include Van Campaigns, Brand Endorsements, sampling, retail
-              engagement, institutional outreach, promoter deployment and
-              consumer response capture.
-            </p>
-
-            <p>
-              The campaign is developed around the target audience, location,
-              core message and desired action. Promoter training,
-              permissions, stock control, field supervision and daily
-              reporting help maintain quality across locations.
-            </p>
-          </StoryCard>
-        </motion.div>
-
-
-        <Connector />
-
 
         {/* =====================================================
             SECTION 7 — DIGITAL & CREATIVE SOLUTIONS
@@ -336,7 +376,7 @@ export default function AboutStory() {
             title="Connecting Physical Experiences With Digital Reach"
             image="/images/EICHER.jpeg"
             imageAlt="Digital and Creative Solutions"
-            imageSide="right"
+            imageSide="left"
           >
             <p>
               Dolphin supports brands with digital campaigns, social media
@@ -377,7 +417,7 @@ export default function AboutStory() {
             title="Execution With Structure, Responsibility and Respect"
             image="/images/UVN.jpeg"
             imageAlt="Government and Institutional Assignments"
-            imageSide="left"
+            imageSide="right"
           >
             <p>
               Government and institutional programmes require careful
@@ -419,7 +459,7 @@ export default function AboutStory() {
             title="The Details That Complete the Experience"
             image="/about/BVN.jpeg"
             imageAlt="Customized Products and Material Support"
-            imageSide="right"
+            imageSide="left"
           >
             <p>
               Many projects require more than event production. Dolphin can
@@ -439,47 +479,6 @@ export default function AboutStory() {
 
 
         <Connector />
-
-
-        {/* =====================================================
-            SECTION 10 — EXHIBITIONS & TRADE FAIRS
-        ===================================================== */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 0.6,
-            ease: "easeOut",
-          }}
-        >
-          <StoryCard
-            title="Spaces That Turn Attention Into Opportunity"
-            image="/about/event-front-img.png"
-            imageAlt="Exhibitions and Trade Fairs"
-            imageSide="left"
-          >
-            <p>
-              For exhibitions and trade fairs, Dolphin approaches the stall or
-              pavilion as a live brand environment. The process may include
-              requirement analysis, concept and design coordination,
-              fabrication supervision, product display, electrical and
-              audio-visual planning, venue liaison, logistics, staffing,
-              hospitality and dismantling.
-            </p>
-
-            <p>
-              Visitor movement, message visibility, demonstration
-              requirements and lead capture are considered at the planning
-              stage so the space supports real conversations and business
-              outcomes, not appearance alone.
-            </p>
-          </StoryCard>
-        </motion.div>
-
-
-  
 
 
       </div>

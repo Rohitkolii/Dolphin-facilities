@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Dolphine Facilities",
   description: "Established in 2019, Dolphin began with a focused purpose: to create events that bring people, organisations and ideas together. As client requirements expanded, so did our capabilities. What began with event planning evolved into a broader execution platform covering brand activations, advertising, outdoor campaigns, exhibitions, digital communication, customized products, material supply and field operations.",
+  icons: {
+    icon: "/images/fav2.png",
+  },
 };
 
 export default function RootLayout({ children }) {

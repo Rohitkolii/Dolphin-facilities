@@ -68,8 +68,8 @@ export default function BlogHero() {
           }}
           className="
             text-white/95
-            text-[10px]
-            md:text-[11px]
+            text-[10]px]
+            md:text-[16px]
             leading-[1.6]
             max-w-[850px]
             mx-auto

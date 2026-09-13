@@ -4,102 +4,244 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { useEffect, useRef, useState } from "react";
 
-/* ============================================================
+//============================================================ */
 
-   PORTFOLIO GRID — Video Google Drive se,
+const projectsdata = [
+  {
+    index: 7,
+    id: "1y79v_9_9B8UVuy7c1xqRPucGqR79Y3Ou",
+    name: "VH Ujjain — The Spirit of the Celebration.mp4",
+    mimeType: "video/mp4",
+    size: "97866635",
+    url: "/api/media/1y79v_9_9B8UVuy7c1xqRPucGqR79Y3Ou",
+    viewUrl:
+      "https://drive.google.com/file/d/1y79v_9_9B8UVuy7c1xqRPucGqR79Y3Ou/view",
+    description:
+      "A captivating reel from VH Ujjain, bringing together the energy, atmosphere, people, and standout moments that shaped this memorable celebration.",
+    thumbnail: "/api/media/thumbnail/1y79v_9_9B8UVuy7c1xqRPucGqR79Y3Ou",
+    headimg: "/images/ladies.png",
+    category: 1,
+  },  
+  {
+    index: 4,
+    id: "1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
+    name: "vit convocation , iccer van campaign.MP4",
+    mimeType: "video/mp4",
+    size: "704170370",
+    url: "/api/media/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
+    viewUrl:
+      "https://drive.google.com/file/d/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
+    headimg: "/images/group.jpg",
+    category: 2,
+  },
 
-   lekin CARD/POSTER + GALLERY IMAGES sirf
+  {
+    index: 8,
+    id: "1c3-BiJW8M14N2cThW3tp720ympMCyA0-",
+    name: "IN THE ESTEEMED PRESENCE OF THE HON’BLE CHIEF MINISTER — VAN MELA UJJAIN 2026.mp4",
+    mimeType: "video/mp4",
+    size: "613063620",
+    url: "/api/media/1c3-BiJW8M14N2cThW3tp720ympMCyA0-",
+    viewUrl:
+      "https://drive.google.com/file/d/1c3-BiJW8M14N2cThW3tp720ympMCyA0-/view",
+    description:
+      "Highlights from Van Mela Ujjain 2026, held in the esteemed presence of the Hon’ble Chief Minister, showcasing the event’s key moments, celebrations, and memorable experiences.",
+    thumbnail: "/api/media/thumbnail/1c3-BiJW8M14N2cThW3tp720ympMCyA0-",
+    headimg: "/images/cm.png",
+    category: 3,
+  },
+  {
+    index: 0,
+    id: "14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
+    name: "Sequence 01_1.mp4",
+    mimeType: "video/mp4",
+    size: "396823869",
+    url: "/api/media/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
+    viewUrl:
+      "https://drive.google.com/file/d/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
+    headimg: "/images/thumbnail.png",
+    category: 2,
+  },
+  {
+    index: 11,
+    id: "1n1SIoGWsMibL9_7AXGhVXD5ZbNNKop4q",
+    name: "REVIEW REEL FOR INTERNATIONAL VAN MELA FOR MASIVE RESPONSE.mp4",
+    mimeType: "video/mp4",
+    size: "297697035",
+    url: "/api/media/1n1SIoGWsMibL9_7AXGhVXD5ZbNNKop4q",
+    viewUrl:
+      "https://drive.google.com/file/d/1n1SIoGWsMibL9_7AXGhVXD5ZbNNKop4q/view",
+    description:
+      "A high-energy review reel capturing the massive response to International Van Mela, showcasing the excitement, public engagement, key attractions, and unforgettable moments that made the event a memorable experience.",
+    thumbnail: "/api/media/thumbnail/1n1SIoGWsMibL9_7AXGhVXD5ZbNNKop4q",
+    headimg: "/images/ladies2.png",
+    category: 4,
+  },
+  {
+    index: 13,
+    id: "1D88dVFZAFjCZBS9TodY2_UffV9VUUe3V",
+    name: "INTERNATIONAL VAN MELA BHOPAL",
+    mimeType: "video/mp4",
+    size: "296453062",
+    url: "/api/media/1D88dVFZAFjCZBS9TodY2_UffV9VUUe3V",
+    viewUrl:
+      "https://drive.google.com/file/d/1D88dVFZAFjCZBS9TodY2_UffV9VUUe3V/view",
+    description:
+      "A celebration of forests, wildlife, and the rich natural heritage of Madhya Pradesh, bringing together people, communities, and experiences at International Van Mela Bhopal 2025.",
+    thumbnail: "/api/media/thumbnail/1D88dVFZAFjCZBS9TodY2_UffV9VUUe3V",
+    headimg: "/images/image.png",
+    category: 4,
+  },
+  {
+    index: 14,
+    id: "1Uv2EwjQOflh_r4tVUlPNpCA8Y8iknJNM",
+    name: "INTERNATIONAL VAN MELA 2025.mp4",
+    mimeType: "video/mp4",
+    size: "256005689",
+    url: "/api/media/1Uv2EwjQOflh_r4tVUlPNpCA8Y8iknJNM",
+    viewUrl:
+      "https://drive.google.com/file/d/1Uv2EwjQOflh_r4tVUlPNpCA8Y8iknJNM/view",
+    description:
+      "Highlights from International Van Mela Bhopal 2025, capturing the vibrant celebrations, cultural experiences, public engagement, and memorable moments from this grand international event.",
+    thumbnail: "/api/media/thumbnail/1Uv2EwjQOflh_r4tVUlPNpCA8Y8iknJNM",
+    headimg: "/images/ground.webp",
+    category: 4,
+  },
 
-   public/portfolio-images/ se aayengi.
-
-
-   ============================================================
-
-   LOCAL PORTFOLIO IMAGES — public/portfolio-images/
-
-   ============================================================
-
-   1. Apni poster images "public/images/" folder mein daal do
-
-      (jaise public/images/vanmela-bhopal.jpg)
-
-   2. Neeche POSTER_OVERRIDES object mein entry add karo:
-
-      key = project ka slug (filename se number/extension hata
-
-      ke, jo bhi "vanmela-bhopal-1.mp4" ban jaata hai use
-
-      "vanmela-bhopal" jaisa likhna hai — case-sensitive nahi,
-
-      spaces/dashes/underscores bhi ab automatically match ho
-
-      jaate hain)
-
-      value = "/images/vanmela-bhopal.jpg" (public folder ke
-
-      andar se path, "/public" mat likhna, seedha "/" se shuru
-
-      karo)
-
-
-   Agar kisi project ke liye local image override nahi hai,
-
-   to card poster blank rahega. Drive thumbnail/image fallback
-
-   ke roop mein kabhi use nahi hogi.
-
-
-   NOTE: Random/temporary placeholder image (picsum.photos) ab
-
-   hata di gayi hai. Ab agar kisi project ka koi bhi image nahi
-
-   milta (na override, na Drive thumbnail, na koi image file),
-
-   to bas poster/image blank rahega — koi random image nahi
-
-   dikhegi.
-
-============================================================ */
-
-// POSTER_OVERRIDES intentionally not used.
-
-// Card poster is always the first image from IMAGE_OVERRIDES
-
-// (public/portfolio-images/).
-
-/* ============================================================
-
-   IMAGE OVERRIDE (MANUAL GALLERY IMAGES) — YAHAN APNI IMAGES DAALO
-
-   ============================================================
-
-   Video hamesha Google Drive se hi aayegi — usse kuch nahi hoga.
-
-   Lekin agar tum chahte ho ki popup mein video ke saath apni
-
-   khud ki images bhi ‹ › se cycle ho, to yahan un images ki
-
-   list de do.
-
-
-   1. Key wahi hogi jo POSTER_OVERRIDES mein use hoti hai —
-
-      project ka slug (Drive filename se number/extension hataa
-
-      ke), jaise "vanmela-bhopal-1.mp4" → key: "vanmela-bhopal"
-
-   2. Value ek ARRAY hai — usme jitni chaho utni image URLs/paths
-
-      daal sakte ho (online URL ya "/images/xyz.jpg" jaisa local
-
-      path, dono chalega).
-
-
-   Agar kisi project ke liye yahan kuch nahi diya, to sirf Drive
-
-   se aayi video hi dikhegi (jaisa pehle tha) — kuch tootega nahi.
-
-============================================================ */
+  {
+    index: 2,
+    id: "1Ub35dBoTXOvIRm1MNLRopEyARiBlswNL",
+    name: "Khandwa Dolphin Facilities.mp4",
+    mimeType: "video/mp4",
+    size: "275906381",
+    url: "/api/media/1Ub35dBoTXOvIRm1MNLRopEyARiBlswNL",
+    viewUrl:
+      "https://drive.google.com/file/d/1Ub35dBoTXOvIRm1MNLRopEyARiBlswNL/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/1Ub35dBoTXOvIRm1MNLRopEyARiBlswNL",
+    headimg: "/images/frame.png",
+    category: 5,
+  },
+  {
+    index: 3,
+    id: "1o57AJB1h7kjnHgQDQVSCEU2ICfJUwnaI",
+    name: "Ratlam Dolphin Facilities.mp4",
+    mimeType: "video/mp4",
+    size: "281889224",
+    url: "/api/media/1o57AJB1h7kjnHgQDQVSCEU2ICfJUwnaI",
+    viewUrl:
+      "https://drive.google.com/file/d/1o57AJB1h7kjnHgQDQVSCEU2ICfJUwnaI/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/1o57AJB1h7kjnHgQDQVSCEU2ICfJUwnaI",
+    headimg: "/images/EICHER.jpeg",
+    category: 6,
+  },
+  {
+    index: 5,
+    id: "1OBfds4Cge9u-NQdHvYutoR22bz4Z_-Kw",
+    name: "VH Ujjain_Final.mp4",
+    mimeType: "video/mp4",
+    size: "578398911",
+    url: "/api/media/1OBfds4Cge9u-NQdHvYutoR22bz4Z_-Kw",
+    viewUrl:
+      "https://drive.google.com/file/d/1OBfds4Cge9u-NQdHvYutoR22bz4Z_-Kw/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/1OBfds4Cge9u-NQdHvYutoR22bz4Z_-Kw",
+  },
+  {
+    index: 6,
+    id: "1r2F-cmp0IZB0I9R9Qgp6XswdlU8oLfDR",
+    name: "VH Ujjain Reel 2.mp4",
+    mimeType: "video/mp4",
+    size: "295677355",
+    url: "/api/media/1r2F-cmp0IZB0I9R9Qgp6XswdlU8oLfDR",
+    viewUrl:
+      "https://drive.google.com/file/d/1r2F-cmp0IZB0I9R9Qgp6XswdlU8oLfDR/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/1r2F-cmp0IZB0I9R9Qgp6XswdlU8oLfDR",
+  },
+  {
+    index: 1,
+    id: "1-3zav_20oj_nPEceUADgRZV0Wlu-I718",
+    name: "Eicher (7 Sept).mp4",
+    mimeType: "video/mp4",
+    size: "192257026",
+    url: "/api/media/1-3zav_20oj_nPEceUADgRZV0Wlu-I718",
+    viewUrl:
+      "https://drive.google.com/file/d/1-3zav_20oj_nPEceUADgRZV0Wlu-I718/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/1-3zav_20oj_nPEceUADgRZV0Wlu-I718",
+  },
+  {
+    index: 9,
+    id: "1VdBbgn-XTNFVvdhuZUqZ4a0ItU08narl",
+    name: "A CINEMATIC GLIMPSE — VAN MELA UJJAIN 2026.mp4",
+    mimeType: "video/mp4",
+    size: "563250818",
+    url: "/api/media/1VdBbgn-XTNFVvdhuZUqZ4a0ItU08narl",
+    viewUrl:
+      "https://drive.google.com/file/d/1VdBbgn-XTNFVvdhuZUqZ4a0ItU08narl/view",
+    description:
+      "A cinematic glimpse of Van Mela Ujjain 2026, capturing the vibrant atmosphere, memorable moments, cultural spirit, and grand celebrations of this special event.\n",
+    thumbnail: "/api/media/thumbnail/1VdBbgn-XTNFVvdhuZUqZ4a0ItU08narl",
+  },
+  {
+    index: 10,
+    id: "1rg5soiPsHo_6Oau2A3PMOs4EqtI1-f4c",
+    name: "INTERNATIONAL VAN MELA SHORT REVIEW REEL.mp4",
+    mimeType: "video/mp4",
+    size: "563302287",
+    url: "/api/media/1rg5soiPsHo_6Oau2A3PMOs4EqtI1-f4c",
+    viewUrl:
+      "https://drive.google.com/file/d/1rg5soiPsHo_6Oau2A3PMOs4EqtI1-f4c/view",
+    description:
+      "A vibrant audience-driven reel offering a fresh perspective on International Van Mela, highlighting the atmosphere, public reactions, and the experiences that made the celebration stand out.",
+    thumbnail: "/api/media/thumbnail/1rg5soiPsHo_6Oau2A3PMOs4EqtI1-f4c",
+  },
+  {
+    index: 12,
+    id: "1FEIj8Eqtp1_MQpcaeRxrzsV8OXvmx7WK",
+    name: "INTERNATIONAL VAN MELA REVIEW",
+    mimeType: "video/mp4",
+    size: "310068676",
+    url: "/api/media/1FEIj8Eqtp1_MQpcaeRxrzsV8OXvmx7WK",
+    viewUrl:
+      "https://drive.google.com/file/d/1FEIj8Eqtp1_MQpcaeRxrzsV8OXvmx7WK/view",
+    description:
+      "A closer look at International Van Mela, featuring event highlights, visitor experiences, key attractions, and memorable moments that showcase the spirit and impact of this unique celebration.",
+    thumbnail: "/api/media/thumbnail/1FEIj8Eqtp1_MQpcaeRxrzsV8OXvmx7WK",
+  },
+  {
+    index: 15,
+    id: "1VKCzut8Za9lI2NZLGeFlVIgO0t0m_D9D",
+    name: "iccer launch and van mela and goverment event.MP4",
+    mimeType: "video/mp4",
+    size: "812146595",
+    url: "/api/media/1VKCzut8Za9lI2NZLGeFlVIgO0t0m_D9D",
+    viewUrl:
+      "https://drive.google.com/file/d/1VKCzut8Za9lI2NZLGeFlVIgO0t0m_D9D/view",
+    description:
+      "A dynamic collection of highlights from the ICCER launch, Van Mela, and various government events, capturing key moments, celebrations, public engagement, and memorable experiences from these impactful occasions.\n",
+    thumbnail: "/api/media/thumbnail/1VKCzut8Za9lI2NZLGeFlVIgO0t0m_D9D",
+  },
+  {
+    index: 16,
+    id: "11GCLuriWxLv5WpVf0qq4It5UisoaB-OS",
+    name: "all evets highlights, Celebrating Every Moment.mp4",
+    mimeType: "video/mp4",
+    size: "2963824096",
+    url: "/api/media/11GCLuriWxLv5WpVf0qq4It5UisoaB-OS",
+    viewUrl:
+      "https://drive.google.com/file/d/11GCLuriWxLv5WpVf0qq4It5UisoaB-OS/view",
+    description:
+      "A vibrant collection of event highlights capturing memorable moments, celebrations, and unforgettable experiences. From joyful gatherings to grand occasions, every frame brings together the energy, emotions, and special moments that make each event truly memorable.",
+    thumbnail: "/api/media/thumbnail/11GCLuriWxLv5WpVf0qq4It5UisoaB-OS",
+  },
+];
 
 const IMAGE_OVERRIDES = {
   eicher: [
@@ -220,219 +362,9 @@ function humanize(slug) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-// function groupFilesIntoProjects(files) {
-//   const groups = new Map();
-//   console.log(files);
-
-//   files.forEach((file) => {
-//     const key = getGroupKey(file.name);
-
-//     if (!groups.has(key)) groups.set(key, []);
-
-//     groups.get(key).push(file);
-
-//     // DEBUG: agar override wali image phir bhi na dikhe, is line
-
-//     // ko uncomment karke console mein dekho actual key kya ban
-
-//     // rahi hai, aur wahi (ya uska normalize hua version)
-
-//     // POSTER_OVERRIDES / IMAGE_OVERRIDES mein use karo.
-    
-//     console.log("Drive file:", file.name, "→ generated key:", key);
-//   });
-
-//   return Array.from(groups.entries()).map(([key, groupFiles]) => {
-//     const sorted = [...groupFiles].sort(
-//       (a, b) => getSortIndex(a.name) - getSortIndex(b.name),
-//     );
-
-//     // Google Drive se SIRF VIDEO lo.
-
-//     // Drive ki koi image/thumbnail card ya popup mein use nahi hogi.
-
-//     const driveVideos = sorted
-
-//       .filter((file) => file.mimeType?.startsWith("video/"))
-
-//       .map((file) => ({
-//         type: "video",
-
-//         url: file.url,
-
-//         name: file.name,
-//       }));
-
-//     // Images SIRF public/portfolio-images/ se.
-
-//     const manualImages = findImageOverrides(key).map((url) => ({
-//       type: "image",
-
-//       url,
-
-//       name: humanize(key),
-//     }));
-
-//     // Popup mein bhi sirf Drive videos + local portfolio-images.
-
-//     const combinedMedia = [...driveVideos, ...manualImages];
-
-//     const firstVideo = driveVideos[0];
-
-//     const firstImage = manualImages[0];
-
-//     const descriptionSource = sorted.find(
-//       (f) => f.description && f.description.trim().length > 0,
-//     );
-
-//     // CARD POSTER SIRF public/portfolio-images/ se aayega.
-
-//     // Drive thumbnail, Drive image aur random/Picsum kabhi use nahi honge.
-
-//     const localPoster = firstImage?.url || null;
-
-//     return {
-//       title: humanize(key),
-
-//       category: "",
-
-//       date: "",
-
-//       description: descriptionSource?.description || "",
-
-//       poster: localPoster,
-
-//       video: firstVideo?.url || null,
-
-//       media: combinedMedia,
-//     };
-//   });
-// }
-
-
-// function groupFilesIntoProjects(files) {
-//   const groups = new Map();
-
-//   files.forEach((file) => {
-//     const key = getGroupKey(file.name);
-
-//     if (!groups.has(key)) {
-//       groups.set(key, []);
-//     }
-
-//     groups.get(key).push(file);
-
-//     console.log(
-//       "Drive file:",
-//       file.name,
-//       "→ generated key:",
-//       key,
-//     );
-//   });
-
-//   return Array.from(groups.entries()).map(([key, groupFiles]) => {
-//     const sorted = [...groupFiles].sort(
-//       (a, b) => getSortIndex(a.name) - getSortIndex(b.name),
-//     );
-
-//     // =====================================================
-//     // DRIVE VIDEOS
-//     // =====================================================
-
-//     const driveVideos = sorted
-//       .filter((file) => file.mimeType?.startsWith("video/"))
-//       .map((file) => ({
-//         type: "video",
-//         url: file.url,
-//         name: file.name,
-//       }));
-
-//     // =====================================================
-//     // LOCAL IMAGES
-//     // IMAGE_OVERRIDES se aayengi
-//     // =====================================================
-
-//     const manualImages = findImageOverrides(key).map((url) => ({
-//       type: "image",
-//       url,
-//       name: humanize(key),
-//     }));
-
-//     // =====================================================
-//     // DRIVE THUMBNAIL
-//     //
-//     // Card ke default poster ke liye.
-//     // Agar thumbnail available hai to first video ki
-//     // thumbnail use hogi.
-//     // =====================================================
-
-//     const firstVideoFile = sorted.find((file) =>
-//       file.mimeType?.startsWith("video/"),
-//     );
-
-//     const driveThumbnail = firstVideoFile?.thumbnail || null;
-
-//     // =====================================================
-//     // POSTER PRIORITY
-//     //
-//     // 1. Local IMAGE_OVERRIDE
-//     // 2. Drive thumbnail
-//     // 3. null
-//     // =====================================================
-
-//     const localPoster = manualImages[0]?.url || driveThumbnail;
-
-//     // =====================================================
-//     // DESCRIPTION
-//     // =====================================================
-
-//     const descriptionSource = sorted.find(
-//       (file) =>
-//         file.description &&
-//         file.description.trim().length > 0,
-//     );
-
-//     // =====================================================
-//     // COMBINED MEDIA
-//     //
-//     // Popup ke liye:
-//     // Drive videos + local images
-//     //
-//     // NOTE:
-//     // Thumbnail ko media list mein nahi daal rahe.
-//     // Thumbnail sirf card poster hai.
-//     // =====================================================
-
-//     const combinedMedia = [
-//       ...driveVideos,
-//       ...manualImages,
-//     ];
-
-//     return {
-//       title: humanize(key),
-
-//       category: "",
-
-//       date: "",
-
-//       description:
-//         descriptionSource?.description || "",
-
-//       poster: localPoster,
-
-//       video: driveVideos[0]?.url || null,
-
-//       media: combinedMedia,
-
-//       // Useful for debugging / future use
-//       videoCount: driveVideos.length,
-//     };
-//   });
-// }
-
 function groupFilesIntoProjects(files) {
   const groups = new Map();
-  
+
   files.forEach((file) => {
     const key = getGroupKey(file.name);
 
@@ -452,7 +384,7 @@ function groupFilesIntoProjects(files) {
 
   return Array.from(groups.entries()).map(([key, groupFiles]) => {
     const sorted = [...groupFiles].sort(
-      (a, b) => getSortIndex(a.name) - getSortIndex(b.name)
+      (a, b) => getSortIndex(a.name) - getSortIndex(b.name),
     );
 
     // =====================================================
@@ -465,6 +397,8 @@ function groupFilesIntoProjects(files) {
         type: "video",
         url: file.url,
         name: file.name,
+        thumb: file.headimg,
+        category: file.category || "",
       }));
 
     // =====================================================
@@ -492,12 +426,12 @@ function groupFilesIntoProjects(files) {
     // =====================================================
 
     const firstVideoFile = sorted.find((file) =>
-  file.mimeType?.startsWith("video/")
-);
+      file.mimeType?.startsWith("video/"),
+    );
 
-const driveThumbnail = firstVideoFile?.thumbnail || null;
+    const driveThumbnail = firstVideoFile?.thumbnail || null;
 
-const localPoster = manualImages[0]?.url || driveThumbnail;
+    const localPoster = manualImages[0]?.url || driveThumbnail;
 
     // const localPoster = manualImages[0]?.url || null;
 
@@ -506,31 +440,25 @@ const localPoster = manualImages[0]?.url || driveThumbnail;
     // =====================================================
 
     const descriptionSource = sorted.find(
-      (file) =>
-        file.description &&
-        file.description.trim().length > 0
+      (file) => file.description && file.description.trim().length > 0,
     );
 
     // =====================================================
     // COMBINED MEDIA
     // =====================================================
 
-    const combinedMedia = [
-      ...driveVideos,
-      ...manualImages,
-    ];
-
+    const combinedMedia = [...driveVideos, ...manualImages];
+    console.log(driveVideos);
     return {
       title: humanize(key),
 
-      category: "",
+      category: driveVideos[0]?.category || "",
 
       date: "",
 
-      description:
-        descriptionSource?.description || "",
+      description: descriptionSource?.description || "",
 
-      poster: localPoster,
+      poster: driveVideos[0]?.thumb || localPoster,
 
       video: driveVideos[0]?.url || null,
 
@@ -541,10 +469,13 @@ const localPoster = manualImages[0]?.url || driveThumbnail;
   });
 }
 
-
 export default function PortfolioGrid() {
   const [projects, setProjects] = useState([]);
-  
+
+  useEffect(() => {
+    setProjects(groupFilesIntoProjects(projectsdata || []));
+  }, []);
+
   const [loading, setLoading] = useState(true);
 
   const [error, setError] = useState(null);
@@ -556,6 +487,7 @@ export default function PortfolioGrid() {
   /* POPUP */
 
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
 
   /* CURRENT MEDIA INDEX */
 
@@ -571,8 +503,23 @@ export default function PortfolioGrid() {
         if (!response.ok || !data.success) {
           throw new Error(data.message || "Failed to fetch portfolio media");
         }
-        
-        setProjects(groupFilesIntoProjects(data.files || [])?.reverse().slice(0, 9));
+
+        const transformedProjects = projectsdata
+          .map((project) => {
+            const file = data.files?.find((file) => file.id == project.id);
+
+            if (!file) return null;
+
+            return {
+              ...project,
+              ...file,
+            };
+          })
+          .filter(Boolean);
+
+        setProjects(
+          groupFilesIntoProjects(transformedProjects || []).slice(0, 9),
+        );
       } catch (err) {
         console.error("Unable to load portfolio media:", err);
 
@@ -585,21 +532,41 @@ export default function PortfolioGrid() {
     getProjects();
   }, []);
 
-  const firstRow = projects.slice(0, Math.min(3, visibleCount));  
+  const firstRow = projects.slice(0, Math.min(3, visibleCount));
 
   const secondRow = projects.slice(3, Math.min(6, visibleCount));
 
   const thirdRow = projects.slice(6, Math.min(9, visibleCount));
 
+  const fourthRow = projects.slice(9, Math.min(12, visibleCount));
+
+  const fifthRow = projects.slice(12, Math.min(15, visibleCount));
+
+  const sixthRow = projects.slice(15, Math.min(18, visibleCount));
+
   const hasMore = visibleCount < projects.length;
 
   const handleShowMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 3, 9));
+    setVisibleCount((prev) => Math.min(prev + 3, projects.length));
   };
 
-  const handleProjectClick = (project) => {
-    setSelectedProject(project);
+  // const handleProjectClick = (project) => {
+  //   setSelectedProject(project);
 
+  //   setSelectedMediaIndex(0);
+  // };
+
+  const handleProjectClick = (project) => {
+    const sameCategoryProjects = projects.filter(
+      (item) => item.category === project.category,
+    );
+
+    const index = sameCategoryProjects.findIndex(
+      (item) => item.title === project.title,
+    );
+
+    setSelectedProject(project);
+    setSelectedProjectIndex(index >= 0 ? index : 0);
     setSelectedMediaIndex(0);
   };
 
@@ -629,41 +596,81 @@ export default function PortfolioGrid() {
   //   setSelectedMediaIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
   // };
 
+  // const handleNextMedia = () => {
+  //   const videos =
+  //     selectedProject?.media?.filter(
+  //       (item) => item?.url && item?.type === "video",
+  //     ) || [];
+
+  //   // 1 ya 0 video hai to kuch mat karo
+  //   if (videos.length <= 1) return;
+
+  //   setSelectedMediaIndex((prev) =>
+  //     prev === videos.length - 1 ? 0 : prev + 1,
+  //   );
+  // };
+
+  // const handlePreviousMedia = () => {
+  //   const videos =
+  //     selectedProject?.media?.filter(
+  //       (item) => item?.url && item?.type === "video",
+  //     ) || [];
+
+  //   // 1 ya 0 video hai to kuch mat karo
+  //   if (videos.length <= 1) return;
+
+  //   setSelectedMediaIndex((prev) =>
+  //     prev === 0 ? videos.length - 1 : prev - 1,
+  //   );
+  // };
+
   const handleNextMedia = () => {
-    const videos =
-      selectedProject?.media?.filter(
-        (item) => item?.url && item?.type === "video",
-      ) || [];
+    if (!selectedProject) return;
 
-    // 1 ya 0 video hai to kuch mat karo
-    if (videos.length <= 1) return;
-
-    setSelectedMediaIndex((prev) =>
-      prev === videos.length - 1 ? 0 : prev + 1,
+    const sameCategoryProjects = projects.filter(
+      (item) => item.category === selectedProject.category,
     );
+
+    if (sameCategoryProjects.length <= 1) return;
+
+    const currentIndex = sameCategoryProjects.findIndex(
+      (item) => item.title === selectedProject.title,
+    );
+
+    const nextIndex =
+      currentIndex === sameCategoryProjects.length - 1 ? 0 : currentIndex + 1;
+
+    setSelectedProject(sameCategoryProjects[nextIndex]);
+    setSelectedMediaIndex(0);
   };
 
   const handlePreviousMedia = () => {
-    const videos =
-      selectedProject?.media?.filter(
-        (item) => item?.url && item?.type === "video",
-      ) || [];
+    if (!selectedProject) return;
 
-    // 1 ya 0 video hai to kuch mat karo
-    if (videos.length <= 1) return;
-
-    setSelectedMediaIndex((prev) =>
-      prev === 0 ? videos.length - 1 : prev - 1,
+    const sameCategoryProjects = projects.filter(
+      (item) => item.category === selectedProject.category,
     );
+
+    if (sameCategoryProjects.length <= 1) return;
+
+    const currentIndex = sameCategoryProjects.findIndex(
+      (item) => item.title === selectedProject.title,
+    );
+
+    const previousIndex =
+      currentIndex === 0 ? sameCategoryProjects.length - 1 : currentIndex - 1;
+
+    setSelectedProject(sameCategoryProjects[previousIndex]);
+    setSelectedMediaIndex(0);
   };
 
   const handleClosePopup = () => {
     setSelectedProject(null);
-
+    setSelectedProjectIndex(0);
     setSelectedMediaIndex(0);
   };
 
-  if (loading) {
+  if (loading && projectsdata.length === 0) {
     return (
       <section className="w-full bg-[#303030] py-16 text-center text-white/70">
         Loading portfolio…
@@ -766,6 +773,50 @@ export default function PortfolioGrid() {
             </div>
           )}
 
+          {fourthRow.length > 0 && (
+            <div
+              className="
+
+                mt-[4px]
+
+                sm:mt-[10px]
+
+                md:mt-[18px]
+
+                lg:mt-[30px]
+
+              "
+            >
+              <PortfolioRow
+                projects={fourthRow}
+                rowIndex={3}
+                onProjectClick={handleProjectClick}
+              />
+            </div>
+          )}
+
+          {fifthRow.length > 0 && (
+            <div
+              className="
+
+                mt-[4px]
+
+                sm:mt-[10px]
+
+                md:mt-[18px]
+
+                lg:mt-[30px]
+
+              "
+            >
+              <PortfolioRow
+                projects={fifthRow}
+                rowIndex={4}
+                onProjectClick={handleProjectClick}
+              />
+            </div>
+          )}
+
           {hasMore && (
             <motion.div
               initial={{ opacity: 0, y: 25 }}
@@ -849,6 +900,11 @@ export default function PortfolioGrid() {
             onClose={handleClosePopup}
             onNext={handleNextMedia}
             onPrevious={handlePreviousMedia}
+            canNavigate={
+              projects.filter(
+                (item) => item.category === selectedProject.category,
+              ).length > 1
+            }
           />
         )}
       </AnimatePresence>
@@ -925,7 +981,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 // function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 //   const cardRef = useRef(null);
-  
 
 //   const videoRef = useRef(null);
 
@@ -985,22 +1040,17 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //         group
 
-
 //         relative
 
 //         min-w-0
 
-
 //         overflow-hidden
-
 
 //         border
 
 //         border-[#2999c7]
 
-
 //         bg-[#222]
-
 
 //         cursor-pointer
 
@@ -1021,14 +1071,11 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //             inset-0
 
-
 //             w-full
 
 //             h-full
 
-
 //             object-cover
-
 
 //             pointer-events-none
 
@@ -1053,31 +1100,23 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //             inset-0
 
-
 //             w-full
 
 //             h-full
 
-
 //             object-cover
 
-
 //             pointer-events-none
-
 
 //             transition-opacity
 
 //             duration-500
 
-
 //             ease-[cubic-bezier(0.22,1,0.36,1)]
-
 
 //             ${isHovered && canPlay ? "opacity-100" : "opacity-0"}
 
-
 //             group-hover:scale-[1.035]
-
 
 //             transition-transform
 
@@ -1094,16 +1133,13 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //           inset-0
 
-
 //           bg-black/0
 
 //           group-hover:bg-black/15
 
-
 //           transition-all
 
 //           duration-500
-
 
 //           pointer-events-none
 
@@ -1117,16 +1153,13 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //           absolute
 
-
 //           left-0
 
 //           right-0
 
 //           bottom-0
 
-
 //           h-[110px]
-
 
 //           bg-gradient-to-t
 
@@ -1135,7 +1168,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 //           via-black/50
 
 //           to-transparent
-
 
 //           pointer-events-none
 
@@ -1149,35 +1181,27 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //           absolute
 
-
 //           left-0
 
 //           bottom-0
 
-
 //           z-10
 
-
 //           w-full
-
 
 //           px-3
 
 //           py-3
 
-
 //           sm:px-4
 
 //           sm:py-4
 
-
 //           pointer-events-none
-
 
 //           transition-all
 
 //           duration-500
-
 
 //           group-hover:translate-y-[-2px]
 
@@ -1189,7 +1213,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //               text-[#4db4d5]
 
-
 //               text-[8px]
 
 //               sm:text-[9px]
@@ -1198,14 +1221,11 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //               lg:text-[11px]
 
-
 //               uppercase
 
 //               tracking-wide
 
-
 //               font-bold
-
 
 //               mb-1
 
@@ -1220,7 +1240,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //             text-white
 
-
 //             text-[11px]
 
 //             sm:text-[13px]
@@ -1228,7 +1247,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 //             md:text-[17px]
 
 //             lg:text-[20px]
-
 
 //             font-bold
 
@@ -1245,7 +1263,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 // function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 //   const cardRef = useRef(null);
-  
 
 //   const videoRef = useRef(null);
 
@@ -1305,22 +1322,17 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //         group
 
-
 //         relative
 
 //         min-w-0
 
-
 //         overflow-hidden
-
 
 //         border
 
 //         border-[#2999c7]
 
-
 //         bg-[#222]
-
 
 //         cursor-pointer
 
@@ -1341,14 +1353,11 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //             inset-0
 
-
 //             w-full
 
 //             h-full
 
-
 //             object-cover
-
 
 //             pointer-events-none
 
@@ -1373,31 +1382,23 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //             inset-0
 
-
 //             w-full
 
 //             h-full
 
-
 //             object-cover
 
-
 //             pointer-events-none
-
 
 //             transition-opacity
 
 //             duration-500
 
-
 //             ease-[cubic-bezier(0.22,1,0.36,1)]
-
 
 //             ${canPlay ? "opacity-100" : "opacity-0"}
 
-
 //             group-hover:scale-[1.035]
-
 
 //             transition-transform
 
@@ -1414,16 +1415,13 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //           inset-0
 
-
 //           bg-black/0
 
 //           group-hover:bg-black/15
 
-
 //           transition-all
 
 //           duration-500
-
 
 //           pointer-events-none
 
@@ -1437,16 +1435,13 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //           absolute
 
-
 //           left-0
 
 //           right-0
 
 //           bottom-0
 
-
 //           h-[110px]
-
 
 //           bg-gradient-to-t
 
@@ -1455,7 +1450,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 //           via-black/50
 
 //           to-transparent
-
 
 //           pointer-events-none
 
@@ -1469,35 +1463,27 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //           absolute
 
-
 //           left-0
 
 //           bottom-0
 
-
 //           z-10
 
-
 //           w-full
-
 
 //           px-3
 
 //           py-3
 
-
 //           sm:px-4
 
 //           sm:py-4
 
-
 //           pointer-events-none
-
 
 //           transition-all
 
 //           duration-500
-
 
 //           group-hover:translate-y-[-2px]
 
@@ -1509,7 +1495,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //               text-[#4db4d5]
 
-
 //               text-[8px]
 
 //               sm:text-[9px]
@@ -1518,14 +1503,11 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //               lg:text-[11px]
 
-
 //               uppercase
 
 //               tracking-wide
 
-
 //               font-bold
-
 
 //               mb-1
 
@@ -1540,7 +1522,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 
 //             text-white
 
-
 //             text-[11px]
 
 //             sm:text-[13px]
@@ -1548,7 +1529,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 //             md:text-[17px]
 
 //             lg:text-[20px]
-
 
 //             font-bold
 
@@ -1562,7 +1542,6 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 //     </motion.div>
 //   );
 // }
-
 
 function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
   const cardRef = useRef(null);
@@ -1585,7 +1564,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
       {
         rootMargin: "200px",
         threshold: 0.1,
-      }
+      },
     );
 
     observer.observe(node);
@@ -1656,6 +1635,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
       }}
     >
       {/* POSTER IMAGE */}
+      {console.log(project)}
       {project.poster && (
         <img
           src={project.poster}
@@ -1672,11 +1652,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
             pointer-events-none
             transition-opacity
             duration-500
-            ${
-              isHovered && canPlay
-                ? "opacity-0"
-                : "opacity-100"
-            }
+            ${isHovered && canPlay ? "opacity-0" : "opacity-100"}
           `}
           onError={(e) => {
             console.error("Poster failed:", project.poster);
@@ -1706,11 +1682,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
             transition-opacity
             duration-500
             ease-[cubic-bezier(0.22,1,0.36,1)]
-            ${
-              isHovered && canPlay
-                ? "opacity-100"
-                : "opacity-0"
-            }
+            ${isHovered && canPlay ? "opacity-100" : "opacity-0"}
             group-hover:scale-[1.035]
           `}
         />
@@ -1765,7 +1737,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           group-hover:translate-y-[-2px]
         "
       >
-        {project.category && (
+        {/* {project.category && (
           <p
             className="
               text-[#4db4d5]
@@ -1781,10 +1753,10 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           >
             {project.category}
           </p>
-        )}
+        )} */}
 
         <h3
-          className="
+          className={`
             text-white
             text-[11px]
             sm:text-[13px]
@@ -1792,7 +1764,8 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
             lg:text-[20px]
             font-bold
             leading-tight
-          "
+            ${isHovered ? 'visible' : 'invisible'}
+          `}
         >
           {project.title}
         </h3>
@@ -2301,7 +2274,14 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 //   );
 // }
 
-function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
+function MediaPopup({
+  project,
+  mediaIndex,
+  onClose,
+  onNext,
+  onPrevious,
+  canNavigate,
+}) {
   // Sirf videos ko navigation ke liye use karo.
   const videoList =
     project?.media?.filter((item) => item?.url && item?.type === "video") || [];
@@ -2321,7 +2301,8 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
   const mediaSrc = currentMedia.url;
 
   // Arrow TABHI show honge jab 1 se zyada VIDEO ho.
-  const showVideoArrows = videoList.length > 1;
+  // const showVideoArrows = videoList.length > 1;
+  const showVideoArrows = canNavigate;
 
   return (
     <motion.div
@@ -2645,7 +2626,7 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                 </p>
               )}
 
-              {project.category && (
+              {/* {project.category && (
                 <p
                   className="
                     mt-4
@@ -2657,7 +2638,7 @@ function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
                 >
                   {project.category}
                 </p>
-              )}
+              )} */}
 
               <div
                 className="
