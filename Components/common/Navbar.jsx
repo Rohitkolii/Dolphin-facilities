@@ -982,10 +982,12 @@ export default function Navbar() {
               <h2 className="text-[18px] font-medium">ABOUT US</h2>
 
               <p className="mt-2 text-[15px] font-medium leading-[1.65]">
-                Dolphin Facilities Pvt. Ltd. is one of the leading
-                corporate event management company, with pan India reach. We
-                have offices in Mumbai, Dubai, Bangalore, Gurgaon, Chennai, and
-                Hyderabad all set to create unforgettable corporate events.
+              **Dolphin Facilities Pvt. Ltd.** is a Bhopal-based corporate event management company specializing in creating memorable and impactful events. Based in **Bhopal, Madhya Pradesh**, we provide complete event management solutions, from planning and creative concepts to production and on-ground execution.
+
+Our office is located at **17-18, Block A, Second Floor, Gammon India, TT Nagar, Bhopal – 462003**.
+
+We specialize in **corporate events, exhibitions, brand activations, product launches, outdoor advertising, and other promotional events**.
+
               </p>
             </section>
 
