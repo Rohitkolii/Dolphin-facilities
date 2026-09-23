@@ -1626,7 +1626,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
         overflow-hidden
         border
         border-[#2999c7]
-        bg-[#222]
+        bg-[#222222]
         cursor-pointer
         select-none
       "
@@ -1757,7 +1757,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 
         <h3
           className={`
-            text-white
+            text-blue-500
             text-[11px]
             sm:text-[13px]
             md:text-[17px]

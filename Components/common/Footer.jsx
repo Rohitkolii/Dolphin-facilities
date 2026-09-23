@@ -14,15 +14,15 @@ const iconGradient =
   "bg-gradient-to-r from-[#68c4b2] via-[#38a9d5] to-[#6c63ff] bg-clip-text text-transparent";
 
 const iconBox =
-  "flex h-9 w-9 items-center justify-center border border-white/15 bg-[#3d3d3d]";
+  "flex h-9 w-9 items-center justify-center border border-white/10 bg-white/5 text-white";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#353535] text-white">
+    <footer className="bg-[#111827] text-white">
       <div className="mx-auto container-x px-6">
 
         {/* Top Logo + Social Icons */}
-        <div className="flex items-center justify-between border-b border-[#68c4b2] py-[40px]">
+        <div className="flex items-center justify-between border-b border-white/10 py-[40px]">
         <img
   src="/home/Dolphin-Logo-transparent.png"
   alt="Dolphin Facilities Logo"
@@ -199,8 +199,8 @@ Gammon India, TT Nagar,Bhopal,462003</p>
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-[#68c4b2] py-9 text-center">
-          <p className="text-[13px] text-white">
+        <div className="border-t border-white/10 py-9 text-center">
+          <p className="text-[13px] text-white/80">
             Copyright 2026 Dolphin Facilities Pvt. Ltd. All Rights
             Reserved
           </p>

@@ -85,7 +85,7 @@ export default function AboutHowWeWork() {
               md:min-h-[175px]
               border
               border-[#2995c5]
-              bg-[#333333]
+              bg-[#333333]/10
               px-5
               py-6
               flex
@@ -93,7 +93,7 @@ export default function AboutHowWeWork() {
               justify-center
               transition-all
               duration-300
-              hover:bg-[#373737]
+              hover:bg-[#373737]/20
               hover:border-[#48b7df]
               hover:shadow-[0_10px_30px_rgba(41,149,197,0.12)]
             "

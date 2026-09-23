@@ -245,7 +245,7 @@ export default function Navbar() {
       {/* =====================================================
           NAVBAR
       ===================================================== */}
-      <header className="sticky top-0 z-40 border-b border-gray-500/10 bg-[#2f2f2f]/95 shadow-2xl backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#dfe7e5] bg-[#f7f5f0]/95 shadow-lg backdrop-blur-md">
         <div className="container-x flex h-[90px] items-center justify-between md:h-[120px]">
           {/* ================= LOGO ================= */}
           <Link href="/" className="shrink-0">
@@ -283,9 +283,9 @@ export default function Navbar() {
                       tracking-wide
                       transition-colors
                       duration-300
-                      hover:text-[#68c4b2]
+                      hover:text-[#187cc1]
                       xl:text-[17px]
-                      ${active ? "text-[#68c4b2]" : "text-white"}
+                      ${active ? "text-[#187cc1]" : "text-[#13253b]"}
                     `}
                   >
                     {label}
@@ -328,7 +328,7 @@ export default function Navbar() {
                       <div
                         className="
                           overflow-visible
-                          bg-[#2f2f2f]/95
+                          bg-[#ffffff]/95
                           py-2
                           shadow-2xl
                         "
@@ -352,9 +352,9 @@ export default function Navbar() {
                                   py-3
                                   text-[15px]
                                   font-semibold
-                                  text-white
+                                  text-[#13253b]
                                   transition
-                                  hover:bg-[#3376ad]
+                                  hover:bg-[#edf4f6]
                                 "
                               >
                                 <span>{child.label}</span>
@@ -388,7 +388,7 @@ export default function Navbar() {
                                     className="
                                       max-h-[400px]
                                       overflow-y-auto
-                                      bg-[#2f2f2f]/95
+                                      bg-[#ffffff]/95
                                       py-2
                                       shadow-2xl
                                     "
@@ -407,9 +407,9 @@ export default function Navbar() {
                                             text-[15px]
                                             font-medium
                                             leading-relaxed
-                                            text-white
+                                            text-[#13253b]
                                             transition
-                                            hover:bg-[#3376ad]
+                                            hover:bg-[#edf4f6]
                                           "
                                         >
                                           {subLabel}
@@ -446,13 +446,13 @@ export default function Navbar() {
               justify-center
               rounded-md
               transition
-              hover:bg-white/10
+              hover:bg-[#edf3f1]
             "
           >
             <span className="flex flex-col items-end gap-[5px]">
-              <span className="block h-[3px] w-5 bg-white" />
-              <span className="block h-[3px] w-7 bg-white" />
-              <span className="block h-[3px] w-3 bg-white" />
+              <span className="block h-[3px] w-5 bg-[#13253b]" />
+              <span className="block h-[3px] w-7 bg-[#13253b]" />
+              <span className="block h-[3px] w-3 bg-[#13253b]" />
             </span>
           </button>
         </div>
@@ -492,16 +492,14 @@ export default function Navbar() {
           shadow-2xl
           transition-transform
           duration-500
-          ease-[cubic-bezier(0.4,0,0.2,1)]
-
+          ease-[cubic-bezier(0.4,0,0.2,1)] 
+          
           ${open ? "translate-x-0" : "-translate-x-full"}
+          
 
-          bg-[#030006]
+          bg-[#2478bd]
+          
 
-          lg:bg-gradient-to-b
-          lg:from-[#1684c5]
-          lg:via-[#2998c4]
-          lg:to-[#5db9bb]
         `}
       >
         <div className="relative min-h-full px-[19px] py-7">
@@ -525,7 +523,7 @@ export default function Navbar() {
               text-[32px]
               font-light
               leading-none
-              text-white
+              text-[#13253b]
               transition
               hover:text-[#1684c5]
             "
@@ -554,7 +552,7 @@ export default function Navbar() {
                   text-[30px]
                   font-black
                   tracking-[-0.09em]
-                  text-[#187cc1]
+                  text-[#ffffff]
                 "
               >
                 <span className="mr-1 text-[22px] text-white">★</span>
@@ -567,7 +565,7 @@ export default function Navbar() {
                   text-[8px]
                   font-bold
                   tracking-[0.42em]
-                  text-white/60
+                  text-white/80
                 "
               >
                 ENTERTAINMENT AGENCY
@@ -603,7 +601,7 @@ export default function Navbar() {
               text-left
               text-[13px]
               font-medium
-              text-white
+              text-[#13253b]
               transition-colors
             "
                     >
@@ -616,10 +614,11 @@ export default function Navbar() {
                 w-[38px]
                 items-center
                 justify-center
-                bg-[#187fc2]
+                bg-[#dfeef0]
                 text-[28px]
                 font-light
                 leading-none
+                text-[#13253b]
                 transition-transform
                 duration-200
                 ${openDropdown === label ? "rotate-90" : ""}
@@ -675,7 +674,7 @@ export default function Navbar() {
                           pr-2
                           text-[12px]
                           font-medium
-                          text-white/90
+                          text-[#13253b]/90
                         "
                                 >
                                   <Link
@@ -686,7 +685,7 @@ export default function Navbar() {
                               block
                               py-2.5
                               text-[13px]
-                              text-white/70
+                              text-[#ffffff]/90
                               transition-colors
                               hover:text-[#1684c5]
                               block
@@ -701,12 +700,13 @@ export default function Navbar() {
                             text-[20px]
                             transition-transform
                             group-open:rotate-90
-                            bg-[#1684c5]
+                            bg-[#edf3f1]
                             h-[38px]
                 w-[40px]
                 flex 
                 items-center
                 justify-center
+                text-[#13253b]
                           "
                                   >
                                     ›
@@ -741,7 +741,7 @@ export default function Navbar() {
                         block
                         py-3
                         text-[12px]
-                        text-white/90
+                        text-[#13253b]/90
                         hover:text-[#1684c5]
                       "
                               >
@@ -776,7 +776,7 @@ export default function Navbar() {
                   items-center
                   justify-center
                   rounded-full
-                  bg-[#187fc2]
+                  bg-[#000000]/20
                 "
               >
                 <svg
@@ -806,7 +806,7 @@ export default function Navbar() {
                   items-center
                   justify-center
                   rounded-full
-                  bg-[#187fc2]
+                  bg-[#000000]/20
                 "
               >
                 <svg
@@ -831,7 +831,7 @@ export default function Navbar() {
                   items-center
                   justify-center
                   rounded-full
-                  bg-[#187fc2]
+                  bg-[#000000]/20
                 "
               >
                 <svg

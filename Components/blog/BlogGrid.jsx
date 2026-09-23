@@ -398,7 +398,8 @@ function BlogCard({ blog, index }) {
 
         <p
           className="
-            text-white/90
+            text-[#ffffff]
+            font-semibold
             text-[12px]
             md:text-[14px]
             lg:text-[15px]
@@ -415,7 +416,7 @@ function BlogCard({ blog, index }) {
         <Link
           href={`/blog/${blog.slug}`}
           className="
-            text-white
+            text-[#ffffff]
             text-[19px]
             md:text-[22px]
             lg:text-[24px]
@@ -424,7 +425,6 @@ function BlogCard({ blog, index }) {
             line-clamp-3
             transition-colors
             duration-300
-            group-hover:text-[#69c7d9]
           "
         >
           {blog.title}
@@ -440,13 +440,12 @@ function BlogCard({ blog, index }) {
             items-center
             gap-2
             mt-5
-            text-white
+            text-[#ffffff]
             text-[14px]
             md:text-[15px]
             font-medium
             transition-all
             duration-300
-            hover:text-[#65c5d8]
             hover:gap-3
           "
         >

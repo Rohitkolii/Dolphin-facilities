@@ -37,7 +37,7 @@ export default function SocialRail() {
               absolute right-0 top-0
               flex h-[50px] w-[50px]
               overflow-hidden
-              border-[5px] border-[#70c7b5]
+              border-[5px] border-[#dfe9e5]
               bg-[#197fc3]
               transition-all duration-300 ease-in-out
               group-hover:w-[180px]
@@ -55,9 +55,9 @@ export default function SocialRail() {
                 flex h-10 min-w-0 flex-1
                 items-center
                 overflow-hidden
-                bg-[#68c4b2]
+                bg-[#dbf0ee]
                 px-3
-                text-sm font-medium text-black
+                text-sm font-medium text-[#13253b]
                 opacity-0
                 transition-opacity duration-200
                 group-hover:opacity-100
