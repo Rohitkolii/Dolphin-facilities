@@ -13,6 +13,16 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Playfair_Display } from "next/font/google";
+
+// Serif display font for headings — this single choice does most of the
+// "premium/boutique" lift. Keep body copy on your existing sans font so the
+// two stay clearly distinct rather than mixing three typefaces.
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+});
 
 const businesses = [
   {
@@ -184,12 +194,14 @@ export default function Home() {
   };
 
   return (
-    <div className="overflow-x-hidden min-h-screen overflow-x-hidden bg-[#303030]">
+    <div
+      className={`${playfair.variable} overflow-x-hidden min-h-screen overflow-x-hidden bg-[#f8f4ec]`}
+    >
       <IntroSplash />
       <Navbar />
       <main id="home">
         <section className="container-x pt-12 sm:pt-20">
-          <div className="hero-image border-[3px] sm:border-[4px] md:border-[6px] border-[#1d7fc5] relative overflow-hidden shadow-soft">
+          <div className="hero-image border border-[#c9a768]/70 relative overflow-hidden shadow-[0_25px_60px_-20px_rgba(20,40,60,0.25)]">
             {heroVideo ? (
               <video
                 key={heroVideo.id}
@@ -216,18 +228,21 @@ export default function Home() {
         </section>
 
         <section id="business" className="container-x pb-20 pt-12 sm:pt-20">
-          <p
-            data-aos="zoom-in-left"
-            className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
-          >
-            What We Do
-          </p>
+          <div className="mb-14 text-center">
+            <h2
+              data-aos="fade-up"
+              style={{ fontFamily: "var(--font-display)" }}
+              className="text-4xl font-semibold text-[#13253b] sm:text-[42px]"
+            >
+              What We Do
+            </h2>
+            <div className="mx-auto mt-4 h-px w-14 bg-[#c9a768]" />
+            <p className="mt-4 text-md text-[#6b6255]">
+              Everything your brand needs, under one roof.
+            </p>
+          </div>
 
-          <p className="mb-8 text-center text-md font-semibold text-white/70">
-            Everything Your Brand Needs. Under One Roof.
-          </p>
-
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {businesses.map((b) => {
               const Icon = b.icon;
 
@@ -235,23 +250,28 @@ export default function Home() {
                 <article
                   key={b.title}
                   data-aos={b.animate}
-                  className="gradient-panel border-grd group min-h-52 border border-white/10 p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-[#e3c07f]/40 hover:shadow-[0_20px_45px_-15px_rgba(29,127,197,0.4)]"
+                  className="group min-h-56 border border-[#13253b]/10 bg-white p-8 transition-all duration-300 hover:border-[#c9a768] hover:shadow-[0_18px_40px_-20px_rgba(19,37,59,0.25)]"
                 >
-                  <div className="mb-7 flex h-16 w-16 items-center justify-center bg-gradient-to-br from-[#1d7fc5] to-[#68c4b2] shadow-[0_10px_25px_-8px_rgba(29,127,197,0.6)] transition-transform duration-300 group-hover:scale-105">
-                    <Icon size={32} strokeWidth={2.5} className="text-white" />
-                  </div>
+                  <Icon
+                    size={28}
+                    strokeWidth={1.75}
+                    className="mb-6 text-[#c9a768] transition-colors duration-300 group-hover:text-[#13253b]"
+                  />
 
-                  <h3 className="mb-4 text-xl font-bold text-white">
+                  <h3
+                    style={{ fontFamily: "var(--font-display)" }}
+                    className="mb-4 text-xl font-semibold text-[#13253b]"
+                  >
                     {b.title}
                   </h3>
 
-                  <p className="text-md leading-8 text-white/80">{b.text}</p>
+                  <p className="text-[15px] leading-7 text-[#6b6255]">{b.text}</p>
 
                   <Link
                     href={b.href}
-                    className="mt-7 flex items-end text-lg font-bold text-[#e3c07f] underline decoration-[#e3c07f]/40 underline-offset-4 transition-colors hover:text-white"
+                    className="mt-7 inline-block border-b border-[#c9a768] pb-0.5 text-sm font-medium tracking-wide text-[#13253b] transition-colors hover:border-[#13253b]"
                   >
-                    Read More →
+                    Read more
                   </Link>
                 </article>
               );
@@ -259,13 +279,16 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="overflow-hidden py-4">
-          <div className="flex w-max animate-marquee whitespace-nowrap text-2xl font-bold tracking-tight sm:text-4xl">
+        <div className="overflow-hidden border-y border-[#13253b]/10 bg-white py-5">
+          <div
+            style={{ fontFamily: "var(--font-display)" }}
+            className="flex w-max animate-marquee whitespace-nowrap text-3xl font-medium tracking-tight sm:text-4xl"
+          >
             <span className="">
               {slides?.map((sd, i) => {
                 return (
-                  <span key={i} className="text-[80px] max-lg:text-[50px]">
-                    <span className="text-[#e3c07f]"> ★ </span>
+                  <span key={i} className="text-[54px] max-lg:text-[34px] text-[#13253b]">
+                    <span className="mx-6 text-[#c9a768]">·</span>
                     <span>{sd}</span>
                   </span>
                 );
@@ -275,44 +298,38 @@ export default function Home() {
         </div>
 
         <section data-aos="fade-up" className="container-x py-20">
-          <div
-            className="relative border-[1px] border-white/10 px-5 py-6 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.5)] sm:px-12 sm:py-14"
-            style={{
-              background:
-                "linear-gradient(120deg, #123f66 0%, #1d6a9c 45%, #3f8f9e 78%, #5eae9a 100%)",
-            }}
-          >
-            <span className="absolute left-0 top-0 h-[3px] w-full bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#e3c07f]" />
-            <div className="flex items-start justify-between gap-8">
+          <div className="relative border border-[#13253b]/10 bg-white px-5 py-10 sm:px-14 sm:py-16">
+            <div className="flex flex-wrap items-start justify-between gap-8">
               <div>
-                <h2
-                  data-aos="zoom-in-left"
-                  className="text-3xl font-bold tracking-tight text-white sm:text-[35px]"
-                >
+                <p className="text-xs font-medium tracking-[0.2em] text-[#c9a768]">
                   ABOUT DOLPHIN
-                </h2>
-
-                <p className="mt-4 text-[16px] text-white">
-                  More Than an Agency. Your Complete Solution Partner.
                 </p>
+                <h2
+                  data-aos="fade-up"
+                  style={{ fontFamily: "var(--font-display)" }}
+                  className="mt-3 max-w-lg text-3xl font-semibold leading-tight text-[#13253b] sm:text-[38px]"
+                >
+                  More than an agency. Your complete solution partner.
+                </h2>
               </div>
 
               <button
                 type="button"
-                className="max-md:hidden mt-1 flex shrink-0 items-center gap-3 border border-[#e3c07f]/50 bg-white/10 px-4 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-white backdrop-blur-sm transition hover:bg-[#e3c07f] hover:text-[#123f66]"
+                className="max-md:hidden mt-2 shrink-0 border border-[#13253b] px-6 py-3 text-[12px] font-medium tracking-wide text-[#13253b] transition-colors hover:border-[#c9a768] hover:text-[#c9a768]"
               >
                 Read More
-                <span className="text-lg leading-none">→</span>
               </button>
             </div>
 
-            <p className="mt-6 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
+            <div className="mt-10 h-px w-full bg-[#13253b]/10" />
+
+            <p className="mt-8 max-w-[720px] text-[16px] leading-[1.75] text-[#4a4438]">
               Established in 2019, Dolphin has grown into a multi-service
               marketing and execution company with a strong presence in Madhya
               Pradesh and across India.
             </p>
 
-            <p className="mt-4 max-w-[850px] text-[16px] leading-[1.65] text-white/95">
+            <p className="mt-4 max-w-[720px] text-[16px] leading-[1.75] text-[#4a4438]">
               Our strength lies in bringing different capabilities together.
               Instead of working with multiple vendors for events, advertising,
               branding, outdoor promotions, digital requirements, and customized
@@ -324,26 +341,29 @@ export default function Home() {
 
             <h3
               data-aos="fade-left"
-              className="mt-7 text-[18px] font-medium text-white"
+              style={{ fontFamily: "var(--font-display)" }}
+              className="mt-10 max-w-xl text-xl font-medium leading-snug text-[#13253b]"
             >
-              Our Philosophy: One Client. One Requirement. One Complete
-              Solution.
+              One client. One requirement. One complete solution.
             </h3>
 
             <div
               data-aos="fade-left"
-              className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
+              className="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-[#13253b]/10 bg-[#13253b]/10 sm:grid-cols-5"
             >
               {stats.map(([n, l], index) => (
                 <div
                   key={`${n}-${index}`}
-                  className="min-h-[94px] border border-white/15 bg-white/5 px-4 py-8 text-center backdrop-blur-sm transition-colors hover:border-[#e3c07f]/50"
+                  className="min-h-[130px] bg-white px-4 py-8 text-center"
                 >
-                  <div className="text-[32px] font-bold leading-none text-[#f3d9a3] sm:text-[36px]">
+                  <div
+                    style={{ fontFamily: "var(--font-display)" }}
+                    className="text-[30px] font-semibold leading-none text-[#13253b]"
+                  >
                     {n}
                   </div>
 
-                  <div className="mx-auto mt-2 max-w-[220px] text-[11px] font-medium leading-[1.35] text-white/90">
+                  <div className="mx-auto mt-3 max-w-[160px] text-[11px] leading-[1.4] text-[#6b6255]">
                     {l}
                   </div>
                 </div>
@@ -353,15 +373,17 @@ export default function Home() {
         </section>
 
         <section id="about" className="container-x py-12">
-          <div className="mb-8 text-center">
+          <div className="mb-14 text-center">
             <h2
-              data-aos="zoom-in-left"
-              className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
+              data-aos="fade-up"
+              style={{ fontFamily: "var(--font-display)" }}
+              className="text-4xl font-semibold text-[#13253b] sm:text-[42px]"
             >
-              OUR JOURNEY
+              Our Journey
             </h2>
-            <p className="text-xl text-white">
-              From Creating Experiences to Creating Complete Solutions
+            <div className="mx-auto mt-4 h-px w-14 bg-[#c9a768]" />
+            <p className="mt-4 text-lg text-[#6b6255]">
+              From creating experiences to creating complete solutions
             </p>
           </div>
 
@@ -372,25 +394,25 @@ export default function Home() {
                 alt="Dolphin"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover border-wiz"
+                className="rounded-xl object-cover shadow-[0_15px_40px_-15px_rgba(29,127,197,0.3)]"
               />
             </div>
 
             <div>
-              <p className="text-md leading-7 text-white">
+              <p className="text-md leading-7 text-[#333]">
                 Every journey begins with an idea. Ours began with a simple one
                 — to create experiences that bring people, brands, and ideas
                 together.
               </p>
 
-              <p className="mt-4 text-md leading-7 text-white">
+              <p className="mt-4 text-md leading-7 text-[#333]">
                 On 1 February 2019, Dolphin began its journey with a focus on
                 events and experience management. We started by helping
                 organisations plan, manage, and execute events that people could
                 experience, remember, and talk about.
               </p>
 
-              <p className="mt-4 text-md leading-7 text-white">
+              <p className="mt-4 text-md leading-7 text-[#333]">
                 But as we worked alongside our clients, we realised that their
                 needs went far beyond the event itself. An event often needed
                 branding. A campaign needed outdoor visibility. A launch needed
@@ -404,7 +426,7 @@ export default function Home() {
 
           <div className="mt-10 grid items-start gap-10 lg:grid-cols-2">
             <div>
-              <p className="text-md leading-7 text-white">
+              <p className="text-md leading-7 text-[#333]">
                 So, instead of asking our clients to find different partners for
                 every requirement, we chose to become that partner. Over the
                 years, Dolphin evolved from an event-focused company into a
@@ -412,24 +434,34 @@ export default function Home() {
                 and government institutions.
               </p>
 
-              <p className="mt-3 text-md font-semibold text-white">
+              <p className="mt-6 text-md font-medium text-[#13253b]">
                 Today, our capabilities extend across:
               </p>
 
-              <ul className="mt-1 list-disc pl-4 text-md leading-7 text-white">
-                <li>Experiences & Event Management</li>
-                <li>Advertising & Outdoor Campaigns</li>
-                <li>Digital Solutions</li>
-                <li>Brand Activations</li>
-                <li>Customized Products</li>
-                <li>Branding & Material Supply</li>
-                <li>On-Ground Execution</li>
+              <ul className="mt-3 space-y-2 text-md leading-7 text-[#4a4438]">
+                {[
+                  "Experiences & Event Management",
+                  "Advertising & Outdoor Campaigns",
+                  "Digital Solutions",
+                  "Brand Activations",
+                  "Customized Products",
+                  "Branding & Material Supply",
+                  "On-Ground Execution",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-[#c9a768]" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
-              <h3 className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold text-transparent">
-                One Partner. The Entire Journey.
+              <h3
+                style={{ fontFamily: "var(--font-display)" }}
+                className="mb-5 text-center text-3xl font-medium text-[#13253b]"
+              >
+                One partner. The entire journey.
               </h3>
 
               <div className="relative h-[380px] w-full">
@@ -438,13 +470,13 @@ export default function Home() {
                   alt="Dolphin event"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover border-wiz"
+                  className="rounded-xl object-cover shadow-[0_15px_40px_-15px_rgba(29,127,197,0.3)]"
                 />
               </div>
             </div>
           </div>
 
-          <div className="mt-10 max-w-4xl text-md leading-7 text-white/80">
+          <div className="mt-10 max-w-4xl border-l-2 border-[#c9a768] pl-6 text-md leading-7 text-[#4a4438]">
             <p>
               What started with managing events has grown into something much
               bigger: one partner for the entire journey. From the first idea to
@@ -464,46 +496,51 @@ export default function Home() {
               just one thing well. It's about bringing everything together.
             </p>
 
-            <p className="mt-3 font-semibold text-[#70c7b5]">
+            <p
+              style={{ fontFamily: "var(--font-display)" }}
+              className="mt-4 text-xl font-medium text-[#13253b]"
+            >
               Dolphin. The Complete Solution.
             </p>
           </div>
         </section>
 
         <section className="py-20">
-          <div className="gradient-panel">
-            <div className="container-x grid items-center gap-10 py-14 lg:grid-cols-2">
+          <div className="bg-[#13253b]">
+            <div className="container-x grid items-center gap-10 py-16 lg:grid-cols-2">
               <div data-aos="fade-right">
-                <h2 data-aos="zoom-in-left" className="mt-3 text-3xl font-bold">
-                  The Dolphin Difference
+                <p className="text-xs font-medium tracking-[0.2em] text-[#c9a768]">
+                  THE DOLPHIN DIFFERENCE
+                </p>
+                <h2
+                  data-aos="fade-up"
+                  style={{ fontFamily: "var(--font-display)" }}
+                  className="mt-3 max-w-md text-3xl font-medium leading-tight text-white sm:text-[34px]"
+                >
+                  Why manage six vendors when one can do it all?
                 </h2>
-                <div>
-                  <p className="mt-3 text-2xl">
-                    Why Manage Six Vendors When One Can Do It All?
-                  </p>
-                  <p className="mt-2 text-md text-white/80">
-                    Event • Branding • Outdoor Campaign • Digital Promotion •
-                    Customized Products • Material Supply • On-Ground Execution
-                  </p>
-                  <p className="mt-5 max-w-xl text-[16px] leading-7 text-white/90">
-                    Dolphin brings it all together. One brief. One team. One
-                    point of coordination. One complete solution.
-                  </p>
+                <p className="mt-4 text-md text-white/60">
+                  Event · Branding · Outdoor Campaign · Digital Promotion ·
+                  Customized Products · Material Supply · On-Ground Execution
+                </p>
+                <p className="mt-5 max-w-xl text-[16px] leading-7 text-white/80">
+                  Dolphin brings it all together. One brief. One team. One
+                  point of coordination. One complete solution.
+                </p>
 
-                  
-                  <a  href="#contact"
-                    className="mt-5 block w-fit bg-gradient-to-r from-[#e3c07f] via-yellow-200 to-yellow-200 px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#0b2436] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e3c07f]/30"
-                  >
-                    Get In Touch →
-                  </a>
-                </div>
+                <a
+                  href="#contact"
+                  className="mt-8 inline-block border border-[#c9a768] px-7 py-3 text-sm font-medium tracking-wide text-[#c9a768] transition-colors hover:bg-[#c9a768] hover:text-[#13253b]"
+                >
+                  Get In Touch
+                </a>
               </div>
               <div data-aos="fade-left" className="relative h-[380px] w-full">
                 <Image
                   src="/images/IMG_3420.jpg"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover border-wiz"
+                  className="object-cover"
                   alt="Dolphin event reference"
                 />
               </div>
@@ -512,18 +549,21 @@ export default function Home() {
         </section>
 
         <section id="portfolio" className="container-x py-20">
-          <p
-            data-aos="zoom-in-left"
-            className="mb-5 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
-          >
-            Highlights
-          </p>
+          <div className="mb-14 text-center">
+            <h2
+              data-aos="fade-up"
+              style={{ fontFamily: "var(--font-display)" }}
+              className="text-4xl font-semibold text-[#13253b] sm:text-[42px]"
+            >
+              Highlights
+            </h2>
+            <div className="mx-auto mt-4 h-px w-14 bg-[#c9a768]" />
+            <p className="mt-4 text-lg text-[#6b6255]">
+              Our work across events, branding & activations
+            </p>
+          </div>
 
-          <p className="mb-10 text-center text-xl text-white">
-            Our Work Across Events, Branding & Activations
-          </p>
-
-          <div className="grid grid-cols-1 auto-rows-[300px] gap-1 md:auto-rows-[400px] md:grid-cols-4">
+          <div className="grid grid-cols-1 auto-rows-[300px] gap-2 md:auto-rows-[400px] md:grid-cols-4">
             {gallery.map((src, i) => {
               const classes = [
                 "",
@@ -558,32 +598,37 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container-x py-20">
-          <p
-            data-aos="zoom-in-left"
-            className="mb-3 bg-gradient-to-r from-[#2b8fd6] via-[#68c4b2] to-[#e3c07f] bg-clip-text text-center text-4xl font-semibold uppercase text-transparent"
+        <section className="container-x py-20 text-center">
+          <h2
+            data-aos="fade-up"
+            style={{ fontFamily: "var(--font-display)" }}
+            className="text-4xl font-semibold text-[#13253b] sm:text-[42px]"
           >
             Who We Work With
+          </h2>
+
+          <p className="mt-4 text-lg text-[#6b6255]">
+            Corporates, institutions & government organisations
           </p>
 
-          <p className="mb-8 text-center text-xl text-white/80">
-            Corporates, Institutions & Government Organisations
-          </p>
-
-          <div className="mx-auto h-[1px] w-24 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#e3c07f]" />
+          <div className="mx-auto mt-6 h-px w-14 bg-[#c9a768]" />
         </section>
 
         <section id="contact" className="container-x py-20">
-          <div className="gradient-panel px-3 py-14 sm:px-12 sm:py-16">
+          <div className="border border-[#13253b]/10 bg-white px-3 py-14 sm:px-12 sm:py-16">
             <div className="text-center">
+              <p className="text-xs font-medium tracking-[0.2em] text-[#c9a768]">
+                GET IN TOUCH
+              </p>
               <h2
-                data-aos="zoom-in-left"
-                className="text-3xl font-black uppercase tracking-tight sm:text-4xl"
+                data-aos="fade-up"
+                style={{ fontFamily: "var(--font-display)" }}
+                className="mt-3 text-3xl font-medium text-[#13253b] sm:text-4xl"
               >
-                Let's Bring Your Idea To Life
+                Let's bring your idea to life
               </h2>
 
-              <p className="mt-5 text-sm font-semibold sm:text-base">
+              <p className="mt-5 text-sm text-[#6b6255] sm:text-base">
                 Fill out the form below and our team will get back to you
                 shortly.
               </p>
@@ -600,7 +645,7 @@ export default function Home() {
                 onChange={handleChange}
                 placeholder="Full Name"
                 required
-                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
+                className="h-[46px] border-b border-[#13253b]/20 bg-transparent px-1 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
               />
 
               <input
@@ -610,7 +655,7 @@ export default function Home() {
                 onChange={handleChange}
                 placeholder="Company Name"
                 required
-                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
+                className="h-[46px] border-b border-[#13253b]/20 bg-transparent px-1 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
               />
 
               <input
@@ -620,7 +665,7 @@ export default function Home() {
                 onChange={handleChange}
                 placeholder="Your Email"
                 required
-                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
+                className="h-[46px] border-b border-[#13253b]/20 bg-transparent px-1 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
               />
 
               <input
@@ -631,7 +676,7 @@ export default function Home() {
                 placeholder="Phone Number"
                 maxLength={10}
                 required
-                className="h-[46px] border border-white/40 bg-transparent px-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
+                className="h-[46px] border-b border-[#13253b]/20 bg-transparent px-1 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
               />
 
               <div className="relative">
@@ -640,39 +685,22 @@ export default function Home() {
                   value={formData.location}
                   onChange={handleChange}
                   required
-                  className="h-[46px] w-full appearance-none border border-white/40 bg-transparent px-3 pr-10 text-sm text-white outline-none transition-all focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40"
+                  className="h-[46px] w-full appearance-none border-b border-[#13253b]/20 bg-transparent px-1 pr-10 text-sm text-[#13253b] outline-none transition-all focus:border-[#c9a768]"
                 >
-                  <option value="" disabled className="bg-[#2781bc]">
+                  <option value="" disabled>
                     Select Location
                   </option>
 
-                  <option value="Bhopal" className="bg-[#2781bc]">
-                    Bhopal
-                  </option>
-
-                  <option value="Indore" className="bg-[#2781bc]">
-                    Indore
-                  </option>
-
-                  <option value="Jabalpur" className="bg-[#2781bc]">
-                    Jabalpur
-                  </option>
-
-                  <option value="Gwalior" className="bg-[#2781bc]">
-                    Gwalior
-                  </option>
-
-                  <option value="Delhi" className="bg-[#2781bc]">
-                    Delhi
-                  </option>
-
-                  <option value="Other" className="bg-[#2781bc]">
-                    Other
-                  </option>
+                  <option value="Bhopal">Bhopal</option>
+                  <option value="Indore">Indore</option>
+                  <option value="Jabalpur">Jabalpur</option>
+                  <option value="Gwalior">Gwalior</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Other">Other</option>
                 </select>
 
                 <svg
-                  className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white"
+                  className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6b6255]"
                   viewBox="0 0 20 20"
                   fill="none"
                   stroke="currentColor"
@@ -689,19 +717,19 @@ export default function Home() {
                 placeholder="Your Message"
                 rows={5}
                 required
-                className="resize-y border border-white/40 bg-transparent px-3 py-3 text-sm text-white outline-none transition-all placeholder:text-white focus:border-[#e3c07f] focus:ring-1 focus:ring-[#e3c07f]/40 md:col-span-3"
+                className="resize-y border border-[#13253b]/20 bg-transparent px-3 py-3 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768] md:col-span-3"
               />
 
               <button
                 type="submit"
                 disabled={isSending}
-                className="mx-auto mt-1 bg-gradient-to-r from-[#e3c07f] via-[#68c4b2] to-[#1d7fc5] px-7 py-3 text-sm font-bold uppercase tracking-wide text-[#0b2436] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e3c07f]/30 disabled:cursor-not-allowed disabled:opacity-60 md:col-span-3"
+                className="mx-auto mt-4 border border-[#13253b] bg-[#13253b] px-9 py-3 text-sm font-medium tracking-wide text-white transition-colors hover:border-[#c9a768] hover:bg-[#c9a768] hover:text-[#13253b] disabled:cursor-not-allowed disabled:opacity-60 md:col-span-3"
               >
-                {isSending ? "Sending..." : "Submit Now"}
+                {isSending ? "Sending..." : "Submit"}
               </button>
 
               {status && (
-                <p className="text-center text-sm text-white md:col-span-3">
+                <p className="text-center text-sm text-[#13253b] md:col-span-3">
                   {status}
                 </p>
               )}
