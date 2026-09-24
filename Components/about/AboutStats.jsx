@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { display } from "./aboutFonts";
 
 const stats = [
   {
@@ -37,187 +38,105 @@ const stats = [
 
 export default function AboutStats() {
   return (
-    <section className="w-full bg-[#303030] text-white px-5 sm:px-6 py-12 md:py-16 overflow-hidden">
-
+    <section className="w-full overflow-hidden bg-[#f8f4ec] px-5 py-14 sm:px-6 md:py-20">
       {/* =====================================================
           WHY CHOOSE
       ===================================================== */}
 
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 50,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-          amount: 0.2,
-        }}
-        transition={{
-          duration: 0.9,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="max-w-[950px] mx-auto text-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto max-w-[950px] text-center"
       >
-        <h2 className="text-[22px] sm:text-[25px] md:text-[35px] font-bold bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent uppercase tracking-[0.5px]">
-          THE DOLPHIN DIFFERENCE
+        <h2
+          style={display}
+          className="text-[26px] font-semibold text-[#13253b] sm:text-[30px] md:text-[40px]"
+        >
+          The Dolphin Difference
         </h2>
 
-        <p className="mt-4 text-[12px] sm:text-[13px] md:text-[15px] leading-6 font-medium text-white/90">
+        <div className="mx-auto mt-5 h-px w-14 bg-[#c9a768]" />
+
+        <p className="mt-5 text-[14px] leading-7 text-[#6b6255] md:text-[16px]">
           Why coordinate multiple vendors when one team can connect the
           complete requirement?
         </p>
       </motion.div>
 
-
       {/* =====================================================
           CARDS
       ===================================================== */}
 
-      <div className="container-x mx-auto mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
+      <div className="container-x mx-auto mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
-            initial={{
-              opacity: 0,
-              y: 60,
-              scale: 0.96,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.15,
-            }}
+            initial={{ opacity: 0, y: 60, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{
               duration: 0.7,
               delay: index * 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            whileHover={{
-              y: -7,
-              scale: 1.015,
-              transition: {
-                duration: 0.25,
-              },
-            }}
+            whileHover={{ y: -7, scale: 1.015, transition: { duration: 0.25 } }}
             className="
               group
-              min-h-[155px]
-              md:min-h-[175px]
-              border
-              border-[#2995c5]
-              bg-[#333333]
-              px-5
-              py-6
               flex
+              min-h-[155px]
               flex-col
               justify-center
+              border
+              border-[#13253b]/10
+              bg-white
+              px-6
+              py-7
               transition-all
               duration-300
-              hover:bg-[#373737]
-              hover:border-[#48b7df]
-              hover:shadow-[0_10px_30px_rgba(41,149,197,0.12)]
+              hover:border-[#c9a768]
+              hover:shadow-[0_18px_40px_-20px_rgba(19,37,59,0.25)]
+              md:min-h-[175px]
             "
           >
             <h3
-              className="
-                text-[13px]
-                sm:text-[14px]
-                md:text-[16px]
-                font-bold
-                tracking-[0.6px]
-                bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent
-                transition-colors
-                duration-300
-                group-hover:text-[#62c6df]
-              "
+              style={display}
+              className="text-[13px] font-semibold tracking-[0.14em] text-[#13253b] sm:text-[14px] md:text-[15px]"
             >
               {stat.title}
             </h3>
 
-            <div className="w-[42px] h-[2px] bg-[#2995c5] mt-4 mb-4 transition-all duration-300 group-hover:w-[65px]" />
+            <div className="mb-4 mt-4 h-px w-[42px] bg-[#c9a768] transition-all duration-300 group-hover:w-[65px]" />
 
-            <p
-              className="
-                text-[12px]
-                sm:text-[13px]
-                md:text-[14px]
-                leading-[1.65]
-                font-medium
-                text-white/85
-              "
-            >
+            <p className="text-[13px] leading-[1.75] text-[#6b6255] sm:text-[14px] md:text-[15px]">
               {stat.description}
             </p>
           </motion.div>
         ))}
-
       </div>
-
 
       {/* =====================================================
           PROMISE
       ===================================================== */}
 
       <motion.div
-        initial={{
-          opacity: 0,
-          y: 70,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-          amount: 0.2,
-        }}
-        transition={{
-          duration: 1,
-          delay: 0.1,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="
-          max-w-[950px]
-          mx-auto
-          mt-16
-          md:mt-24
-          text-center
-        "
+        initial={{ opacity: 0, y: 70 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto mt-16 max-w-[950px] text-center md:mt-24"
       >
         <h2
-          className="
-            text-[22px]
-            sm:text-[25px]
-            md:text-[35px]
-            font-bold
-            bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent
-            uppercase
-            tracking-[0.5px]
-          "
+          style={display}
+          className="text-[26px] font-semibold text-[#13253b] sm:text-[30px] md:text-[40px]"
         >
-          THE DOLPHIN PROMISE
+          The Dolphin Promise
         </h2>
 
-        <p
-          className="
-            mt-5
-            text-[12px]
-            sm:text-[13px]
-            md:text-[15px]
-            leading-[1.75]
-            font-medium
-            text-white/90
-          "
-        >
+        <div className="mx-auto mt-5 h-px w-14 bg-[#c9a768]" />
+
+        <p className="mt-6 text-[14px] leading-[1.8] text-[#4a4438] md:text-[16px]">
           Every project is different, but our commitment remains consistent:
           understand the requirement honestly, plan the details carefully,
           communicate clearly and execute responsibly. We aim to create work
@@ -225,22 +144,11 @@ export default function AboutStats() {
           stands up to the realities of the ground.
         </p>
 
-        <p
-          className="
-            mt-4
-            text-[12px]
-            sm:text-[13px]
-            md:text-[15px]
-            leading-[1.75]
-            font-medium
-            text-white/90
-          "
-        >
+        <p className="mt-4 text-[14px] leading-[1.8] text-[#4a4438] md:text-[16px]">
           For Dolphin, a successful assignment is not defined only by how it
           looks. It is defined by how well every part works together.
         </p>
       </motion.div>
-
     </section>
   );
 }

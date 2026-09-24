@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { display } from "./aboutFonts";
 
 const steps = [
   {
@@ -43,26 +44,29 @@ const steps = [
 
 export default function AboutHowWeWork() {
   return (
-    <section className="w-full bg-[#303030] text-white px-5 sm:px-6 py-12 md:py-16 overflow-hidden">
-
+    <section className="w-full overflow-hidden border-y border-[#13253b]/10 bg-white px-5 py-14 sm:px-6 md:py-20">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-[950px] mx-auto text-center"
+        className="mx-auto max-w-[950px] text-center"
       >
-        <h2 className="text-[22px] sm:text-[25px] md:text-[35px] font-bold bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent uppercase tracking-[0.5px]">
-          ONE CONNECTED PROCESS FROM BRIEF TO CLOSURE
+        <h2
+          style={display}
+          className="text-[26px] font-semibold leading-tight text-[#13253b] sm:text-[30px] md:text-[40px]"
+        >
+          One Connected Process From Brief to Closure
         </h2>
 
-        <p className="mt-4 text-[12px] sm:text-[13px] md:text-[15px] leading-6 font-medium text-white/90">
+        <div className="mx-auto mt-5 h-px w-14 bg-[#c9a768]" />
+
+        <p className="mt-5 text-[14px] leading-7 text-[#6b6255] md:text-[16px]">
           Clarity at every stage of execution.
         </p>
       </motion.div>
 
-      <div className="container-x mx-auto mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
+      <div className="container-x mx-auto mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
         {steps.map((item, index) => (
           <motion.div
             key={index}
@@ -74,70 +78,48 @@ export default function AboutHowWeWork() {
               delay: index * 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            whileHover={{
-              y: -7,
-              scale: 1.015,
-              transition: { duration: 0.25 },
-            }}
+            whileHover={{ y: -7, scale: 1.015, transition: { duration: 0.25 } }}
             className="
               group
-              min-h-[155px]
-              md:min-h-[175px]
-              border
-              border-[#2995c5]
-              bg-[#333333]
-              px-5
-              py-6
               flex
+              min-h-[155px]
               flex-col
               justify-center
+              border
+              border-[#13253b]/10
+              bg-[#f8f4ec]
+              px-6
+              py-7
               transition-all
               duration-300
-              hover:bg-[#373737]
-              hover:border-[#48b7df]
-              hover:shadow-[0_10px_30px_rgba(41,149,197,0.12)]
+              hover:border-[#c9a768]
+              hover:shadow-[0_18px_40px_-20px_rgba(19,37,59,0.25)]
+              md:min-h-[175px]
             "
           >
             <div className="flex items-center gap-3">
-              <span className="text-[13px] sm:text-[14px] md:text-[16px] font-bold text-[#2995c5]">
+              <span
+                style={display}
+                className="text-[20px] font-semibold text-[#a5803a] md:text-[24px]"
+              >
                 {item.step}
               </span>
               <h3
-                className="
-                  text-[13px]
-                  sm:text-[14px]
-                  md:text-[16px]
-                  font-bold
-                  tracking-[0.6px]
-                  bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent
-                  transition-colors
-                  duration-300
-                  group-hover:text-[#62c6df]
-                "
+                style={display}
+                className="text-[13px] font-semibold tracking-[0.14em] text-[#13253b] sm:text-[14px] md:text-[15px]"
               >
                 {item.title}
               </h3>
             </div>
 
-            <div className="w-[42px] h-[2px] bg-[#2995c5] mt-4 mb-4 transition-all duration-300 group-hover:w-[65px]" />
+            <div className="mb-4 mt-4 h-px w-[42px] bg-[#c9a768] transition-all duration-300 group-hover:w-[65px]" />
 
-            <p
-              className="
-                text-[12px]
-                sm:text-[13px]
-                md:text-[14px]
-                leading-[1.65]
-                font-medium
-                text-white/85
-              "
-            >
+            <p className="text-[13px] leading-[1.75] text-[#6b6255] sm:text-[14px] md:text-[15px]">
               {item.description}
             </p>
           </motion.div>
         ))}
-
       </div>
-
     </section>
   );
 }

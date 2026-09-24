@@ -4,6 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Playfair_Display } from "next/font/google";
+
+// Same display font as page.js so the navbar matches on every page
+// (not only where the wrapper defines --font-display).
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+
+const display = { fontFamily: playfair.style.fontFamily };
 
 const links = [
   ["HOME", "/"],
@@ -14,9 +24,7 @@ const links = [
     href: "#",
 
     children: [
-      /* =====================================================
-         BRAND ACTIVATION
-      ===================================================== */
+      /* BRAND ACTIVATION */
       {
         label: "Brand Activation",
         href: "/business/brand-activation",
@@ -46,19 +54,15 @@ const links = [
           //   "Content Curation – Animations, Graphics & AVs",
           //   "/business/brand-activation/content-curation-animations-graphics-and-avs",
           // ],
-          [ "Explore Activations",
-            "/business/brand-activation/explore-activations"],
-            [
-              "Explore Launches",
-              "/business/brand-activation/explore-launches"
-            ]
-         
+          [
+            "Explore Activations",
+            "/business/brand-activation/explore-activations",
+          ],
+          ["Explore Launches", "/business/brand-activation/explore-launches"],
         ],
       },
 
-      /* =====================================================
-         DIGITAL SOLUTIONS
-      ===================================================== */
+      /* DIGITAL SOLUTIONS */
       {
         label: "Digital Solutions",
         href: "/business/digital-solutions",
@@ -86,17 +90,11 @@ const links = [
           //   "Digital Marketing",
           //   "/business/digital-solutions/digital-marketing",
           // ],
-          [
-            "Explore our work",
-            "/business/digital-solutions/explore-our-work"
-          ],
-        
+          ["Explore our work", "/business/digital-solutions/explore-our-work"],
         ],
       },
 
-      /* =====================================================
-         SPECIAL EVENTS
-      ===================================================== */
+      /* SPECIAL EVENTS */
       {
         label: "Special Events",
         href: "/business/special-events",
@@ -133,14 +131,11 @@ const links = [
           //   "/business/special-events/social-celebrations",
           // ],
           // ["Weddings", "/business/special-events/weddings"],
-        [
-          "Explore Events",
-          "/business/special-events/explore-events"
-        ],
-        [
-          "Explore Goverment Projects",
-          "/business/special-events/explore-government-projects"
-        ]
+          ["Explore Events", "/business/special-events/explore-events"],
+          [
+            "Explore Goverment Projects",
+            "/business/special-events/explore-government-projects",
+          ],
         ],
       },
       {
@@ -149,10 +144,10 @@ const links = [
         children: [
           [
             "Explore outdoor media",
-            "/business/advertising-outdoor-marketing/explore-outdoor-media"
-          ]
-        ]
-      }
+            "/business/advertising-outdoor-marketing/explore-outdoor-media",
+          ],
+        ],
+      },
     ],
   },
 
@@ -176,6 +171,10 @@ function isDropdownActive(item, pathname) {
     return false;
   });
 }
+
+// Shared input styles for the side-menu form (underline style, like page.js)
+const inputClass =
+  "h-[46px] w-full border-b border-[#13253b]/20 bg-transparent px-1 text-[15px] text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -245,7 +244,7 @@ export default function Navbar() {
       {/* =====================================================
           NAVBAR
       ===================================================== */}
-      <header className="sticky top-0 z-40 border-b border-gray-500/10 bg-[#2f2f2f]/95 shadow-2xl backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#c9a768]/50 bg-[#f8f4ec]/95 shadow-[0_10px_30px_-20px_rgba(19,37,59,0.35)] backdrop-blur-md">
         <div className="container-x flex h-[90px] items-center justify-between md:h-[120px]">
           {/* ================= LOGO ================= */}
           <Link href="/" className="shrink-0">
@@ -274,18 +273,26 @@ export default function Navbar() {
                   {/* ================= MAIN LINK ================= */}
                   <Link
                     href={href}
+                    style={display}
                     className={`
                       flex
                       items-center
-                      gap-1
-                      text-[15px]
-                      font-bold
-                      tracking-wide
+                      gap-1.5
+                      border-b
+                      pb-1
+                      text-[14px]
+                      font-medium
+                      tracking-[0.12em]
                       transition-colors
                       duration-300
-                      hover:text-[#68c4b2]
-                      xl:text-[17px]
-                      ${active ? "text-[#68c4b2]" : "text-white"}
+                      hover:border-[#c9a768]
+                      hover:text-[#a5803a]
+                      xl:text-[15px]
+                      ${
+                        active
+                          ? "border-[#c9a768] text-[#a5803a]"
+                          : "border-transparent text-[#13253b]"
+                      }
                     `}
                   >
                     {label}
@@ -294,9 +301,10 @@ export default function Navbar() {
                       <span
                         className="
                           text-xs
+                          text-[#a5803a]
                           transition-transform
                           duration-300
-                          group-hover:rotate-180
+                          group-hover:rotate-45
                         "
                       >
                         +
@@ -306,6 +314,8 @@ export default function Navbar() {
 
                   {/* =====================================================
                       FIRST LEVEL DROPDOWN
+                      (pt-5 instead of mt-5 so the hover doesn't break
+                      when the mouse crosses the gap)
                   ===================================================== */}
                   {isDropdown && (
                     <div
@@ -314,9 +324,9 @@ export default function Navbar() {
                         absolute
                         left-0
                         top-full
-                        mt-5
-                        w-[260px]
+                        w-[270px]
                         translate-y-2
+                        pt-5
                         opacity-0
                         transition-all
                         duration-300
@@ -328,9 +338,13 @@ export default function Navbar() {
                       <div
                         className="
                           overflow-visible
-                          bg-[#2f2f2f]/95
+                          border
+                          border-[#c9a768]/30
+                          border-t-2
+                          border-t-[#c9a768]
+                          bg-[#f8f4ec]
                           py-2
-                          shadow-2xl
+                          shadow-[0_25px_50px_-20px_rgba(19,37,59,0.3)]
                         "
                       >
                         {item.children.map((child) => {
@@ -344,20 +358,28 @@ export default function Navbar() {
                               {/* ================= BUSINESS ITEM ================= */}
                               <Link
                                 href={child.href || "#"}
+                                style={display}
                                 className="
                                   flex
                                   items-center
                                   justify-between
+                                  border-l-2
+                                  border-transparent
                                   px-5
                                   py-3
                                   text-[15px]
-                                  font-semibold
-                                  text-white
+                                  font-medium
+                                  text-[#13253b]
                                   transition
-                                  hover:bg-[#3376ad]
+                                  hover:border-[#c9a768]
+                                  hover:bg-[#c9a768]/10
+                                  hover:text-[#a5803a]
                                 "
                               >
                                 <span>{child.label}</span>
+                                {hasChildren && (
+                                  <span className="text-[#a5803a]">›</span>
+                                )}
                               </Link>
 
                               {/* =====================================================
@@ -380,17 +402,15 @@ export default function Navbar() {
                                     group-hover/sub:opacity-100
                                   "
                                 >
-                                  {/* IMPORTANT:
-                                      Special Events mein 10 items hain
-                                      isliye scroll enabled hai
-                                  */}
                                   <div
                                     className="
                                       max-h-[400px]
                                       overflow-y-auto
-                                      bg-[#2f2f2f]/95
+                                      border
+                                      border-[#c9a768]/30
+                                      bg-[#f8f4ec]
                                       py-2
-                                      shadow-2xl
+                                      shadow-[0_25px_50px_-20px_rgba(19,37,59,0.3)]
                                     "
                                   >
                                     {child.children.map(
@@ -401,15 +421,17 @@ export default function Navbar() {
                                           className="
                                             block
                                             border-b
-                                            border-white/10
+                                            border-[#13253b]/10
                                             px-5
                                             py-3
-                                            text-[15px]
-                                            font-medium
+                                            text-[14px]
+                                            font-normal
                                             leading-relaxed
-                                            text-white
+                                            text-[#13253b]/80
                                             transition
-                                            hover:bg-[#3376ad]
+                                            last:border-b-0
+                                            hover:bg-[#c9a768]/10
+                                            hover:text-[#a5803a]
                                           "
                                         >
                                           {subLabel}
@@ -444,15 +466,17 @@ export default function Navbar() {
               w-12
               items-center
               justify-center
-              rounded-md
+              border
+              border-[#c9a768]/40
               transition
-              hover:bg-white/10
+              hover:border-[#c9a768]
+              hover:bg-[#c9a768]/10
             "
           >
             <span className="flex flex-col items-end gap-[5px]">
-              <span className="block h-[3px] w-5 bg-white" />
-              <span className="block h-[3px] w-7 bg-white" />
-              <span className="block h-[3px] w-3 bg-white" />
+              <span className="block h-[2px] w-5 bg-[#13253b]" />
+              <span className="block h-[2px] w-7 bg-[#13253b]" />
+              <span className="block h-[2px] w-3 bg-[#13253b]" />
             </span>
           </button>
         </div>
@@ -467,7 +491,7 @@ export default function Navbar() {
           fixed
           inset-0
           z-[60]
-          bg-black/70
+          bg-[#13253b]/50
           backdrop-blur-[2px]
           transition-all
           duration-500
@@ -488,26 +512,19 @@ export default function Navbar() {
           w-[375px]
           max-w-[90vw]
           overflow-y-auto
-          text-white
+          border-r
+          border-[#c9a768]/30
+          bg-[#f8f4ec]
+          text-[#13253b]
           shadow-2xl
           transition-transform
           duration-500
           ease-[cubic-bezier(0.4,0,0.2,1)]
-
           ${open ? "translate-x-0" : "-translate-x-full"}
-
-          bg-[#030006]
-
-          lg:bg-gradient-to-b
-          lg:from-[#1684c5]
-          lg:via-[#2998c4]
-          lg:to-[#5db9bb]
         `}
       >
         <div className="relative min-h-full px-[19px] py-7">
-          {/* =====================================================
-              CLOSE BUTTON
-          ===================================================== */}
+          {/* CLOSE BUTTON */}
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -525,9 +542,9 @@ export default function Navbar() {
               text-[32px]
               font-light
               leading-none
-              text-white
+              text-[#13253b]
               transition
-              hover:text-[#1684c5]
+              hover:text-[#a5803a]
             "
           >
             ×
@@ -543,33 +560,21 @@ export default function Navbar() {
               mt-2
               block
               border-b
-              border-white/10
-              pb-12
+              border-[#c9a768]/30
+              pb-10
               lg:hidden
             "
           >
             <div className="text-left leading-none">
               <div
-                className="
-                  text-[30px]
-                  font-black
-                  tracking-[-0.09em]
-                  text-[#187cc1]
-                "
+                style={display}
+                className="text-[28px] font-semibold tracking-tight text-[#13253b]"
               >
-                <span className="mr-1 text-[22px] text-white">★</span>
+                <span className="mr-2 text-[20px] text-[#a5803a]">★</span>
                 Dolphin Facilities
               </div>
 
-              <div
-                className="
-                  mt-2
-                  text-[8px]
-                  font-bold
-                  tracking-[0.42em]
-                  text-white/60
-                "
-              >
+              <div className="mt-3 text-[9px] font-medium tracking-[0.42em] text-[#a5803a]">
                 ENTERTAINMENT AGENCY
               </div>
             </div>
@@ -585,7 +590,7 @@ export default function Navbar() {
               const href = isDropdown ? item.href : item[1];
 
               return (
-                <div key={label} className="border-b border-white/10">
+                <div key={label} className="border-b border-[#13253b]/10">
                   {/* Main Item */}
                   {isDropdown ? (
                     <button
@@ -593,37 +598,40 @@ export default function Navbar() {
                       onClick={() =>
                         setOpenDropdown(openDropdown === label ? null : label)
                       }
+                      style={display}
                       className="
-              relative
-              flex
-              min-h-[45px]
-              w-full
-              items-center
-              justify-between
-              text-left
-              text-[13px]
-              font-medium
-              text-white
-              transition-colors
-            "
+                        relative
+                        flex
+                        min-h-[48px]
+                        w-full
+                        items-center
+                        justify-between
+                        text-left
+                        text-[14px]
+                        font-medium
+                        tracking-[0.1em]
+                        text-[#13253b]
+                        transition-colors
+                      "
                     >
                       <span>{label}</span>
 
                       <span
                         className={`
-                flex
-                h-[38px]
-                w-[38px]
-                items-center
-                justify-center
-                bg-[#187fc2]
-                text-[28px]
-                font-light
-                leading-none
-                transition-transform
-                duration-200
-                ${openDropdown === label ? "rotate-90" : ""}
-              `}
+                          flex
+                          h-[38px]
+                          w-[38px]
+                          items-center
+                          justify-center
+                          bg-[#c9a768]
+                          text-[26px]
+                          font-light
+                          leading-none
+                          text-[#13253b]
+                          transition-transform
+                          duration-200
+                          ${openDropdown === label ? "rotate-90" : ""}
+                        `}
                       >
                         ›
                       </span>
@@ -632,16 +640,18 @@ export default function Navbar() {
                     <Link
                       href={href}
                       onClick={() => setOpen(false)}
+                      style={display}
                       className="
-              flex
-              min-h-[45px]
-              items-center
-              text-[13px]
-              font-medium
-              text-white
-              transition-colors
-              hover:text-[#1684c5]
-            "
+                        flex
+                        min-h-[48px]
+                        items-center
+                        text-[14px]
+                        font-medium
+                        tracking-[0.1em]
+                        text-[#13253b]
+                        transition-colors
+                        hover:text-[#a5803a]
+                      "
                     >
                       {label}
                     </Link>
@@ -667,66 +677,66 @@ export default function Navbar() {
                               <details className="group">
                                 <summary
                                   className="
-                          flex
-                          cursor-pointer
-                          items-center
-                          justify-between
-                          py-3
-                          pr-2
-                          text-[12px]
-                          font-medium
-                          text-white/90
-                        "
+                                    flex
+                                    cursor-pointer
+                                    items-center
+                                    justify-between
+                                    py-2
+                                    pr-2
+                                    text-[12px]
+                                    font-medium
+                                    text-[#13253b]/85
+                                  "
                                 >
                                   <Link
-                                    key={childLabel}
                                     href={childHref || "#"}
                                     onClick={() => setOpen(false)}
                                     className="
-                              block
-                              py-2.5
-                              text-[13px]
-                              text-white/70
-                              transition-colors
-                              hover:text-[#1684c5]
-                              block
-                              w-full
-                            "
+                                      block
+                                      w-full
+                                      py-2.5
+                                      text-[14px]
+                                      text-[#13253b]/75
+                                      transition-colors
+                                      hover:text-[#a5803a]
+                                    "
                                   >
                                     {childLabel}
                                   </Link>
 
                                   <span
                                     className="
-                            text-[20px]
-                            transition-transform
-                            group-open:rotate-90
-                            bg-[#1684c5]
-                            h-[38px]
-                w-[40px]
-                flex 
-                items-center
-                justify-center
-                          "
+                                      flex
+                                      h-[38px]
+                                      w-[40px]
+                                      items-center
+                                      justify-center
+                                      border
+                                      border-[#c9a768]/60
+                                      text-[20px]
+                                      text-[#a5803a]
+                                      transition-transform
+                                      group-open:rotate-90
+                                    "
                                   >
                                     ›
                                   </span>
                                 </summary>
 
-                                <div className="ml-3 border-l border-white/10 pl-3">
+                                <div className="ml-3 border-l border-[#c9a768]/40 pl-3">
                                   {child.children?.map((subChild) => (
                                     <Link
                                       key={subChild[0]}
                                       href={subChild[1]}
                                       onClick={() => setOpen(false)}
                                       className="
-                              block
-                              py-2.5
-                              text-[11px]
-                              text-white/70
-                              transition-colors
-                              hover:text-[#1684c5]
-                            "
+                                        block
+                                        py-2.5
+                                        text-[13px]
+                                        text-[#13253b]/65
+                                        transition-colors
+                                        hover:text-[#a5803a]
+                                      "
                                     >
                                       {subChild[0]}
                                     </Link>
@@ -738,12 +748,12 @@ export default function Navbar() {
                                 href={childHref}
                                 onClick={() => setOpen(false)}
                                 className="
-                        block
-                        py-3
-                        text-[12px]
-                        text-white/90
-                        hover:text-[#1684c5]
-                      "
+                                  block
+                                  py-3
+                                  text-[14px]
+                                  text-[#13253b]/75
+                                  hover:text-[#a5803a]
+                                "
                               >
                                 {childLabel}
                               </Link>
@@ -765,7 +775,7 @@ export default function Navbar() {
             {/* EMAIL */}
             <a
               href="mailto:info@wizcraft.co"
-              className="mb-3 flex items-center gap-4"
+              className="mb-3 flex items-center gap-4 transition-colors hover:text-[#a5803a]"
             >
               <span
                 className="
@@ -776,12 +786,12 @@ export default function Navbar() {
                   items-center
                   justify-center
                   rounded-full
-                  bg-[#187fc2]
+                  bg-[#c9a768]
                 "
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-[15px] w-[15px] fill-none stroke-white"
+                  className="h-[15px] w-[15px] fill-none stroke-[#13253b]"
                   strokeWidth="2"
                 >
                   <path d="M4 6h16v12H4z" />
@@ -789,13 +799,13 @@ export default function Navbar() {
                 </svg>
               </span>
 
-              <span className="text-[16px]">info@wizcraft.co</span>
+              <span className="text-[15px]">info@wizcraft.co</span>
             </a>
 
             {/* PHONE 1 */}
             <a
               href="tel:+919819822333"
-              className="mb-3 flex items-center gap-4"
+              className="mb-3 flex items-center gap-4 transition-colors hover:text-[#a5803a]"
             >
               <span
                 className="
@@ -806,22 +816,25 @@ export default function Navbar() {
                   items-center
                   justify-center
                   rounded-full
-                  bg-[#187fc2]
+                  bg-[#c9a768]
                 "
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-[15px] w-[15px] fill-white"
+                  className="h-[15px] w-[15px] fill-[#13253b]"
                 >
                   <path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2l3.4 1.4c.4.2.6.6.6 1v3.1c0 .6-.4 1-1 1C10.4 21.5 2.5 13.6 2.5 4.5c0-.6.4-1 1-1h3.1c.4 0 .8.2 1 .6L9 7.5c.2.4.1.8-.2 1.1l-2.2 2.2z" />
                 </svg>
               </span>
 
-              <span className="text-[16px]">+91 9819822333</span>
+              <span className="text-[15px]">+91 9819822333</span>
             </a>
 
             {/* PHONE 2 */}
-            <a href="tel:+912247791300" className="flex items-center gap-4">
+            <a
+              href="tel:+912247791300"
+              className="flex items-center gap-4 transition-colors hover:text-[#a5803a]"
+            >
               <span
                 className="
                   flex
@@ -831,18 +844,18 @@ export default function Navbar() {
                   items-center
                   justify-center
                   rounded-full
-                  bg-[#187fc2]
+                  bg-[#c9a768]
                 "
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-[15px] w-[15px] fill-white"
+                  className="h-[15px] w-[15px] fill-[#13253b]"
                 >
                   <path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2l3.4 1.4c.4.2.6.6.6 1v3.1c0 .6-.4 1-1 1C10.4 21.5 2.5 13.6 2.5 4.5c0-.6.4-1 1-1h3.1c.4 0 .8.2 1 .6L9 7.5c.2.4.1.8-.2 1.1l-2.2 2.2z" />
                 </svg>
               </span>
 
-              <span className="text-[16px]">+91 02247791300</span>
+              <span className="text-[15px]">+91 02247791300</span>
             </a>
           </div>
 
@@ -851,7 +864,7 @@ export default function Navbar() {
           ===================================================== */}
           <div
             className="
-              mt-4
+              mt-5
               flex
               items-center
               gap-5
@@ -863,7 +876,7 @@ export default function Navbar() {
             <a
               href="#"
               aria-label="Instagram"
-              className="text-white transition hover:text-[#187fc2]"
+              className="text-[#13253b] transition hover:text-[#a5803a]"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -886,7 +899,7 @@ export default function Navbar() {
             <a
               href="#"
               aria-label="WhatsApp"
-              className="text-white transition hover:text-[#187fc2]"
+              className="text-[#13253b] transition hover:text-[#a5803a]"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -902,12 +915,7 @@ export default function Navbar() {
             <a
               href="#"
               aria-label="LinkedIn"
-              className="
-                text-[18px]
-                font-bold
-                text-white
-                hover:text-[#187fc2]
-              "
+              className="text-[18px] font-bold text-[#13253b] transition hover:text-[#a5803a]"
             >
               in
             </a>
@@ -916,12 +924,7 @@ export default function Navbar() {
             <a
               href="#"
               aria-label="Facebook"
-              className="
-                text-[18px]
-                font-bold
-                text-white
-                hover:text-[#187fc2]
-              "
+              className="text-[18px] font-bold text-[#13253b] transition hover:text-[#a5803a]"
             >
               f
             </a>
@@ -930,14 +933,14 @@ export default function Navbar() {
             <a
               href="#"
               aria-label="YouTube"
-              className="text-white hover:text-[#187fc2]"
+              className="text-[#13253b] transition hover:text-[#a5803a]"
             >
               <svg
                 viewBox="0 0 24 24"
                 className="h-[18px] w-[18px] fill-current"
               >
                 <path d="M23 12s0-3.5-.5-5.1c-.3-1.1-1.2-2-2.3-2.3C18.6 4 12 4 12 4s-6.6 0-8.2.6c-1.1.3-2 1.2-2.3 2.3C1 8.5 1 12 1 12s0 3.5.5 5.1c.3 1.1 1.2 2 2.3 2.3 1.6.6 8.2.6 8.2.6s6.6 0 8.2-.6c1.1-.3 2-1.2 2.3-3.3C23 15.5 23 12 23 12Z" />
-                <path d="m10 8 6 4-6 4V8Z" className="fill-[#030006]" />
+                <path d="m10 8 6 4-6 4V8Z" className="fill-[#f8f4ec]" />
               </svg>
             </a>
 
@@ -945,11 +948,7 @@ export default function Navbar() {
             <a
               href="#"
               aria-label="X"
-              className="
-                text-[18px]
-                text-white
-                hover:text-[#187fc2]
-              "
+              className="text-[18px] text-[#13253b] transition hover:text-[#a5803a]"
             >
               𝕏
             </a>
@@ -966,37 +965,68 @@ export default function Navbar() {
               className="mt-10 block"
             >
               <div className="text-left leading-none">
-                <div className="text-[38px] font-black tracking-[-0.09em]">
-                  <span className="mr-2 text-2xl">★</span>
-                  DOLPHIN FACILITIES
+                <div
+                  style={display}
+                  className="text-[32px] font-semibold tracking-tight text-[#13253b]"
+                >
+                  <span className="mr-2 text-2xl text-[#a5803a]">★</span>
+                  Dolphin Facilities
                 </div>
 
-                <div className="mt-2 text-[9px] font-bold tracking-[0.42em]">
+                <div className="mt-3 text-[10px] font-medium tracking-[0.42em] text-[#a5803a]">
                   ENTERTAINMENT AGENCY
                 </div>
               </div>
             </Link>
 
+            <div className="mt-8 h-px w-14 bg-[#c9a768]" />
+
             {/* ABOUT */}
-            <section className="mt-10">
-              <h2 className="text-[18px] font-medium">ABOUT US</h2>
+            <section className="mt-8">
+              <p className="text-xs font-medium tracking-[0.2em] text-[#a5803a]">
+                ABOUT US
+              </p>
 
-              <p className="mt-2 text-[15px] font-medium leading-[1.65]">
-              **Dolphin Facilities Pvt. Ltd.** is a Bhopal-based corporate event management company specializing in creating memorable and impactful events. Based in **Bhopal, Madhya Pradesh**, we provide complete event management solutions, from planning and creative concepts to production and on-ground execution.
+              <p className="mt-3 text-[15px] leading-[1.75] text-[#13253b]/75">
+                <strong className="font-semibold text-[#13253b]">
+                  Dolphin Facilities Pvt. Ltd.
+                </strong>{" "}
+                is a Bhopal-based corporate event management company
+                specializing in creating memorable and impactful events. We
+                provide complete event management solutions, from planning and
+                creative concepts to production and on-ground execution.
+              </p>
 
-Our office is located at **17-18, Block A, Second Floor, Gammon India, TT Nagar, Bhopal – 462003**.
+              <p className="mt-3 text-[15px] leading-[1.75] text-[#13253b]/75">
+                Our office is located at{" "}
+                <strong className="font-semibold text-[#13253b]">
+                  17-18, Block A, Second Floor, Gammon India, TT Nagar, Bhopal –
+                  462003
+                </strong>
+                .
+              </p>
 
-We specialize in **corporate events, exhibitions, brand activations, product launches, outdoor advertising, and other promotional events**.
-
+              <p className="mt-3 text-[15px] leading-[1.75] text-[#13253b]/75">
+                We specialize in corporate events, exhibitions, brand
+                activations, product launches, outdoor advertising, and other
+                promotional events.
               </p>
             </section>
 
             {/* CONTACT FORM */}
-            <section className="mt-8">
-              <h2 className="text-[22px] font-medium">GET IN TOUCH</h2>
+            <section className="mt-10">
+              <p className="text-xs font-medium tracking-[0.2em] text-[#a5803a]">
+                GET IN TOUCH
+              </p>
 
-              <form onSubmit={handleSubmit} className="mt-2 space-y-5">
-                {/* Full Name */}
+              <h2
+                style={display}
+                className="mt-2 text-[26px] font-medium text-[#13253b]"
+              >
+                Let's talk
+              </h2>
+
+              <form onSubmit={handleSubmit} className="mt-4 space-y-4">
                 <input
                   type="text"
                   name="full_name"
@@ -1004,20 +1034,9 @@ We specialize in **corporate events, exhibitions, brand activations, product lau
                   onChange={handleChange}
                   placeholder="Full Name"
                   required
-                  className="
-      h-[54px]
-      w-full
-      border-0
-      bg-white
-      px-5
-      text-[16px]
-      text-gray-700
-      outline-none
-      placeholder:text-gray-500
-    "
+                  className={inputClass}
                 />
 
-                {/* Company */}
                 <input
                   type="text"
                   name="company"
@@ -1025,20 +1044,9 @@ We specialize in **corporate events, exhibitions, brand activations, product lau
                   onChange={handleChange}
                   placeholder="Company Name"
                   required
-                  className="
-      h-[54px]
-      w-full
-      border-0
-      bg-white
-      px-5
-      text-[16px]
-      text-gray-700
-      outline-none
-      placeholder:text-gray-500
-    "
+                  className={inputClass}
                 />
 
-                {/* Email */}
                 <input
                   type="email"
                   name="email"
@@ -1046,20 +1054,9 @@ We specialize in **corporate events, exhibitions, brand activations, product lau
                   onChange={handleChange}
                   placeholder="Email"
                   required
-                  className="
-      h-[54px]
-      w-full
-      border-0
-      bg-white
-      px-5
-      text-[16px]
-      text-gray-700
-      outline-none
-      placeholder:text-gray-500
-    "
+                  className={inputClass}
                 />
 
-                {/* Phone */}
                 <input
                   type="tel"
                   name="phone"
@@ -1068,20 +1065,9 @@ We specialize in **corporate events, exhibitions, brand activations, product lau
                   placeholder="Phone Number"
                   maxLength={10}
                   required
-                  className="
-      h-[54px]
-      w-full
-      border-0
-      bg-white
-      px-5
-      text-[16px]
-      text-gray-700
-      outline-none
-      placeholder:text-gray-500
-    "
+                  className={inputClass}
                 />
 
-                {/* Message */}
                 <textarea
                   name="message"
                   value={formData.message}
@@ -1089,48 +1075,23 @@ We specialize in **corporate events, exhibitions, brand activations, product lau
                   rows={4}
                   placeholder="Message"
                   required
-                  className="
-      w-full
-      resize-none
-      border-0
-      bg-white
-      px-5
-      py-4
-      text-[16px]
-      text-gray-700
-      outline-none
-      placeholder:text-gray-500
-    "
+                  className="w-full resize-none border border-[#13253b]/20 bg-transparent px-3 py-3 text-[15px] text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
                 />
 
-                {/* Submit */}
                 <button
                   type="submit"
                   disabled={isSending}
-                  className="
-      px-8
-      py-3
-      text-white
-      transition-opacity
-      hover:opacity-90
-      disabled:cursor-not-allowed
-      disabled:opacity-60
-    "
-                  style={{
-                    background:
-                      "linear-gradient(105deg, #2079bd 0%, #287fbd 38%, #72c4aa 100%)",
-                  }}
+                  className="mt-2 border border-[#13253b] bg-[#13253b] px-8 py-3 text-sm font-medium tracking-wide text-white transition-colors hover:border-[#c9a768] hover:bg-[#c9a768] hover:text-[#13253b] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isSending ? "Sending..." : "Submit"}
                 </button>
 
-                {/* Status */}
                 {status && (
                   <p
                     className={`text-[14px] font-medium ${
                       status.includes("successfully")
-                        ? "text-white"
-                        : "text-red-100"
+                        ? "text-[#a5803a]"
+                        : "text-red-600"
                     }`}
                   >
                     {status}
