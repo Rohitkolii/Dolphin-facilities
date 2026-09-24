@@ -20,7 +20,7 @@ export default function AboutPage() {
       <AboutStats />
       <AboutPhilosophy />
       <AboutTellBottom />
-      
+      <hr className="border-blue-500/50" />
       <AboutClosingCTA />
       <Footer />
     </main>

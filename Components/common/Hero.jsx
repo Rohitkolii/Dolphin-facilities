@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 
 export default function Hero({title, desc}) {
   return (
-    <section className="w-full bg-gradient-to-r from-[#197bc1] to-[#69c2aa] py-25 px-4 overflow-hidden">
+    <section className="w-full overflow-hidden         bg-gradient-to-r
+        from-[#2478bd]
+        via-[#399bc5]
+        to-[#82cbb0] px-4 py-25">
 
       <div className="max-w-6xl mx-auto text-center">
 
@@ -29,12 +32,13 @@ export default function Hero({title, desc}) {
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-            text-white
+            mb-4
             text-3xl
-            md:text-4xl
             font-extrabold
+            uppercase
             tracking-wide
-            mb-4 uppercase
+            text-[#13253b]
+            md:text-4xl
           "
         >
           {title}
@@ -60,12 +64,12 @@ export default function Hero({title, desc}) {
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-            text-white/90
-            text-sm
-            md:text-base
-            leading-relaxed
-            max-w-3xl
             mx-auto
+            max-w-3xl
+            text-sm
+            leading-relaxed
+            text-[#13253b]/80
+            md:text-base
           "
         >
             {desc}

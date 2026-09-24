@@ -26,10 +26,10 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col border-4 border-[#70c7b5]">
+      <body className="min-h-full flex flex-col border-4 border-[#dfe9e5] bg-[#f6f4ef] text-[#13253b]">
         {children}
         <SocialRail />
-        </body>
+      </body>
     </html>
   );
 }

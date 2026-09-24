@@ -255,11 +255,11 @@ Gammon India, TT Nagar,Bhopal,462003
                       {office.title}
                     </h2>
 
-                    <p className="mt-[2px] text-[15px] leading-[28px] text-[#eeeeee]">
+                    <p className="mt-[2px] text-[15px] leading-[28px] text-[#000000]">
                       {office.address}
                     </p>
 
-                    <p className="mt-[10px] text-[18px] text-[#eeeeee]">
+                    <p className="mt-[10px] text-[18px] text-[#000000]">
                       {office.phone}
                     </p>
                   </div>
@@ -340,7 +340,7 @@ Gammon India, TT Nagar,Bhopal,462003
                   required
                   className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none focus:border-white"
                 >
-                  <option value="" disabled className="bg-[#292929]">
+                  <option value="" disabled className="bg-[#292929] text-[#ffffff]">
                     Select Location
                   </option>
 

@@ -161,7 +161,7 @@ function ServiceCard({ item }) {
 
           <p
             className={`mt-2 text-[12px] leading-[1.6] sm:text-[14px] md:text-[15px] lg:text-[16px] ${
-              item.featured ? "text-white" : "text-gray-200"
+              item.featured ? "text-black" : "text-gray-700"
             }`}
           >
             {item.text}
@@ -179,7 +179,7 @@ function IndustryCard({ item }) {
     <div
       data-aos="fade-left"
       data-aos-duration="1200"
-      className="border border-white/20 px-4 py-5 sm:px-6 sm:py-7 md:px-8"
+      className="border border-white/20 px-4 py-5 sm:px-6 sm:py-7 md:px-8 bg-[#ffffff]/80"
     >
       <div className="flex items-start gap-3 sm:gap-4">
         <Icon
