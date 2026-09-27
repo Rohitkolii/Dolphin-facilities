@@ -21,7 +21,7 @@ const projectsdata = [
     thumbnail: "/api/media/thumbnail/1y79v_9_9B8UVuy7c1xqRPucGqR79Y3Ou",
     headimg: "/images/ladies.png",
     category: 1,
-  },  
+  },
   {
     index: 4,
     id: "1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
@@ -246,72 +246,46 @@ const projectsdata = [
 const IMAGE_OVERRIDES = {
   eicher: [
     "/portfolio-images/eicher-1.jpg",
-
     "/portfolio-images/eicher-2.jpg",
-
     "/portfolio-images/eicher-3.jpg",
-
     "/portfolio-images/eicher-4.jpg",
-
     "/portfolio-images/eicher-5.jpg",
-
     "/portfolio-images/eicher-6.jpg",
-
     "/portfolio-images/eicher-7.jpg",
-
     "/portfolio-images/eicher-8.jpg",
-
     "/portfolio-images/eicher-9.jpg",
-
     "/portfolio-images/eicher-10.jpg",
-
     "/portfolio-images/eicher-11.jpg",
-
     "/portfolio-images/eicher-gaurav-utsav.png",
   ],
 
   "bhopal-herbal-fair": [
     "/portfolio-images/bhopal-herbal-fair-1.jpg",
-
     "/portfolio-images/bhopal-herbal-fair-2.jpg",
-
     "/portfolio-images/bhopal-herbal-fair-3.jpg",
   ],
 
   "ujjain-herbal-fair": [
     "/portfolio-images/ujjain-herbal-fair-1.jpg",
-
     "/portfolio-images/ujjain-herbal-fair-2.jpg",
-
     "/portfolio-images/ujjain-herbal-fair-3.jpg",
   ],
 };
 
 /* ============================================================
-
    KEY NORMALIZE — spaces / underscores / multiple dashes sabko
-
    ek jaisa "single-dash" format mein convert karta hai, taaki
-
    Drive filename se bani key aur tumhari override key (chahe
-
    thoda alag format mein likhi ho) match ho jaaye.
-
    Jaise: "Bhopal Herbal Fair" aur "bhopal-herbal-fair" dono
-
    normalize hoke "bhopal-herbal-fair" ban jaayenge.
-
 ============================================================ */
 
 function normalizeKey(key) {
   return key
-
     .toLowerCase()
-
     .trim()
-
     .replace(/[\s_]+/g, "-")
-
     .replace(/-+/g, "-");
 }
 
@@ -333,14 +307,6 @@ function getGroupKey(fileName) {
   return key || withoutExt;
 }
 
-// function getSortIndex(fileName) {
-//   const withoutExt = fileName.replace(/\.[^/.]+$/, "");
-
-//   const match = withoutExt.match(/(\d+)$/);
-
-//   return match ? parseInt(match[1], 10) : 0;
-// }
-
 function getSortIndex(fileName) {
   const withoutExt = fileName.replace(/\.[^/.]+$/, "");
 
@@ -352,13 +318,9 @@ function getSortIndex(fileName) {
 
 function humanize(slug) {
   return slug
-
     .replace(/[-_]/g, " ")
-
     .replace(/\s+/g, " ")
-
     .trim()
-
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
@@ -373,13 +335,6 @@ function groupFilesIntoProjects(files) {
     }
 
     groups.get(key).push(file);
-
-    // console.log(
-    //   "Drive file:",
-    //   file.name,
-    //   "→ generated key:",
-    //   key
-    // );
   });
 
   return Array.from(groups.entries()).map(([key, groupFiles]) => {
@@ -433,8 +388,6 @@ function groupFilesIntoProjects(files) {
 
     const localPoster = manualImages[0]?.url || driveThumbnail;
 
-    // const localPoster = manualImages[0]?.url || null;
-
     // =====================================================
     // DESCRIPTION
     // =====================================================
@@ -448,22 +401,15 @@ function groupFilesIntoProjects(files) {
     // =====================================================
 
     const combinedMedia = [...driveVideos, ...manualImages];
-    console.log(driveVideos);
+
     return {
       title: humanize(key),
-
       category: driveVideos[0]?.category || "",
-
       date: "",
-
       description: descriptionSource?.description || "",
-
       poster: driveVideos[0]?.thumb || localPoster,
-
       video: driveVideos[0]?.url || null,
-
       media: combinedMedia,
-
       videoCount: driveVideos.length,
     };
   });
@@ -477,20 +423,16 @@ export default function PortfolioGrid() {
   }, []);
 
   const [loading, setLoading] = useState(true);
-
   const [error, setError] = useState(null);
 
   /* SHOW MORE — 3 → 6 → 9 (step by step) */
-
   const [visibleCount, setVisibleCount] = useState(3);
 
   /* POPUP */
-
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
 
   /* CURRENT MEDIA INDEX */
-
   const [selectedMediaIndex, setSelectedMediaIndex] = useState(0);
 
   useEffect(() => {
@@ -533,15 +475,10 @@ export default function PortfolioGrid() {
   }, []);
 
   const firstRow = projects.slice(0, Math.min(3, visibleCount));
-
   const secondRow = projects.slice(3, Math.min(6, visibleCount));
-
   const thirdRow = projects.slice(6, Math.min(9, visibleCount));
-
   const fourthRow = projects.slice(9, Math.min(12, visibleCount));
-
   const fifthRow = projects.slice(12, Math.min(15, visibleCount));
-
   const sixthRow = projects.slice(15, Math.min(18, visibleCount));
 
   const hasMore = visibleCount < projects.length;
@@ -549,12 +486,6 @@ export default function PortfolioGrid() {
   const handleShowMore = () => {
     setVisibleCount((prev) => Math.min(prev + 3, projects.length));
   };
-
-  // const handleProjectClick = (project) => {
-  //   setSelectedProject(project);
-
-  //   setSelectedMediaIndex(0);
-  // };
 
   const handleProjectClick = (project) => {
     const sameCategoryProjects = projects.filter(
@@ -579,50 +510,6 @@ export default function PortfolioGrid() {
         ? [{ type: "video", url: project.video }]
         : [];
   };
-
-  // const handleNextMedia = () => {
-  //   const media = getMediaList(selectedProject);
-
-  //   if (!media.length) return;
-
-  //   setSelectedMediaIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
-  // };
-
-  // const handlePreviousMedia = () => {
-  //   const media = getMediaList(selectedProject);
-
-  //   if (!media.length) return;
-
-  //   setSelectedMediaIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
-  // };
-
-  // const handleNextMedia = () => {
-  //   const videos =
-  //     selectedProject?.media?.filter(
-  //       (item) => item?.url && item?.type === "video",
-  //     ) || [];
-
-  //   // 1 ya 0 video hai to kuch mat karo
-  //   if (videos.length <= 1) return;
-
-  //   setSelectedMediaIndex((prev) =>
-  //     prev === videos.length - 1 ? 0 : prev + 1,
-  //   );
-  // };
-
-  // const handlePreviousMedia = () => {
-  //   const videos =
-  //     selectedProject?.media?.filter(
-  //       (item) => item?.url && item?.type === "video",
-  //     ) || [];
-
-  //   // 1 ya 0 video hai to kuch mat karo
-  //   if (videos.length <= 1) return;
-
-  //   setSelectedMediaIndex((prev) =>
-  //     prev === 0 ? videos.length - 1 : prev - 1,
-  //   );
-  // };
 
   const handleNextMedia = () => {
     if (!selectedProject) return;
@@ -672,7 +559,7 @@ export default function PortfolioGrid() {
 
   if (loading && projectsdata.length === 0) {
     return (
-      <section className="w-full bg-[#303030] py-16 text-center text-white/70">
+      <section className="w-full bg-[#f8f4ec] py-16 text-center text-[#6b6255]">
         Loading portfolio…
       </section>
     );
@@ -680,7 +567,7 @@ export default function PortfolioGrid() {
 
   if (error) {
     return (
-      <section className="w-full bg-[#303030] py-16 text-center text-red-400">
+      <section className="w-full bg-[#f8f4ec] py-16 text-center text-red-600">
         Couldn't load portfolio: {error}
       </section>
     );
@@ -688,7 +575,7 @@ export default function PortfolioGrid() {
 
   if (projects.length === 0) {
     return (
-      <section className="w-full bg-[#303030] py-16 text-center text-white/70">
+      <section className="w-full bg-[#f8f4ec] py-16 text-center text-[#6b6255]">
         No portfolio items found yet.
       </section>
     );
@@ -698,31 +585,18 @@ export default function PortfolioGrid() {
     <>
       <section
         className="
-
           w-full
-
-          bg-[#303030]
-
-
+          bg-[#f8f4ec]
           py-10
-
           md:py-12
-
-
           px-4
-
           sm:px-6
-
           md:px-8
-
           lg:px-[7%]
-
-
           overflow-hidden
-
         "
       >
-        <div className="w-full mx-auto">
+        <div className="mx-auto w-full">
           <PortfolioRow
             projects={firstRow}
             rowIndex={0}
@@ -730,19 +604,7 @@ export default function PortfolioGrid() {
           />
 
           {secondRow.length > 0 && (
-            <div
-              className="
-
-                mt-[4px]
-
-                sm:mt-[10px]
-
-                md:mt-[18px]
-
-                lg:mt-[30px]
-
-              "
-            >
+            <div className="mt-[4px] sm:mt-[10px] md:mt-[18px] lg:mt-[30px]">
               <PortfolioRow
                 projects={secondRow}
                 rowIndex={1}
@@ -752,19 +614,7 @@ export default function PortfolioGrid() {
           )}
 
           {thirdRow.length > 0 && (
-            <div
-              className="
-
-                mt-[4px]
-
-                sm:mt-[10px]
-
-                md:mt-[18px]
-
-                lg:mt-[30px]
-
-              "
-            >
+            <div className="mt-[4px] sm:mt-[10px] md:mt-[18px] lg:mt-[30px]">
               <PortfolioRow
                 projects={thirdRow}
                 rowIndex={2}
@@ -774,19 +624,7 @@ export default function PortfolioGrid() {
           )}
 
           {fourthRow.length > 0 && (
-            <div
-              className="
-
-                mt-[4px]
-
-                sm:mt-[10px]
-
-                md:mt-[18px]
-
-                lg:mt-[30px]
-
-              "
-            >
+            <div className="mt-[4px] sm:mt-[10px] md:mt-[18px] lg:mt-[30px]">
               <PortfolioRow
                 projects={fourthRow}
                 rowIndex={3}
@@ -796,22 +634,20 @@ export default function PortfolioGrid() {
           )}
 
           {fifthRow.length > 0 && (
-            <div
-              className="
-
-                mt-[4px]
-
-                sm:mt-[10px]
-
-                md:mt-[18px]
-
-                lg:mt-[30px]
-
-              "
-            >
+            <div className="mt-[4px] sm:mt-[10px] md:mt-[18px] lg:mt-[30px]">
               <PortfolioRow
                 projects={fifthRow}
                 rowIndex={4}
+                onProjectClick={handleProjectClick}
+              />
+            </div>
+          )}
+
+          {sixthRow.length > 0 && (
+            <div className="mt-[4px] sm:mt-[10px] md:mt-[18px] lg:mt-[30px]">
+              <PortfolioRow
+                projects={sixthRow}
+                rowIndex={5}
                 onProjectClick={handleProjectClick}
               />
             </div>
@@ -823,20 +659,7 @@ export default function PortfolioGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="
-
-                flex
-
-                justify-center
-
-
-                mt-5
-
-                md:mt-6
-
-                lg:mt-7
-
-              "
+              className="flex justify-center mt-8 md:mt-10 lg:mt-12"
             >
               <motion.button
                 type="button"
@@ -845,44 +668,22 @@ export default function PortfolioGrid() {
                 whileTap={{ scale: 0.96 }}
                 transition={{ duration: 0.2 }}
                 className="
-
-                  px-5
-
-                  py-2.5
-
-
-                  min-w-[90px]
-
-
-                  bg-gradient-to-r
-
-                  from-[#79cba8]
-
-                  to-[#329bd0]
-
-
+                  min-w-[140px]
                   border
-
-                  border-[#73c9b9]
-
-
+                  border-[#13253b]
+                  bg-[#13253b]
+                  px-7
+                  py-3
+                  text-[14px]
+                  font-medium
+                  tracking-wide
                   text-white
-
-                  text-[15px]
-
-                  font-bold
-
-
                   cursor-pointer
-
-
-                  transition-all
-
+                  transition-colors
                   duration-300
-
-
-                  hover:brightness-110
-
+                  hover:border-[#c9a768]
+                  hover:bg-[#c9a768]
+                  hover:text-[#13253b]
                 "
               >
                 Show More
@@ -913,9 +714,7 @@ export default function PortfolioGrid() {
 }
 
 /* ============================================================
-
    PORTFOLIO ROW
-
 ============================================================ */
 
 function PortfolioRow({ projects, rowIndex, onProjectClick }) {
@@ -928,35 +727,20 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
       viewport={{ once: true, amount: 0.15 }}
       transition={{
         duration: 0.8,
-
         delay: rowIndex * 0.1,
-
         ease: [0.22, 1, 0.36, 1],
       }}
       className="
-
         flex
-
         w-full
-
-
         h-[180px]
-
         sm:h-[220px]
-
         md:h-[300px]
-
         lg:h-[400px]
-
-
         gap-[4px]
-
         sm:gap-[8px]
-
         md:gap-[16px]
-
         lg:gap-[30px]
-
       "
       onMouseLeave={() => setHoveredIndex(null)}
     >
@@ -974,574 +758,9 @@ function PortfolioRow({ projects, rowIndex, onProjectClick }) {
 }
 
 /* ============================================================
-
-   PORTFOLIO CARD
-
+   PORTFOLIO CARD — video/image thumbnail, gold border + gold
+   hover accents, dark gradient kept for text legibility
 ============================================================ */
-
-// function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
-//   const cardRef = useRef(null);
-
-//   const videoRef = useRef(null);
-
-//   const [isInView, setIsInView] = useState(false);
-
-//   const [canPlay, setCanPlay] = useState(false);
-
-//   useEffect(() => {
-//     const node = cardRef.current;
-
-//     if (!node) return;
-
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           setIsInView(true);
-//         }
-//       },
-
-//       { rootMargin: "200px", threshold: 0.1 },
-//     );
-
-//     observer.observe(node);
-
-//     return () => observer.disconnect();
-//   }, []);
-
-//   useEffect(() => {
-//     const vid = videoRef.current;
-
-//     if (!vid) return;
-
-//     if (isHovered) {
-//       const playPromise = vid.play();
-
-//       if (playPromise !== undefined) {
-//         playPromise.catch(() => {});
-//       }
-//     } else {
-//       vid.pause();
-//     }
-//   }, [isHovered, canPlay, isInView]);
-
-//   return (
-//     <motion.div
-//       ref={cardRef}
-//       onMouseEnter={onMouseEnter}
-//       onClick={onClick}
-//       animate={{ flexGrow: isHovered ? 3.3 : 1 }}
-//       transition={{
-//         flexGrow: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-//       }}
-//       initial={{ opacity: 0, y: 50, scale: 0.97 }}
-//       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-//       viewport={{ once: true, amount: 0.15 }}
-//       className="
-
-//         group
-
-//         relative
-
-//         min-w-0
-
-//         overflow-hidden
-
-//         border
-
-//         border-[#2999c7]
-
-//         bg-[#222]
-
-//         cursor-pointer
-
-//         select-none
-
-//       "
-//       style={{ flexBasis: 0 }}
-//     >
-//       {/* POSTER — hamesha dikhta hai (agar mile), halka, laggy nahi */}
-//       {project.poster && (
-//         <img
-//           src={project.poster}
-//           alt={project.title}
-//           loading="lazy"
-//           className="
-
-//             absolute
-
-//             inset-0
-
-//             w-full
-
-//             h-full
-
-//             object-cover
-
-//             pointer-events-none
-
-//           "
-//         />
-//       )}
-
-//       {/* VIDEO — sirf tab DOM mein aati hai jab card viewport ke paas ho */}
-
-//       {isInView && project.video && (
-//         <video
-//           ref={videoRef}
-//           src={project.video}
-//           muted
-//           loop
-//           playsInline
-//           preload="metadata"
-//           onCanPlay={() => setCanPlay(true)}
-//           className={`
-
-//             absolute
-
-//             inset-0
-
-//             w-full
-
-//             h-full
-
-//             object-cover
-
-//             pointer-events-none
-
-//             transition-opacity
-
-//             duration-500
-
-//             ease-[cubic-bezier(0.22,1,0.36,1)]
-
-//             ${isHovered && canPlay ? "opacity-100" : "opacity-0"}
-
-//             group-hover:scale-[1.035]
-
-//             transition-transform
-
-//           `}
-//         />
-//       )}
-
-//       {/* DARK OVERLAY */}
-
-//       <div
-//         className="
-
-//           absolute
-
-//           inset-0
-
-//           bg-black/0
-
-//           group-hover:bg-black/15
-
-//           transition-all
-
-//           duration-500
-
-//           pointer-events-none
-
-//         "
-//       />
-
-//       {/* BOTTOM GRADIENT — ALWAYS VISIBLE */}
-
-//       <div
-//         className="
-
-//           absolute
-
-//           left-0
-
-//           right-0
-
-//           bottom-0
-
-//           h-[110px]
-
-//           bg-gradient-to-t
-
-//           from-black/90
-
-//           via-black/50
-
-//           to-transparent
-
-//           pointer-events-none
-
-//         "
-//       />
-
-//       {/* TITLE CONTENT — ALWAYS VISIBLE */}
-
-//       <div
-//         className="
-
-//           absolute
-
-//           left-0
-
-//           bottom-0
-
-//           z-10
-
-//           w-full
-
-//           px-3
-
-//           py-3
-
-//           sm:px-4
-
-//           sm:py-4
-
-//           pointer-events-none
-
-//           transition-all
-
-//           duration-500
-
-//           group-hover:translate-y-[-2px]
-
-//         "
-//       >
-//         {project.category && (
-//           <p
-//             className="
-
-//               text-[#4db4d5]
-
-//               text-[8px]
-
-//               sm:text-[9px]
-
-//               md:text-[10px]
-
-//               lg:text-[11px]
-
-//               uppercase
-
-//               tracking-wide
-
-//               font-bold
-
-//               mb-1
-
-//             "
-//           >
-//             {project.category}
-//           </p>
-//         )}
-
-//         <h3
-//           className="
-
-//             text-white
-
-//             text-[11px]
-
-//             sm:text-[13px]
-
-//             md:text-[17px]
-
-//             lg:text-[20px]
-
-//             font-bold
-
-//             leading-tight
-
-//           "
-//         >
-//           {project.title}
-//         </h3>
-//       </div>
-//     </motion.div>
-//   );
-// }
-
-// function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
-//   const cardRef = useRef(null);
-
-//   const videoRef = useRef(null);
-
-//   const [isInView, setIsInView] = useState(false);
-
-//   const [canPlay, setCanPlay] = useState(false);
-
-//   useEffect(() => {
-//     const node = cardRef.current;
-
-//     if (!node) return;
-
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           setIsInView(true);
-//         }
-//       },
-
-//       { rootMargin: "200px", threshold: 0.1 },
-//     );
-
-//     observer.observe(node);
-
-//     return () => observer.disconnect();
-//   }, []);
-
-//   useEffect(() => {
-//     const vid = videoRef.current;
-
-//     if (!vid) return;
-
-//     if (isHovered) {
-//       const playPromise = vid.play();
-
-//       if (playPromise !== undefined) {
-//         playPromise.catch(() => {});
-//       }
-//     } else {
-//       vid.pause();
-//     }
-//   }, [isHovered, canPlay, isInView]);
-
-//   return (
-//     <motion.div
-//       ref={cardRef}
-//       onMouseEnter={onMouseEnter}
-//       onClick={onClick}
-//       animate={{ flexGrow: isHovered ? 3.3 : 1 }}
-//       transition={{
-//         flexGrow: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-//       }}
-//       initial={{ opacity: 0, y: 50, scale: 0.97 }}
-//       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-//       viewport={{ once: true, amount: 0.15 }}
-//       className="
-
-//         group
-
-//         relative
-
-//         min-w-0
-
-//         overflow-hidden
-
-//         border
-
-//         border-[#2999c7]
-
-//         bg-[#222]
-
-//         cursor-pointer
-
-//         select-none
-
-//       "
-//       style={{ flexBasis: 0 }}
-//     >
-//       {/* POSTER — hamesha dikhta hai (agar mile), halka, laggy nahi */}
-//       {project.poster && (
-//         <img
-//           src={project.poster}
-//           alt={project.title}
-//           loading="lazy"
-//           className="
-
-//             absolute
-
-//             inset-0
-
-//             w-full
-
-//             h-full
-
-//             object-cover
-
-//             pointer-events-none
-
-//           "
-//         />
-//       )}
-
-//       {/* VIDEO — sirf tab DOM mein aati hai jab card viewport ke paas ho */}
-
-//       {isInView && project.video && (
-//         <video
-//           ref={videoRef}
-//           src={project.video}
-//           muted
-//           loop
-//           playsInline
-//           preload="metadata"
-//           onCanPlay={() => setCanPlay(true)}
-//           className={`
-
-//             absolute
-
-//             inset-0
-
-//             w-full
-
-//             h-full
-
-//             object-cover
-
-//             pointer-events-none
-
-//             transition-opacity
-
-//             duration-500
-
-//             ease-[cubic-bezier(0.22,1,0.36,1)]
-
-//             ${canPlay ? "opacity-100" : "opacity-0"}
-
-//             group-hover:scale-[1.035]
-
-//             transition-transform
-
-//           `}
-//         />
-//       )}
-
-//       {/* DARK OVERLAY */}
-
-//       <div
-//         className="
-
-//           absolute
-
-//           inset-0
-
-//           bg-black/0
-
-//           group-hover:bg-black/15
-
-//           transition-all
-
-//           duration-500
-
-//           pointer-events-none
-
-//         "
-//       />
-
-//       {/* BOTTOM GRADIENT — ALWAYS VISIBLE */}
-
-//       <div
-//         className="
-
-//           absolute
-
-//           left-0
-
-//           right-0
-
-//           bottom-0
-
-//           h-[110px]
-
-//           bg-gradient-to-t
-
-//           from-black/90
-
-//           via-black/50
-
-//           to-transparent
-
-//           pointer-events-none
-
-//         "
-//       />
-
-//       {/* TITLE CONTENT — ALWAYS VISIBLE */}
-
-//       <div
-//         className="
-
-//           absolute
-
-//           left-0
-
-//           bottom-0
-
-//           z-10
-
-//           w-full
-
-//           px-3
-
-//           py-3
-
-//           sm:px-4
-
-//           sm:py-4
-
-//           pointer-events-none
-
-//           transition-all
-
-//           duration-500
-
-//           group-hover:translate-y-[-2px]
-
-//         "
-//       >
-//         {project.category && (
-//           <p
-//             className="
-
-//               text-[#4db4d5]
-
-//               text-[8px]
-
-//               sm:text-[9px]
-
-//               md:text-[10px]
-
-//               lg:text-[11px]
-
-//               uppercase
-
-//               tracking-wide
-
-//               font-bold
-
-//               mb-1
-
-//             "
-//           >
-//             {project.category}
-//           </p>
-//         )}
-
-//         <h3
-//           className="
-
-//             text-white
-
-//             text-[11px]
-
-//             sm:text-[13px]
-
-//             md:text-[17px]
-
-//             lg:text-[20px]
-
-//             font-bold
-
-//             leading-tight
-
-//           "
-//         >
-//           {project.title}
-//         </h3>
-//       </div>
-//     </motion.div>
-//   );
-// }
 
 function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
   const cardRef = useRef(null);
@@ -1625,17 +844,19 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
         min-w-0
         overflow-hidden
         border
-        border-[#2999c7]
-        bg-[#222222]
+        border-[#c9a768]/40
+        bg-[#13253b]
         cursor-pointer
         select-none
+        transition-colors
+        duration-300
+        hover:border-[#c9a768]
       "
       style={{
         flexBasis: 0,
       }}
     >
       {/* POSTER IMAGE */}
-      {console.log(project)}
       {project.poster && (
         <img
           src={project.poster}
@@ -1655,7 +876,6 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
             ${isHovered && canPlay ? "opacity-0" : "opacity-100"}
           `}
           onError={(e) => {
-            console.error("Poster failed:", project.poster);
             e.currentTarget.style.display = "none";
           }}
         />
@@ -1694,8 +914,8 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           absolute
           inset-0
           z-[2]
-          bg-black/0
-          group-hover:bg-black/15
+          bg-[#0b1626]/0
+          group-hover:bg-[#0b1626]/20
           transition-all
           duration-500
           pointer-events-none
@@ -1712,12 +932,15 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           z-[3]
           h-[110px]
           bg-gradient-to-t
-          from-black/90
-          via-black/50
+          from-[#0b1626]/95
+          via-[#0b1626]/55
           to-transparent
           pointer-events-none
         "
       />
+
+      {/* GOLD CORNER ACCENT — visible on hover, matches Blog cards */}
+      <div className="pointer-events-none absolute left-0 top-0 z-[3] h-8 w-8 border-l-2 border-t-2 border-[#c9a768] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
       {/* TITLE */}
       <div
@@ -1737,34 +960,38 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           group-hover:translate-y-[-2px]
         "
       >
-        {/* {project.category && (
+        {project.category && (
           <p
             className="
-              text-[#4db4d5]
+              text-[#c9a768]
               text-[8px]
               sm:text-[9px]
               md:text-[10px]
               lg:text-[11px]
               uppercase
               tracking-wide
-              font-bold
+              font-semibold
               mb-1
+              opacity-0
+              transition-opacity
+              duration-500
+              group-hover:opacity-100
             "
           >
             {project.category}
           </p>
-        )} */}
+        )}
 
         <h3
           className={`
-            text-blue-500
+            text-white
             text-[11px]
             sm:text-[13px]
             md:text-[17px]
             lg:text-[20px]
-            font-bold
+            font-semibold
             leading-tight
-            ${isHovered ? 'visible' : 'invisible'}
+            ${isHovered ? "visible" : "invisible"}
           `}
         >
           {project.title}
@@ -1775,504 +1002,9 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
 }
 
 /* ============================================================
-
-   MEDIA POPUP
-
+   MEDIA POPUP — dark lightbox (kept dark so video/images stay
+   legible), gold accents throughout to match the site theme
 ============================================================ */
-
-// function MediaPopup({ project, mediaIndex, onClose, onNext, onPrevious }) {
-//   const mediaList = project.media?.filter((item) => item?.url) || [];
-
-//   if (mediaList.length === 0) return null;
-
-//   const currentMedia = mediaList[mediaIndex] || mediaList[0];
-
-//   const mediaSrc = currentMedia.url;
-
-//   return (
-//     <motion.div
-//       initial={{ opacity: 0 }}
-//       animate={{ opacity: 1 }}
-//       exit={{ opacity: 0 }}
-//       transition={{ duration: 0.25 }}
-//       onClick={onClose}
-//       className="
-
-//         fixed
-
-//         inset-0
-
-//         z-[9999]
-
-//         flex
-
-//         items-center
-
-//         justify-center
-
-//         bg-black/80
-
-//         backdrop-blur-[3px]
-
-//         p-3
-
-//         sm:p-5
-
-//         md:p-8
-
-//       "
-//     >
-//       <motion.div
-//         initial={{ opacity: 0, scale: 0.94, y: 30 }}
-//         animate={{ opacity: 1, scale: 1, y: 0 }}
-//         exit={{ opacity: 0, scale: 0.96, y: 20 }}
-//         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-//         onClick={(e) => e.stopPropagation()}
-//         className="
-
-//           relative
-
-//           w-full
-
-//           max-w-[1250px]
-
-//           max-h-[90vh]
-
-//           overflow-y-auto
-
-//           bg-[#353535]
-
-//           p-4
-
-//           sm:p-6
-
-//           md:p-8
-
-//         "
-//       >
-//         <button
-//           type="button"
-//           onClick={onClose}
-//           className="
-
-//             absolute
-
-//             top-3
-
-//             right-3
-
-//             z-50
-
-//             w-9
-
-//             h-9
-
-//             rounded-full
-
-//             bg-[#243746]
-
-//             border
-
-//             border-[#4d9ac2]
-
-//             text-[#75bfe5]
-
-//             text-[25px]
-
-//             flex
-
-//             items-center
-
-//             justify-center
-
-//             cursor-pointer
-
-//             transition-all
-
-//             duration-300
-
-//             hover:bg-[#2999c7]
-
-//             hover:text-white
-
-//             hover:scale-105
-
-//           "
-//           aria-label="Close popup"
-//         >
-//           ×
-//         </button>
-
-//         <div
-//           className="
-
-//             grid
-
-//             grid-cols-1
-
-//             md:grid-cols-2
-
-//             gap-6
-
-//             md:gap-8
-
-//             items-center
-
-//           "
-//         >
-//           {/* LEFT SIDE — VIDEO OR IMAGE */}
-
-//           <div
-//             className="
-
-//               relative
-
-//               overflow-hidden
-
-//               border-[3px]
-
-//               border-[#2999c7]
-
-//               bg-black
-
-//               w-full
-
-//             "
-//           >
-//             <AnimatePresence mode="wait">
-//               {currentMedia.type === "image" ? (
-//                 <motion.img
-//                   key={`${project.title}-${mediaIndex}`}
-//                   src={mediaSrc}
-//                   initial={{ opacity: 0, scale: 1.03 }}
-//                   animate={{ opacity: 1, scale: 1 }}
-//                   exit={{ opacity: 0, scale: 0.98 }}
-//                   transition={{ duration: 0.35 }}
-//                   className="
-
-//                     block
-
-//                     w-full
-
-//                     h-[250px]
-
-//                     sm:h-[350px]
-
-//                     md:h-[400px]
-
-//                     object-contain
-
-//                     bg-black
-
-//                   "
-//                   alt={project.title}
-//                 />
-//               ) : (
-//                 <motion.video
-//                   key={`${project.title}-${mediaIndex}`}
-//                   src={mediaSrc}
-//                   autoPlay
-//                   muted={false}
-//                   controls
-//                   playsInline
-//                   preload="auto"
-//                   initial={{ opacity: 0, scale: 1.03 }}
-//                   animate={{ opacity: 1, scale: 1 }}
-//                   exit={{ opacity: 0, scale: 0.98 }}
-//                   transition={{ duration: 0.35 }}
-//                   className="
-
-//                     block
-
-//                     w-full
-
-//                     h-[250px]
-
-//                     sm:h-[350px]
-
-//                     md:h-[400px]
-
-//                     object-contain
-
-//                     bg-black
-
-//                   "
-//                 />
-//               )}
-//             </AnimatePresence>
-
-//             {/* Prev/Next arrows — hamesha visible */}
-
-//             <button
-//               type="button"
-//               onClick={(event) => {
-//                 event.stopPropagation();
-
-//                 onPrevious();
-//               }}
-//               className="
-
-//                 absolute
-
-//                 left-3
-
-//                 sm:left-4
-
-//                 top-1/2
-
-//                 -translate-y-1/2
-
-//                 z-30
-
-//                 w-10
-
-//                 h-10
-
-//                 rounded-full
-
-//                 bg-black/60
-
-//                 border
-
-//                 border-white/20
-
-//                 text-white
-
-//                 text-[34px]
-
-//                 leading-none
-
-//                 flex
-
-//                 items-center
-
-//                 justify-center
-
-//                 cursor-pointer
-
-//                 transition-all
-
-//                 duration-300
-
-//                 hover:bg-[#2999c7]
-
-//                 hover:border-[#2999c7]
-
-//                 hover:scale-110
-
-//               "
-//               aria-label="Previous media"
-//             >
-//               ‹
-//             </button>
-
-//             <button
-//               type="button"
-//               onClick={(event) => {
-//                 event.stopPropagation();
-
-//                 onNext();
-//               }}
-//               className="
-
-//                 absolute
-
-//                 right-3
-
-//                 sm:right-4
-
-//                 top-1/2
-
-//                 -translate-y-1/2
-
-//                 z-30
-
-//                 w-10
-
-//                 h-10
-
-//                 rounded-full
-
-//                 bg-black/60
-
-//                 border
-
-//                 border-white/20
-
-//                 text-white
-
-//                 text-[34px]
-
-//                 leading-none
-
-//                 flex
-
-//                 items-center
-
-//                 justify-center
-
-//                 cursor-pointer
-
-//                 transition-all
-
-//                 duration-300
-
-//                 hover:bg-[#2999c7]
-
-//                 hover:border-[#2999c7]
-
-//                 hover:scale-110
-
-//               "
-//               aria-label="Next media"
-//             >
-//               ›
-//             </button>
-
-//             {mediaList.length > 1 && (
-//               <div
-//                 className="
-
-//                   absolute
-
-//                   bottom-3
-
-//                   left-1/2
-
-//                   -translate-x-1/2
-
-//                   z-30
-
-//                   flex
-
-//                   gap-1.5
-
-//                 "
-//               >
-//                 {mediaList.map((m, i) => (
-//                   <span
-//                     key={i}
-//                     className={`
-
-//                       w-1.5
-
-//                       h-1.5
-
-//                       rounded-full
-
-//                       transition-all
-
-//                       duration-300
-
-//                       ${i === mediaIndex ? "bg-[#2999c7] w-4" : "bg-white/40"}
-
-//                     `}
-//                   />
-//                 ))}
-//               </div>
-//             )}
-//           </div>
-
-//           {/* RIGHT SIDE — PROJECT INFO */}
-
-//           <AnimatePresence mode="wait">
-//             <motion.div
-//               key={`${project.title}-${mediaIndex}-info`}
-//               initial={{ opacity: 0, x: 20 }}
-//               animate={{ opacity: 1, x: 0 }}
-//               exit={{ opacity: 0, x: -10 }}
-//               transition={{ duration: 0.35 }}
-//               className="
-
-//                 text-white
-
-//                 md:pr-4
-
-//               "
-//             >
-//               <h2
-//                 className="
-
-//                   text-[20px]
-
-//                   sm:text-[24px]
-
-//                   md:text-[28px]
-
-//                   font-bold
-
-//                   leading-tight
-
-//                 "
-//               >
-//                 {project.title}
-//               </h2>
-
-//               {project.date && (
-//                 <p
-//                   className="
-
-//                     mt-2
-
-//                     text-white/80
-
-//                     text-[13px]
-
-//                     md:text-[15px]
-
-//                   "
-//                 >
-//                   {project.date}
-//                 </p>
-//               )}
-
-//               {project.category && (
-//                 <p
-//                   className="
-
-//                     mt-4
-
-//                     text-[#4db4d5]
-
-//                     text-[12px]
-
-//                     md:text-[14px]
-
-//                     font-semibold
-
-//                   "
-//                 >
-//                   {project.category}
-//                 </p>
-//               )}
-
-//               <div
-//                 className="
-
-//                   mt-5
-
-//                   text-white/90
-
-//                   text-[14px]
-
-//                   md:text-[16px]
-
-//                   leading-[1.7]
-
-//                   whitespace-pre-line
-
-//                 "
-//               >
-//                 {project.description ||
-//                   "Description coming soon — Drive file ke 'Details' panel mein description likh do, ye yahan apne aap aa jaayegi."}
-//               </div>
-//             </motion.div>
-//           </AnimatePresence>
-//         </div>
-//       </motion.div>
-//     </motion.div>
-//   );
-// }
 
 function MediaPopup({
   project,
@@ -2284,11 +1016,13 @@ function MediaPopup({
 }) {
   // Sirf videos ko navigation ke liye use karo.
   const videoList =
-    project?.media?.filter((item) => item?.url && item?.type === "video") || [];
+    project?.media?.filter((item) => item?.url && item?.type === "video") ||
+    [];
 
   // Agar videos nahi hain, to local images use hongi.
   const imageList =
-    project?.media?.filter((item) => item?.url && item?.type === "image") || [];
+    project?.media?.filter((item) => item?.url && item?.type === "image") ||
+    [];
 
   // Video available hai to video list priority hogi.
   // Warna images show hongi.
@@ -2301,7 +1035,6 @@ function MediaPopup({
   const mediaSrc = currentMedia.url;
 
   // Arrow TABHI show honge jab 1 se zyada VIDEO ho.
-  // const showVideoArrows = videoList.length > 1;
   const showVideoArrows = canNavigate;
 
   return (
@@ -2318,7 +1051,7 @@ function MediaPopup({
         flex
         items-center
         justify-center
-        bg-black/80
+        bg-[#0b1626]/85
         backdrop-blur-[3px]
         p-3
         sm:p-5
@@ -2340,7 +1073,9 @@ function MediaPopup({
           max-w-[1250px]
           max-h-[90vh]
           overflow-y-auto
-          bg-[#353535]
+          border
+          border-[#c9a768]/30
+          bg-[#13253b]
           p-4
           sm:p-6
           md:p-8
@@ -2358,10 +1093,10 @@ function MediaPopup({
             w-9
             h-9
             rounded-full
-            bg-[#243746]
             border
-            border-[#4d9ac2]
-            text-[#75bfe5]
+            border-[#c9a768]
+            bg-[#0b1626]
+            text-[#c9a768]
             text-[25px]
             flex
             items-center
@@ -2369,8 +1104,8 @@ function MediaPopup({
             cursor-pointer
             transition-all
             duration-300
-            hover:bg-[#2999c7]
-            hover:text-white
+            hover:bg-[#c9a768]
+            hover:text-[#13253b]
             hover:scale-105
           "
           aria-label="Close popup"
@@ -2378,23 +1113,14 @@ function MediaPopup({
           ×
         </button>
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            md:grid-cols-2
-            gap-6
-            md:gap-8
-            items-center
-          "
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
           {/* LEFT SIDE — VIDEO / IMAGE */}
           <div
             className="
               relative
               overflow-hidden
               border-[3px]
-              border-[#2999c7]
+              border-[#c9a768]
               bg-black
               w-full
             "
@@ -2487,7 +1213,7 @@ function MediaPopup({
                   rounded-full
                   bg-black/60
                   border
-                  border-white/20
+                  border-[#c9a768]/50
                   text-white
                   text-[34px]
                   leading-none
@@ -2497,8 +1223,9 @@ function MediaPopup({
                   cursor-pointer
                   transition-all
                   duration-300
-                  hover:bg-[#2999c7]
-                  hover:border-[#2999c7]
+                  hover:bg-[#c9a768]
+                  hover:border-[#c9a768]
+                  hover:text-[#13253b]
                   hover:scale-110
                 "
                 aria-label="Previous video"
@@ -2527,7 +1254,7 @@ function MediaPopup({
                   rounded-full
                   bg-black/60
                   border
-                  border-white/20
+                  border-[#c9a768]/50
                   text-white
                   text-[34px]
                   leading-none
@@ -2537,8 +1264,9 @@ function MediaPopup({
                   cursor-pointer
                   transition-all
                   duration-300
-                  hover:bg-[#2999c7]
-                  hover:border-[#2999c7]
+                  hover:bg-[#c9a768]
+                  hover:border-[#c9a768]
+                  hover:text-[#13253b]
                   hover:scale-110
                 "
                 aria-label="Next video"
@@ -2549,17 +1277,7 @@ function MediaPopup({
 
             {/* DOTS — ONLY WHEN 2+ VIDEOS */}
             {showVideoArrows && (
-              <div
-                className="
-                  absolute
-                  bottom-3
-                  left-1/2
-                  -translate-x-1/2
-                  z-30
-                  flex
-                  gap-1.5
-                "
-              >
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex gap-1.5">
                 {videoList.map((_, i) => (
                   <span
                     key={i}
@@ -2569,7 +1287,7 @@ function MediaPopup({
                       rounded-full
                       transition-all
                       duration-300
-                      ${i === mediaIndex ? "bg-[#2999c7] w-4" : "bg-white/40"}
+                      ${i === mediaIndex ? "bg-[#c9a768] w-4" : "bg-white/40"}
                     `}
                   />
                 ))}
@@ -2596,60 +1314,27 @@ function MediaPopup({
               transition={{
                 duration: 0.35,
               }}
-              className="
-                text-white
-                md:pr-4
-              "
+              className="text-white md:pr-4"
             >
-              <h2
-                className="
-                  text-[20px]
-                  sm:text-[24px]
-                  md:text-[28px]
-                  font-bold
-                  leading-tight
-                "
-              >
+              <h2 className="text-[20px] sm:text-[24px] md:text-[28px] font-semibold leading-tight">
                 {project.title}
               </h2>
 
               {project.date && (
-                <p
-                  className="
-                    mt-2
-                    text-white/80
-                    text-[13px]
-                    md:text-[15px]
-                  "
-                >
+                <p className="mt-2 text-white/70 text-[13px] md:text-[15px]">
                   {project.date}
                 </p>
               )}
 
-              {/* {project.category && (
-                <p
-                  className="
-                    mt-4
-                    text-[#4db4d5]
-                    text-[12px]
-                    md:text-[14px]
-                    font-semibold
-                  "
-                >
+              {project.category && (
+                <p className="mt-4 text-[#c9a768] text-[12px] md:text-[14px] font-semibold uppercase tracking-wide">
                   {project.category}
                 </p>
-              )} */}
+              )}
 
-              <div
-                className="
-                  mt-5
-                  text-white/90
-                  text-[14px]
-                  md:text-[16px]
-                  leading-[1.7]
-                  whitespace-pre-line
-                "
-              >
+              <div className="mt-3 h-px w-10 bg-[#c9a768]" />
+
+              <div className="mt-5 text-white/85 text-[14px] md:text-[16px] leading-[1.7] whitespace-pre-line">
                 {project.description ||
                   "Description coming soon — Drive file ke 'Details' panel mein description likh do, ye yahan apne aap aa jaayegi."}
               </div>

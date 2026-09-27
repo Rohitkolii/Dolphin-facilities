@@ -4,6 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useRef, useState, useEffect } from "react";
 import { blogs, blogFilters } from "./blogData";
 import Link from "next/link";
+import { Playfair_Display } from "next/font/google";
+
+// Same display font as page.js / Navbar / About
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+const display = { fontFamily: playfair.style.fontFamily };
+
+const ease = [0.22, 1, 0.36, 1];
 
 /* ============================================================
    BLOG GRID
@@ -41,27 +51,11 @@ export default function BlogGrid() {
   }, []);
 
   return (
-    <section
-      className="
-        w-full
-        bg-[#303030]
-        px-4
-        sm:px-6
-        md:px-10
-        lg:px-16
-        xl:px-20
-        py-10
-        md:py-14
-        lg:py-16
-        overflow-hidden
-      "
-    >
-      {/* DESKTOP WIDER CONTAINER */}
-      <div className="w-full max-w-[1500px] mx-auto">
+    <section className="w-full overflow-hidden bg-[#f8f4ec] px-4 py-10 sm:px-6 md:px-10 md:py-14 lg:px-16 lg:py-16 xl:px-20">
+      <div className="mx-auto w-full max-w-[1500px]">
+        {/* FILTER (top right, unobtrusive) */}
 
-        {/* FILTER ICON (top right, unobtrusive) */}
-
-        <div className="relative flex justify-end mb-6" ref={filterRef}>
+        <div className="relative mb-10 flex justify-end" ref={filterRef}>
           <button
             type="button"
             onClick={() => setFilterOpen((prev) => !prev)}
@@ -70,17 +64,18 @@ export default function BlogGrid() {
               flex
               items-center
               gap-2
-              px-3
-              py-2
               border
-              border-[#2995c5]
-              text-white/85
+              border-[#13253b]/20
+              bg-white
+              px-4
+              py-2.5
               text-[12px]
               font-medium
+              text-[#13253b]
               transition-all
               duration-300
-              hover:border-[#48b7df]
-              hover:text-white
+              hover:border-[#c9a768]
+              hover:text-[#a5803a]
             "
           >
             <svg
@@ -107,14 +102,14 @@ export default function BlogGrid() {
                 transition={{ duration: 0.2 }}
                 className="
                   absolute
-                  top-[calc(100%+6px)]
                   right-0
+                  top-[calc(100%+6px)]
                   z-20
-                  min-w-[190px]
-                  bg-[#222]
+                  min-w-[200px]
                   border
-                  border-[#2995c5]
-                  shadow-lg
+                  border-[#c9a768]/50
+                  bg-white
+                  shadow-[0_25px_50px_-20px_rgba(19,37,59,0.3)]
                 "
               >
                 {blogFilters.map((filter) => (
@@ -124,17 +119,17 @@ export default function BlogGrid() {
                     onClick={() => handleFilterSelect(filter.value)}
                     className={`
                       w-full
-                      text-left
                       px-4
                       py-2.5
+                      text-left
                       text-[12px]
                       font-medium
                       transition-colors
                       duration-200
                       ${
                         activeFilter === filter.value
-                          ? "bg-gradient-to-r from-[#2478bd] to-[#68c4b2] text-white"
-                          : "text-white/80 hover:bg-white/10 hover:text-white"
+                          ? "bg-[#13253b] text-[#c9a768]"
+                          : "text-[#4a4438] hover:bg-[#c9a768]/10 hover:text-[#13253b]"
                       }
                     `}
                   >
@@ -148,85 +143,46 @@ export default function BlogGrid() {
 
         {/* BLOG GRID */}
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            lg:grid-cols-3
-            gap-5
-            md:gap-7
-            lg:gap-9
-          "
-        >
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-9">
           {displayedBlogs.map((blog, index) => (
-            <BlogCard
-              key={blog.id}
-              blog={blog}
-              index={index}
-            />
+            <BlogCard key={blog.id} blog={blog} index={index} />
           ))}
         </div>
-
 
         {/* LOAD MORE / LOAD LESS */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-          transition={{
-            duration: 0.7,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            flex
-            justify-center
-            mt-10
-            md:mt-14
-          "
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease }}
+          className="mt-12 flex justify-center md:mt-16"
         >
           {hasMore ? (
             <motion.button
               type="button"
               onClick={() =>
-                setVisibleBlogs((prev) =>
-                  Math.min(prev + 3, filteredBlogs.length)
-                )
+                setVisibleBlogs((prev) => Math.min(prev + 3, filteredBlogs.length))
               }
-              whileHover={{
-                scale: 1.05,
-                y: -2,
-              }}
-              whileTap={{
-                scale: 0.96,
-              }}
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
               className="
-                px-7
-                py-3
-                min-w-[140px]
-                bg-gradient-to-r
-                from-[#79cba8]
-                to-[#329bd0]
+                min-w-[150px]
                 border
-                border-[#73c9b9]
-                text-white
+                border-[#13253b]
+                bg-[#13253b]
+                px-8
+                py-3
                 text-[14px]
-                md:text-[15px]
                 font-medium
-                cursor-pointer
-                transition-all
+                tracking-wide
+                text-white
+                transition-colors
                 duration-300
-                hover:brightness-110
+                hover:border-[#c9a768]
+                hover:bg-[#c9a768]
+                hover:text-[#13253b]
+                md:text-[15px]
               "
             >
               Load More
@@ -236,30 +192,25 @@ export default function BlogGrid() {
               <motion.button
                 type="button"
                 onClick={() => setVisibleBlogs(3)}
-                whileHover={{
-                  scale: 1.05,
-                  y: -2,
-                }}
-                whileTap={{
-                  scale: 0.96,
-                }}
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
                 className="
-                  px-7
-                  py-3
-                  min-w-[140px]
-                  bg-gradient-to-r
-                  from-[#79cba8]
-                  to-[#329bd0]
+                  min-w-[150px]
                   border
-                  border-[#73c9b9]
-                  text-white
+                  border-[#13253b]
+                  bg-transparent
+                  px-8
+                  py-3
                   text-[14px]
-                  md:text-[15px]
                   font-medium
-                  cursor-pointer
-                  transition-all
+                  tracking-wide
+                  text-[#13253b]
+                  transition-colors
                   duration-300
-                  hover:brightness-110
+                  hover:border-[#c9a768]
+                  hover:bg-[#c9a768]
+                  hover:text-[#13253b]
+                  md:text-[15px]
                 "
               >
                 Load Less
@@ -267,203 +218,123 @@ export default function BlogGrid() {
             )
           )}
         </motion.div>
-
       </div>
     </section>
   );
 }
 
-
 /* ============================================================
-   BLOG CARD (original look — unchanged)
+   BLOG CARD — same editorial-card language as the About page
+   (white card, border, gold hover, Playfair heading)
 ============================================================ */
 
 function BlogCard({ blog, index }) {
   return (
     <motion.article
-      initial={{
-        opacity: 0,
-        y: 45,
-        scale: 0.96,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.15,
-      }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.08,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      initial={{ opacity: 0, y: 45, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, delay: index * 0.08, ease }}
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
       className="
         group
-        relative
-        aspect-square
+        flex
+        flex-col
         overflow-hidden
         border
-        border-[#2999c7]
-        bg-[#222]
-        cursor-pointer
+        border-[#13253b]/10
+        bg-white
+        shadow-[0_18px_40px_-28px_rgba(19,37,59,0.3)]
+        transition-colors
+        duration-300
+        hover:border-[#c9a768]
+        hover:shadow-[0_22px_45px_-22px_rgba(19,37,59,0.28)]
       "
     >
       {/* IMAGE */}
+      <div className="relative h-[220px] w-full overflow-hidden md:h-[240px]">
+        <img
+          src={blog.image}
+          alt={blog.title}
+          draggable="false"
+          className="
+            absolute
+            inset-0
+            h-full
+            w-full
+            object-cover
+            transition-transform
+            duration-700
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:scale-[1.06]
+          "
+        />
 
-      <img
-        src={blog.image}
-        alt={blog.title}
-        draggable="false"
-        className="
-          absolute
-          inset-0
-          w-full
-          h-full
-          object-cover
-          transition-transform
-          duration-700
-          ease-[cubic-bezier(0.22,1,0.36,1)]
-          group-hover:scale-[1.07]
-        "
-      />
-
-
-      {/* DARK OVERLAY */}
-
-      <div
-        className="
-          absolute
-          inset-0
-          bg-black/10
-          group-hover:bg-black/35
-          transition-all
-          duration-500
-        "
-      />
-
-
-      {/* BOTTOM GRADIENT */}
-
-      <div
-        className="
-          absolute
-          left-0
-          right-0
-          bottom-0
-          h-[65%]
-          bg-gradient-to-t
-          from-black/95
-          via-black/55
-          to-transparent
-        "
-      />
-
-
-      {/* HOVER SHINE */}
-
-      <div
-        className="
-          absolute
-          inset-0
-          bg-gradient-to-b
-          from-white/10
-          via-transparent
-          to-transparent
-          opacity-0
-          group-hover:opacity-100
-          transition-opacity
-          duration-500
-        "
-      />
-
+        {/* Category chip */}
+        <span className="absolute left-4 top-4 border border-[#c9a768] bg-white/90 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.12em] text-[#a5803a] backdrop-blur-sm">
+          {blog.category}
+        </span>
+      </div>
 
       {/* CONTENT */}
-
-      <div
-        className="
-          absolute
-          left-0
-          right-0
-          bottom-0
-          z-10
-          p-5
-          md:p-6
-          lg:p-7
-        "
-      >
+      <div className="flex flex-1 flex-col p-6 md:p-7">
         {/* DATE */}
-
-        <p
-          className="
-            text-[#ffffff]
-            font-semibold
-            text-[12px]
-            md:text-[14px]
-            lg:text-[15px]
-            font-medium
-            mb-3
-          "
-        >
+        <p className="mb-3 text-[12px] font-medium tracking-wide text-[#a5803a] md:text-[13px]">
           {blog.date}
         </p>
 
-
         {/* TITLE */}
-
         <Link
           href={`/blog/${blog.slug}`}
+          style={display}
           className="
-            text-[#ffffff]
-            text-[19px]
-            md:text-[22px]
-            lg:text-[24px]
-            font-semibold
-            leading-[1.4]
             line-clamp-3
+            text-[19px]
+            font-semibold
+            leading-[1.35]
+            text-[#13253b]
             transition-colors
             duration-300
+            group-hover:text-[#a5803a]
+            md:text-[21px]
           "
         >
           {blog.title}
         </Link>
 
+        {/* EXCERPT */}
+        {blog.excerpt && (
+          <p className="mt-3 line-clamp-2 text-[13px] leading-[1.7] text-[#6b6255] md:text-[14px]">
+            {blog.excerpt}
+          </p>
+        )}
+
+        {/* GOLD DIVIDER */}
+        <div className="mb-5 mt-5 h-px w-10 bg-[#c9a768] transition-all duration-300 group-hover:w-16" />
 
         {/* READ MORE */}
-
         <Link
           href={`/blog/${blog.slug}`}
           className="
+            mt-auto
             inline-flex
             items-center
             gap-2
-            mt-5
-            text-[#ffffff]
-            text-[14px]
-            md:text-[15px]
+            text-[13px]
             font-medium
+            tracking-wide
+            text-[#13253b]
             transition-all
             duration-300
             hover:gap-3
+            hover:text-[#a5803a]
+            md:text-[14px]
           "
         >
           Read More
-
-          <span
-            className="
-              text-[24px]
-              leading-none
-              transition-transform
-              duration-300
-            "
-          >
-            →
-          </span>
+          <span className="text-[18px] leading-none">→</span>
         </Link>
       </div>
-
     </motion.article>
   );
 }

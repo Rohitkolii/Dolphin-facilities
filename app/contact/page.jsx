@@ -8,6 +8,14 @@ import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Playfair_Display } from "next/font/google";
+
+// Same display font as page.js / Navbar / About / Blog
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+});
+const display = { fontFamily: playfair.style.fontFamily };
 
 const cities = ["Bhopal"];
 
@@ -26,12 +34,12 @@ const offices = {
 
 const LocationIcon = () => (
   <svg
-    width="30"
-    height="30"
+    width="26"
+    height="26"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="white"
-    strokeWidth="2.5"
+    stroke="#13253b"
+    strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -42,11 +50,11 @@ const LocationIcon = () => (
 
 const MailIcon = () => (
   <svg
-    width="30"
-    height="30"
+    width="26"
+    height="26"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="white"
+    stroke="#13253b"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -58,12 +66,12 @@ const MailIcon = () => (
 
 const PhoneIcon = () => (
   <svg
-    width="30"
-    height="30"
+    width="26"
+    height="26"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="white"
-    strokeWidth="2.5"
+    stroke="#13253b"
+    strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -75,18 +83,23 @@ const PhoneIcon = () => (
 
 const ContactCard = ({ icon, title, children }) => {
   return (
-    <div className="border border-[#167fc0] px-5 py-[50px]">
-      <div className="flex justify-center items-center">
-        <div className="flex h-[80px] w-[80px] items-center justify-center bg-gradient-to-r from-[#72d29c] to-[#0085cf]">
+    <div className="group border border-[#13253b]/10 bg-white px-6 py-10 text-center transition-all duration-300 hover:border-[#c9a768] hover:shadow-[0_18px_40px_-20px_rgba(19,37,59,0.25)] sm:px-8 sm:py-12">
+      <div className="flex items-center justify-center">
+        <div className="flex h-[64px] w-[64px] items-center justify-center border border-[#c9a768] bg-[#f8f4ec] transition-colors duration-300 group-hover:bg-[#13253b]">
           {icon}
         </div>
       </div>
 
-      <h3 className="mt-[12px] text-center text-[22px] font-semibold  bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent">
+      <h3
+        style={display}
+        className="mt-5 text-[19px] font-semibold text-[#13253b] sm:text-[21px]"
+      >
         {title}
       </h3>
 
-      <div className="mt-[3px] text-center text-[15px] leading-[25px] text-white">
+      <div className="mx-auto mt-3 h-px w-10 bg-[#c9a768]" />
+
+      <div className="mt-4 text-[14px] leading-[1.7] text-[#4a4438] sm:text-[15px]">
         {children}
       </div>
     </div>
@@ -154,7 +167,6 @@ export default function ContactPage() {
     }
   };
 
-
   useEffect(() => {
     AOS.init({
       duration: 1200,
@@ -168,24 +180,23 @@ export default function ContactPage() {
     }, 300);
   }, []);
 
-
   return (
     <>
       <Navbar />
       <ContactHero />
       {/* <SocialRail /> */}
-      <main className="min-h-screen bg-[#292929] py-9 pb-[100px] text-white md:px-10">
-        <div className="mx-auto container-x">
+      <main className="min-h-screen bg-[#f8f4ec] py-14 pb-[100px] text-[#13253b] md:px-10">
+        <div className="container-x mx-auto">
           {/* ================= TOP CONTACT BOXES ================= */}
 
           <section className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-[17px]">
             <ContactCard icon={<LocationIcon />} title="Location">
-            17-18 Block A, Second Floor, 
-Gammon India, TT Nagar,Bhopal,462003
+              17-18 Block A, Second Floor, Gammon India, TT Nagar, Bhopal –
+              462003
             </ContactCard>
 
             <ContactCard icon={<MailIcon />} title="Email">
-            write@dolphinfacilities.in
+              write@dolphinfacilities.in
             </ContactCard>
 
             <ContactCard icon={<PhoneIcon />} title="Contact">
@@ -197,36 +208,56 @@ Gammon India, TT Nagar,Bhopal,462003
 
           {/* ================= OFFICE SECTION ================= */}
 
-          <section className="mt-[80px]">
-            <p data-aos="zoom-in-left" className="text-center uppercase text-4xl font-semibold mb-5 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent">
-              Our Location
+          <section className="mt-20">
+            <p
+              data-aos="zoom-in-left"
+              className="text-center text-xs font-medium tracking-[0.2em] text-[#a5803a]"
+            >
+              WHERE TO FIND US
             </p>
-            <p data-aos="fade-up" className="text-center text-xl text-white">
+
+            <h2
+              data-aos="fade-up"
+              style={display}
+              className="mt-3 text-center text-[32px] font-semibold text-[#13253b] sm:text-[42px]"
+            >
+              Our Location
+            </h2>
+
+            <div className="mx-auto mt-4 h-px w-14 bg-[#c9a768]" />
+
+            <p
+              data-aos="fade-up"
+              className="mt-5 text-center text-[15px] text-[#6b6255] sm:text-[17px]"
+            >
               Visit Us At Our Bhopal Office
             </p>
 
             {/* CITY TABS */}
-            <div data-aos="fade-up" className="relative mt-[39px]">
-              <div className="absolute left-0 right-0 top-[18px] h-px bg-[#126ba4]" />
-
-              <div className="relative flex flex-col md:flex-row md:flex-wrap justify-center  md:gap-[30px] w-full">
+            <div data-aos="fade-up" className="relative mt-10">
+              <div className="relative flex w-full flex-col justify-center md:flex-row md:flex-wrap md:gap-4">
                 {cities.map((city) => (
                   <button
                     key={city}
                     onClick={() => setActiveCity(city)}
                     className={`
-        h-[40px]
-        w-full
-        md:w-auto
-        md:min-w-[84px]
-        px-[18px]
-        text-[16px]
-        md:text-[18px]
-        ${activeCity === city
-                        ? "bg-[#158fd0] text-white"
-                        : "bg-[#999c9d] text-white"
+                      h-[42px]
+                      w-full
+                      border
+                      px-6
+                      text-[15px]
+                      font-medium
+                      tracking-wide
+                      transition-colors
+                      duration-300
+                      md:w-auto
+                      md:min-w-[110px]
+                      ${
+                        activeCity === city
+                          ? "border-[#13253b] bg-[#13253b] text-white"
+                          : "border-[#13253b]/20 bg-white text-[#13253b] hover:border-[#c9a768] hover:text-[#a5803a]"
                       }
-      `}
+                    `}
                   >
                     {city}
                   </button>
@@ -235,10 +266,13 @@ Gammon India, TT Nagar,Bhopal,462003
             </div>
 
             {/* MAP + OFFICE DETAILS */}
-            <div data-aos="fade-up" className="mt-[50px] h-[500px] p-[35px] overflow-hidden border-2 border-[#167fc0]">
-              <div className="grid h-full grid-cols-1 md:grid-cols-2">
+            <div
+              data-aos="fade-up"
+              className="mt-12 h-auto overflow-hidden border border-[#13253b]/10 bg-white p-5 shadow-[0_18px_40px_-28px_rgba(19,37,59,0.3)] sm:p-8 md:h-[480px]"
+            >
+              <div className="grid h-full grid-cols-1 gap-8 md:grid-cols-2 md:gap-0">
                 {/* LEFT — GOOGLE MAP */}
-                <div className="h-full w-full">
+                <div className="h-[280px] w-full border border-[#c9a768]/40 md:h-full">
                   <iframe
                     title={`${office.title} Google Map`}
                     src={`https://www.google.com/maps?q=${office.lat},${office.lng}&z=14&output=embed`}
@@ -249,17 +283,26 @@ Gammon India, TT Nagar,Bhopal,462003
                 </div>
 
                 {/* RIGHT — OFFICE DETAILS */}
-                <div className="flex h-full items-center px-[45px]">
+                <div className="flex h-full items-center md:px-10">
                   <div className="max-w-[330px]">
-                    <h2 className="text-[25px] font-medium text-white">
-                      {office.title}
-                    </h2>
+                    <p className="text-xs font-medium tracking-[0.2em] text-[#a5803a]">
+                      OFFICE
+                    </p>
 
-                    <p className="mt-[2px] text-[15px] leading-[28px] text-[#000000]">
+                    <h3
+                      style={display}
+                      className="mt-2 text-[24px] font-semibold text-[#13253b] sm:text-[27px]"
+                    >
+                      {office.title}
+                    </h3>
+
+                    <div className="mt-4 h-px w-10 bg-[#c9a768]" />
+
+                    <p className="mt-4 text-[15px] leading-[1.75] text-[#4a4438]">
                       {office.address}
                     </p>
 
-                    <p className="mt-[10px] text-[18px] text-[#000000]">
+                    <p className="mt-4 text-[17px] font-medium text-[#13253b]">
                       {office.phone}
                     </p>
                   </div>
@@ -270,19 +313,38 @@ Gammon India, TT Nagar,Bhopal,462003
 
           {/* ================= CONTACT FORM ================= */}
 
-          <section className="mt-[45px] bg-gradient-to-br from-[#1877bd] via-[#2688bd] to-[#76c8a4] px-8 py-[72px] md:px-[32px]">
-            <p data-aos="zoom-in-left" className="uppercase font-bold text-center text-4xl mb-5">Let's connect to create something big</p>
-            <p data-aos="fade-up" className="text-center text-[18px] text-white">
-              Fill out the form below and our team will get back to you shortly.
+          <section className="mt-16 border border-[#13253b]/10 bg-white px-6 py-14 shadow-[0_18px_40px_-28px_rgba(19,37,59,0.3)] sm:px-10 md:px-[60px]">
+            <p
+              data-aos="zoom-in-left"
+              className="text-center text-xs font-medium tracking-[0.2em] text-[#a5803a]"
+            >
+              GET IN TOUCH
+            </p>
+
+            <h2
+              data-aos="fade-up"
+              style={display}
+              className="mt-3 text-center text-[28px] font-semibold text-[#13253b] sm:text-[36px]"
+            >
+              Let&apos;s Connect to Create Something Big
+            </h2>
+
+            <div className="mx-auto mt-4 h-px w-14 bg-[#c9a768]" />
+
+            <p
+              data-aos="fade-up"
+              className="mt-5 text-center text-[15px] text-[#6b6255] sm:text-[17px]"
+            >
+              Fill out the form below and our team will get back to you
+              shortly.
             </p>
 
             <form
               data-aos="fade-up"
               onSubmit={handleSubmit}
-              className="mx-auto mt-[27px]"
+              className="mx-auto mt-10 max-w-[1010px]"
             >
-
-              <div className="grid grid-cols-1 gap-x-[16px] gap-y-[15px] md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-3">
                 {/* Full Name */}
                 <input
                   type="text"
@@ -291,9 +353,8 @@ Gammon India, TT Nagar,Bhopal,462003
                   onChange={handleChange}
                   placeholder="Full Name"
                   required
-                  className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white"
+                  className="h-[46px] border-b border-[#13253b]/20 bg-transparent px-1 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
                 />
-
 
                 {/* Company */}
                 <input
@@ -303,9 +364,8 @@ Gammon India, TT Nagar,Bhopal,462003
                   onChange={handleChange}
                   placeholder="Company Name"
                   required
-                  className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white"
+                  className="h-[46px] border-b border-[#13253b]/20 bg-transparent px-1 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
                 />
-
 
                 {/* Email */}
                 <input
@@ -315,9 +375,8 @@ Gammon India, TT Nagar,Bhopal,462003
                   onChange={handleChange}
                   placeholder="Your Email"
                   required
-                  className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white"
+                  className="h-[46px] border-b border-[#13253b]/20 bg-transparent px-1 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
                 />
-
 
                 {/* Phone */}
                 <input
@@ -328,29 +387,39 @@ Gammon India, TT Nagar,Bhopal,462003
                   placeholder="Phone Number"
                   maxLength={10}
                   required
-                  className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white"
+                  className="h-[46px] border-b border-[#13253b]/20 bg-transparent px-1 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768]"
                 />
 
-
                 {/* Location */}
-                <select
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  required
-                  className="h-[45px] border border-[#66b6ca]/70 bg-transparent px-[12px] text-[14px] text-white outline-none focus:border-white"
-                >
-                  <option value="" disabled className="bg-[#292929] text-[#ffffff]">
-                    Select Location
-                  </option>
-
-                  {cities.map((city) => (
-                    <option key={city} value={city} className="bg-[#292929]">
-                      {city}
+                <div className="relative">
+                  <select
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    required
+                    className="h-[46px] w-full appearance-none border-b border-[#13253b]/20 bg-transparent px-1 pr-10 text-sm text-[#13253b] outline-none transition-all focus:border-[#c9a768]"
+                  >
+                    <option value="" disabled>
+                      Select Location
                     </option>
-                  ))}
-                </select>
 
+                    {cities.map((city) => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                  </select>
+
+                  <svg
+                    className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6b6255]"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="m5 7 5 5 5-5" />
+                  </svg>
+                </div>
 
                 {/* Empty column */}
                 <div className="hidden md:block" />
@@ -363,29 +432,25 @@ Gammon India, TT Nagar,Bhopal,462003
                   placeholder="Your Message"
                   rows={5}
                   required
-                  className="resize-none border border-[#66b6ca]/70 bg-transparent px-[8px] py-[12px] text-[14px] text-white outline-none placeholder:text-white focus:border-white md:col-span-3"
+                  className="resize-none border border-[#13253b]/20 bg-transparent px-3 py-3 text-sm text-[#13253b] outline-none transition-all placeholder:text-[#8a8a8a] focus:border-[#c9a768] md:col-span-3"
                 />
-
 
                 {/* Button */}
                 <div className="flex justify-center md:col-span-3">
                   <button
                     type="submit"
                     disabled={isSending}
-                    className="mt-[1px] h-[40px] bg-gradient-to-r from-[#74ce9c] to-[#147fc2] px-[25px] text-[17px] text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mt-1 border border-[#13253b] bg-[#13253b] px-9 py-3 text-sm font-medium tracking-wide text-white transition-colors hover:border-[#c9a768] hover:bg-[#c9a768] hover:text-[#13253b] disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {isSending ? "Sending..." : "Submit Now"}
                   </button>
-
                 </div>
 
                 {status && (
-                  <p className="mt-4 text-center text-[15px] text-white md:col-span-3">
+                  <p className="mt-4 text-center text-sm text-[#13253b] md:col-span-3">
                     {status}
                   </p>
                 )}
-
-
               </div>
             </form>
           </section>
