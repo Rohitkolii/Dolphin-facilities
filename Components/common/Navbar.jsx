@@ -774,7 +774,7 @@ export default function Navbar() {
           <div className="mt-6 lg:hidden">
             {/* EMAIL */}
             <a
-              href="mailto:info@wizcraft.co"
+              href="mailto:write@dolphinfacilities.in"
               className="mb-3 flex items-center gap-4 transition-colors hover:text-[#a5803a]"
             >
               <span
@@ -799,7 +799,7 @@ export default function Navbar() {
                 </svg>
               </span>
 
-              <span className="text-[15px]">info@wizcraft.co</span>
+              <span className="text-[15px]">write@dolphinfacilities.in</span>
             </a>
 
             {/* PHONE 1 */}

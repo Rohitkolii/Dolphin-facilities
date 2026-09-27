@@ -34,7 +34,7 @@ export default function Page() {
           GALLERY
       ===================================================== */}
 
-      <NationGallery image="/images/fa.png"/>
+      <NationGallery image="/images/frame.png"/>
 
       {/* =====================================================
           EVENTS / CONTENT

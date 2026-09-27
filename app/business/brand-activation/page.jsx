@@ -429,7 +429,8 @@ export default function BrandActivationPage() {
         {/* Image */}
         <img
           data-aos="zoom-in"
-          src="/home/clr4.jpg"
+          src="/images/DSC_1465.jpg"
+          // src="/home/clr4.jpg"
           alt="AZIZI brand activation"
           className="my-7 h-40 w-full border border-[#c9a768] object-cover sm:h-56 md:h-[250px]"
         />

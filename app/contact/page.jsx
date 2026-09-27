@@ -85,7 +85,7 @@ const ContactCard = ({ icon, title, children }) => {
   return (
     <div className="group border border-[#13253b]/10 bg-white px-6 py-10 text-center transition-all duration-300 hover:border-[#c9a768] hover:shadow-[0_18px_40px_-20px_rgba(19,37,59,0.25)] sm:px-8 sm:py-12">
       <div className="flex items-center justify-center">
-        <div className="flex h-[64px] w-[64px] items-center justify-center border border-[#c9a768] bg-[#f8f4ec] transition-colors duration-300 group-hover:bg-[#13253b]">
+        <div className="flex h-[64px] w-[64px] items-center justify-center border border-[#c9a768] bg-[#f8f4ec] transition-colors duration-300 group-hover:bg-[#c9a768]">
           {icon}
         </div>
       </div>

@@ -207,7 +207,7 @@ export default function Home() {
                 key={heroVideo.id}
                 className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[700px] xl:h-[720px] object-cover"
                 src={heroVideo.url}
-                poster={'/images/thumbnail.png' || heroVideo.thumbnail}
+                poster={'/images/thumbnail2.png' || heroVideo.thumbnail}
                 controls
                 // autoPlay
                 muted
@@ -217,10 +217,17 @@ export default function Home() {
               />
             ) : (
               <div className="">
-                <img
+                {/* <img
                   src="/images/thumbnail.png"
                   alt="Hero Video Thumbnail"
                   className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[500px] xl:h-[720px] object-cover"
+                /> */}
+                <Image
+                  src="/images/thumbnail2.png"
+                  alt="Hero Video Thumbnail"
+                  className="w-full h-[220px] sm:h-[320px] md:h-[450px] lg:h-[500px] xl:h-[720px] object-cover"
+                  width={800}
+                  height={450}
                 />
               </div>
             )}
