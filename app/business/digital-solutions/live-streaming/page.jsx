@@ -12,7 +12,7 @@ export default function Page() {
     <>
       <Header />
 
-      <main className="w-full overflow-hidden bg-[#303030]">
+      <main className="w-full overflow-hidden bg-[#f8f4ec]">
         <BASubpagesHero
           title="Live Streaming"
           description="Create powerful live experiences that connect your audience anywhere in the world. Wizcraft delivers seamless, engaging and high-quality live streaming solutions."

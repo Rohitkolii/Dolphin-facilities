@@ -27,7 +27,7 @@ export default function BlogHero() {
         style={{ ...display, WebkitTextStroke: "1px rgba(201,167,104,0.4)" }}
         className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 select-none whitespace-nowrap text-[60px] font-bold leading-none text-transparent sm:text-[100px] md:top-2 md:text-[160px]"
       >
-      BLOGS
+        BLOGS
       </div>
 
       <div
@@ -102,9 +102,9 @@ export default function BlogHero() {
           transition={{ duration: 0.9, delay: 0.4, ease }}
           className="mx-auto max-w-2xl text-[15px] leading-[1.85] text-[#4a4438] md:text-[18px]"
         >
-          Explore practical insights from Dolphin Facilities on planning
-          events, managing audiences, activating brands and delivering
-          campaigns with clarity, control and measurable purpose.
+          Explore practical insights from Dolphin Facilities on planning events,
+          managing audiences, activating brands and delivering campaigns with
+          clarity, control and measurable purpose.
         </motion.p>
       </div>
     </section>

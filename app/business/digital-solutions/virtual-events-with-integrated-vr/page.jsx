@@ -12,7 +12,7 @@ export default function Page() {
     <>
       <Header />
 
-      <main className="w-full overflow-hidden bg-[#303030]">
+      <main className="w-full overflow-hidden bg-[#f8f4ec]">
         <BASubpagesHero
           title="Virtual Events with Integrated VR"
           description="Step into immersive virtual worlds with innovative VR experiences designed to transform digital audience engagement."

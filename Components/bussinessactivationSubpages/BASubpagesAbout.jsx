@@ -30,260 +30,93 @@ export default function NationAbout({
   audiences.`,
 }) {
   return (
-    <section className="w-full bg-[#303030] px-4 sm:px-6 md:px-8 lg:px-[58px]">
-
-      <div
-        className="
-          mx-auto
-          max-w-[1550px]
-          py-8
-          md:py-10
-        "
-      >
-
-        <div
-          className="
-            grid
-            grid-cols-1
-            gap-7
-            lg:grid-cols-[1fr_1fr]
-            lg:gap-8
-          "
-        >
-
+    <section className="w-full bg-white px-4 sm:px-6 md:px-8 lg:px-[58px]">
+      <div className="mx-auto max-w-[1550px] py-14 md:py-20">
+        <div className="grid grid-cols-1 gap-7 lg:grid-cols-[1fr_1fr] lg:gap-10">
           {/* =====================================================
               LEFT IMAGES
           ===================================================== */}
 
           <div className="w-full">
-
             {/* BIG IMAGE */}
-
             <motion.div
-              initial={{
-                opacity: 0,
-                x: -50,
-              }}
-              whileInView={{
-                opacity: 1,
-                x: 0,
-              }}
-              viewport={{
-                once: true,
-                amount: 0.15,
-              }}
-              transition={{
-                duration: 0.8,
-              }}
-              className="
-                w-full
-                overflow-hidden
-                border
-                border-[#2999c7]
-              "
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full overflow-hidden border border-[#c9a768] shadow-[0_18px_40px_-20px_rgba(19,37,59,0.3)]"
             >
               <img
                 src={image1}
                 alt="Event"
                 draggable="false"
-                className="
-                  block
-                  w-full
-                  h-[280px]
-                  sm:h-[330px]
-                  md:h-[370px]
-                  lg:h-[340px]
-                  xl:h-[342px]
-                  object-cover
-                  transition-transform
-                  duration-700
-                  hover:scale-[1.03]
-                "
+                className="block h-[280px] w-full object-cover transition-transform duration-700 hover:scale-[1.03] sm:h-[330px] md:h-[370px] lg:h-[340px] xl:h-[342px]"
               />
             </motion.div>
 
-
             {/* TWO SMALL IMAGES */}
-
-            <div
-              className="
-                grid
-                grid-cols-2
-                gap-7
-                mt-7
-              "
-            >
-
+            <div className="mt-7 grid grid-cols-2 gap-7">
               <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 35,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.7,
-                }}
-                className="
-                  overflow-hidden
-                  border
-                  border-[#2999c7]
-                "
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden border border-[#c9a768] shadow-[0_18px_40px_-20px_rgba(19,37,59,0.3)]"
               >
                 <img
                   src={image2}
                   alt="Event"
                   draggable="false"
-                  className="
-                    block
-                    w-full
-                    h-[250px]
-                    sm:h-[290px]
-                    md:h-[320px]
-                    lg:h-[338px]
-                    object-cover
-                    transition-transform
-                    duration-700
-                    hover:scale-[1.04]
-                  "
+                  className="block h-[250px] w-full object-cover transition-transform duration-700 hover:scale-[1.04] sm:h-[290px] md:h-[320px] lg:h-[338px]"
                 />
               </motion.div>
 
-
               <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 35,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.1,
-                }}
-                className="
-                  overflow-hidden
-                  border
-                  border-[#2999c7]
-                "
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden border border-[#c9a768] shadow-[0_18px_40px_-20px_rgba(19,37,59,0.3)]"
               >
                 <img
                   src={image3}
                   alt="Event"
                   draggable="false"
-                  className="
-                    block
-                    w-full
-                    h-[250px]
-                    sm:h-[290px]
-                    md:h-[320px]
-                    lg:h-[338px]
-                    object-cover
-                    transition-transform
-                    duration-700
-                    hover:scale-[1.04]
-                  "
+                  className="block h-[250px] w-full object-cover transition-transform duration-700 hover:scale-[1.04] sm:h-[290px] md:h-[320px] lg:h-[338px]"
                 />
               </motion.div>
-
             </div>
-
           </div>
-
 
           {/* =====================================================
               RIGHT CONTENT
           ===================================================== */}
 
           <motion.div
-            initial={{
-              opacity: 0,
-              x: 50,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.15,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
-            className="
-              flex
-              items-center
-              lg:pt-[90px]
-            "
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center lg:pt-[70px]"
           >
-
             <div className="w-full">
+              <div className="mb-6 h-px w-14 bg-[#c9a768]" />
 
-              <p
-                className="
-                  text-white
-                  text-[15px]
-                  sm:text-[14px]
-                  md:text-[15px]
-                  lg:text-[15px]
-                  leading-[1.55]
-                  text-justify
-                "
-              >
+              <p className="text-justify text-[14px] leading-[1.8] text-[#4a4438] sm:text-[14px] md:text-[15px]">
                 {paragraph1}
               </p>
 
-
-              <p
-                className="
-                  mt-5
-                  text-white
-                  text-[15px]
-                  sm:text-[14px]
-                  md:text-[15px]
-                  lg:text-[15px]
-                  leading-[1.55]
-                  text-justify
-                "
-              >
+              <p className="mt-5 text-justify text-[14px] leading-[1.8] text-[#4a4438] sm:text-[14px] md:text-[15px]">
                 {paragraph2}
               </p>
 
-
-              <p
-                className="
-                  mt-5
-                  text-white
-                  text-[15px]
-                  sm:text-[14px]
-                  md:text-[15px]
-                  lg:text-[15px]
-                  leading-[1.55]
-                  text-justify
-                "
-              >
+              <p className="mt-5 text-justify text-[14px] leading-[1.8] text-[#4a4438] sm:text-[14px] md:text-[15px]">
                 {paragraph3}
               </p>
-
             </div>
-
           </motion.div>
-
         </div>
-
       </div>
-
     </section>
   );
 }

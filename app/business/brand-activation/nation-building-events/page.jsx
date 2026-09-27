@@ -9,7 +9,7 @@ import NationWhyChooseUs from "@/Components/bussinessactivationSubpages/BASubpag
 
 export default function NationBuildingEventsPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#303030]">
+    <main className="min-h-screen overflow-hidden bg-[#f8f4ec]">
       {/* HEADER */}
       <Navbar />
 

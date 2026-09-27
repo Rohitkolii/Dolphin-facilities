@@ -12,7 +12,7 @@ export default function Page() {
     <>
       <Header />
 
-      <main className="w-full overflow-hidden bg-[#303030]">
+      <main className="w-full overflow-hidden bg-[#f8f4ec]">
         <BASubpagesHero
           title="Hybrid Events"
           description="Combine the power of physical events with digital technology to create connected, flexible and engaging hybrid experiences."

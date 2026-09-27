@@ -6,7 +6,7 @@ import Navbar from "@/Components/common/Navbar";
 import Footer from "@/Components/common/Footer";
 export default function Page() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#303030]">
+    <main className="min-h-screen overflow-hidden bg-[#f8f4ec]">
       {/* =====================================================
           HERO
       ===================================================== */}
@@ -100,31 +100,34 @@ export default function Page() {
           items-center
           justify-center
           px-5
+          py-14
           sm:px-8
           md:px-12
-          bg-gradient-to-r
-          from-[#247fbd]
-          via-[#42a8c4]
-          to-[#76c8a9]
+          bg-[#13253b]
         "
       >
-        <p
-          className="
-            max-w-[1450px]
-            text-center
-            text-white
-            font-normal
-            text-[17px]
-            sm:text-[19px]
-            md:text-[23px]
-            lg:text-[27px]
-            leading-[1.65]
-          "
-        >
-          With Wizcraft, data becomes more than information; it becomes the
-          foundation for meaningful customer experiences, stronger engagement
-          and lasting brand connections.
-        </p>
+        <div className="flex max-w-[950px] flex-col items-center text-center">
+          <div className="mb-6 h-px w-14 bg-[#c9a768]" />
+
+          <p
+            className="
+              text-white
+              font-medium
+              italic
+              text-[17px]
+              sm:text-[19px]
+              md:text-[23px]
+              lg:text-[26px]
+              leading-[1.65]
+            "
+          >
+            With Wizcraft, data becomes more than information; it becomes the
+            foundation for meaningful customer experiences, stronger engagement
+            and lasting brand connections.
+          </p>
+
+          <div className="mt-6 h-px w-14 bg-[#c9a768]" />
+        </div>
       </section>
       {/* FOOTER */}
       <Footer />

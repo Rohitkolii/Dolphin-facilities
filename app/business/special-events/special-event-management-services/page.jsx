@@ -13,7 +13,7 @@ export default function SpecialEventManagementServicesPage() {
       {/* STICKY HEADER */}
       <Header />
 
-      <main className="w-full overflow-hidden bg-[#303030]">
+      <main className="w-full overflow-hidden bg-[#f8f4ec]">
 
         {/* HERO */}
         <BASubpagesHero

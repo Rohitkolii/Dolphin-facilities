@@ -1,8 +1,8 @@
 "use client";
 
 import Footer from "@/Components/common/Footer";
-import Hero from "@/Components/common/Hero";
 import Navbar from "@/Components/common/Navbar";
+import { motion } from "framer-motion";
 
 import {
   FaBuilding,
@@ -24,6 +24,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import SocialRail from "@/Components/home/SocialRail";
+
+const ease = [0.22, 1, 0.36, 1];
 
 const services = [
   {
@@ -131,9 +133,93 @@ const locations = [
   ],
 ];
 
+/* ================= HERO (Wizcraft / NationHero style) ================= */
+function BrandActivationHero({
+  title = "Brand Activation Agency in India",
+  desc = "At Dolphin Facilities, we go beyond designing events, we craft experiential brand activations that bring your brand to life. As a leading brand activation agency in India and Dubai, we help businesses connect with audiences through experiences that inspire loyalty, spark conversations, and deliver measurable outcomes.",
+  eyebrow = "WHAT WE DO",
+}) {
+  return (
+    <section
+      className="relative w-full overflow-hidden border-b border-[#c9a768]/40 bg-[#f8f4ec] px-5 py-14 sm:px-8 md:px-12 md:py-20"
+      style={{
+        backgroundImage:
+          "radial-gradient(ellipse at 50% -10%, rgba(201,167,104,0.22), transparent 60%), radial-gradient(rgba(19,37,59,0.06) 1px, transparent 1px)",
+        backgroundSize: "100% 100%, 24px 24px",
+      }}
+    >
+      {/* Gold corner brackets */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-5 top-5 hidden h-8 w-8 border-l border-t border-[#c9a768] sm:block md:left-8 md:top-8"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute right-5 top-5 hidden h-8 w-8 border-r border-t border-[#c9a768] sm:block md:right-8 md:top-8"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-5 left-5 hidden h-8 w-8 border-b border-l border-[#c9a768] sm:block md:bottom-8 md:left-8"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-5 right-5 hidden h-8 w-8 border-b border-r border-[#c9a768] sm:block md:bottom-8 md:right-8"
+      />
+
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
+        {/* EYEBROW */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease }}
+          className="mb-4 flex items-center justify-center gap-4"
+        >
+          <span className="h-px w-10 bg-[#c9a768]" />
+          <span className="text-xs font-medium tracking-[0.3em] text-[#a5803a]">
+            {eyebrow}
+          </span>
+          <span className="h-px w-10 bg-[#c9a768]" />
+        </motion.div>
+
+        {/* HEADING */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease }}
+          className="text-[26px] font-semibold uppercase leading-[1.2] tracking-tight text-[#13253b] sm:text-[32px] md:text-[42px] lg:text-[48px]"
+        >
+          {title}
+        </motion.h1>
+
+        {/* DIAMOND DIVIDER */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease }}
+          className="mx-auto my-5 flex items-center justify-center gap-3"
+        >
+          <span className="h-px w-12 bg-[#c9a768]" />
+          <span className="h-2 w-2 rotate-45 bg-[#c9a768]" />
+          <span className="h-px w-12 bg-[#c9a768]" />
+        </motion.div>
+
+        {/* DESCRIPTION */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45, ease }}
+          className="mx-auto max-w-[850px] text-center text-[15px] font-medium italic leading-[1.65] text-[#4a4438] sm:text-[16px] md:text-[19px]"
+        >
+          {desc}
+        </motion.p>
+      </div>
+    </section>
+  );
+}
+
 function IconBox({ icon: Icon, item }) {
   return (
-    <div className={`grid h-14 w-14 shrink-0 place-items-center border ${item.featured ? "text-white border-white" : "text-[#1599df] border-[#2b8bc7]/70"} sm:h-16 sm:w-16 md:h-20 md:w-20`}>
+    <div className={`grid h-14 w-14 shrink-0 place-items-center border ${item.featured ? "text-white border-white/40" : "text-[#a5803a] border-[#c9a768]/50"} sm:h-16 sm:w-16 md:h-20 md:w-20`}>
       <Icon size={18} />
     </div>
   );
@@ -145,23 +231,23 @@ function ServiceCard({ item }) {
   return (
     <article
       data-aos={item.animate}
-      className={`border border-[#267fba] p-4 sm:p-6 md:p-8 lg:p-10 ${
+      className={`border transition-colors duration-300 p-4 sm:p-6 md:p-8 lg:p-10 ${
         item.featured
-          ? "bg-gradient-to-r from-[#2286c8] to-[#69c2a9]"
-          : "bg-[#303030]"
+          ? "border-[#c9a768]/40 bg-[#13253b]"
+          : "border-[#13253b]/10 bg-white hover:border-[#c9a768]"
       }`}
     >
       <div className="flex flex-col gap-4 min-[480px]:flex-row sm:gap-5">
         <IconBox icon={Icon} item={item} />
 
         <div className="min-w-0 flex-1">
-          <h3 className={`text-[16px] font-bold leading-tight ${item.featured ? "text-white" : "bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent"} sm:text-[20px] md:text-[23px]`}>
+          <h3 className={`text-[16px] font-bold leading-tight ${item.featured ? "text-white" : "text-[#13253b]"} sm:text-[20px] md:text-[23px]`}>
             {item.title}
           </h3>
 
           <p
             className={`mt-2 text-[12px] leading-[1.6] sm:text-[14px] md:text-[15px] lg:text-[16px] ${
-              item.featured ? "text-black" : "text-gray-700"
+              item.featured ? "text-white/85" : "text-[#6b6255]"
             }`}
           >
             {item.text}
@@ -179,12 +265,12 @@ function IndustryCard({ item }) {
     <div
       data-aos="fade-left"
       data-aos-duration="1200"
-      className="border border-white/20 px-4 py-5 sm:px-6 sm:py-7 md:px-8 bg-[#ffffff]/80"
+      className="border border-[#c9a768]/25 bg-white/5 px-4 py-5 transition-colors duration-300 hover:border-[#c9a768] sm:px-6 sm:py-7 md:px-8"
     >
       <div className="flex items-start gap-3 sm:gap-4">
         <Icon
           size={24}
-          className="mt-1 shrink-0 text-white sm:h-[30px] sm:w-[30px]"
+          className="mt-1 shrink-0 text-[#c9a768] sm:h-[30px] sm:w-[30px]"
         />
 
         <div className="min-w-0">
@@ -192,7 +278,7 @@ function IndustryCard({ item }) {
             {title}
           </h3>
 
-          <p className="mt-1 text-[12px] leading-[1.55] text-white/90 sm:text-[14px] md:text-[15px]">
+          <p className="mt-1 text-[12px] leading-[1.55] text-[#4a4438] sm:text-[14px] md:text-[15px]">
             {text}
           </p>
         </div>
@@ -205,16 +291,16 @@ function AdvantageCard({ title, text, Icon }) {
   return (
     <div data-aos="fade-up">
       <div className="flex items-start gap-3 sm:gap-4">
-        <div className="grid h-14 w-14 shrink-0 place-items-center bg-gradient-to-br from-[#1886c9] to-[#66c0ad] sm:h-16 sm:w-16 md:h-20 md:w-20">
-          <Icon size={17} className="sm:h-[19px] sm:w-[19px]" />
+        <div className="grid h-14 w-14 shrink-0 place-items-center bg-[#13253b] sm:h-16 sm:w-16 md:h-20 md:w-20">
+          <Icon size={17} className="text-[#c9a768] sm:h-[19px] sm:w-[19px]" />
         </div>
 
         <div className="min-w-0">
-          <h3 className="text-[15px] font-bold text-[#159fe8] sm:text-[17px] md:text-[18px]">
+          <h3 className="text-[15px] font-bold text-[#a5803a] sm:text-[17px] md:text-[18px]">
             {title}
           </h3>
 
-          <p className="mt-1 text-[12px] leading-[1.55] text-white/90 sm:text-[14px] md:text-[15px]">
+          <p className="mt-1 text-[12px] leading-[1.55] text-[#4a4438] sm:text-[14px] md:text-[15px]">
             {text}
           </p>
         </div>
@@ -272,13 +358,13 @@ export default function BrandActivationPage() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#2d2d2d] text-white">
+    <main className="min-h-screen overflow-hidden bg-[#f8f4ec] text-[#4a4438]">
       {/* Header */}
       <Navbar />
       {/* <SocialRail /> */}
 
       {/* Hero */}
-      <Hero
+      <BrandActivationHero
         title="Brand Activation Agency in India"
         desc="At Dolphin Facilities, we go beyond designing events, we craft experiential brand activations that bring your brand to life. As a leading brand activation agency in India and Dubai, we help businesses connect with audiences through experiences that inspire loyalty, spark conversations, and deliver measurable outcomes."
       />
@@ -288,7 +374,7 @@ export default function BrandActivationPage() {
         <div className="grid gap-6 md:grid-cols-2 md:gap-5">
           {/* Left */}
           <div>
-            <p className="mb-6 text-[12px] leading-[1.7] text-white/90 sm:text-[14px] md:text-[16px]">
+            <p className="mb-6 text-[12px] leading-[1.7] text-[#4a4438] sm:text-[14px] md:text-[16px]">
               We redefine engagement with a wide portfolio of brand activation
               marketing solutions, from experiential campaigns to digital
               activations all designed to amplify visibility and maximize ROI.
@@ -315,15 +401,15 @@ export default function BrandActivationPage() {
       </section>
 
       {/* ================= WHY CHOOSE US ================= */}
-      <section className="container-x mx-4 border-2 border-[#2188c3] px-4 py-7 sm:mx-6 sm:border-4 sm:px-7 sm:py-10 md:mx-auto md:px-12 md:py-14">
+      <section className="container-x mx-4 border border-[#13253b]/10 bg-white px-4 py-10 shadow-[0_18px_40px_-28px_rgba(19,37,59,0.2)] sm:mx-6 sm:px-8 sm:py-14 md:mx-auto md:px-14 md:py-16">
         <p
           data-aos="zoom-in-left"
-          className="mb-4 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-3xl font-semibold uppercase text-transparent sm:text-4xl md:text-5xl"
+          className="mb-4 text-3xl font-semibold uppercase text-[#13253b] sm:text-4xl md:text-5xl"
         >
           Why Choose Us?
         </p>
 
-        <p className="max-w-[790px] text-[12px] leading-[1.7] text-white/90 sm:text-[14px] md:text-[16px]">
+        <p className="max-w-[790px] text-[12px] leading-[1.7] text-[#4a4438] sm:text-[14px] md:text-[16px]">
           We have 30+ years of experience as a global brand activation agency,
           trusted by 600+ leading brands with path-breaking campaigns.
         </p>
@@ -345,7 +431,7 @@ export default function BrandActivationPage() {
           data-aos="zoom-in"
           src="/home/clr4.jpg"
           alt="AZIZI brand activation"
-          className="my-7 h-40 w-full object-cover sm:h-56 md:h-[250px]"
+          className="my-7 h-40 w-full border border-[#c9a768] object-cover sm:h-56 md:h-[250px]"
         />
 
         {/* Remaining */}
@@ -362,7 +448,7 @@ export default function BrandActivationPage() {
       </section>
 
       {/* ================= INDUSTRIES ================= */}
-      <section className="mt-8 bg-gradient-to-r from-[#197cc1] via-[#258dc6] to-[#6bc3ab] px-4 py-10 sm:mt-12 sm:px-6 sm:py-14 md:mt-16">
+      <section className="mt-8 bg-[#13253b] px-4 py-10 text-white sm:mt-12 sm:px-6 sm:py-14 md:mt-16">
         <div className="container-x mx-auto">
           <p
             data-aos="fade-zoom-in"
@@ -388,12 +474,12 @@ export default function BrandActivationPage() {
       <section className="container-x mx-auto px-4 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16">
         <p
           data-aos="fade-zoom-in"
-          className="mb-4 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-3xl font-semibold uppercase text-transparent sm:text-4xl md:text-5xl"
+          className="mb-4 text-3xl font-semibold uppercase text-[#13253b] sm:text-4xl md:text-5xl"
         >
           Our Presence
         </p>
 
-        <p className="text-[12px] leading-[1.7] text-white/90 sm:text-[14px] md:text-[16px]">
+        <p className="text-[12px] leading-[1.7] text-[#4a4438] sm:text-[14px] md:text-[16px]">
           We have operations in key markets, with truly integrated and scalable
           solutions.
         </p>
@@ -403,13 +489,13 @@ export default function BrandActivationPage() {
             <article
               key={title}
               data-aos="zoom-in"
-              className="bg-gradient-to-r from-[#2184c5] to-[#67bda9] p-5 sm:p-7 md:p-8"
+              className="border border-[#13253b]/10 bg-white p-5 shadow-[0_14px_35px_-22px_rgba(19,37,59,0.25)] transition-colors duration-300 hover:border-[#c9a768] sm:p-7 md:p-8"
             >
-              <h3 className="text-[18px] font-bold sm:text-[20px]">
+              <h3 className="text-[18px] font-bold text-[#13253b] sm:text-[20px]">
                 {title}
               </h3>
 
-              <p className="mt-2 text-[13px] leading-[1.6] sm:text-[15px] md:text-[16px]">
+              <p className="mt-2 text-[13px] leading-[1.6] text-[#4a4438] sm:text-[15px] md:text-[16px]">
                 {text}
               </p>
             </article>
@@ -418,11 +504,11 @@ export default function BrandActivationPage() {
 
         {/* ================= PROCESS ================= */}
         <div className="mx-auto mt-12 sm:mt-14">
-          <p className="mb-4 bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-center text-3xl font-semibold uppercase text-transparent sm:text-4xl md:text-5xl">
+          <p className="mb-4 text-center text-3xl font-semibold uppercase text-[#13253b] sm:text-4xl md:text-5xl">
             How We Work
           </p>
 
-          <p className="text-center text-[12px] leading-[1.7] sm:text-[14px] md:text-[16px]">
+          <p className="text-center text-[12px] leading-[1.7] text-[#4a4438] sm:text-[14px] md:text-[16px]">
             We work on creating an unparalleled experience for your brand
             engagement with a structured flow.
           </p>
@@ -437,8 +523,8 @@ export default function BrandActivationPage() {
             onClick={() => setActiveStep(i)}
             className={`flex min-h-[45px] items-center justify-center cursor-pointer px-1 py-3 text-[9px] font-semibold transition-all duration-300 sm:min-h-0 sm:min-w-[80px] sm:px-5 sm:py-3 sm:text-[11px] md:min-w-[100px] md:px-8 md:py-4 md:text-[12px] ${
               activeStep === i
-                ? "bg-gradient-to-r from-[#2184c5] to-[#68bda9] text-white"
-                : "bg-[#8a8a8a] text-white hover:bg-[#707070]"
+                ? "bg-[#13253b] text-white"
+                : "border border-[#13253b]/15 bg-white text-[#13253b] hover:border-[#c9a768]"
             }`}
           >
             {step.title}
@@ -447,14 +533,14 @@ export default function BrandActivationPage() {
       </div>
 
       {/* Description */}
-      <div className="relative z-10 -mt-2 border border-[#2184c5] px-4 pb-6 pt-10 text-[12px] leading-[1.7] sm:-mt-4 sm:px-8 sm:pb-8 sm:pt-14 sm:text-[14px] md:-mt-6 md:px-15 md:pt-20 md:text-[16px]">
+      <div className="relative z-10 -mt-2 border border-[#13253b]/10 bg-white px-4 pb-6 pt-10 text-[12px] leading-[1.7] text-[#4a4438] sm:-mt-4 sm:px-8 sm:pb-8 sm:pt-14 sm:text-[14px] md:-mt-6 md:px-15 md:pt-20 md:text-[16px]">
         {steps[activeStep].content}
       </div>
     </div>
         </div>
 
         {/* Bottom Content */}
-        <div className="mx-auto mt-10 max-w-[900px] text-center text-[12px] font-medium leading-[1.8] sm:mt-14 sm:text-[15px] md:text-[18px]">
+        <div className="mx-auto mt-10 max-w-[900px] text-center text-[12px] font-medium leading-[1.8] text-[#4a4438] sm:mt-14 sm:text-[15px] md:text-[18px]">
           <p>
             Join forces with Dolphin Facilities, the preferred brand activation agency in
             Dubai and trusted brand activation company in Mumbai, Gurgaon,
@@ -469,7 +555,7 @@ export default function BrandActivationPage() {
           <p className="mt-2">
             Get in touch with us today to discover our brand activation
             services in{" "}
-            <span className="text-[#68c4b2]">
+            <span className="text-[#a5803a]">
               India, Dubai, and worldwide.
             </span>
           </p>
@@ -477,7 +563,7 @@ export default function BrandActivationPage() {
       </section>
 
       {/* ================= CTA ================= */}
-      <section className="bg-gradient-to-r from-[#197bc1] to-[#69c2aa] px-4 py-12 text-center sm:px-6 sm:py-16 md:py-20">
+      <section className="border-t border-[#c9a768]/30 bg-[#13253b] px-4 py-12 text-center text-white sm:px-6 sm:py-16 md:py-20">
         <p
           data-aos="fade-up"
           className="text-[14px] sm:text-[18px] md:text-[20px]"

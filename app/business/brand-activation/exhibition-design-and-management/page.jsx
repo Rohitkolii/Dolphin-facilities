@@ -8,7 +8,7 @@ import NationGallery from "@/Components/bussinessactivationSubpages/BASubpagesGa
 
 export default function Page() {
   return (
-    <main className="w-full overflow-x-hidden bg-[#303030]">
+    <main className="w-full overflow-x-hidden bg-[#f8f4ec]">
       {/* STICKY HEADER */}
       <div className="sticky top-0 z-[999] w-full">
         <Header />

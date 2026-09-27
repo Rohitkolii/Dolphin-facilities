@@ -7,7 +7,7 @@ import Footer from "@/Components/common/Footer";
 
 export default function Page() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#303030]">
+    <main className="min-h-screen overflow-hidden bg-[#f8f4ec]">
 
       <Navbar />
 

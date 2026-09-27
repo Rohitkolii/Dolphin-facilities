@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 
 import Footer from "@/Components/common/Footer";
-import Hero from "@/Components/common/Hero";
 import Navbar from "@/Components/common/Navbar";
 
 import {
@@ -16,6 +16,8 @@ import {
   FaAward,
 } from "react-icons/fa";
 import SocialRail from "@/Components/home/SocialRail";
+
+const ease = [0.22, 1, 0.36, 1];
 
 const services = [
   {
@@ -63,13 +65,100 @@ const services = [
   },
 ];
 
+/* ================= HERO (Wizcraft / NationHero style) ================= */
+function DigitalSolutionsHero({
+  title = "Advertising & Outdoor Marketing",
+  desc = "We help brands reach audiences where they live, travel, work and shop. Our outdoor solutions — Van Campaigns, Wall Wraps and Hoardings — are designed to create visibility and build strong brand recall.",
+  eyebrow = "WHAT WE DO",
+}) {
+  return (
+    <section
+      className="relative w-full overflow-hidden border-b border-[#c9a768]/40 bg-[#f8f4ec] px-5 py-14 sm:px-8 md:px-12 md:py-20"
+      style={{
+        backgroundImage:
+          "radial-gradient(ellipse at 50% -10%, rgba(201,167,104,0.22), transparent 60%), radial-gradient(rgba(19,37,59,0.06) 1px, transparent 1px)",
+        backgroundSize: "100% 100%, 24px 24px",
+      }}
+    >
+      {/* Gold corner brackets */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-5 top-5 hidden h-8 w-8 border-l border-t border-[#c9a768] sm:block md:left-8 md:top-8"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute right-5 top-5 hidden h-8 w-8 border-r border-t border-[#c9a768] sm:block md:right-8 md:top-8"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-5 left-5 hidden h-8 w-8 border-b border-l border-[#c9a768] sm:block md:bottom-8 md:left-8"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-5 right-5 hidden h-8 w-8 border-b border-r border-[#c9a768] sm:block md:bottom-8 md:right-8"
+      />
+
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
+        {/* EYEBROW */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease }}
+          className="mb-4 flex items-center justify-center gap-4"
+        >
+          <span className="h-px w-10 bg-[#c9a768]" />
+          <span className="text-xs font-medium tracking-[0.3em] text-[#a5803a]">
+            {eyebrow}
+          </span>
+          <span className="h-px w-10 bg-[#c9a768]" />
+        </motion.div>
+
+        {/* HEADING */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease }}
+          className="text-[26px] font-semibold uppercase leading-[1.2] tracking-tight text-[#13253b] sm:text-[32px] md:text-[42px] lg:text-[48px]"
+        >
+          {title}
+        </motion.h1>
+
+        {/* DIAMOND DIVIDER */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease }}
+          className="mx-auto my-5 flex items-center justify-center gap-3"
+        >
+          <span className="h-px w-12 bg-[#c9a768]" />
+          <span className="h-2 w-2 rotate-45 bg-[#c9a768]" />
+          <span className="h-px w-12 bg-[#c9a768]" />
+        </motion.div>
+
+        {/* DESCRIPTION */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45, ease }}
+          className="mx-auto max-w-[850px] text-center text-[15px] font-medium italic leading-[1.65] text-[#4a4438] sm:text-[16px] md:text-[19px]"
+        >
+          {desc}
+        </motion.p>
+      </div>
+    </section>
+  );
+}
+
 function IconBox({ icon: Icon, item }) {
   return (
-    <div className={`grid h-14 w-14 shrink-0 place-items-center border ${item.featured ? "text-white border-white" : "text-[#1599df] border-[#2b8bc7]/70"} sm:h-16 sm:w-16 md:h-20 md:w-20`}>
-      <Icon
-        size={18}
-        className="sm:h-[20px] sm:w-[20px]"
-      />
+    <div
+      className={`grid h-14 w-14 shrink-0 place-items-center border ${
+        item.featured
+          ? "text-white border-white/40"
+          : "text-[#a5803a] border-[#c9a768]/50"
+      } sm:h-16 sm:w-16 md:h-20 md:w-20`}
+    >
+      <Icon size={18} className="sm:h-[20px] sm:w-[20px]" />
     </div>
   );
 }
@@ -82,10 +171,10 @@ function ServiceCard({ item }) {
       data-aos={item.animate}
       data-aos-duration="1200"
       data-aos-once="true"
-      className={`border border-[#267fba] p-4 sm:p-6 md:p-8 lg:p-10 ${
+      className={`border transition-colors duration-300 p-4 sm:p-6 md:p-8 lg:p-10 ${
         item.featured
-          ? "bg-gradient-to-r from-[#2286c8] to-[#69c2a9]"
-          : "bg-[#303030]"
+          ? "border-[#c9a768]/40 bg-[#13253b]"
+          : "border-[#13253b]/10 bg-white hover:border-[#c9a768]"
       }`}
     >
       <div className="flex flex-col items-start gap-4 min-[480px]:flex-row sm:gap-5">
@@ -97,7 +186,7 @@ function ServiceCard({ item }) {
               text-[16px]
               font-bold
               leading-tight
-              ${item.featured ? "text-white" : "bg-gradient-to-r from-[#1d7fc5] to-[#68c4b2] bg-clip-text text-transparent"}
+              ${item.featured ? "text-white" : "text-[#13253b]"}
               sm:text-[20px]
               md:text-[23px]
               lg:text-[25px]
@@ -114,11 +203,7 @@ function ServiceCard({ item }) {
               sm:text-[14px]
               md:text-[15px]
               lg:text-[16px]
-              ${
-                item.featured
-                  ? "text-white"
-                  : "text-gray-200"
-              }
+              ${item.featured ? "text-white/85" : "text-[#6b6255]"}
             `}
           >
             {item.text}
@@ -138,22 +223,23 @@ export default function DigitalSolutionsPage() {
       easing: "ease-out-cubic",
     });
 
-    // Refresh AOS after page content has rendered
     setTimeout(() => {
       AOS.refresh();
     }, 300);
   }, []);
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#2d2d2d] text-white">
+    <main className="min-h-screen overflow-hidden bg-[#f8f4ec] text-[#4a4438]">
       {/* ================= HEADER ================= */}
       <Navbar />
+
       {/* <SocialRail /> */}
+
       {/* ================= HERO ================= */}
-        <Hero
-          title="Digital Event Solutions Company in India"
-          desc="At Dolphin Facilities, we redefine the future of experiences through Digital Event Solutions that blend creativity and technology."
-        />
+      <DigitalSolutionsHero
+        title="Advertising & Outdoor Marketing"
+        desc="We help brands reach audiences where they live, travel, work and shop. Our outdoor solutions — Van Campaigns, Wall Wraps and Hoardings — are designed to create visibility and build strong brand recall."
+      />
 
       {/* ================= SERVICES ================= */}
       <section className="container-x mx-auto px-4 py-10 sm:px-6 sm:py-14 md:px-0 md:py-16">
@@ -167,7 +253,7 @@ export default function DigitalSolutionsPage() {
                 mb-6
                 text-[12px]
                 leading-[1.7]
-                text-white/90
+                text-[#4a4438]
                 sm:text-[14px]
                 md:text-[16px]
               "
@@ -180,14 +266,9 @@ export default function DigitalSolutionsPage() {
 
             <div className="space-y-4">
               {services
-                .filter(
-                  (_, i) => i === 0 || i === 2 || i === 4
-                )
+                .filter((_, i) => i === 0 || i === 2 || i === 4)
                 .map((item) => (
-                  <ServiceCard
-                    item={item}
-                    key={item.title}
-                  />
+                  <ServiceCard item={item} key={item.title} />
                 ))}
             </div>
           </div>
@@ -195,18 +276,9 @@ export default function DigitalSolutionsPage() {
           {/* RIGHT COLUMN */}
           <div className="space-y-4">
             {services
-              .filter(
-                (_, i) =>
-                  i === 1 ||
-                  i === 3 ||
-                  i === 5 ||
-                  i === 6
-              )
+              .filter((_, i) => i === 1 || i === 3 || i === 5 || i === 6)
               .map((item) => (
-                <ServiceCard
-                  item={item}
-                  key={item.title}
-                />
+                <ServiceCard item={item} key={item.title} />
               ))}
           </div>
         </div>
@@ -215,9 +287,7 @@ export default function DigitalSolutionsPage() {
       {/* ================= CTA ================= */}
       <section
         className="
-          bg-gradient-to-r
-          from-[#197bc1]
-          to-[#69c2aa]
+          border-t border-[#c9a768]/30 bg-[#13253b] text-white
           px-4
           py-12
           text-center

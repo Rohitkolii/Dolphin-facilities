@@ -1,59 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { display } from "./baFonts";
 
-export default function NationWhyChooseUs() {
+export default function NationWhyChooseUs({
+  message = `With Wizcraft, nation-building events transcend gatherings;
+  they become powerful platforms that drive participation, foster
+  unity, and accelerate development.`,
+}) {
   return (
-    <section
-      className="
-        w-full
-        h-[260px]
-        flex
-        items-center
-        justify-center
-        px-5
-        sm:px-8
-        md:px-12
-        bg-gradient-to-r
-        from-[#247fbd]
-        via-[#42a8c4]
-        to-[#76c8a9]
-        overflow-hidden
-      "
-    >
-      <motion.p
-        initial={{
-          opacity: 0,
-          y: 25,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-          amount: 0.3,
-        }}
-        transition={{
-          duration: 0.8,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="
-          max-w-[1450px]
-          text-center
-          text-white
-          font-normal
-          text-[17px]
-          sm:text-[19px]
-          md:text-[23px]
-          lg:text-[27px]
-          leading-[1.65]
-        "
+    <section className="flex w-full items-center justify-center overflow-hidden bg-[#13253b] px-5 py-14 sm:px-8 md:px-12 md:py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="flex max-w-[950px] flex-col items-center text-center"
       >
-        With Wizcraft, nation-building events transcend gatherings;
-        they become powerful platforms that drive participation, foster
-        unity, and accelerate development.
-      </motion.p>
+        <div className="mb-6 h-px w-14 bg-[#c9a768]" />
+
+        <p
+          style={display}
+          className="text-[17px] font-medium italic leading-[1.65] text-white sm:text-[20px] md:text-[26px]"
+        >
+          {message}
+        </p>
+
+        <div className="mt-6 h-px w-14 bg-[#c9a768]" />
+      </motion.div>
     </section>
   );
 }

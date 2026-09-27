@@ -12,7 +12,7 @@ export default function ContentDesignManagementPage() {
     <>
       <Header />
 
-      <main className="w-full overflow-hidden bg-[#303030]">
+      <main className="w-full overflow-hidden bg-[#f8f4ec]">
 
         <BASubpagesHero
           title="Content Design & Management"
