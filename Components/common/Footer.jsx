@@ -151,6 +151,13 @@ export default function Footer() {
               >
                 Portfolio
               </a>
+
+              <a
+                href="/careers"
+                className="block transition-colors hover:text-[#68c4b2]"
+              >
+                Careers
+              </a>
             </div>
           </div>
 
