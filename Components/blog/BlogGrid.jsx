@@ -4,13 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useRef, useState, useEffect } from "react";
 import { blogs, blogFilters } from "./blogData";
 import Link from "next/link";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 
 // Same display font as page.js / Navbar / About
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
 const display = { fontFamily: playfair.style.fontFamily };
 
 const ease = [0.22, 1, 0.36, 1];

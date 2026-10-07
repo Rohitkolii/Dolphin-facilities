@@ -13,17 +13,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 
 // Serif display font for headings — this single choice does most of the
 // "premium/boutique" lift. Keep body copy on your existing sans font so the
 // two stay clearly distinct rather than mixing three typefaces.
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
-});
-
 const businesses = [
   {
     title: "Event Management",

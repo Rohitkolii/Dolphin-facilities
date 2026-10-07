@@ -5,12 +5,7 @@ import Navbar from "@/Components/common/Navbar";
 import CareersHero from "@/Components/careers/CareersHero";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { Playfair_Display } from "next/font/google";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
+import { playfair } from "@/lib/fonts";
 const display = { fontFamily: playfair.style.fontFamily };
 
 // Email jahan career applications aayengi

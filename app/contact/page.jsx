@@ -8,13 +8,9 @@ import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 
 // Same display font as page.js / Navbar / About / Blog
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
 const display = { fontFamily: playfair.style.fontFamily };
 
 const cities = ["Bhopal"];

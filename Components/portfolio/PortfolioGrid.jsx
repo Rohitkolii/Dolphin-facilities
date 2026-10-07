@@ -565,13 +565,13 @@ export default function PortfolioGrid() {
     );
   }
 
-  if (error) {
-    return (
-      <section className="w-full bg-[#f8f4ec] py-16 text-center text-red-600">
-        Couldn't load portfolio: {error}
-      </section>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <section className="w-full bg-[#f8f4ec] py-16 text-center text-red-600">
+  //       Couldn't load portfolio: {error}
+  //     </section>
+  //   );
+  // }
 
   if (projects.length === 0) {
     return (

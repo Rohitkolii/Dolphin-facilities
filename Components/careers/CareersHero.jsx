@@ -1,13 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 
 // Same display font as Contact / About / Blog
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
 const display = { fontFamily: playfair.style.fontFamily };
 
 const ease = [0.22, 1, 0.36, 1];

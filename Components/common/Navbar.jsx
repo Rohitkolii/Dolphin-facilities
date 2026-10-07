@@ -4,15 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { Playfair_Display } from "next/font/google";
+import { playfair } from "@/lib/fonts";
 
 // Same display font as page.js so the navbar matches on every page
 // (not only where the wrapper defines --font-display).
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
 const display = { fontFamily: playfair.style.fontFamily };
 
 const links = [
