@@ -23,21 +23,6 @@ const projectsdata = [
     category: 1,
   },
   {
-    index: 4,
-    id: "1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
-    name: "vit convocation , iccer van campaign.MP4",
-    mimeType: "video/mp4",
-    size: "704170370",
-    url: "/api/media/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
-    viewUrl:
-      "https://drive.google.com/file/d/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74/view",
-    description: "",
-    thumbnail: "/api/media/thumbnail/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
-    headimg: "/images/group.jpg",
-    category: 2,
-  },
-
-  {
     index: 8,
     id: "1c3-BiJW8M14N2cThW3tp720ympMCyA0-",
     name: "IN THE ESTEEMED PRESENCE OF THE HON’BLE CHIEF MINISTER — VAN MELA UJJAIN 2026.mp4",
@@ -52,20 +37,7 @@ const projectsdata = [
     headimg: "/images/cm.png",
     category: 3,
   },
-  {
-    index: 0,
-    id: "14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
-    name: "Sequence 01_1.mp4",
-    mimeType: "video/mp4",
-    size: "396823869",
-    url: "/api/media/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
-    viewUrl:
-      "https://drive.google.com/file/d/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff/view",
-    description: "",
-    thumbnail: "/api/media/thumbnail/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
-    headimg: "/images/thumbnail.png",
-    category: 2,
-  },
+
   {
     index: 11,
     id: "1n1SIoGWsMibL9_7AXGhVXD5ZbNNKop4q",
@@ -80,6 +52,20 @@ const projectsdata = [
     thumbnail: "/api/media/thumbnail/1n1SIoGWsMibL9_7AXGhVXD5ZbNNKop4q",
     headimg: "/images/ladies2.png",
     category: 4,
+  },
+    {
+    index: 0,
+    id: "14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
+    name: "Sequence 01_1.mp4",
+    mimeType: "video/mp4",
+    size: "396823869",
+    url: "/api/media/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
+    viewUrl:
+      "https://drive.google.com/file/d/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/14TMS8QuMhUQP2dH3dCq5PGHfXmH_l9Ff",
+    headimg: "/images/thumbnail.png",
+    category: 2,
   },
   {
     index: 13,
@@ -125,6 +111,20 @@ const projectsdata = [
     thumbnail: "/api/media/thumbnail/1Ub35dBoTXOvIRm1MNLRopEyARiBlswNL",
     headimg: "/images/frame.png",
     category: 5,
+  },
+    {
+    index: 4,
+    id: "1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
+    name: "vit convocation , iccer van campaign.MP4",
+    mimeType: "video/mp4",
+    size: "704170370",
+    url: "/api/media/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
+    viewUrl:
+      "https://drive.google.com/file/d/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74/view",
+    description: "",
+    thumbnail: "/api/media/thumbnail/1MPBP2zXTDZOpupYPDCkc_PqmSlfWFS74",
+    headimg: "/images/group.jpg",
+    category: 2,
   },
   {
     index: 3,
@@ -565,13 +565,13 @@ export default function PortfolioGrid() {
     );
   }
 
-  // if (error) {
-  //   return (
-  //     <section className="w-full bg-[#f8f4ec] py-16 text-center text-red-600">
-  //       Couldn't load portfolio: {error}
-  //     </section>
-  //   );
-  // }
+  if (error) {
+    return (
+      <section className="w-full bg-[#f8f4ec] py-16 text-center text-red-600">
+        Couldn't load portfolio: {error}
+      </section>
+    );
+  }
 
   if (projects.length === 0) {
     return (
@@ -960,7 +960,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           group-hover:translate-y-[-2px]
         "
       >
-        {project.category && (
+        {/* {project.category && (
           <p
             className="
               text-[#c9a768]
@@ -980,7 +980,7 @@ function PortfolioCard({ project, isHovered, onMouseEnter, onClick }) {
           >
             {project.category}
           </p>
-        )}
+        )} */}
 
         <h3
           className={`
@@ -1326,11 +1326,11 @@ function MediaPopup({
                 </p>
               )}
 
-              {project.category && (
+              {/* {project.category && (
                 <p className="mt-4 text-[#c9a768] text-[12px] md:text-[14px] font-semibold uppercase tracking-wide">
                   {project.category}
                 </p>
-              )}
+              )} */}
 
               <div className="mt-3 h-px w-10 bg-[#c9a768]" />
 

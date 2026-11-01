@@ -95,11 +95,11 @@ export default function Footer() {
               </span>
 
               <span className="text-[13px] text-white/85">
-                +(91) -9098486957
+                +(91) 9098486957
               </span>
             </div>
 
-            <div className="mb-8 flex items-center gap-3">
+            {/* <div className="mb-8 flex items-center gap-3">
               <span className={iconBox}>
                 <FaPhoneAlt className={`text-sm`} />
               </span>
@@ -107,7 +107,7 @@ export default function Footer() {
               <span className="text-[13px] text-white/85">
                 +(91) 02247791300
               </span>
-            </div>
+            </div> */}
 
             <p className="mb-3 text-[13px] text-white/90">
               For Career Enquiries:

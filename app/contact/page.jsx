@@ -20,7 +20,7 @@ const offices = {
     title: "Bhopal Office",
     address:
       "17-18 Block A, Second Floor, Gammon India, TT Nagar, Bhopal - 462003",
-    phone: "(+91) 02247791300",
+    phone: "(+91) 9098486957",
     lat: 23.2325,
     lng: 77.4055,
   },
@@ -197,8 +197,6 @@ export default function ContactPage() {
 
             <ContactCard icon={<PhoneIcon />} title="Contact">
               +91 9098486957
-              <br />
-              +91 02247791300
             </ContactCard>
           </section>
 

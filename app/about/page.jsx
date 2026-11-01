@@ -1,5 +1,6 @@
 import AboutHero from "@/Components/about/AboutHero";
 import AboutStory from "@/Components/about/AboutStory";
+import AboutImpactSection from "@/Components/about/AboutImpactSection";
 import AboutHowWeWork from "@/Components/about/AboutHowWeWork";
 import AboutStats from "@/Components/about/AboutStats";
 import AboutPhilosophy from "@/Components/about/AboutPhilosophy";
@@ -16,6 +17,7 @@ export default function AboutPage() {
       <Navbar />
       <AboutHero />
       <AboutStory />
+      <AboutImpactSection />
       <AboutHowWeWork />
       <AboutStats />
       <AboutPhilosophy />

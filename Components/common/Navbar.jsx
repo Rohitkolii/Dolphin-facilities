@@ -826,7 +826,7 @@ export default function Navbar() {
             </a>
 
             {/* PHONE 2 */}
-            <a
+            {/* <a
               href="tel:+912247791300"
               className="flex items-center gap-4 transition-colors hover:text-[#a5803a]"
             >
@@ -851,7 +851,7 @@ export default function Navbar() {
               </span>
 
               <span className="text-[15px]">+91 02247791300</span>
-            </a>
+            </a> */}
           </div>
 
           {/* =====================================================
